@@ -28,7 +28,7 @@ function unsetproxy(){
 }
 
 function kill_server_process(){
-  kill `ps -ef|grep python|awk '{print $2}'`
+  kill `ps -ef|grep serving|awk '{print $2}'`
 }
 
 function before_hook(){
@@ -359,8 +359,8 @@ function main() {
   before_hook
   build_all_whl
   run_env
-  rpc_gpu_model_list
-  rpc_cpu_model_list
+  run_rpc_gpu_model
+  run_rpc_cpu_model
   end_hook
 }
 main $@
