@@ -9,13 +9,12 @@ echo "#                                                              #"
 echo "#                                                              #"
 echo "#                                                              #"
 echo "################################################################"
-build_path=/workspace/Serving/Serving
 
+build_path=/workspace/Serving/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
 http_model_list=(bert_http ResNet50_http ResNet101_http cnn_http bow_http lstm_http lac_http senta_http fit_a_line_http)
 rpc_gpu_model_list=(bert_rpc_gpu ResNet50_rpc ResNet101_rpc faster_rcnn_model_rpc criteo_ctr_gpu_rpc)
 rpc_cpu_model_list=(bert_rpc_cpu cnn_rpc bow_rpc lstm_rpc lac_rpc fit_a_line_rpc criteo_ctr_cpu_rpc)
-
 
 function setproxy(){
   export http_proxy=${proxy}
@@ -143,6 +142,8 @@ function build_app() {
   pip3 install ${build_path}/build/python/dist/*
 }
 
+
+
 function bert_rpc_gpu(){
   run_gpu_env
   setproxy
@@ -173,7 +174,7 @@ function bert_rpc_cpu(){
 function criteo_ctr_rpc(){
   setproxy
   run_cpu_env
-  cd ${serving_path}/Serving/python/examples/criteo_ctr
+  cd ${build_path}/python/examples/criteo_ctr
   sh get_data.sh >/dev/null 2>&1
   sed -i "30cclient.connect(['${host}:8862'])" test_client.py
   sed -i '54s/#print(fetch_map)/print(fetch_map)' test_client.py
@@ -189,7 +190,7 @@ function criteo_ctr_rpc(){
 function ResNet50_rpc(){
   run_gpu_env
   setproxy
-  cd ${serving_path}/Serving/python/examples/imagenet
+  cd ${build_path}/python/examples/imagenet
   sh get_model.sh >/dev/null 2>&1
   sed -i "22cclient.connect(['${host}:8863'])" image_rpc_client.py
   python3 -m paddle_serving_server_gpu.serve --model ResNet50_vd_model --port 8863 --gpu_ids 0 > ResNet50_rpc 2>&1 &
@@ -202,7 +203,7 @@ function ResNet50_rpc(){
 function ResNet101_rpc(){
   run_gpu_env
   setproxy
-  cd ${serving_path}/Serving/python/examples/imagenet
+  cd ${build_path}/python/examples/imagenet
   sed -i "22cclient.connect(['${host}:8864'])" image_rpc_client.py
   python3 -m paddle_serving_server_gpu.serve --model ResNet101_vd_model --port 8864 --gpu_ids 0 > ResNet101_rpc 2>&1 &
   sleep 5
@@ -226,7 +227,7 @@ function cnn_rpc(){
 function bow_rpc(){
   setproxy
   run_cpu_env
-  cd ${serving_path}/Serving/python/examples/imdb
+  cd ${build_path}/python/examples/imdb
   sed -i "21cclient.connect(['${host}:8866'])" test_client.py
   python3 -m paddle_serving_server.serve --model imdb_bow_model/ --port 8866 > bow_rpc 2>&1 &
   sleep 5
@@ -238,7 +239,7 @@ function bow_rpc(){
 function lstm_rpc(){
   setproxy
   run_cpu_env
-  cd ${serving_path}/Serving/python/examples/imdb
+  cd ${build_path}/python/examples/imdb
   sed -i "21cclient.connect(['${host}:8867'])" test_client.py
   python3 -m paddle_serving_server.serve --model imdb_lstm_model/ --port 8867 > lstm_rpc 2>&1 &
   sleep 5
@@ -250,7 +251,7 @@ function lstm_rpc(){
 function lac_rpc(){
   setproxy
   run_cpu_env
-  cd ${serving_path}/Serving/python/examples/lac
+  cd ${build_path}/python/examples/lac
   sh get_data.sh >/dev/null 2>&1
   sed -i "25cclient.connect(['${host}:8868'])" lac_client.py
   python3 -m paddle_serving_server.serve --model jieba_server_model/ --port 8868 > lac_rpc 2>&1 &
@@ -277,10 +278,10 @@ function faster_rcnn_model_rpc(){
   run_gpu_env
   setproxy
   kill_server_process
-  cd ${serving_path}/Serving/python/examples/faster_rcnn_model
-  wget https://paddle-serving.bj.bcebos.com/pddet_demo/faster_rcnn_model.tar.gz
-  wget https://paddle-serving.bj.bcebos.com/pddet_demo/infer_cfg.yml
-  tar xf faster_rcnn_model.tar.gz
+  cd ${build_path}/python/examples/faster_rcnn_model
+  wget https://paddle-serving.bj.bcebos.com/pddet_demo/faster_rcnn_model.tar.gz >/dev/null 2>&1
+  wget https://paddle-serving.bj.bcebos.com/pddet_demo/infer_cfg.yml >/dev/null 2>&1
+  tar xf faster_rcnn_model.tar.gz >/dev/null 2>&1
   mv faster_rcnn_model/pddet* ./
   sed -i "30s/127.0.0.1:9494/${host}:8870/g" test_client.py
   python3 -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 > haha 2>&1 &
@@ -293,7 +294,7 @@ function faster_rcnn_model_rpc(){
 function criteo_ctr_gpu_rpc(){
   run_gpu_env
   setproxy
-  cd ${serving_path}/Serving/python/examples/criteo_ctr
+  cd ${build_path}/python/examples/criteo_ctr
   ln -s ${data_path}/ctr/raw_data ./
   ln -s ${data_path}/ctr/models/criteo_ctr_rpc ./
   ln -s ${data_path}/ctr/models/ctr_serving_model ./
@@ -359,8 +360,17 @@ function main() {
   before_hook
   build_all_whl
   run_env
-  run_rpc_gpu_model
-  run_rpc_cpu_model
+  bert_rpc_gpu
+  bert_rpc_cpu
+  cnn_rpc
+  bow_http
+  lstm_rpc
+  lac_rpc
+  fit_a_line
+ #  run_rpc_gpu_model
+#  run_rpc_cpu_model
   end_hook
 }
-main $@
+
+
+main 
