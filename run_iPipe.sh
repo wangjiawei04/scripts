@@ -12,7 +12,6 @@ echo "################################################################"
 
 build_path=/workspace/Serving/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
-http_model_list=(bert_http ResNet50_http ResNet101_http cnn_http bow_http lstm_http lac_http senta_http fit_a_line_http)
 rpc_gpu_model_list=(bert_rpc_gpu ResNet50_rpc ResNet101_rpc faster_rcnn_model_rpc criteo_ctr_gpu_rpc)
 rpc_cpu_model_list=(bert_rpc_cpu cnn_rpc bow_rpc lstm_rpc lac_rpc fit_a_line_rpc criteo_ctr_cpu_rpc)
 
@@ -331,16 +330,6 @@ function run_rpc_gpu_model(){
 
 function run_rpc_cpu_model(){
   for model in ${rpc_cpu_model_list[@]}
-  do
-    echo "=====================${model} run begin======================="
-    $model
-    sleep 3
-    echo "=====================${model} run end  ======================="
-  done
-}
-
-function run_http_model(){
-  for model in ${http_model_list[@]}
   do
     echo "=====================${model} run begin======================="
     $model
