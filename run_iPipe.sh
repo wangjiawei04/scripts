@@ -347,8 +347,8 @@ function end_hook(){
 
 function main() {
   before_hook
-  build_all_whl
   run_env
+  build_all_whl
   bert_rpc_gpu
   bert_rpc_cpu
  # cnn_rpc
