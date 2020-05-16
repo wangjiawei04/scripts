@@ -41,8 +41,8 @@ function run_env(){
   setproxy
   pip3 install --upgrade pip
   yum install -y libXext libSM libXrender
-  pip3 uninstall nltk numpy scipy setuptools -y
-  pip3 install nltk==3.4 numpy==1.16.4 scipy==1.2.1 setuptools==41.0.0 paddlehub ujson paddlepaddle
+  pip3 uninstall nltk scipy setuptools -y
+  pip3 install nltk==3.4 scipy==1.2.1 setuptools==41.0.0 paddlehub ujson paddlepaddle
   echo "env configuration succ.... "
 }
 
@@ -348,6 +348,10 @@ function end_hook(){
 function main() {
   before_hook
   build_all_whl
+  run_env
+  bert_rpc_gpu
+  bert_rpc_cpu
+  fit_a_line_rpc
   end_hook
 }
 
