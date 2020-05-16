@@ -351,6 +351,13 @@ function main() {
   run_env
   bert_rpc_gpu
   bert_rpc_cpu
+  criteo_ctr_gpu_rpc
+  criteo_ctr_rpc
+  ResNet50_rpc
+  ResNet101_rpc
+  cnn_rpc
+  bow_rpc
+  lstm_rpc
   fit_a_line_rpc
   end_hook
 }
