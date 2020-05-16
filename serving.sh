@@ -347,7 +347,8 @@ function end_hook(){
 
 function main() {
   before_hook
-  build_gpu_server
+  build_cpu_server
+  end_hook
 }
 
 
