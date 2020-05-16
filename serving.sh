@@ -347,7 +347,7 @@ function end_hook(){
 
 function main() {
   before_hook
-  build_cpu_server
+  build_client
   end_hook
 }
 
