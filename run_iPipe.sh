@@ -124,7 +124,7 @@ function build_cpu_server(){
 
 function build_app() {
   setproxy
-  pip3 install paddle_serving_client opencv-python Pillow
+  pip3 install paddlepaddle paddlehub ujson paddle_serving_client opencv-python Pillow
   yum install -y libXext libSM libXrender
   cd ${build_path}
   if [ -d build ];then
@@ -347,8 +347,8 @@ function end_hook(){
 
 function main() {
   before_hook
-  run_env
   build_all_whl
+  end_hook
   bert_rpc_gpu
   bert_rpc_cpu
  # cnn_rpc
