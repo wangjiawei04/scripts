@@ -363,4 +363,4 @@ function main() {
 }
 
 
-main 
+main$@
