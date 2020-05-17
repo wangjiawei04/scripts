@@ -42,7 +42,7 @@ function run_env(){
   pip3 install --upgrade pip
   yum install -y libXext libSM libXrender
   pip3 uninstall nltk scipy setuptools -y
-  pip3 install nltk==3.4 scipy==1.2.1 setuptools==41.0.0 paddlehub ujson paddlepaddle
+  pip3 install setuptools==41.0.0 nltk==3.4 scipy==1.2.1 paddlehub ujson paddlepaddle
   echo "env configuration succ.... "
 }
 
