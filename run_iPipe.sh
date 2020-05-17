@@ -346,7 +346,6 @@ function end_hook(){
 
 function main() {
   before_hook
-  before_hook
   build_all_whl
   run_env
   bert_rpc_gpu
