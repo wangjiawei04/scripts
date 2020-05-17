@@ -346,17 +346,19 @@ function end_hook(){
 
 function main() {
   before_hook
+  before_hook
   build_all_whl
   run_env
   bert_rpc_gpu
   bert_rpc_cpu
- # cnn_rpc
- # bow_http
- # lstm_rpc
- # lac_rpc
-  fit_a_line
- # run_rpc_gpu_model
- # run_rpc_cpu_model
+  #criteo_ctr_gpu_rpc
+  #criteo_ctr_rpc
+  ResNet50_rpc
+  ResNet101_rpc
+  cnn_rpc
+  bow_rpc
+  lstm_rpc
+  fit_a_line_rpc
   end_hook
 }
 
