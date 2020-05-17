@@ -302,7 +302,7 @@ function criteo_ctr_gpu_rpc(){
   python3 local_train.py
   sleep 3
   python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8871 --gpu_ids 0 > criteo_ctr_rpc_gpu 2>&1 &
-  sleeep 3
+  sleep 3
   python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
   kill_server_process
   sleep 3
