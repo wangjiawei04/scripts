@@ -39,10 +39,9 @@ function before_hook(){
 
 function run_env(){
   setproxy
-  pip3 install --upgrade pip
   yum install -y libXext libSM libXrender
-  pip3 uninstall nltk scipy setuptools -y
-  pip3 install nltk==3.4 scipy==1.2.1 setuptools==41.0.0 paddlehub ujson paddlepaddle
+  pip3 uninstall nltk  scipy setuptools -y
+  pip3 install nltk==3.4  scipy==1.2.1 setuptools==41.0.0 paddlehub ujson paddlepaddle
   echo "env configuration succ.... "
 }
 
@@ -302,7 +301,7 @@ function criteo_ctr_gpu_rpc(){
   python3 local_train.py
   sleep 3
   python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8871 --gpu_ids 0 > criteo_ctr_rpc_gpu 2>&1 &
-  sleep 3
+  sleeep 3
   python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
   kill_server_process
   sleep 3
@@ -351,8 +350,8 @@ function main() {
   run_env
   bert_rpc_gpu
   bert_rpc_cpu
-  criteo_ctr_gpu_rpc
-  criteo_ctr_rpc
+  #criteo_ctr_gpu_rpc
+  #criteo_ctr_rpc
   ResNet50_rpc
   ResNet101_rpc
   cnn_rpc
