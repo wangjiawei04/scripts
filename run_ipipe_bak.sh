@@ -41,8 +41,10 @@ function run_env(){
   setproxy
   pip3 install --upgrade pip
   yum install -y libXext libSM libXrender
-  pip3 uninstall nltk scipy setuptools -y
-  pip3 install  nltk==3.4 scipy==1.2.1 setuptools==41.0.0 paddlehub ujson paddlepaddle
+  pip3 install --upgrade nltk==3.4
+  pip3 install --upgrade scipy==1.2.1
+  pip3 install --upgrade setuptools==41.0.0
+  pip3 install paddlehub ujson paddlepaddle
   echo "env configuration succ.... "
 }
 
