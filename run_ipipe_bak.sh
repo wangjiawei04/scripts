@@ -16,8 +16,8 @@ rpc_gpu_model_list=(bert_rpc_gpu ResNet50_rpc ResNet101_rpc faster_rcnn_model_rp
 rpc_cpu_model_list=(bert_rpc_cpu cnn_rpc bow_rpc lstm_rpc lac_rpc fit_a_line_rpc criteo_ctr_cpu_rpc)
 
 function setproxy(){
-  export http_proxy=${bproxy}
-  export https_proxy=${bproxy}
+  export http_proxy=${proxy}
+  export https_proxy=${proxy}
 }
 
 function unsetproxy(){
