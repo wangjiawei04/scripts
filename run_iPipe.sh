@@ -192,10 +192,10 @@ function ResNet50_rpc(){
   setproxy
   cd ${build_path}/python/examples/imagenet
   sh get_model.sh >/dev/null 2>&1
-  sed -i "22cclient.connect(['${host}:8863'])" image_rpc_client.py
+  sed -i "23cclient.connect(['127.0.0.1:8863'])" resnet50_rpc_client.py
   python3 -m paddle_serving_server_gpu.serve --model ResNet50_vd_model --port 8863 --gpu_ids 0 > ResNet50_rpc 2>&1 &
   sleep 5
-  python3 image_rpc_client.py ResNet50_vd_client_config/serving_client_conf.prototxt
+  python3 resnet50_rpc_client.py ResNet50_vd_client_config/serving_client_conf.prototxt
   kill_server_process
   sleep 5
 }
