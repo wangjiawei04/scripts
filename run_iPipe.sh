@@ -176,13 +176,15 @@ function criteo_ctr_rpc(){
   run_cpu_env
   cd ${build_path}/python/examples/criteo_ctr
   sh get_data.sh >/dev/null 2>&1
+  wget https://paddle-serving.bj.bcebos.com/criteo_ctr_example/criteo_ctr_demo_model.tar.gz
+  tar xf criteo_ctr_demo_model.tar.gz
+  mv models/ctr_client_conf .
+  mv models/ctr_serving_model .
   sed -i "30cclient.connect(['${host}:8862'])" test_client.py
-  sed -i '54s/#print(fetch_map)/print(fetch_map)' test_client.py
-  python3 local_train.py >/dev/null 2>&1
-  sleep 3
   python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8866 --gpu_ids 0 > criteo_ctr_rpc 2>&1 &
-  sleeep 5
-  python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
+  sleep 5
+  python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/ >ctr_log 2>&1
+  tailf ctr_log
   kill_server_process
   sleep 5
 }
@@ -295,16 +297,9 @@ function criteo_ctr_gpu_rpc(){
   run_gpu_env
   setproxy
   cd ${build_path}/python/examples/criteo_ctr
-  ln -s ${data_path}/ctr/raw_data ./
-  ln -s ${data_path}/ctr/models/criteo_ctr_rpc ./
-  ln -s ${data_path}/ctr/models/ctr_serving_model ./
-  sed -i "30cclient.connect(['${host}:8871'])" test_client.py
-  sed -i '54s/#print(fetch_map)/print(fetch_map)' test_client.py
-  python3 local_train.py
-  sleep 3
   python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8871 --gpu_ids 0 > criteo_ctr_rpc_gpu 2>&1 &
-  sleeep 3
-  python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
+  sleep 3
+  python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/ > ctr_gpu_log 2>&1
   kill_server_process
   sleep 3
 }
