@@ -142,8 +142,6 @@ function build_app() {
   pip3 install ${build_path}/build/python/dist/*
 }
 
-
-
 function bert_rpc_gpu(){
   run_gpu_env
   setproxy
@@ -181,12 +179,23 @@ function criteo_ctr_rpc(){
   mv models/ctr_client_conf .
   mv models/ctr_serving_model .
   sed -i "30cclient.connect(['${host}:8862'])" test_client.py
-  python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8866 --gpu_ids 0 > criteo_ctr_rpc 2>&1 &
+  python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8862 --gpu_ids 0 > criteo_ctr_rpc 2>&1 &
   sleep 5
   python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/ >ctr_log 2>&1
   tailf ctr_log
   kill_server_process
   sleep 5
+}
+
+function criteo_ctr_gpu_rpc(){
+  run_gpu_env
+  setproxy
+  cd ${build_path}/python/examples/criteo_ctr
+  python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8862 --gpu_ids 0 > criteo_ctr_rpc_gpu 2>&1 &
+  sleep 3
+  python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/ > ctr_gpu_log 2>&1
+  kill_server_process
+  sleep 3
 }
 
 function ResNet50_rpc(){
@@ -285,24 +294,14 @@ function faster_rcnn_model_rpc(){
   wget https://paddle-serving.bj.bcebos.com/pddet_demo/infer_cfg.yml >/dev/null 2>&1
   tar xf faster_rcnn_model.tar.gz >/dev/null 2>&1
   mv faster_rcnn_model/pddet* ./
-  sed -i "30s/127.0.0.1:9494/${host}:8870/g" test_client.py
+  sed -i "30s/127.0.0.1:9393/${host}:8870/g" new_test_client.py
   python3 -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 > haha 2>&1 &
   sleep 3
-  python3 test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
+  python3 new_test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
   kill_server_process
   sleep 2
 }
 
-function criteo_ctr_gpu_rpc(){
-  run_gpu_env
-  setproxy
-  cd ${build_path}/python/examples/criteo_ctr
-  python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8871 --gpu_ids 0 > criteo_ctr_rpc_gpu 2>&1 &
-  sleep 3
-  python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/ > ctr_gpu_log 2>&1
-  kill_server_process
-  sleep 3
-}
 
 function build_all_whl(){
   for whl in ${build_whl_list[@]}
@@ -347,10 +346,12 @@ function main() {
   run_env
   bert_rpc_gpu
   bert_rpc_cpu
+  faster_rcnn_model_rpc
   #criteo_ctr_gpu_rpc
   #criteo_ctr_rpc
   ResNet50_rpc
   ResNet101_rpc
+  lac_rpc
   cnn_rpc
   bow_rpc
   lstm_rpc
@@ -359,4 +360,4 @@ function main() {
 }
 
 
-main 
+main
