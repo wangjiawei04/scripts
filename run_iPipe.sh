@@ -31,7 +31,7 @@ function kill_server_process(){
 
 function check() {
     cd ${build_path}
-    if [ ! -f paddle_serving_app* ];then
+    if [ ! -f paddle_serving_app* ]; then
       echo "paddle_serving_app is compiled failed, please check your pull request"
       exit 1
     elif [ ! -f paddle_serving_server-* ]; then
