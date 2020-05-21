@@ -331,18 +331,8 @@ function build_all_whl(){
   done
 }
 
-function run_rpc_model(){
+function run_rpc_models(){
   for model in ${rpc_model_list[@]}
-  do
-    echo "===========${model} run begin==========="
-    $model
-    sleep 3
-    echo "===========${model} run  end ==========="
-  done
-}
-
-function run_rpc_cpu_model(){
-  for model in ${rpc_cpu_model_list[@]}
   do
     echo "===========${model} run begin==========="
     $model
@@ -353,9 +343,9 @@ function run_rpc_cpu_model(){
 
 function end_hook(){
   cd ${build_path}
-  echo "===========all files==========="
+  echo "===========files==========="
   ls -hlst
-  echo "===========end==========="
+  echo "=========== end ==========="
 }
 
 function main() {
@@ -363,7 +353,7 @@ function main() {
   build_all_whl
   check
   run_env
-  run_rpc_model
+  run_rpc_models
   end_hook
 }
 
