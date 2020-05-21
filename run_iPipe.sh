@@ -13,6 +13,8 @@ echo "################################################################"
 build_path=/workspace/Serving/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
 rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc ResNet101_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc)
+http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http)
+
 
 function setproxy(){
   export http_proxy=${proxy}
@@ -187,6 +189,9 @@ function bert_rpc_cpu(){
   kill_server_process
 }
 
+function bert_http() {
+
+}
 function criteo_ctr_rpc(){
   setproxy
   run_cpu_env
@@ -320,6 +325,53 @@ function faster_rcnn_model_rpc(){
   sleep 2
 }
 
+function fit_a_line_http() {
+  unsetproxy
+  run_cpu_env
+  cd ${build_path}/python/examples/fit_a_line
+  python -m paddle_serving_server.serve --model uci_housing_model --thread 10 --port 8871 --name uci > http_log 2>&1 &
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"x": [0.0137, -0.1136, 0.2553, -0.0692, 0.0582, -0.0727, -0.1583, -0.0584, 0.6283, 0.4919, 0.1856, 0.0795, -0.0332]}], "fetch":["price"]}' http://127.0.0.1:8871/uci/prediction
+}
+
+function lac_http() {
+  unsetproxy
+  run_cpu_env
+  cd ${build_path}/python/examples/lac
+  python lac_web_service.py jieba_server_model/ lac_workdir 8872 > http_lac_log 2>&1 &
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "我爱北京天安门"}], "fetch":["word_seg"]}' http://127.0.0.1:8872/lac/prediction
+}
+
+function cnn_http() {
+  unsetproxy
+  run_cpu_env
+  cd ${build_path}/python/examples/imdb
+  python text_classify_service.py imdb_cnn_model/ workdir/ 8873 imdb.vocab > cnn_http 2>&1 &
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://127.0.0.1:8873/imdb/prediction
+}
+
+function bow_http() {
+  unsetproxy
+  run_cpu_env
+  cd ${build_path}/python/examples/imdb
+  python text_classify_service.py imdb_bow_model/ workdir/ 8874 imdb.vocab > bow_http 2>&1 &
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://127.0.0.1:8874/imdb/prediction
+}
+
+function lstm_http() {
+  unsetproxy
+  run_cpu_env
+  cd ${build_path}/python/examples/imdb
+  python text_classify_service.py imdb_bow_model/ workdir/ 8875 imdb.vocab > bow_http 2>&1 &
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://127.0.0.1:8875/imdb/prediction
+}
+
+function ResNet50_http() {
+  unsetproxy
+  run_gpu_env
+  cd ${build_path}/python/examples/imagenet
+  python resnet50_web_service.py ResNet50_vd_model gpu 8876 > resnet50_http 2>&1 &
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"image": "https://paddle-serving.bj.bcebos.com/imagenet-example/daisy.jpg"}], "fetch": ["score"]}' http://127.0.0.1:8876/image/prediction
+}
 
 function build_all_whl(){
   for whl in ${build_whl_list[@]}
@@ -341,6 +393,16 @@ function run_rpc_models(){
   done
 }
 
+function run_http_models(){
+  for model in ${http_model_list[@]}
+  do
+    echo "===========${model} run begin==========="
+    $model
+    sleep 3
+    echo "===========${model} run  end ==========="
+  done
+}
+
 function end_hook(){
   cd ${build_path}
   echo "===========files==========="
@@ -354,7 +416,7 @@ function main() {
   check
   run_env
   run_rpc_models
-  #criteo_ctr_rpc 
+  #criteo_ctr_rpc
   #criteo_ctr_gpu_rpc
   end_hook
 }
