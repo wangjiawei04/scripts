@@ -12,8 +12,7 @@ echo "################################################################"
 
 build_path=/workspace/Serving/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
-rpc_gpu_model_list=(bert_rpc_gpu ResNet50_rpc ResNet101_rpc faster_rcnn_model_rpc criteo_ctr_gpu_rpc)
-rpc_cpu_model_list=(bert_rpc_cpu cnn_rpc bow_rpc lstm_rpc lac_rpc fit_a_line_rpc criteo_ctr_cpu_rpc)
+rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc criteo_ctr_gpu_rpc criteo_ctr_rpc ResNet50_rpc ResNet101_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc)
 
 function setproxy(){
   export http_proxy=${proxy}
@@ -171,7 +170,7 @@ function bert_rpc_gpu(){
   python3 prepare_model.py 128
   sleep 3
   python3 -m paddle_serving_server_gpu.serve --model bert_seq128_model/ --port 8860 --gpu_ids 0 > bert_rpc_gpu 2>&1 &
-  sleep 15
+  sleep 10
   head data-c.txt | python3 bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
   kill_server_process
 }
@@ -325,38 +324,38 @@ function faster_rcnn_model_rpc(){
 function build_all_whl(){
   for whl in ${build_whl_list[@]}
   do
-    echo "====================${whl} begin build======================="
+    echo "===========${whl} begin build==========="
     $whl
     sleep 3
-    echo "====================${whl} build over ======================="
+    echo "===========${whl} build over ==========="
   done
 }
 
-function run_rpc_gpu_model(){
-  for model in ${rpc_gpu_model_list[@]}
+function run_rpc_model(){
+  for model in ${rpc_model_list[@]}
   do
-    echo "=====================${model} run begin======================="
+    echo "===========${model} run begin==========="
     $model
     sleep 3
-    echo "=====================${model} run end  ======================="
+    echo "===========${model} run  end ==========="
   done
 }
 
 function run_rpc_cpu_model(){
   for model in ${rpc_cpu_model_list[@]}
   do
-    echo "=====================${model} run begin======================="
+    echo "===========${model} run begin==========="
     $model
     sleep 3
-    echo "=====================${model} run end  ======================="
+    echo "===========${model} run  end ==========="
   done
 }
 
 function end_hook(){
   cd ${build_path}
-  echo "===============files==============="
+  echo "===========all files==========="
   ls -hlst
-  echo "===============end================="
+  echo "===========end==========="
 }
 
 function main() {
@@ -364,19 +363,9 @@ function main() {
   build_all_whl
   check
   run_env
-  bert_rpc_gpu
-  bert_rpc_cpu
-  faster_rcnn_model_rpc
-  criteo_ctr_gpu_rpc
-  criteo_ctr_rpc
-  ResNet50_rpc
-  ResNet101_rpc
-  lac_rpc
-  cnn_rpc
-  bow_rpc
-  lstm_rpc
-  fit_a_line_rpc
+  run_rpc_model
   end_hook
 }
 
-main
+
+main$@
