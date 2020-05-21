@@ -192,8 +192,8 @@ function criteo_ctr_rpc(){
   run_cpu_env
   cd ${build_path}/python/examples/criteo_ctr
   sh get_data.sh >/dev/null 2>&1
-  wget https://paddle-serving.bj.bcebos.com/criteo_ctr_example/criteo_ctr_demo_model.tar.gz
-  tar xf criteo_ctr_demo_model.tar.gz
+  wget https://paddle-serving.bj.bcebos.com/criteo_ctr_example/criteo_ctr_demo_model.tar.gz >/dev/null 2>&1
+  tar xf criteo_ctr_demo_model.tar.gz >/dev/null 2>&1
   mv models/ctr_client_conf .
   mv models/ctr_serving_model .
   sed -i "30cclient.connect(['${host}:8862'])" test_client.py
