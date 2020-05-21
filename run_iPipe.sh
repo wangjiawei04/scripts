@@ -29,6 +29,25 @@ function kill_server_process(){
   kill `ps -ef|grep serving|awk '{print $2}'`
 }
 
+function check() {
+    cd ${build_path}
+    if [ ! -f paddle_serving_app* ];then
+      echo "paddle_serving_app is compiled failed, please check your pull request"
+      exit 1
+    elif [ ! -f paddle_serving_server-* ]; then
+      echo "paddle_serving_server-cpu is compiled failed, please check your pull request"
+      exit 1
+    elif [ ! -f paddle_serving_server_* ]; then
+      echo "paddle_serving_server_gpu is compiled failed, please check your pull request"
+      exit 1
+    elif [ ! -f paddle_serving_client* ]; then
+      echo "paddle_serving_server_client is compiled failed, please check your pull request"
+      exit 1
+    else
+      echo "paddle serving Build Passed"
+    fi
+}
+
 function before_hook(){
   setproxy
   cd /workspace/Serving/Serving
@@ -343,6 +362,7 @@ function end_hook(){
 function main() {
   before_hook
   build_all_whl
+  check
   run_env
   bert_rpc_gpu
   bert_rpc_cpu
