@@ -367,8 +367,8 @@ function main() {
   bert_rpc_gpu
   bert_rpc_cpu
   faster_rcnn_model_rpc
-  #criteo_ctr_gpu_rpc
-  #criteo_ctr_rpc
+  criteo_ctr_gpu_rpc
+  criteo_ctr_rpc
   ResNet50_rpc
   ResNet101_rpc
   lac_rpc
@@ -378,6 +378,5 @@ function main() {
   fit_a_line_rpc
   end_hook
 }
-
 
 main
