@@ -43,7 +43,7 @@ function check() {
       echo "paddle_serving_server_client is compiled failed, please check your pull request"
       exit 1
     else
-      echo "paddle serving Build Passed"
+      echo "paddle serving build passed"
     fi
 }
 
