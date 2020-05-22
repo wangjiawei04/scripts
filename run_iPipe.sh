@@ -328,11 +328,12 @@ function faster_rcnn_model_rpc(){
 function fit_a_line_http() {
   env
   unsetproxy
+  echo "unset proxy env *********"
   env
   run_cpu_env
   cd ${build_path}/python/examples/fit_a_line
   python -m paddle_serving_server.serve --model uci_housing_model --thread 10 --port 8871 --name uci > http_log 2>&1 &
-  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"x": [0.0137, -0.1136, 0.2553, -0.0692, 0.0582, -0.0727, -0.1583, -0.0584, 0.6283, 0.4919, 0.1856, 0.0795, -0.0332]}], "fetch":["price"]}' http://127.0.0.1:8871/uci/prediction
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"x": [0.0137, -0.1136, 0.2553, -0.0692, 0.0582, -0.0727, -0.1583, -0.0584, 0.6283, 0.4919, 0.1856, 0.0795, -0.0332]}], "fetch":["price"]}' http://${host}:8871/uci/prediction
 }
 
 function lac_http() {
@@ -340,7 +341,7 @@ function lac_http() {
   run_cpu_env
   cd ${build_path}/python/examples/lac
   python lac_web_service.py jieba_server_model/ lac_workdir 8872 > http_lac_log 2>&1 &
-  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "我爱北京天安门"}], "fetch":["word_seg"]}' http://127.0.0.1:8872/lac/prediction
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "我爱北京天安门"}], "fetch":["word_seg"]}' http://${host}:8872/lac/prediction
 }
 
 function cnn_http() {
@@ -348,7 +349,7 @@ function cnn_http() {
   run_cpu_env
   cd ${build_path}/python/examples/imdb
   python text_classify_service.py imdb_cnn_model/ workdir/ 8873 imdb.vocab > cnn_http 2>&1 &
-  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://127.0.0.1:8873/imdb/prediction
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8873/imdb/prediction
 }
 
 function bow_http() {
@@ -356,7 +357,7 @@ function bow_http() {
   run_cpu_env
   cd ${build_path}/python/examples/imdb
   python text_classify_service.py imdb_bow_model/ workdir/ 8874 imdb.vocab > bow_http 2>&1 &
-  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://127.0.0.1:8874/imdb/prediction
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8874/imdb/prediction
 }
 
 function lstm_http() {
@@ -364,7 +365,7 @@ function lstm_http() {
   run_cpu_env
   cd ${build_path}/python/examples/imdb
   python text_classify_service.py imdb_bow_model/ workdir/ 8875 imdb.vocab > bow_http 2>&1 &
-  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://127.0.0.1:8875/imdb/prediction
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8875/imdb/prediction
 }
 
 function ResNet50_http() {
@@ -372,7 +373,7 @@ function ResNet50_http() {
   run_gpu_env
   cd ${build_path}/python/examples/imagenet
   python resnet50_web_service.py ResNet50_vd_model gpu 8876 > resnet50_http 2>&1 &
-  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"image": "https://paddle-serving.bj.bcebos.com/imagenet-example/daisy.jpg"}], "fetch": ["score"]}' http://127.0.0.1:8876/image/prediction
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"image": "https://paddle-serving.bj.bcebos.com/imagenet-example/daisy.jpg"}], "fetch": ["score"]}' http://${host}:8876/image/prediction
 }
 
 function build_all_whl(){
