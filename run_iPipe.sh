@@ -326,7 +326,9 @@ function faster_rcnn_model_rpc(){
 }
 
 function fit_a_line_http() {
+  env
   unsetproxy
+  env
   run_cpu_env
   cd ${build_path}/python/examples/fit_a_line
   python -m paddle_serving_server.serve --model uci_housing_model --thread 10 --port 8871 --name uci > http_log 2>&1 &
