@@ -189,9 +189,9 @@ function bert_rpc_cpu(){
   kill_server_process
 }
 
-function bert_http() {
+# function bert_http() {
 
-}
+# }
 function criteo_ctr_rpc(){
   setproxy
   run_cpu_env
