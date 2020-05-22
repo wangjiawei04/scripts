@@ -343,6 +343,7 @@ function lac_http() {
   run_cpu_env
   cd ${build_path}/python/examples/lac
   python3 lac_web_service.py jieba_server_model/ lac_workdir 8872 > http_lac_log 2>&1 &
+  sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "我爱北京天安门"}], "fetch":["word_seg"]}' http://${host}:8872/lac/prediction
 }
 
@@ -351,6 +352,7 @@ function cnn_http() {
   run_cpu_env
   cd ${build_path}/python/examples/imdb
   python3 text_classify_service.py imdb_cnn_model/ workdir/ 8873 imdb.vocab > cnn_http 2>&1 &
+  sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8873/imdb/prediction
 }
 
@@ -359,6 +361,7 @@ function bow_http() {
   run_cpu_env
   cd ${build_path}/python/examples/imdb
   python3 text_classify_service.py imdb_bow_model/ workdir/ 8874 imdb.vocab > bow_http 2>&1 &
+  sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8874/imdb/prediction
 }
 
@@ -367,6 +370,7 @@ function lstm_http() {
   run_cpu_env
   cd ${build_path}/python/examples/imdb
   python3 text_classify_service.py imdb_bow_model/ workdir/ 8875 imdb.vocab > bow_http 2>&1 &
+  sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8875/imdb/prediction
 }
 
@@ -375,6 +379,7 @@ function ResNet50_http() {
   run_gpu_env
   cd ${build_path}/python/examples/imagenet
   python3 resnet50_web_service.py ResNet50_vd_model gpu 8876 > resnet50_http 2>&1 &
+  sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"image": "https://paddle-serving.bj.bcebos.com/imagenet-example/daisy.jpg"}], "fetch": ["score"]}' http://${host}:8876/image/prediction
 }
 
@@ -385,6 +390,7 @@ bert_http(){
   cp data-c.txt.1 data-c.txt
   export CUDA_VISIBLE_DEVICES=0,1
   python3 bert_web_service.py bert_seq128_model/ 8878 > bert_http 2>&1 &
+  sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "hello"}], "fetch":["pooled_output"]}' http://${host}:8878/bert/prediction
   kill_server_process
 }
