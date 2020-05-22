@@ -436,7 +436,7 @@ function main() {
   run_rpc_models
  # criteo_ctr_gpu_rpc 
  # criteo_ctr_rpc
- run_http_models
+  run_http_models
   end_hook
   
 }
