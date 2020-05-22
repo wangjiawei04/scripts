@@ -13,7 +13,7 @@ echo "################################################################"
 build_path=/workspace/Serving/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
 rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc ResNet101_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc)
-http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http)
+http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
 
 function setproxy(){
@@ -374,6 +374,17 @@ function ResNet50_http() {
   cd ${build_path}/python/examples/imagenet
   python3 resnet50_web_service.py ResNet50_vd_model gpu 8876 > resnet50_http 2>&1 &
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"image": "https://paddle-serving.bj.bcebos.com/imagenet-example/daisy.jpg"}], "fetch": ["score"]}' http://${host}:8876/image/prediction
+}
+
+bert_http(){
+  run_gpu_env
+  unsetproxy
+  cd ${build_path}/python/examples/bert
+  cp data-c.txt.1 data-c.txt
+  export CUDA_VISIBLE_DEVICES=0,1
+  python3 bert_web_service.py bert_seq128_model/ 8878 > bert_http 2>&1 &
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "hello"}], "fetch":["pooled_output"]}' http://${host}:8878/bert/prediction
+  kill_server_process
 }
 
 function build_all_whl(){
