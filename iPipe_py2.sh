@@ -412,6 +412,15 @@ function run_rpc_models(){
   done
 }
 
+function run_http_models(){
+  for model in ${http_model_list[@]}
+  do
+    echo "===========${model} run begin==========="
+    $model
+    sleep 3
+    echo "===========${model} run  end ==========="
+  done
+}
 function end_hook(){
   cd ${build_path}
   echo "===========files==========="
@@ -427,7 +436,9 @@ function main() {
   run_rpc_models
  # criteo_ctr_gpu_rpc 
  # criteo_ctr_rpc
+ run_http_models
   end_hook
+  
 }
 
 
