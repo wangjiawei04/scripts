@@ -324,9 +324,11 @@ function faster_rcnn_model_rpc(){
 
 function fit_a_line_http() {
   unsetproxy
+  echo "env ***************"
   run_cpu_env
   cd ${build_path}/python/examples/fit_a_line
-  python3 -m paddle_serving_server.serve --model uci_housing_model --thread 10 --port 8871 --name uci > http_log 2>&1 &
+  python3 -m paddle_serving_server.serve --model uci_housing_model --thread 10 --port 8871 --name uci > http_log2 2>&1 &
+  tail http_log2
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"x": [0.0137, -0.1136, 0.2553, -0.0692, 0.0582, -0.0727, -0.1583, -0.0584, 0.6283, 0.4919, 0.1856, 0.0795, -0.0332]}], "fetch":["price"]}' http://${host}:8871/uci/prediction
 }
@@ -335,7 +337,8 @@ function lac_http() {
   unsetproxy
   run_cpu_env
   cd ${build_path}/python/examples/lac
-  python3 lac_web_service.py jieba_server_model/ lac_workdir 8872 > http_lac_log 2>&1 &
+  python3 lac_web_service.py jieba_server_model/ lac_workdir 8872 > http_lac_log2 2>&1 &
+  tail http_lac_log2
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "我爱北京天安门"}], "fetch":["word_seg"]}' http://${host}:8872/lac/prediction
 }
