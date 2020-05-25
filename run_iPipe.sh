@@ -339,7 +339,8 @@ function lac_http() {
   run_cpu_env
   cd ${build_path}/python/examples/lac
   python3 lac_web_service.py jieba_server_model/ lac_workdir 8872 > http_lac_log 2>&1 &
-  sleep 10
+  tail http_lac_log
+  sleep 15
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "我爱北京天安门"}], "fetch":["word_seg"]}' http://${host}:8872/lac/prediction
 }
 
