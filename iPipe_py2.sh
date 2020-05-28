@@ -315,18 +315,15 @@ function faster_rcnn_model_rpc(){
   wget https://paddle-serving.bj.bcebos.com/pddet_demo/infer_cfg.yml >/dev/null 2>&1
   tar xf faster_rcnn_model.tar.gz >/dev/null 2>&1
   mv faster_rcnn_model/pddet* ./
-  sed -i "30s/127.0.0.1:9393/${host}:8870/g" new_test_client.py
+  sed -i "30s/127.0.0.1:9494/${host}:8870/g" test_client.py
   python -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 > haha 2>&1 &
   sleep 3
-  python new_test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
+  python test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
   kill_server_process
-  sleep 2
 }
 
 function fit_a_line_http() {
   unsetproxy
-  echo "env ***************"
-  env
   run_cpu_env
   cd ${build_path}/python/examples/fit_a_line
   python -m paddle_serving_server.serve --model uci_housing_model --thread 10 --port 8871 --name uci > http_log2 2>&1 &
