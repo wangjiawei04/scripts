@@ -389,7 +389,7 @@ bert_http(){
   cd ${build_path}/python/examples/bert
   cp data-c.txt.1 data-c.txt
   cp vocab.txt.1 vocab.txt
-  export CUDA_VISIBLE_DEVICES=0,1
+  export CUDA_VISIBLE_DEVICES=0
   python bert_web_service.py bert_seq128_model/ 8878 > bert_http 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "hello"}], "fetch":["pooled_output"]}' http://${host}:8878/bert/prediction
