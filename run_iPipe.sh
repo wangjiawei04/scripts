@@ -323,7 +323,6 @@ function faster_rcnn_model_rpc(){
   sleep 3
   python3 new_test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
   kill_server_process
-  sleep 2
 }
 
 function fit_a_line_http() {
@@ -333,6 +332,7 @@ function fit_a_line_http() {
   python3 -m paddle_serving_server.serve --model uci_housing_model --thread 10 --port 8871 --name uci > http_log 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"x": [0.0137, -0.1136, 0.2553, -0.0692, 0.0582, -0.0727, -0.1583, -0.0584, 0.6283, 0.4919, 0.1856, 0.0795, -0.0332]}], "fetch":["price"]}' http://${host}:8871/uci/prediction
+  kill_server_process
 }
 
 function lac_http() {
@@ -343,6 +343,7 @@ function lac_http() {
   tail http_lac_log
   sleep 15
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "我爱北京天安门"}], "fetch":["word_seg"]}' http://${host}:8872/lac/prediction
+  kill_server_process
 }
 
 function cnn_http() {
@@ -352,6 +353,7 @@ function cnn_http() {
   python3 text_classify_service.py imdb_cnn_model/ workdir/ 8873 imdb.vocab > cnn_http 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8873/imdb/prediction
+  kill_server_process
 }
 
 function bow_http() {
@@ -361,6 +363,7 @@ function bow_http() {
   python3 text_classify_service.py imdb_bow_model/ workdir/ 8874 imdb.vocab > bow_http 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8874/imdb/prediction
+  kill_server_process
 }
 
 function lstm_http() {
@@ -370,6 +373,7 @@ function lstm_http() {
   python3 text_classify_service.py imdb_bow_model/ workdir/ 8875 imdb.vocab > bow_http 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8875/imdb/prediction
+  kill_server_process
 }
 
 function ResNet50_http() {
@@ -379,11 +383,12 @@ function ResNet50_http() {
   python3 resnet50_web_service.py ResNet50_vd_model gpu 8876 > resnet50_http 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"image": "https://paddle-serving.bj.bcebos.com/imagenet-example/daisy.jpg"}], "fetch": ["score"]}' http://${host}:8876/image/prediction
+  kill_server_process
 }
 
 bert_http(){
-  run_gpu_env
   unsetproxy
+  run_gpu_env
   cd ${build_path}/python/examples/bert
   cp data-c.txt.1 data-c.txt
   cp vocab.txt.1 vocab.txt
