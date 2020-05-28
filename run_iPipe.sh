@@ -310,9 +310,8 @@ function fit_a_line_rpc(){
 }
 
 function faster_rcnn_model_rpc(){
-  run_gpu_env
   setproxy
-  kill_server_process
+  run_gpu_env
   cd ${build_path}/python/examples/faster_rcnn_model
   wget https://paddle-serving.bj.bcebos.com/pddet_demo/faster_rcnn_model.tar.gz >/dev/null 2>&1
   wget https://paddle-serving.bj.bcebos.com/pddet_demo/infer_cfg.yml >/dev/null 2>&1
@@ -320,6 +319,7 @@ function faster_rcnn_model_rpc(){
   mv faster_rcnn_model/pddet* ./
   sed -i "30s/127.0.0.1:9494/${host}:8870/g" test_client.py
   python3 -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 > haha 2>&1 &
+  tailf haha
   sleep 3
   python3 test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
   kill_server_process
