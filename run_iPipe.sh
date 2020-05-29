@@ -320,7 +320,8 @@ function faster_rcnn_model_rpc(){
   sed -i "30s/127.0.0.1:9494/${host}:8870/g" test_client.py
   python3 -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 > haha 2>&1 &
   tail haha
-  sleep 3
+  echo "faster rcnn running ..."
+  sleep 5
   python3 test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
   kill_server_process
 }
