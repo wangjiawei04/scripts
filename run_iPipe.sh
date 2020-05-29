@@ -395,8 +395,8 @@ bert_http(){
   cp vocab.txt.1 vocab.txt
   export CUDA_VISIBLE_DEVICES=0
   python3 bert_web_service.py bert_seq128_model/ 8878 > bert_http 2>&1 &
-  sleep 10
-  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "hello"}], "fetch":["pooled_output"]}' http://${host}:8878/bert/prediction
+  sleep 5
+  curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "hello"}], "fetch":["pooled_output"]}' http://127.0.0.1:8878/bert/prediction
   kill_server_process
 }
 
