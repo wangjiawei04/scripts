@@ -206,7 +206,7 @@ function criteo_ctr_rpc(){
   python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8862 --gpu_ids 0 > criteo_ctr_rpc 2>&1 &
   sleep 5
   python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/ >ctr_log 2>&1
-  tailf ctr_log
+  tail ctr_log
   kill_server_process
   sleep 5
 }
@@ -319,8 +319,9 @@ function faster_rcnn_model_rpc(){
   mv faster_rcnn_model/pddet* ./
   sed -i "30s/127.0.0.1:9494/${host}:8870/g" test_client.py
   python3 -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 > haha 2>&1 &
-  tailf haha
-  sleep 3
+  tail haha
+  echo "faster rcnn running ..."
+  sleep 5
   python3 test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
   kill_server_process
 }
