@@ -337,8 +337,8 @@ function cascade_rcnn_rpc(){
 }
 
 function deeplabv3_rpc() {
-  run_gpu_env
   setproxy
+  run_gpu_env
   python3 -m paddle_serving_app.package --get_model deeplabv3 >/dev/null 2>&1
   tar -xzvf deeplabv3.tar.gz >/dev/null 2>&1
   sed -i "22s/9494/8880/g" deeplabv3_client.py
