@@ -12,7 +12,7 @@ echo "################################################################"
 
 build_path=/workspace/Serving/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
-rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc ResNet101_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc)
+rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc ResNet101_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
 
@@ -331,8 +331,20 @@ function cascade_rcnn_rpc(){
   sh get_data.sh >/dev/null 2>&1
   sed -i "13s/9292/8879/g" test_client.py
   python3 -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 > rcnn_rpc 2>&1 &
+  sleep 5
   python3 test_client.py
   kill_server_process
+}
+
+function deeplabv3_rpc() {
+  run_gpu_env
+  setproxy
+  python3 -m paddle_serving_app.package --get_model deeplabv3 >/dev/null 2>&1
+  tar -xzvf deeplabv3.tar.gz >/dev/null 2>&1
+  sed -i "22s/9494/8880/g" deeplabv3_client.py
+  python3 -m paddle_serving_server_gpu.serve --model deeplabv3_server --gpu_ids 0 --port 8880 > deeplab_rpc 2>&1 &
+  sleep 5
+  python3 deeplabv3_client.py
 }
 
 function fit_a_line_http() {
