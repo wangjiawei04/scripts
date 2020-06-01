@@ -12,7 +12,7 @@ echo "################################################################"
 
 build_path=/workspace/Serving/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
-rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc ResNet101_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc)
+rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc ResNet101_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
 
@@ -340,6 +340,19 @@ function deeplabv3_rpc() {
   python -m paddle_serving_server_gpu.serve --model deeplabv3_server --gpu_ids 0 --port 8880 > deeplab_rpc 2>&1 &
   sleep 5
   python deeplabv3_client.py
+  kill_server_process
+}
+
+function mobilenet_rpc() {
+  setproxy
+  run_gpu_env
+  python3 -m paddle_serving_app.package --get_model mobilenet_v2_imagenet >/dev/null 2>&1
+  tar -xzvf mobilenet_v2_imagenet.tar.gz >/dev/null 2>&1
+  sed -i "22s/9393/8881/g" mobilenet_tutorial.py
+  python3 -m paddle_serving_server_gpu.serve --model mobilenet_v2_imagenet_model --gpu_ids 0 --port 8881 > mobilenet_rpc 2>&1 &
+  sleep 5
+  python3 mobilenet_tutorial.py
+  kill_server_process
 }
 
 function fit_a_line_http() {
