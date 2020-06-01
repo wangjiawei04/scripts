@@ -12,7 +12,7 @@ echo "################################################################"
 
 build_path=/workspace/Serving/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
-rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc ResNet101_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc)
+rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc ResNet101_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
 
@@ -319,10 +319,19 @@ function faster_rcnn_model_rpc(){
   mv faster_rcnn_model/pddet* ./
   sed -i "30s/127.0.0.1:9494/${host}:8870/g" test_client.py
   python3 -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 > haha 2>&1 &
-  tail haha
   echo "faster rcnn running ..."
   sleep 5
   python3 test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
+  kill_server_process
+}
+
+function cascade_rcnn_rpc(){
+  setproxy
+  run_gpu_env
+  sh get_data.sh >/dev/null 2>&1
+  sed -i "13s/9292/8879/g" test_client.py
+  python3 -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 > rcnn_rpc 2>&1 &
+  python3 test_client.py
   kill_server_process
 }
 
@@ -341,7 +350,6 @@ function lac_http() {
   run_cpu_env
   cd ${build_path}/python/examples/lac
   python3 lac_web_service.py jieba_server_model/ lac_workdir 8872 > http_lac_log 2>&1 &
-  tail http_lac_log
   sleep 15
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "我爱北京天安门"}], "fetch":["word_seg"]}' http://${host}:8872/lac/prediction
   kill_server_process
