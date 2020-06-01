@@ -346,12 +346,12 @@ function deeplabv3_rpc() {
 function mobilenet_rpc() {
   setproxy
   run_gpu_env
-  python3 -m paddle_serving_app.package --get_model mobilenet_v2_imagenet >/dev/null 2>&1
+  python -m paddle_serving_app.package --get_model mobilenet_v2_imagenet >/dev/null 2>&1
   tar -xzvf mobilenet_v2_imagenet.tar.gz >/dev/null 2>&1
   sed -i "22s/9393/8881/g" mobilenet_tutorial.py
-  python3 -m paddle_serving_server_gpu.serve --model mobilenet_v2_imagenet_model --gpu_ids 0 --port 8881 > mobilenet_rpc 2>&1 &
+  python -m paddle_serving_server_gpu.serve --model mobilenet_v2_imagenet_model --gpu_ids 0 --port 8881 > mobilenet_rpc 2>&1 &
   sleep 5
-  python3 mobilenet_tutorial.py
+  python mobilenet_tutorial.py
   kill_server_process
 }
 
