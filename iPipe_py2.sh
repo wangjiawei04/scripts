@@ -12,7 +12,7 @@ echo "################################################################"
 
 build_path=/workspace/Serving/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
-rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc ResNet101_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc)
+rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc ResNet101_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
 
@@ -353,6 +353,18 @@ function mobilenet_rpc() {
   sleep 5
   python mobilenet_tutorial.py
   kill_server_process
+}
+
+function unet_rpc() {
+ setproxy
+ run_gpu_env
+ python -m paddle_serving_app.package --get_model unet >/dev/null 2>&1
+ tar -xzvf unet.tar.gz >/dev/null 2>&1
+ sed -i "22s/9494/8882/g" seg_client.py
+ python -m paddle_serving_server_gpu.serve --model unet_model --gpu_ids 0 --port 8882 > unet_rpc 2>&1 &
+ sleep 5
+ python seg_client.py
+ kill_server_process
 }
 
 function fit_a_line_http() {
