@@ -324,7 +324,8 @@ function faster_rcnn_model_rpc(){
 function cascade_rcnn_rpc(){
   setproxy
   run_gpu_env
-  sh get_data.sh >/dev/null 2>&1
+  wget --no-check-certificate https://paddle-serving.bj.bcebos.com/pddet_demo/cascade_rcnn_r50_fpx_1x_serving.tar.gz >/dev/null 2>&1
+  tar xf cascade_rcnn_r50_fpx_1x_serving.tar.gz
   sed -i "13s/9292/8879/g" test_client.py
   python -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 > rcnn_rpc 2>&1 &
   python test_client.py
