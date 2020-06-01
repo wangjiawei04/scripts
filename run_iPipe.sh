@@ -361,6 +361,8 @@ function mobilenet_rpc() {
 }
 
 function unet_rpc() {
+ setproxy
+ run_gpu_env
  python3 -m paddle_serving_app.package --get_model unet >/dev/null 2>&1
  tar -xzvf unet.tar.gz >/dev/null 2>&1
  sed -i "22s/9494/8882/g" seg_client.py
