@@ -328,6 +328,7 @@ function faster_rcnn_model_rpc(){
 function cascade_rcnn_rpc(){
   setproxy
   run_gpu_env
+  cd ${build_path}/python/examples/cascade_rcnn
   wget --no-check-certificate https://paddle-serving.bj.bcebos.com/pddet_demo/cascade_rcnn_r50_fpx_1x_serving.tar.gz >/dev/null 2>&1
   tar xf cascade_rcnn_r50_fpx_1x_serving.tar.gz
   sed -i "13s/9292/8879/g" test_client.py
@@ -340,6 +341,7 @@ function cascade_rcnn_rpc(){
 function deeplabv3_rpc() {
   setproxy
   run_gpu_env
+  cd ${build_path}/python/examples/deeplabv3
   python3 -m paddle_serving_app.package --get_model deeplabv3 >/dev/null 2>&1
   tar -xzvf deeplabv3.tar.gz >/dev/null 2>&1
   sed -i "22s/9494/8880/g" deeplabv3_client.py
@@ -352,6 +354,7 @@ function deeplabv3_rpc() {
 function mobilenet_rpc() {
   setproxy
   run_gpu_env
+  cd ${build_path}/python/examples/mobilenet
   python3 -m paddle_serving_app.package --get_model mobilenet_v2_imagenet >/dev/null 2>&1
   tar -xzvf mobilenet_v2_imagenet.tar.gz >/dev/null 2>&1
   sed -i "22s/9393/8881/g" mobilenet_tutorial.py
@@ -364,6 +367,7 @@ function mobilenet_rpc() {
 function unet_rpc() {
  setproxy
  run_gpu_env
+ cd ${build_path}/python/examples/unet_for_image_seg
  python3 -m paddle_serving_app.package --get_model unet >/dev/null 2>&1
  tar -xzvf unet.tar.gz >/dev/null 2>&1
  sed -i "22s/9494/8882/g" seg_client.py
