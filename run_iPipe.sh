@@ -287,11 +287,13 @@ function lac_rpc(){
   setproxy
   run_cpu_env
   cd ${build_path}/python/examples/lac
-  sh get_data.sh >/dev/null 2>&1
+  #sh get_data.sh >/dev/null 2>&1
+  python -m paddle_serving_app.package --get_model lac >/dev/null 2>&1
+  tar -xzvf lac.tar.gz >/dev/null 2>&1
   sed -i "25cclient.connect(['${host}:8868'])" lac_client.py
-  python3 -m paddle_serving_server.serve --model jieba_server_model/ --port 8868 > lac_rpc 2>&1 &
+  python3 -m paddle_serving_server.serve --model lac_model/ --port 8868 > lac_rpc 2>&1 &
   sleep 5
-  echo "我爱北京天安门" | python3 lac_client.py jieba_client_conf/serving_client_conf.prototxt lac_dict/
+  echo "我爱北京天安门" | python3 lac_client.py lac_client/serving_client_conf.prototxt lac_dict/
   kill_server_process
   sleep 5
 }
@@ -391,8 +393,8 @@ function lac_http() {
   unsetproxy
   run_cpu_env
   cd ${build_path}/python/examples/lac
-  python3 lac_web_service.py jieba_server_model/ lac_workdir 8872 > http_lac_log 2>&1 &
-  sleep 15
+  python3 lac_web_service.py lac_model/ lac_workdir 8872 > http_lac_log 2>&1 &
+  sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "我爱北京天安门"}], "fetch":["word_seg"]}' http://${host}:8872/lac/prediction
   kill_server_process
 }
