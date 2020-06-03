@@ -288,7 +288,7 @@ function lac_rpc(){
   run_cpu_env
   cd ${build_path}/python/examples/lac
   #sh get_data.sh >/dev/null 2>&1
-  python -m paddle_serving_app.package --get_model lac >/dev/null 2>&1
+  python3 -m paddle_serving_app.package --get_model lac >/dev/null 2>&1
   tar -xzvf lac.tar.gz >/dev/null 2>&1
   sed -i "25cclient.connect(['${host}:8868'])" lac_client.py
   python3 -m paddle_serving_server.serve --model lac_model/ --port 8868 > lac_rpc 2>&1 &
