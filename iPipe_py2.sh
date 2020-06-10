@@ -54,7 +54,7 @@ function before_hook(){
   cd ${build_path}
   pip install --upgrade pip
   pip install numpy==1.16.4 sentencepiece
-  pip install grpc-tools==1.28.1
+  pip install grpcio-tools==1.28.1
   pip install grpcio==1.28.1
   echo "env configuration succ.... "
 }
