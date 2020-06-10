@@ -54,6 +54,8 @@ function before_hook(){
   cd /workspace/Serving/Serving
   pip3 install --upgrade pip
   pip3 install numpy==1.16.4 sentencepiece
+  pip install grpc-tools==1.28.1
+  pip install grpcio==1.28.1
   echo "env configuration succ.... "
 }
 
