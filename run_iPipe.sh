@@ -169,7 +169,7 @@ function bert_rpc_gpu(){
   setproxy
   cd ${build_path}/python/examples/bert
   sh get_data.sh >/dev/null 2>&1
-  sed -i "34cendpoint_list = ['${host}:8860']" bert_client.py
+  sed -i "26cendpoint_list = ['${host}:8860']" bert_client.py
   sed -i '$aprint(result)' bert_client.py
   python3 prepare_model.py 128
   sleep 3
@@ -183,7 +183,7 @@ function bert_rpc_cpu(){
   run_cpu_env
   setproxy
   cd ${build_path}/python/examples/bert
-  sed -i "34cendpoint_list = ['${host}:8861']" bert_client.py
+  sed -i "26cendpoint_list = ['${host}:8861']" bert_client.py
   python3 -m paddle_serving_server.serve --model bert_seq128_model/ --port 8861 > bert_rpc_cpu 2>&1 &
   sleep 3
   cp data-c.txt.1 data-c.txt
