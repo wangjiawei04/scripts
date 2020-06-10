@@ -525,8 +525,6 @@ function main() {
   check
   run_env
   run_rpc_models
-  #criteo_ctr_rpc
-  #criteo_ctr_gpu_rpc
   run_http_models
   end_hook
 }
