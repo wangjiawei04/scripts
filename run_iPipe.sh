@@ -441,7 +441,7 @@ function ResNet50_http() {
   kill_server_process
 }
 
-bert_http(){
+function bert_http(){
   unsetproxy
   run_gpu_env
   cd ${build_path}/python/examples/bert
@@ -453,6 +453,17 @@ bert_http(){
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "hello"}], "fetch":["pooled_output"]}' http://127.0.0.1:8878/bert/prediction
   kill_server_process
 }
+
+function resnetv2() {
+  kill_server_process
+  python3 -m paddle_serving_app.package --get_model resnet_v2_50_imagenet >/dev/null 2>&1
+  tar -xzvf resnet_v2_50_imagenet.tar.gz >/dev/null 2>&1
+  sed -i 's/9393/8879/g' resnet50_v2_tutorial.py
+  python3 -m paddle_serving_server_gpu.serve --model resnet_v2_50_imagenet_model --gpu_ids 0 --port 8879 > v2_log 2>&1 &
+  python3 resnet50_v2_tutorial.py
+  kill_server_process
+}
+
 
 function build_all_whl(){
   for whl in ${build_whl_list[@]}
