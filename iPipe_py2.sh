@@ -56,6 +56,7 @@ function before_hook(){
   pip install numpy==1.16.4 sentencepiece
   pip install grpcio-tools==1.28.1
   pip install grpcio==1.28.1
+  pip install importlib-resources==2
   echo "env configuration succ.... "
 }
 
