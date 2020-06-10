@@ -13,7 +13,7 @@ echo "################################################################"
 build_path=/workspace/Serving/
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
 rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc \ 
-fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2)
+fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2_rpc ocr_rpc)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
 
@@ -382,7 +382,7 @@ function unet_rpc() {
  kill_server_process
 }
 
-function resnetv2() {
+function resnetv2_rpc() {
   setproxy
   run_gpu_env
   cd ${build_path}/python/examples/resnet_v2_50
@@ -392,6 +392,18 @@ function resnetv2() {
   python3 -m paddle_serving_server_gpu.serve --model resnet_v2_50_imagenet_model --gpu_ids 0 --port 8883 > v2_log 2>&1 &
   sleep 10
   python3 resnet50_v2_tutorial.py
+  kill_server_process
+}
+
+function ocr_rpc() {
+  setproxy
+  run_cpu_env
+  cd ${build_path}/python/examples/ocr
+  python3 -m paddle_serving_app.package --get_model ocr_rec >/dev/null 2>&1
+  tar -xzvf ocr_rec.tar.gz >/dev/null 2>&1
+  python3 -m paddle_serving_server.serve --model ocr_rec_model --port 8884 > ocr_rpc 2>&1 &
+  sleep 5
+  python3 test_ocr_rec_client.py
   kill_server_process
 }
 
