@@ -385,6 +385,7 @@ function unet_rpc() {
 function resnetv2() {
   setproxy
   run_gpu_env
+  cd ${build_path}/python/examples/resnet_v2_50
   python3 -m paddle_serving_app.package --get_model resnet_v2_50_imagenet >/dev/null 2>&1
   tar -xzvf resnet_v2_50_imagenet.tar.gz >/dev/null 2>&1
   sed -i 's/9393/8883/g' resnet50_v2_tutorial.py
