@@ -385,6 +385,7 @@ function resnetv2() {
   tar -xzvf resnet_v2_50_imagenet.tar.gz >/dev/null 2>&1
   sed -i 's/9393/8883/g' resnet50_v2_tutorial.py
   python -m paddle_serving_server_gpu.serve --model resnet_v2_50_imagenet_model --gpu_ids 0 --port 8883 > v2_log 2>&1 &
+  sleep 10
   python resnet50_v2_tutorial.py
   kill_server_process
 }
