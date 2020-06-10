@@ -62,7 +62,6 @@ function before_hook(){
 
 function run_env(){
   setproxy
-  yum install -y libXext libSM libXrender
   pip3 install --upgrade nltk==3.4
   pip3 install --upgrade scipy==1.2.1
   pip3 install --upgrade setuptools==41.0.0
