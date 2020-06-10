@@ -401,6 +401,7 @@ function ocr_rpc() {
   cd ${build_path}/python/examples/ocr
   python3 -m paddle_serving_app.package --get_model ocr_rec >/dev/null 2>&1
   tar -xzvf ocr_rec.tar.gz >/dev/null 2>&1
+  sed -i 's/9292/8884/g' test_ocr_rec_client.py
   python3 -m paddle_serving_server.serve --model ocr_rec_model --port 8884 > ocr_rpc 2>&1 &
   sleep 5
   python3 test_ocr_rec_client.py
