@@ -63,7 +63,6 @@ function before_hook(){
 
 function run_env(){
   setproxy
-  yum install -y libXext libSM libXrender
   pip install --upgrade nltk==3.4
   pip install --upgrade scipy==1.2.1
   pip install --upgrade setuptools==41.0.0
@@ -521,8 +520,6 @@ function main() {
   check
   run_env
   run_rpc_models
- # criteo_ctr_gpu_rpc 
- # criteo_ctr_rpc
   run_http_models
   end_hook
   
