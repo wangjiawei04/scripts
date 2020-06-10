@@ -381,6 +381,17 @@ function unet_rpc() {
  kill_server_process
 }
 
+function resnetv2() {
+  setproxy
+  run_gpu_env
+  python3 -m paddle_serving_app.package --get_model resnet_v2_50_imagenet >/dev/null 2>&1
+  tar -xzvf resnet_v2_50_imagenet.tar.gz >/dev/null 2>&1
+  sed -i 's/9393/8883/g' resnet50_v2_tutorial.py
+  python3 -m paddle_serving_server_gpu.serve --model resnet_v2_50_imagenet_model --gpu_ids 0 --port 8883 > v2_log 2>&1 &
+  python3 resnet50_v2_tutorial.py
+  kill_server_process
+}
+
 function fit_a_line_http() {
   unsetproxy
   run_cpu_env
@@ -451,16 +462,6 @@ function bert_http(){
   python3 bert_web_service.py bert_seq128_model/ 8878 > bert_http 2>&1 &
   sleep 5
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "hello"}], "fetch":["pooled_output"]}' http://127.0.0.1:8878/bert/prediction
-  kill_server_process
-}
-
-function resnetv2() {
-  kill_server_process
-  python3 -m paddle_serving_app.package --get_model resnet_v2_50_imagenet >/dev/null 2>&1
-  tar -xzvf resnet_v2_50_imagenet.tar.gz >/dev/null 2>&1
-  sed -i 's/9393/8883/g' resnet50_v2_tutorial.py
-  python3 -m paddle_serving_server_gpu.serve --model resnet_v2_50_imagenet_model --gpu_ids 0 --port 8883 > v2_log 2>&1 &
-  python3 resnet50_v2_tutorial.py
   kill_server_process
 }
 
