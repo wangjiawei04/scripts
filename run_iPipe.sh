@@ -168,6 +168,7 @@ function bert_rpc_gpu(){
   run_gpu_env
   setproxy
   cd ${build_path}/python/examples/bert
+  pip3 install paddlehub paddlepaddle >/dev/null 2>&1
   sh get_data.sh >/dev/null 2>&1
   sed -i "26cendpoint_list = ['${host}:8860']" bert_client.py
   sed -i '$aprint(result)' bert_client.py
