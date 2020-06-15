@@ -176,7 +176,8 @@ function bert_rpc_gpu(){
   sleep 3
   ls -hlst
   python3 -m paddle_serving_server_gpu.serve --model bert_seq128_model/ --port 8860 --gpu_ids 0 > bert_rpc_gpu 2>&1 &
-  sleep 10
+  sleep 15
+  tail bert_rpc_gpu
   head data-c.txt | python3 bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
   kill_server_process
 }
