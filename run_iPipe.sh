@@ -168,11 +168,13 @@ function bert_rpc_gpu(){
   run_gpu_env
   setproxy
   cd ${build_path}/python/examples/bert
-  pip3 install paddlehub paddlepaddle >/dev/null 2>&1
   sh get_data.sh >/dev/null 2>&1
   sed -i "26cendpoint_list = ['${host}:8860']" bert_client.py
   sed -i '$aprint(result)' bert_client.py
-  python3 prepare_model.py 128
+  wget https://sys-p0.bj.bcebos.com/bert_seq128_model.tar.gz >/dev/null 2>&1
+  wget https://sys-p0.bj.bcebos.com/bert_seq128_client.tar.gz >/dev/null 2>&1
+  tar -zxvf bert_seq128_model.tar.gz >/dev/null 2>&1
+  tar -zxvf bert_seq128_client.tar.gz >/dev/null 2>&1
   sleep 3
   ls -hlst
   python3 -m paddle_serving_server_gpu.serve --model bert_seq128_model/ --port 8860 --gpu_ids 0 > bert_rpc_gpu 2>&1 &
