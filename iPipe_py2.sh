@@ -334,7 +334,7 @@ function cascade_rcnn_rpc(){
   tar xf cascade_rcnn_r50_fpx_1x_serving.tar.gz
   sed -i "13s/9292/8879/g" test_client.py
   python -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 > rcnn_rpc 2>&1 &
-  tail rcnn_rpc
+  ls -hlst
   python test_client.py
   kill_server_process
 }
