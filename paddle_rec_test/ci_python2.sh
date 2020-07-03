@@ -24,7 +24,8 @@ function run(){
     for file in ${cases}
     do
         echo ${file}
-        nosetests -s -v --with-html --html-report=test_logs/${file}.html ${file}
+        #nosetests -s -v --with-html --html-report=test_logs/${file}.html ${file}
+        nosetests -s -v ${file}
         rm -f *.yaml
         rm -rf increment* inference* logs
     done
