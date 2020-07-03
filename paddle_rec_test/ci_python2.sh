@@ -10,7 +10,7 @@ function prepare(){
     pip install paddlepaddle-gpu==1.7.2.post107
     pip install nose
     pip install ruamel.yaml
-    unset http_proxy, https_proxy
+ #   unset http_proxy, https_proxy
     cd ../ && mkdir test_logs
 }
 
