@@ -1,16 +1,17 @@
 #!/bin/bash
 function prepare(){
 #    git clone http://github.com//PaddleRec.git
-    pushd PaddleRec
+  #  pushd PaddleRec
+    cd PaddleRec
     pip uninstall paddle-rec -y
     python setup.py install
-    popd
+    
     pip uninstall paddlepaddle -y
     pip install paddlepaddle-gpu==1.7.2.post107
     pip install nose
     pip install ruamel.yaml
     unset http_proxy, https_proxy
-    mkdir test_logs
+    cd ../ && mkdir test_logs
 }
 
 function run(){
