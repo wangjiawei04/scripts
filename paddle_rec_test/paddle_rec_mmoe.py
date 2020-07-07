@@ -59,7 +59,7 @@ class MultiTaskMMOEBase(PaddleRecBase):
             'class': 'infer',
             'device': 'cpu',
             'epochs': 2,
-            'init_model_path': 'increment_mmoe/1'
+            'init_model_path': 'increment_mmoe'
         })
 
     def _construct_phase(self):
