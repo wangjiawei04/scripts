@@ -109,14 +109,14 @@ class TestMMOE(MultiTaskMMOEBase):
         built_in.regex_match_len(self.out, 'epoch.+done', 2, self.err_msg)
         built_in.regex_match_equal(self.out, '\nmode\s+(\S+)\s+\n', 'runner1', self.err_msg)
 
-    def test_single_infer(self):
-        """test single infer."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content['mode'] = 'runner2'
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
-        built_in.regex_match_len(self.out, 'epoch.+done', 2, self.err_msg)
+  #  def test_single_infer(self):
+  #      """test single infer."""
+  #      self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+  #      self.yaml_content['mode'] = 'runner2'
+  #      self.run_yaml()
+  #      built_in.equals(self.pro.returncode, 0, self.err_msg)
+  #      built_in.not_contains(self.err, 'Traceback', self.err_msg)
+  #      built_in.regex_match_len(self.out, 'epoch.+done', 2, self.err_msg)
 
     def test_two_phase_train(self):
         """test two phase train"""
