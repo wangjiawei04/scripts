@@ -168,24 +168,4 @@ class TestMMOE(MultiTaskMMOEBase):
         err_msg = "{} != {}".format(l1, l2)
         built_in.numpy_close(l1, l2, err_msg)
 
-    def test_two_phase_infer(self):
-        """test two infer in phase."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content['phase'].pop()
-        self.yaml_content["mode"] = "runner2"
-        self.yaml_content['phase'].append({
-            'name': 'phase2',
-            'model': '{workspace}/model.py',  # user-defined model
-            'dataset_name': 'dataset_infer',  # select dataset by name
-            'thread_num': 2
-        })
-        self.yaml_content['phase'].append({
-            'name': 'phase2',
-            'model': '{workspace}/model.py',  # user-defined model
-            'dataset_name': 'dataset_infer',  # select dataset by name
-            'thread_num': 2
-        })
-        self.run_yaml()
-        total_list = built_in.extract_value(self.out, r'.+,\sAUC_marital:\s\[(.+)\],')
-        err_msg = "{} != {}".format(total_list[0:2], total_list[2:4])
-        built_in.numpy_close(total_list[0:2], total_list[2:4], err_msg)
+
