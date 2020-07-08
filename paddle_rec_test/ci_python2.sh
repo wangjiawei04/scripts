@@ -31,4 +31,4 @@ function run(){
     done
 }
 prepare
-#run
+run
