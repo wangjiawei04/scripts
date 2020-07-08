@@ -365,24 +365,7 @@ class TestRankDNN(RankDNNBase):
                                    2,
                                    self.err_msg)
 
-    def test_infer_twice_gpu(self):
-        """test infer twice with gpu."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content['phase'].pop()
-        self.yaml_content["mode"] = "runner2"
-        self.yaml_content["runner"][2]["device"] = 'gpu'
-        self.yaml_content['phase'].append({
-            'name': 'phase2',
-            'model': '{workspace}/model.py',  # user-defined model
-            'dataset_name': 'dataset_infer',  # select dataset by name
-            'thread_num': 2
-        })
-        self.run_yaml()
-        l1 = built_in.extract_value(self.out, self.auc_re)
-        self.run_yaml()
-        l2 = built_in.extract_value(self.out, self.auc_re)
-        err_msg = "{} != {}".format(l1, l2)
-        built_in.numpy_close(l1, l2, err_msg)
+   
 
     # def test_two_phase_infer_gpu(self):
     #     """test two infer in phase with gpu."""
