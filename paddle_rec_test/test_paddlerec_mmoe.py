@@ -110,14 +110,14 @@ class TestMMOE(MultiTaskMMOEBase):
         built_in.regex_match_equal(self.out, '\nmode\s+(\S+)\s+\n', 'runner1', self.err_msg)
 
     def test_single_infer(self):
-         """test single infer."""
-         self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-         self.yaml_content['mode'] = 'runner2'
-    
-         self.run_yaml()
-         built_in.equals(self.pro.returncode, 0, self.err_msg)
-         built_in.not_contains(self.err, 'Traceback', self.err_msg)
-         built_in.regex_match_len(self.out, 'Infer.+done', 2, self.err_msg)
+        """test single infer."""
+        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+        self.yaml_content['mode'] = 'runner2'
+
+        self.run_yaml()
+        built_in.equals(self.pro.returncode, 0, self.err_msg)
+        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+        built_in.regex_match_len(self.out, 'Infer.+done', 1, self.err_msg)
 
     def test_two_phase_train(self):
         """test two phase train"""
@@ -190,3 +190,4 @@ class TestMMOE(MultiTaskMMOEBase):
         total_list = built_in.extract_value(self.out, r'.+,\sAUC_marital:\s\[(.+)\],')
         err_msg = "{} != {}".format(total_list[::2], total_list[1::2])
         built_in.numpy_close(total_list[::2], total_list[1::2], err_msg)
+
