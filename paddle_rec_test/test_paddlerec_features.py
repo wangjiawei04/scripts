@@ -16,9 +16,9 @@ import sys
 import os
 sys.path.append(os.path.dirname(__file__))
 from paddle_rec_base import RankDNNBase
-import built_in
+import .built_in
 import sys
-import utils
+import .utils
 import six
 
 class TestRankDNN(RankDNNBase):
