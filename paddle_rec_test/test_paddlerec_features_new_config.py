@@ -15,10 +15,10 @@
 import sys
 import os
 sys.path.append(os.path.dirname(__file__))
-from paddle_rec_base import RankDNNBaseNewConfig
-import built_in
+from .paddle_rec_base import RankDNNBaseNewConfig
+import .built_in
 import sys
-import utils
+import .utils
 import six
 
 class TestRankDNNNewConfig(RankDNNBaseNewConfig):
