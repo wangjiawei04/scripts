@@ -35,9 +35,9 @@ class MultiTaskMMOEBase(PaddleRecBase):
             'device': 'cpu',
             'epochs': 2,
             'init_model_path': '',
-            'save_checkpoint_interval': 1,
+            'save_checkpoint_interval': 2,
             'save_checkpoint_path': 'increment_mmoe',
-            'save_inference_interval': 1,
+            'save_inference_interval': 2,
             'save_inference_path': 'inference_mmoe',
             # 'save_inference_feed_varnames': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
             #                                  '11', '12', '13', '14', '15', '16', '17', '18', '19',
@@ -59,7 +59,7 @@ class MultiTaskMMOEBase(PaddleRecBase):
             'class': 'infer',
             'device': 'cpu',
             'epochs': 2,
-            'init_model_path': 'increment_mmoe'
+            'init_model_path': 'increment_mmoe/1'
         })
 
     def _construct_phase(self):
@@ -104,4 +104,3 @@ class MultiTaskMMOEBase(PaddleRecBase):
                  'strategy': 'async'
             }
         }
-
