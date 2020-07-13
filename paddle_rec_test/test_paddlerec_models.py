@@ -15,9 +15,9 @@
 import sys
 import os
 sys.path.append(os.path.dirname(__file__))
-from .paddle_rec_base import PaddleRecBase
-import .built_in
-import .utils
+from paddle_rec_base import PaddleRecBase
+import built_in
+import utils
 
 class TestPaddleRecModels(PaddleRecBase):
     """test paddle rec public models."""
