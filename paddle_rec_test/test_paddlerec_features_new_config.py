@@ -1,25 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#======================================================================
-#
-# Copyright (c) 2017 Baidu.com, Inc. All Rights Reserved
-#
-#======================================================================
-
-"""
-@Desc: test_paddle_features_new_config module
-@File: test_paddle_features_new_config.py
-@Author: liangjinhua
-@Date: 2020/06/15 16:16
-"""
-import sys
 import os
-sys.path.append(os.path.dirname(__file__))
-from paddle_rec_base import RankDNNBaseNewConfig
-import built_in
 import sys
-import utils
 import six
+sys.path.append(os.path.dirname(__file__))
+import utils
+import built_in
+from paddle_rec_base import RankDNNBaseNewConfig
+
 
 class TestRankDNNNewConfig(RankDNNBaseNewConfig):
     """test rank dnn model"""
@@ -519,4 +507,5 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
         self.run_yaml()
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
+        print("----------------self.out:", self.out)
         built_in.regex_match_len(self.out, self.auc_re, 3, self.err_msg)
