@@ -29,7 +29,7 @@ class TestRankDNN(RankDNNBase):
         self.epoch_re = r'epoch.+done'
         self.run_time_re = r'.+use\stime:\s(.+)\n'
         self.batch_auc_re = r'BATCH_AUC:\s\[([0-9].[0-9]+)\]'
-        self.auc_re = r'AUC:\s\[([0-9].[0-9]+)\]'
+        self.auc_re = r'\bAUC:\s\[([0-9].[0-9]+)\]'
 
     def setUp(self):
         """do something for each cases."""
