@@ -51,7 +51,6 @@ class TestMMOE(MultiTaskMMOEBase):
            check_type = "DataLoader"
         else:
            check_type = "DataLoader" if utils.get_platform() != "LINUX" else "QueueDataset"
-        print("------------------self.out is:", self.out)
         built_in.regex_match_equal(self.out,
                                    '\ndataset.dataset_train.type\s+(\S+)\s+\n',
                                    check_type,
