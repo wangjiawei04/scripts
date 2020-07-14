@@ -3,13 +3,13 @@ function prepare(){
 #    git clone http://github.com//PaddleRec.git
   #  pushd PaddleRec
     cd PaddleRec
-    pip3 uninstall paddle-rec -y
+    pip uninstall paddle-rec -y
     python3 setup.py install
     
-    pip3 uninstall paddlepaddle -y
-    pip3 install paddlepaddle-gpu==1.7.2.post107
-    pip3 install nose
-    pip3 install ruamel.yaml
+    pip uninstall paddlepaddle -y
+    pip install paddlepaddle-gpu==1.7.2.post107
+    pip install nose
+    pip install ruamel.yaml
  #   unset http_proxy, https_proxy
     cd ../ && mkdir test_logs
 }
