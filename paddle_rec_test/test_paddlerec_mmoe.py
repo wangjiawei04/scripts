@@ -13,7 +13,9 @@
 @Date: 2020/06/10 16:16
 """
 import os
+import six
 import sys
+#import utils
 sys.path.append(os.path.dirname(__file__))
 import utils
 import built_in
@@ -35,13 +37,21 @@ class TestMMOE(MultiTaskMMOEBase):
     def test_QueueDataset_train(self):
         """test QueueDataset in train."""
         self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["dataset"][0]["type"] = "QueueDataset"
+        if six.PY3:
+           self.yaml_content["dataset"][0]["type"] = "DataLoader"
+        else:
+           self.yaml_content["dataset"][0]["type"] = "QueueDataset"
         self.run_yaml()
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
         built_in.regex_match_len(self.out, 'epoch.+done', 2, self.err_msg)
         # NOTE windows和mac直接会强行切换到dataloader
         check_type = "DataLoader" if utils.get_platform() != "LINUX" else "QueueDataset"
+        if six.PY3:
+           check_type = "DataLoader"
+        else:
+           check_type = "DataLoader" if utils.get_platform() != "LINUX" else "QueueDataset"
+        print("------------------self.out is:", self.out)
         built_in.regex_match_equal(self.out,
                                    '\ndataset.dataset_train.type\s+(\S+)\s+\n',
                                    check_type,
@@ -110,14 +120,14 @@ class TestMMOE(MultiTaskMMOEBase):
         built_in.regex_match_equal(self.out, '\nmode\s+(\S+)\s+\n', 'runner1', self.err_msg)
 
     def test_single_infer(self):
-        """test single infer."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content['mode'] = 'runner2'
+         """test single infer."""
+         self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+         self.yaml_content['mode'] = 'runner2'
 
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
-        built_in.regex_match_len(self.out, 'Infer.+done', 1, self.err_msg)
+         self.run_yaml()
+         built_in.equals(self.pro.returncode, 0, self.err_msg)
+         built_in.not_contains(self.err, 'Traceback', self.err_msg)
+         built_in.regex_match_len(self.out, 'Infer.+done', 1, self.err_msg)
 
     def test_two_phase_train(self):
         """test two phase train"""
@@ -190,4 +200,3 @@ class TestMMOE(MultiTaskMMOEBase):
         total_list = built_in.extract_value(self.out, r'.+,\sAUC_marital:\s\[(.+)\],')
         err_msg = "{} != {}".format(total_list[::2], total_list[1::2])
         built_in.numpy_close(total_list[::2], total_list[1::2], err_msg)
-
