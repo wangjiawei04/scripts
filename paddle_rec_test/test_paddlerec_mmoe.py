@@ -14,8 +14,8 @@
 """
 import os
 import sys
-import .utils
-import .built_in
+import utils
+import built_in
 sys.path.append(os.path.dirname(__file__))
 from paddle_rec_mmoe import MultiTaskMMOEBase
 
