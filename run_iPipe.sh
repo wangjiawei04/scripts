@@ -50,6 +50,12 @@ function check() {
     fi
 }
 
+function check_result() {
+    if [ $? != 0 ];then
+       exit 1
+    fi
+}
+
 function before_hook(){
   setproxy
   cd /workspace/Serving/
@@ -181,6 +187,7 @@ function bert_rpc_gpu(){
   sleep 15
   tail bert_rpc_gpu
   head data-c.txt | python3 bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
+  check_result
   kill_server_process
 }
 
@@ -193,6 +200,7 @@ function bert_rpc_cpu(){
   sleep 3
   cp data-c.txt.1 data-c.txt
   head data-c.txt | python3 bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
+  check_result
   kill_server_process
 }
 
@@ -213,7 +221,6 @@ function criteo_ctr_rpc(){
   python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8862 --gpu_ids 0 > criteo_ctr_rpc 2>&1 &
   sleep 5
   python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/ >ctr_log 2>&1
-  tail ctr_log
   kill_server_process
   sleep 5
 }
@@ -263,6 +270,7 @@ function cnn_rpc(){
   python3 -m paddle_serving_server.serve --model imdb_cnn_model/ --port 8865 > cnn_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python3 test_client.py imdb_cnn_client_conf/serving_client_conf.prototxt imdb.vocab
+  check_result
   kill_server_process
 }
 
@@ -439,6 +447,7 @@ function cnn_http() {
   python3 text_classify_service.py imdb_cnn_model/ workdir/ 8873 imdb.vocab > cnn_http 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8873/imdb/prediction
+  check_result
   kill_server_process
 }
 
@@ -482,6 +491,7 @@ function bert_http(){
   python3 bert_web_service.py bert_seq128_model/ 8878 > bert_http 2>&1 &
   sleep 5
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "hello"}], "fetch":["pooled_output"]}' http://127.0.0.1:8878/bert/prediction
+  check_result
   kill_server_process
 }
 
