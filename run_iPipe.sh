@@ -59,12 +59,6 @@ function check_result() {
     fi
 }
 
-function check_result() {
-    if [ $? != 0 ];then
-       exit 1
-    fi
-}
-
 function before_hook(){
   setproxy
   cd /workspace/Serving/
