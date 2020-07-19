@@ -51,6 +51,14 @@ function check() {
 }
 
 function check_result() {
+    if [ $? -ne 0 ];then
+       echo "$1 models runs failed, please check your pull request or modify test case!"
+       exit 1
+    else
+       echo "$1 model runs successfully, congratulations!"
+    fi
+}
+function check_result() {
     if [ $? != 0 ];then
        exit 1
     fi
@@ -183,7 +191,7 @@ function bert_rpc_gpu(){
   python -m paddle_serving_server_gpu.serve --model bert_seq128_model/ --port 8860 --gpu_ids 0 > bert_rpc_gpu 2>&1 &
   sleep 10
   head data-c.txt | python bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
-  check_result
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -196,7 +204,7 @@ function bert_rpc_cpu(){
   sleep 3
   cp data-c.txt.1 data-c.txt
   head data-c.txt | python bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
-  check_result
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -214,7 +222,7 @@ function criteo_ctr_rpc(){
   python -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8862 --gpu_ids 0 > criteo_ctr_rpc 2>&1 &
   sleep 5
   python test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/ >ctr_log 2>&1
-  tailf ctr_log
+  check_result $FUNCNAME
   kill_server_process
   sleep 5
 }
@@ -227,7 +235,6 @@ function criteo_ctr_gpu_rpc(){
   sleep 3
   python test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/ > ctr_gpu_log 2>&1
   kill_server_process
-  sleep 3
 }
 
 function ResNet50_rpc(){
@@ -239,7 +246,7 @@ function ResNet50_rpc(){
   python -m paddle_serving_server_gpu.serve --model ResNet50_vd_model --port 8863 --gpu_ids 0 > ResNet50_rpc 2>&1 &
   sleep 5
   python resnet50_rpc_client.py ResNet50_vd_client_config/serving_client_conf.prototxt
-  check_result
+  check_result $FUNCNAME
   kill_server_process
   sleep 5
 }
@@ -265,7 +272,7 @@ function cnn_rpc(){
   python -m paddle_serving_server.serve --model imdb_cnn_model/ --port 8865 > cnn_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python test_client.py imdb_cnn_client_conf/serving_client_conf.prototxt imdb.vocab
-  check_result
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -277,6 +284,7 @@ function bow_rpc(){
   python -m paddle_serving_server.serve --model imdb_bow_model/ --port 8866 > bow_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python test_client.py imdb_bow_client_conf/serving_client_conf.prototxt imdb.vocab
+  check_result $FUNCNAME
   kill_server_process
   sleep 5
 }
@@ -304,6 +312,7 @@ function lac_rpc(){
   python -m paddle_serving_server.serve --model lac_model/ --port 8868 > lac_rpc 2>&1 &
   sleep 5
   echo "我爱北京天安门" | python lac_client.py lac_client/serving_client_conf.prototxt lac_dict/
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -346,6 +355,7 @@ function cascade_rcnn_rpc(){
   python -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 > rcnn_rpc 2>&1 &
   ls -hlst
   python test_client.py
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -411,6 +421,7 @@ function ocr_rpc() {
   python -m paddle_serving_server.serve --model ocr_rec_model --port 8884 > ocr_rpc 2>&1 &
   sleep 5
   python test_ocr_rec_client.py
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -422,6 +433,7 @@ function fit_a_line_http() {
   tail http_log2
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"x": [0.0137, -0.1136, 0.2553, -0.0692, 0.0582, -0.0727, -0.1583, -0.0584, 0.6283, 0.4919, 0.1856, 0.0795, -0.0332]}], "fetch":["price"]}' http://${host}:8871/uci/prediction
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -432,7 +444,7 @@ function lac_http() {
   python lac_web_service.py lac_model/ lac_workdir 8872 > http_lac_log2 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "我爱北京天安门"}], "fetch":["word_seg"]}' http://${host}:8872/lac/prediction
-  check_result
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -474,7 +486,7 @@ function ResNet50_http() {
   python resnet50_web_service.py ResNet50_vd_model gpu 8876 > resnet50_http 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"image": "https://paddle-serving.bj.bcebos.com/imagenet-example/daisy.jpg"}], "fetch": ["score"]}' http://${host}:8876/image/prediction
-  check_result
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -488,7 +500,7 @@ bert_http(){
   python bert_web_service.py bert_seq128_model/ 8878 > bert_http 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "hello"}], "fetch":["pooled_output"]}' http://${host}:8878/bert/prediction
-  check_result
+  check_result $FUNCNAME
   kill_server_process
 }
 
