@@ -58,11 +58,6 @@ function check_result() {
        echo "$1 model runs successfully, congratulations!"
     fi
 }
-function check_result() {
-    if [ $? != 0 ];then
-       exit 1
-    fi
-}
 
 function before_hook(){
   setproxy
