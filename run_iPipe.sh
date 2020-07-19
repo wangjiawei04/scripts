@@ -52,7 +52,7 @@ function check() {
 
 function check_result() {
     if [ $? -ne 0 ];then
-       echo "$1 models runs failed, please check your pull request or modify test case!"
+       echo "$1 model runs failed, please check your pull request or modify test case!"
        exit 1
     else
        echo "$1 model runs successfully, congratulations!"
