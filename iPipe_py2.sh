@@ -450,7 +450,7 @@ function cnn_http() {
   python text_classify_service.py imdb_cnn_model/ workdir/ 8873 imdb.vocab > cnn_http 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8873/imdb/prediction
-  check_result
+  check_result $FUNCNAME
   kill_server_process
 }
 
