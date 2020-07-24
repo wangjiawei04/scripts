@@ -1,5 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#======================================================================
+#
+# Copyright (c) 2017 Baidu.com, Inc. All Rights Reserved
+#
+#======================================================================
+
+"""
+@Desc: test_paddle_features_new_config module
+@File: test_paddle_features_new_config.py
+@Author: liangjinhua
+@Date: 2020/06/15 16:16
+"""
 import os
 import sys
 import six
@@ -403,7 +415,7 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
                                    '\ntrain.trainer.engine\s+(\S+)\s+\n',
                                    "local_cluster",
                                    self.err_msg)
-        built_in.regex_match_len('logs/worker.1', self.auc_re, 6, self.err_msg)
+        built_in.regex_match_len('logs/worker.1', self.auc_re, 8, self.err_msg)
 
     # NOTE: this case is error, open if after fixed
     # def test_mode_list_collective_selected_gpus_1f_2cards_c2(self):
