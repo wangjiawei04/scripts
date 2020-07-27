@@ -3,17 +3,15 @@ function prepare(){
 #    git clone http://github.com//PaddleRec.git
   #  pushd PaddleRec
     cd PaddleRec
-    pip uninstall paddle-rec -y
+    python3 -m pip uninstall paddle-rec -y
     python3 setup.py install
-    
-    pip uninstall paddlepaddle -y
- #   pip install paddlepaddle-gpu==1.7.2.post107
-    wget https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10-cudnn7-mkl/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
-    pip install paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
-    pip install nose
-    pip install ruamel.yaml
- #   unset http_proxy, https_proxy
+    python3 -m pip uninstall paddlepaddle -y
+    wget https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10-cudnn7-mkl/paddlepaddle_gpu-0.0.0-cp35-cp35m-linux_x86_64.whl
+    python3 -m pip install paddlepaddle_gpu-0.0.0-cp35-cp35m-linux_x86_64.whl
+    python3 -m pip install nose
+    python3 -m pip install ruamel.yaml
     cd ../ && mkdir test_logs
+    #   unset http_proxy, https_proxy
 }
 
 function run(){
