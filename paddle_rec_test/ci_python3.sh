@@ -1,7 +1,12 @@
 #!/bin/bash
+
+function setproxy(){
+  export http_proxy=${proxy}
+  export https_proxy=${proxy}
+}
+
 function prepare(){
-#    git clone http://github.com//PaddleRec.git
-  #  pushd PaddleRec
+    setproxy
     cd PaddleRec
     python3 -m pip uninstall paddle-rec -y
     python3 setup.py install
