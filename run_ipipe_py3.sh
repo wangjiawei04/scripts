@@ -257,7 +257,6 @@ function cnn_rpc(){
   setproxy
   run_cpu_env
   cd ${build_path}/python/examples/imdb
-  sh get_data.sh >/dev/null 2>&1
   cp -r /root/.cache/dist_data/serving/imdb/* ./
   tar xf imdb_model.tar.gz && tar xf text_classification_data.tar.gz
   sed -i "21cclient.connect(['${host}:8865'])" test_client.py
