@@ -53,10 +53,10 @@ function check() {
 
 function check_result() {
     if [ $? -ne 0 ];then
-      echo -e "\033[4;31;42m$1 model runs failed, please check your pull request or modify test case!\033[0m"
+      echo -e "\033[4;31;42m$1 model runs failed, please check your pull request or modify test case! \033[0m"
       exit 1
     else
-      echo -e "\033[4;37;42m$1 model runs successfully, congratulations!\033[0m"
+      echo -e "\033[4;37;42m$1 model runs successfully, congratulations! \033[0m"
     fi
 }
 
