@@ -1,4 +1,4 @@
 # scripts
-      run serving scripts
+      run serving and paddlerec scripts
 
  
