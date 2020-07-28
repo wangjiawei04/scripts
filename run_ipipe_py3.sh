@@ -12,8 +12,9 @@ echo "################################################################"
 
 build_path=/workspace/Serving/
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
-rpc_model_list=(bert_rpc_gpu bert_rpc_cpu criteo_ctr_with_cube_rpc faster_rcnn_model_rpc ResNet50_rpc lac_rpc cnn_rpc \
-bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2_rpc ocr_rpc)
+rpc_model_list=(bert_rpc_gpu bert_rpc_cpu criteo_ctr_with_cube_rpc faster_rcnn_model_rpc ResNet50_rpc lac_rpc \
+cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2_rpc \
+ocr_rpc criteo_ctr_rpc_cpu criteo_ctr_rpc_gpu yolov4_rpc_gpu )
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
 
@@ -209,12 +210,12 @@ function criteo_ctr_with_cube_rpc(){
   ln -s /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data ./
   sed -i "s/9292/8862/g" test_server.py
   sed -i "s/9292/8862/g" test_client.py
-  wget https://paddle-serving.bj.bcebos.com/unittest/ctr_cube_unittest.tar.gz
+  wget https://paddle-serving.bj.bcebos.com/unittest/ctr_cube_unittest.tar.gz >/dev/null 2>&1
   tar xf ctr_cube_unittest.tar.gz
   mv models/ctr_client_conf ./
   mv models/ctr_serving_model_kv ./
   mv models/data ./cube/
-  wget https://paddle-serving.bj.bcebos.com/others/cube_app.tar.gz
+  wget https://paddle-serving.bj.bcebos.com/others/cube_app.tar.gz >/dev/null 2>&1
   tar xf cube_app.tar.gz
   mv cube_app/cube* ./cube/
   sh cube_prepare.sh &
@@ -294,7 +295,7 @@ function lac_rpc(){
   run_cpu_env
   cd ${build_path}/python/examples/lac
   python3 -m paddle_serving_app.package --get_model lac >/dev/null 2>&1
-  tar -xzvf lac.tar.gz >/dev/null 2>&1
+  tar xf lac.tar.gz
   sed -i "25cclient.connect(['${host}:8868'])" lac_client.py
   python3 -m paddle_serving_server.serve --model lac_model/ --port 8868 > lac_rpc 2>&1 &
   sleep 5
@@ -338,7 +339,7 @@ function faster_rcnn_model_rpc(){
 function cascade_rcnn_rpc(){
   setproxy
   run_gpu_env
-  cd ${build_path}/python/examples/
+  cd ${build_path}/python/examples/cascade_rcnn
   cp -r /root/.cache/dist_data/serving/cascade_rcnn/cascade_rcnn_r50_fpx_1x_serving.tar.gz
   tar xf cascade_rcnn_r50_fpx_1x_serving.tar.gz
   sed -i "13s/9292/8879/g" test_client.py
@@ -354,7 +355,7 @@ function deeplabv3_rpc() {
   run_gpu_env
   cd ${build_path}/python/examples/deeplabv3
   cp -r /root/.cache/dist_data/serving/deeplabv3/deeplabv3.tar.gz ./
-  tar -xzvf deeplabv3.tar.gz >/dev/null 2>&1
+  tar xf deeplabv3.tar.gz
   sed -i "22s/9494/8880/g" deeplabv3_client.py
   python3 -m paddle_serving_server_gpu.serve --model deeplabv3_server --gpu_ids 0 --port 8880 > deeplab_rpc 2>&1 &
   sleep 5
@@ -367,7 +368,7 @@ function mobilenet_rpc() {
   run_gpu_env
   cd ${build_path}/python/examples/mobilenet
   python3 -m paddle_serving_app.package --get_model mobilenet_v2_imagenet >/dev/null 2>&1
-  tar -xzvf mobilenet_v2_imagenet.tar.gz >/dev/null 2>&1
+  tar xf mobilenet_v2_imagenet.tar.gz >/dev/null 2>&1
   sed -i "22s/9393/8881/g" mobilenet_tutorial.py
   python3 -m paddle_serving_server_gpu.serve --model mobilenet_v2_imagenet_model --gpu_ids 0 --port 8881 > mobilenet_rpc 2>&1 &
   sleep 5
@@ -380,7 +381,7 @@ function unet_rpc() {
  run_gpu_env
  cd ${build_path}/python/examples/unet_for_image_seg
  python3 -m paddle_serving_app.package --get_model unet >/dev/null 2>&1
- tar -xzvf unet.tar.gz >/dev/null 2>&1
+ tar xf unet.tar.gz
  sed -i "22s/9494/8882/g" seg_client.py
  python3 -m paddle_serving_server_gpu.serve --model unet_model --gpu_ids 0 --port 8882 > haha 2>&1 &
  sleep 5
@@ -394,7 +395,7 @@ function resnetv2_rpc() {
   run_gpu_env
   cd ${build_path}/python/examples/resnet_v2_50
   cp /root/.cache/dist_data/serving/resnet_v2_50/resnet_v2_50_imagenet.tar.gz ./
-  tar -xzvf resnet_v2_50_imagenet.tar.gz >/dev/null 2>&1
+  tar xf resnet_v2_50_imagenet.tar.gz
   sed -i 's/9393/8883/g' resnet50_v2_tutorial.py
   python3 -m paddle_serving_server_gpu.serve --model resnet_v2_50_imagenet_model --gpu_ids 0 --port 8883 > v2_log 2>&1 &
   sleep 10
@@ -408,13 +409,72 @@ function ocr_rpc() {
   cd ${build_path}/python/examples/ocr
   cp -r /root/.cache/dist_data/serving/ocr/test_imgs ./
   python3 -m paddle_serving_app.package --get_model ocr_rec >/dev/null 2>&1
-  tar -xzvf ocr_rec.tar.gz >/dev/null 2>&1
+  tar xf ocr_rec.tar.gz
   sed -i 's/9292/8884/g' test_ocr_rec_client.py
   python3 -m paddle_serving_server.serve --model ocr_rec_model --port 8884 > ocr_rpc 2>&1 &
   sleep 5
   python3 test_ocr_rec_client.py
   kill_server_process
 }
+
+function criteo_ctr_rpc_cpu() {
+  setproxy
+  run_cpu_env
+  cd ${build_path}/python/examples/criteo_ctr
+  sed -i "s/9292/8885/g" test_client.py
+  ln -s /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data ./
+  wget https://paddle-serving.bj.bcebos.com/criteo_ctr_example/criteo_ctr_demo_model.tar.gz >/dev/null 2>&1
+  tar xf criteo_ctr_demo_model.tar.gz
+  mv models/ctr_client_conf .
+  mv models/ctr_serving_model .
+  python3 -m paddle_serving_server.serve --model ctr_serving_model/ --port 8885 > criteo_ctr_cpu_rpc 2>&1 &
+  sleep 5
+  python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
+  kill_server_process
+}
+
+function criteo_ctr_rpc_gpu() {
+  setproxy
+  run_gpu_env
+  cd ${build_path}/python/examples/criteo_ctr
+  sed -i "s/8885/8886/g" test_client.py
+  ln -s /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data ./
+  wget https://paddle-serving.bj.bcebos.com/criteo_ctr_example/criteo_ctr_demo_model.tar.gz >/dev/null 2>&1
+  tar xf criteo_ctr_demo_model.tar.gz
+  mv models/ctr_client_conf .
+  mv models/ctr_serving_model .
+  python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8886 --gpu_ids 0 > criteo_ctr_gpu_rpc 2>&1 &
+  sleep 5
+  python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
+  kill_server_process
+}
+
+function yolov4_rpc_gpu() {
+  setproxy
+  run_gpu_env
+  cd ${build_path}/python/examples/yolov4
+  sed -i "s/9393/8887/g" test_client.py
+  cp -r /data/.cache/dist_data/serving/yolov4/yolov4.tar.gz
+  tar xf yolov4.tar.gz
+  python3 -m paddle_serving_server_gpu.serve --model yolov4_model --port 8887 --gpu_ids 0 > yolov4_rpc_log 2>&1 &
+  sleep 5
+  python3 test_client.py 000000570688.jpg
+  kill_server_process
+}
+
+function senta_rpc_cpu() {
+  setproxy
+  run_gpu_env
+  cd ${build_path}/python/examples/senta
+  sed -i "s/9393/8887/g" test_client.py
+  cp -r /data/.cache/dist_data/serving/yolov4/yolov4.tar.gz
+  tar xf yolov4.tar.gz
+  python3 -m paddle_serving_server_gpu.serve --model yolov4_model --port 8887 --gpu_ids 0 > yolov4_rpc_log 2>&1 &
+  sleep 5
+  python3 test_client.py 000000570688.jpg
+  kill_server_process
+}
+
 
 function fit_a_line_http() {
   unsetproxy
