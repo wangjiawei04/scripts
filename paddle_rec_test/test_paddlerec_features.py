@@ -220,7 +220,6 @@ class TestRankDNN(RankDNNBase):
         })
         self.run_yaml()
         total_list = built_in.extract_value(self.out, self.auc_re)
-        print(self.out)
         err_msg = "{} != {}".format(total_list[0:1], total_list[2:3])
         built_in.numpy_close(total_list[0:1], total_list[2:3], err_msg)
 
