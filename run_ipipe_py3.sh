@@ -53,10 +53,10 @@ function check() {
 
 function check_result() {
     if [ $? -ne 0 ];then
-       echo "$1 model runs failed, please check your pull request or modify test case!"
-       exit 1
+      echo -e "\033[4;31;42m$1 model runs failed, please check your pull request or modify test case!\033[0m"
+      exit 1
     else
-       echo "$1 model runs successfully, congratulations!"
+      echo -e "\033[4;37;42m$1 model runs successfully, congratulations!\033[0m"
     fi
 }
 
@@ -340,7 +340,7 @@ function cascade_rcnn_rpc(){
   setproxy
   run_gpu_env
   cd ${build_path}/python/examples/cascade_rcnn
-  cp -r /root/.cache/dist_data/serving/cascade_rcnn/cascade_rcnn_r50_fpx_1x_serving.tar.gz ./
+  cp -r /root/.cache/dist_data/serving/cascade_rcnn/cascade_rcnn_r50_fpx_1x_serving.tar.gz
   tar xf cascade_rcnn_r50_fpx_1x_serving.tar.gz
   sed -i "13s/9292/8879/g" test_client.py
   python3 -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 > rcnn_rpc 2>&1 &
@@ -454,7 +454,7 @@ function yolov4_rpc_gpu() {
   run_gpu_env
   cd ${build_path}/python/examples/yolov4
   sed -i "s/9393/8887/g" test_client.py
-  cp -r /data/.cache/dist_data/serving/yolov4/yolov4.tar.gz ./
+  cp -r /data/.cache/dist_data/serving/yolov4/yolov4.tar.gz
   tar xf yolov4.tar.gz
   python3 -m paddle_serving_server_gpu.serve --model yolov4_model --port 8887 --gpu_ids 0 > yolov4_rpc_log 2>&1 &
   sleep 5
@@ -467,7 +467,7 @@ function senta_rpc_cpu() {
   run_gpu_env
   cd ${build_path}/python/examples/senta
   sed -i "s/9393/8887/g" test_client.py
-  cp -r /data/.cache/dist_data/serving/yolov4/yolov4.tar.gz ./
+  cp -r /data/.cache/dist_data/serving/yolov4/yolov4.tar.gz
   tar xf yolov4.tar.gz
   python3 -m paddle_serving_server_gpu.serve --model yolov4_model --port 8887 --gpu_ids 0 > yolov4_rpc_log 2>&1 &
   sleep 5
