@@ -12,8 +12,9 @@ echo "################################################################"
 
 build_path=/workspace/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
-rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc lac_rpc cnn_rpc bow_rpc lstm_rpc \
-fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2_rpc ocr_rpc)
+rpc_model_list=(bert_rpc_gpu bert_rpc_cpu criteo_ctr_with_cube_rpc faster_rcnn_model_rpc ResNet50_rpc lac_rpc \
+cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2_rpc \
+ocr_rpc criteo_ctr_rpc_cpu criteo_ctr_rpc_gpu yolov4_rpc_gpu)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
 
@@ -52,10 +53,10 @@ function check() {
 
 function check_result() {
     if [ $? -ne 0 ];then
-       echo "$1 model runs failed, please check your pull request or modify test case!"
-       exit 1
+      echo -e "\033[4;31;42m$1 model runs failed, please check your pull request or modify test case!\033[0m"
+      exit 1
     else
-       echo "$1 model runs successfully, congratulations!"
+      echo -e "\033[4;37;42m$1 model runs successfully, congratulations!\033[0m"
     fi
 }
 
@@ -181,10 +182,10 @@ function bert_rpc_gpu(){
   sh get_data.sh >/dev/null 2>&1
   sed -i "26cendpoint_list = ['${host}:8860']" bert_client.py
   sed -i '$aprint(result)' bert_client.py
-  python prepare_model.py 128
-  sleep 3
+  cp -r /root/.cache/dist_data/serving/bert/bert_seq128_* ./
+  ls -hlst
   python -m paddle_serving_server_gpu.serve --model bert_seq128_model/ --port 8860 --gpu_ids 0 > bert_rpc_gpu 2>&1 &
-  sleep 10
+  sleep 15
   head data-c.txt | python bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
   check_result $FUNCNAME
   kill_server_process
@@ -203,32 +204,27 @@ function bert_rpc_cpu(){
   kill_server_process
 }
 
-function criteo_ctr_rpc(){
+function criteo_ctr_with_cube_rpc(){
   setproxy
   run_cpu_env
-  cd ${build_path}/python/examples/criteo_ctr
-  wget --no-check-certificate https://sys-p0.bj.bcebos.com/models/ctr_data.tar.gz >/dev/null 2>&1
-  tar -zxf ctr_data.tar.gz
-  wget https://paddle-serving.bj.bcebos.com/criteo_ctr_example/criteo_ctr_demo_model.tar.gz
-  tar xf criteo_ctr_demo_model.tar.gz
-  mv models/ctr_client_conf .
-  mv models/ctr_serving_model .
-  sed -i "30cclient.connect(['${host}:8862'])" test_client.py
-  python -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8862 --gpu_ids 0 > criteo_ctr_rpc 2>&1 &
+  cd ${build_path}/python/examples/criteo_ctr_with_cube
+  ln -s /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data ./
+  sed -i "s/9292/8888/g" test_server.py
+  sed -i "s/9292/8888/g" test_client.py
+  wget https://paddle-serving.bj.bcebos.com/unittest/ctr_cube_unittest.tar.gz >/dev/null 2>&1
+  tar xf ctr_cube_unittest.tar.gz
+  mv models/ctr_client_conf ./
+  mv models/ctr_serving_model_kv ./
+  mv models/data ./cube/
+  wget https://paddle-serving.bj.bcebos.com/others/cube_app.tar.gz >/dev/null 2>&1
+  tar xf cube_app.tar.gz
+  mv cube_app/cube* ./cube/
+  sh cube_prepare.sh &
   sleep 5
-  python test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/ >ctr_log 2>&1
+  python test_server.py ctr_serving_model_kv > criteo_ctr_rpc 2>&1 &
+  sleep 5
+  python test_client.py ctr_client_conf/serving_client_conf.prototxt ./raw_data
   check_result $FUNCNAME
-  kill_server_process
-  sleep 5
-}
-
-function criteo_ctr_gpu_rpc(){
-  run_gpu_env
-  setproxy
-  cd ${build_path}/python/examples/criteo_ctr
-  python -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8862 --gpu_ids 0 > criteo_ctr_rpc_gpu 2>&1 &
-  sleep 3
-  python test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/ > ctr_gpu_log 2>&1
   kill_server_process
 }
 
@@ -236,7 +232,7 @@ function ResNet50_rpc(){
   run_gpu_env
   setproxy
   cd ${build_path}/python/examples/imagenet
-  sh get_model.sh >/dev/null 2>&1
+  cp -r /root/.cache/dist_data/serving/imagenet/* ./
   sed -i "23cclient.connect(['127.0.0.1:8863'])" resnet50_rpc_client.py
   python -m paddle_serving_server_gpu.serve --model ResNet50_vd_model --port 8863 --gpu_ids 0 > ResNet50_rpc 2>&1 &
   sleep 5
@@ -255,14 +251,15 @@ function ResNet101_rpc(){
   sleep 5
   python image_rpc_client.py ResNet101_vd_client_config/serving_client_conf.prototxt
   kill_server_process
-  sleep 5
+  check_result $FUNCNAME
 }
 
 function cnn_rpc(){
   setproxy
   run_cpu_env
   cd ${build_path}/python/examples/imdb
-  sh get_data.sh >/dev/null 2>&1
+  cp -r /root/.cache/dist_data/serving/imdb/* ./
+  tar xf imdb_model.tar.gz && tar xf text_classification_data.tar.gz
   sed -i "21cclient.connect(['${host}:8865'])" test_client.py
   python -m paddle_serving_server.serve --model imdb_cnn_model/ --port 8865 > cnn_rpc 2>&1 &
   sleep 5
@@ -292,8 +289,8 @@ function lstm_rpc(){
   python -m paddle_serving_server.serve --model imdb_lstm_model/ --port 8867 > lstm_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python test_client.py imdb_lstm_client_conf/serving_client_conf.prototxt imdb.vocab
+  check_result $FUNCNAME
   kill_server_process
-  sleep 5
 }
 
 function lac_rpc(){
@@ -301,8 +298,7 @@ function lac_rpc(){
   run_cpu_env
   cd ${build_path}/python/examples/lac
   python -m paddle_serving_app.package --get_model lac >/dev/null 2>&1
-  tar -xzvf lac.tar.gz >/dev/null 2>&1
-  #sh get_data.sh >/dev/null 2>&1
+  tar xf lac.tar.gz
   sed -i "25cclient.connect(['${host}:8868'])" lac_client.py
   python -m paddle_serving_server.serve --model lac_model/ --port 8868 > lac_rpc 2>&1 &
   sleep 5
@@ -321,22 +317,23 @@ function fit_a_line_rpc(){
   python test_server.py uci_housing_model/ > line_rpc 2>&1 &
   sleep 5
   python test_client.py uci_housing_client/serving_client_conf.prototxt
+  check_result $FUNCNAME
   kill_server_process
 }
 
 function faster_rcnn_model_rpc(){
   run_gpu_env
   setproxy
-  kill_server_process
   cd ${build_path}/python/examples/faster_rcnn_model
-  wget https://paddle-serving.bj.bcebos.com/pddet_demo/faster_rcnn_model.tar.gz >/dev/null 2>&1
+  cp -r /root/.cache/dist_data/serving/faster_rcnn/faster_rcnn_model.tar.gz ./
+  tar xf faster_rcnn_model.tar.gz
   wget https://paddle-serving.bj.bcebos.com/pddet_demo/infer_cfg.yml >/dev/null 2>&1
-  tar xf faster_rcnn_model.tar.gz >/dev/null 2>&1
   mv faster_rcnn_model/pddet* ./
   sed -i "30s/127.0.0.1:9494/${host}:8870/g" test_client.py
   python -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 > haha 2>&1 &
   sleep 3
   python test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -344,12 +341,13 @@ function cascade_rcnn_rpc(){
   setproxy
   run_gpu_env
   cd ${build_path}/python/examples/cascade_rcnn
-  wget --no-check-certificate https://paddle-serving.bj.bcebos.com/pddet_demo/cascade_rcnn_r50_fpx_1x_serving.tar.gz >/dev/null 2>&1
+  cp -r /root/.cache/dist_data/serving/cascade_rcnn/cascade_rcnn_r50_fpx_1x_serving.tar.gz ./
   tar xf cascade_rcnn_r50_fpx_1x_serving.tar.gz
   sed -i "13s/9292/8879/g" test_client.py
   python -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 > rcnn_rpc 2>&1 &
   ls -hlst
   python test_client.py
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -357,12 +355,13 @@ function deeplabv3_rpc() {
   setproxy
   run_gpu_env
   cd ${build_path}/python/examples/deeplabv3
-  python -m paddle_serving_app.package --get_model deeplabv3 >/dev/null 2>&1
-  tar -xzvf deeplabv3.tar.gz >/dev/null 2>&1
+  cp -r /root/.cache/dist_data/serving/deeplabv3/deeplabv3.tar.gz ./
+  tar xf deeplabv3.tar.gz
   sed -i "22s/9494/8880/g" deeplabv3_client.py
   python -m paddle_serving_server_gpu.serve --model deeplabv3_server --gpu_ids 0 --port 8880 > deeplab_rpc 2>&1 &
   sleep 5
   python deeplabv3_client.py
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -371,11 +370,12 @@ function mobilenet_rpc() {
   run_gpu_env
   cd ${build_path}/python/examples/mobilenet
   python -m paddle_serving_app.package --get_model mobilenet_v2_imagenet >/dev/null 2>&1
-  tar -xzvf mobilenet_v2_imagenet.tar.gz >/dev/null 2>&1
+  tar xf mobilenet_v2_imagenet.tar.gz
   sed -i "22s/9393/8881/g" mobilenet_tutorial.py
   python -m paddle_serving_server_gpu.serve --model mobilenet_v2_imagenet_model --gpu_ids 0 --port 8881 > mobilenet_rpc 2>&1 &
   sleep 5
   python mobilenet_tutorial.py
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -384,11 +384,12 @@ function unet_rpc() {
  run_gpu_env
  cd ${build_path}/python/examples/unet_for_image_seg
  python -m paddle_serving_app.package --get_model unet >/dev/null 2>&1
- tar -xzvf unet.tar.gz >/dev/null 2>&1
+ tar xf unet.tar.gz
  sed -i "22s/9494/8882/g" seg_client.py
  python -m paddle_serving_server_gpu.serve --model unet_model --gpu_ids 0 --port 8882 > unet_rpc 2>&1 &
  sleep 5
  python seg_client.py
+ check_result $FUNCNAME
  kill_server_process
 }
 
@@ -396,12 +397,13 @@ function resnetv2_rpc() {
   setproxy
   run_gpu_env
   cd ${build_path}/python/examples/resnet_v2_50
-  python -m paddle_serving_app.package --get_model resnet_v2_50_imagenet >/dev/null 2>&1
-  tar -xzvf resnet_v2_50_imagenet.tar.gz >/dev/null 2>&1
+  cp /root/.cache/dist_data/serving/resnet_v2_50/resnet_v2_50_imagenet.tar.gz ./
+  tar xf resnet_v2_50_imagenet.tar.gz
   sed -i 's/9393/8883/g' resnet50_v2_tutorial.py
   python -m paddle_serving_server_gpu.serve --model resnet_v2_50_imagenet_model --gpu_ids 0 --port 8883 > v2_log 2>&1 &
   sleep 10
   python resnet50_v2_tutorial.py
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -409,12 +411,75 @@ function ocr_rpc() {
   setproxy
   run_cpu_env
   cd ${build_path}/python/examples/ocr
+  cp -r /root/.cache/dist_data/serving/ocr/test_imgs ./
   python -m paddle_serving_app.package --get_model ocr_rec >/dev/null 2>&1
-  tar -xzvf ocr_rec.tar.gz >/dev/null 2>&1
+  tar xf ocr_rec.tar.gz
   sed -i 's/9292/8884/g' test_ocr_rec_client.py
   python -m paddle_serving_server.serve --model ocr_rec_model --port 8884 > ocr_rpc 2>&1 &
   sleep 5
   python test_ocr_rec_client.py
+  check_result $FUNCNAME
+  kill_server_process
+}
+
+function criteo_ctr_rpc_cpu() {
+  setproxy
+  run_cpu_env
+  cd ${build_path}/python/examples/criteo_ctr
+  sed -i "s/9292/8885/g" test_client.py
+  ln -s /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data ./
+  wget https://paddle-serving.bj.bcebos.com/criteo_ctr_example/criteo_ctr_demo_model.tar.gz >/dev/null 2>&1
+  tar xf criteo_ctr_demo_model.tar.gz
+  mv models/ctr_client_conf .
+  mv models/ctr_serving_model .
+  python -m paddle_serving_server.serve --model ctr_serving_model/ --port 8885 > criteo_ctr_cpu_rpc 2>&1 &
+  sleep 5
+  python test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
+  check_result $FUNCNAME
+  kill_server_process
+}
+
+function criteo_ctr_rpc_gpu() {
+  setproxy
+  run_gpu_env
+  cd ${build_path}/python/examples/criteo_ctr
+  sed -i "s/8885/8886/g" test_client.py
+  ln -s /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data ./
+  wget https://paddle-serving.bj.bcebos.com/criteo_ctr_example/criteo_ctr_demo_model.tar.gz >/dev/null 2>&1
+  tar xf criteo_ctr_demo_model.tar.gz
+  mv models/ctr_client_conf .
+  mv models/ctr_serving_model .
+  python -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8886 --gpu_ids 0 > criteo_ctr_gpu_rpc 2>&1 &
+  sleep 5
+  python test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
+  check_result $FUNCNAME
+  kill_server_process
+}
+
+function yolov4_rpc_gpu() {
+  setproxy
+  run_gpu_env
+  cd ${build_path}/python/examples/yolov4
+  sed -i "s/9393/8887/g" test_client.py
+  cp -r /data/.cache/dist_data/serving/yolov4/yolov4.tar.gz ./
+  tar xf yolov4.tar.gz
+  python -m paddle_serving_server_gpu.serve --model yolov4_model --port 8887 --gpu_ids 0 > yolov4_rpc_log 2>&1 &
+  sleep 5
+  python test_client.py 000000570688.jpg
+  check_result $FUNCNAME
+  kill_server_process
+}
+
+function senta_rpc_cpu() {
+  setproxy
+  run_gpu_env
+  cd ${build_path}/python/examples/senta
+  sed -i "s/9393/8887/g" test_client.py
+  cp -r /data/.cache/dist_data/serving/yolov4/yolov4.tar.gz ./
+  tar xf yolov4.tar.gz
+  python -m paddle_serving_server_gpu.serve --model yolov4_model --port 8887 --gpu_ids 0 > yolov4_rpc_log 2>&1 &
+  sleep 5
+  python test_client.py 000000570688.jpg
   check_result $FUNCNAME
   kill_server_process
 }
@@ -424,7 +489,6 @@ function fit_a_line_http() {
   run_cpu_env
   cd ${build_path}/python/examples/fit_a_line
   python -m paddle_serving_server.serve --model uci_housing_model --thread 10 --port 8871 --name uci > http_log2 2>&1 &
-  tail http_log2
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"x": [0.0137, -0.1136, 0.2553, -0.0692, 0.0582, -0.0727, -0.1583, -0.0584, 0.6283, 0.4919, 0.1856, 0.0795, -0.0332]}], "fetch":["price"]}' http://${host}:8871/uci/prediction
   check_result $FUNCNAME
@@ -460,6 +524,7 @@ function bow_http() {
   python text_classify_service.py imdb_bow_model/ workdir/ 8874 imdb.vocab > bow_http 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8874/imdb/prediction
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -470,6 +535,7 @@ function lstm_http() {
   python text_classify_service.py imdb_bow_model/ workdir/ 8875 imdb.vocab > bow_http 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8875/imdb/prediction
+  check_result $FUNCNAME
   kill_server_process
 }
 
@@ -542,7 +608,7 @@ function main() {
   run_rpc_models
   run_http_models
   end_hook
-  
+
 }
 
 
