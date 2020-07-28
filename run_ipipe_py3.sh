@@ -208,8 +208,8 @@ function criteo_ctr_with_cube_rpc(){
   run_cpu_env
   cd ${build_path}/python/examples/criteo_ctr_with_cube
   ln -s /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data ./
-  sed -i "s/9292/8862/g" test_server.py
-  sed -i "s/9292/8862/g" test_client.py
+  sed -i "s/9292/8885/g" test_server.py
+  sed -i "s/9292/8885/g" test_client.py
   wget https://paddle-serving.bj.bcebos.com/unittest/ctr_cube_unittest.tar.gz >/dev/null 2>&1
   tar xf ctr_cube_unittest.tar.gz
   mv models/ctr_client_conf ./
