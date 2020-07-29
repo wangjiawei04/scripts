@@ -600,6 +600,7 @@ function end_hook(){
   echo "===========files==========="
   ls -hlst
   echo "=========== end ==========="
+  kill_server_process
 }
 
 function main() {
