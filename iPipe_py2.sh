@@ -461,7 +461,7 @@ function yolov4_rpc_gpu() {
   run_gpu_env
   cd ${build_path}/python/examples/yolov4
   sed -i "s/9393/8887/g" test_client.py
-  cp -r /data/.cache/dist_data/serving/yolov4/yolov4.tar.gz ./
+  cp -r /root/.cache/dist_data/serving/yolov4/yolov4.tar.gz ./
   tar xf yolov4.tar.gz
   python -m paddle_serving_server_gpu.serve --model yolov4_model --port 8887 --gpu_ids 0 > yolov4_rpc_log 2>&1 &
   sleep 5
