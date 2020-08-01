@@ -599,8 +599,6 @@ function end_hook(){
   kill_server_process
   kill `ps -ef|grep python|awk '{print $2}'`
   sleep 5
-  ps -ef|grep python
-  ps -ef|grep serving
   echo "===========files==========="
   ls -hlst
   echo "=========== end ==========="
