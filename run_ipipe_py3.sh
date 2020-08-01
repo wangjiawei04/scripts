@@ -444,15 +444,12 @@ function criteo_ctr_rpc_gpu() {
   run_gpu_env
   cd ${build_path}/python/examples/criteo_ctr
   sed -i "s/8885/8886/g" test_client.py
-  ln -s /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data ./
   wget https://paddle-serving.bj.bcebos.com/criteo_ctr_example/criteo_ctr_demo_model.tar.gz >/dev/null 2>&1
-  tar xf criteo_ctr_demo_model.tar.gz
-  mv models/ctr_client_conf .
-  mv models/ctr_serving_model .
   python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8886 --gpu_ids 0 > criteo_ctr_gpu_rpc 2>&1 &
   sleep 5
   python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
   check_result $FUNCNAME
+  kill `ps -ef|grep ctr|awk '{print $2}'`
   kill_server_process
 }
 
@@ -537,6 +534,7 @@ function lstm_http() {
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8875/imdb/prediction
   check_result $FUNCNAME
+  kill `ps -ef|grep imdb|awk '{print $2}'`
   kill_server_process
 }
 
