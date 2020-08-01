@@ -12,9 +12,9 @@ echo "################################################################"
 
 build_path=/workspace/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
-rpc_model_list=(bert_rpc_gpu bert_rpc_cpu criteo_ctr_with_cube_rpc faster_rcnn_model_rpc ResNet50_rpc lac_rpc \
+rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc lac_rpc \
 cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2_rpc \
-criteo_ctr_rpc_cpu criteo_ctr_rpc_gpu ocr_rpc criteo_ctr_rpc_cpu yolov4_rpc_gpu)
+ocr_rpc criteo_ctr_rpc_cpu yolov4_rpc_gpu)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
 
@@ -291,6 +291,7 @@ function lstm_rpc(){
   head test_data/part-0 | python test_client.py imdb_lstm_client_conf/serving_client_conf.prototxt imdb.vocab
   check_result $FUNCNAME
   kill_server_process
+  kill `ps -ef|grep imdb|awk '{print $2}'`
 }
 
 function lac_rpc(){
