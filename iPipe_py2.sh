@@ -596,6 +596,7 @@ function run_http_models(){
 function end_hook(){
   cd ${build_path}
   kill_server_process
+  kill `ps -ef|grep python|awk '{print $2}'`
   echo "===========files==========="
   ls -hlst
   echo "=========== end ==========="
