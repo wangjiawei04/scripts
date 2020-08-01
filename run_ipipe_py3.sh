@@ -598,6 +598,8 @@ function run_http_models(){
 function end_hook(){
   cd ${build_path}
   kill_server_process
+  ps -ef|grep python
+  ps -ef|grep serving
   echo "===========files==========="
   ls -hlst
   echo "=========== end ==========="
