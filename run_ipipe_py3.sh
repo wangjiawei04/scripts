@@ -218,12 +218,13 @@ function criteo_ctr_with_cube_rpc(){
   wget https://paddle-serving.bj.bcebos.com/others/cube_app.tar.gz >/dev/null 2>&1
   tar xf cube_app.tar.gz
   mv cube_app/cube* ./cube/
-  sh cube_prepare.sh &
+  sh cube_prepare.sh > haha 2>&1 &
   sleep 5
   python3 test_server.py ctr_serving_model_kv > criteo_ctr_rpc 2>&1 &
   sleep 5
   python3 test_client.py ctr_client_conf/serving_client_conf.prototxt ./raw_data
   check_result $FUNCNAME
+  kill `ps -ef|grep cube|awk '{print $2}'`
   kill_server_process
 }
 
