@@ -14,7 +14,7 @@ build_path=/workspace/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
 rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc lac_rpc \
 cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2_rpc \
-ocr_rpc criteo_ctr_rpc_cpu yolov4_rpc_gpu)
+ocr_rpc criteo_ctr_rpc_cpu criteo_ctr_rpc_gpu yolov4_rpc_gpu)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
 
@@ -445,11 +445,6 @@ function criteo_ctr_rpc_gpu() {
   run_gpu_env
   cd ${build_path}/python/examples/criteo_ctr
   sed -i "s/8885/8886/g" test_client.py
-  ln -s /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data ./
-  wget https://paddle-serving.bj.bcebos.com/criteo_ctr_example/criteo_ctr_demo_model.tar.gz >/dev/null 2>&1
-  tar xf criteo_ctr_demo_model.tar.gz
-  mv models/ctr_client_conf .
-  mv models/ctr_serving_model .
   python -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8886 --gpu_ids 0 > criteo_ctr_gpu_rpc 2>&1 &
   sleep 5
   python test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
