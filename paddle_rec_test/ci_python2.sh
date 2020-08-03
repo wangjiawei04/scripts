@@ -11,8 +11,10 @@ function prepare(){
     pip uninstall paddle-rec -y
     python setup.py install
     pip uninstall paddlepaddle -y
-    wget https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10-cudnn7-mkl/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
-    pip install paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
+    wget http://yq01-gpu-255-125-19-00.epc.baidu.com:8988/paddlepaddle_gpu-0.0.0.2020.0728.191705.post107.develop-cp27-cp27mu-linux_x86_64.whl
+    pip install paddlepaddle_gpu-0.0.0.2020.0728.191705.post107.develop-cp27-cp27mu-linux_x86_64.whl
+#     wget https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10-cudnn7-mkl/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
+#     pip install paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
 #    pip install paddlepaddle-gpu==1.8.2.post107
     pip install nose
     pip install ruamel.yaml
