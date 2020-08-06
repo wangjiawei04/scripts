@@ -79,7 +79,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_multiview_simnet(self):
         """test match.multiview_simnet."""
-        self.yaml_config_name = 'models.match/multiview-simnet/config.yaml'
+        self.yaml_config_name = 'models/match/multiview-simnet/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -272,7 +272,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_fm(self):
         """test ran.fm."""
-        self.yaml_config_name = 'PaddleRec.models.rank.fm/config.yaml'
+        self.yaml_config_name = 'PaddleRec/models/rank/fm/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -288,7 +288,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_fnn(self):
         """test ran.fnn."""
-        self.yaml_config_name = 'PaddleRec/models/rank/fnn/config.yaml'
+        self.yaml_config_name = 'models/rank/fnn/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -304,7 +304,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_logistic_regression(self):
         """test ran.logistic_regression."""
-        self.yaml_config_name = 'PaddleRec.models.rank.logistic_regression'
+        self.yaml_config_name = 'models/rank/logistic_regression/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -320,7 +320,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_nfm(self):
         """test ran.nfm."""
-        self.yaml_config_name = 'PaddleRec.models.rank.nfm'
+        self.yaml_config_name = 'PaddleRec/models/rank/nfm/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -353,7 +353,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_wide_deep(self):
         """test ran.wide_deep."""
-        self.yaml_config_name = 'PaddleRec.models.rank.wide_deep'
+        self.yaml_config_name = 'models/rank/wide_deep/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -369,7 +369,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_xdeepfm(self):
         """test ran.xdeepfm."""
-        self.yaml_config_name = 'PaddleRec.models.rank.xdeepfm'
+        self.yaml_config_name = 'PaddleRec/models/rank/xdeepfm/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -425,7 +425,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_fasttext(self):
         """test recall.fasttext."""
-        self.yaml_config_name = 'PaddleRec/models/recall/fasttext/config.yaml'
+        self.yaml_config_name = 'models/recall/fasttext/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -441,7 +441,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_gnn(self):
         """test recall.gnn."""
-        self.yaml_config_name = 'PaddleRec/models/recall/gnn/config.yaml'
+        self.yaml_config_name = 'models/recall/gnn/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -457,7 +457,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_gru4rec(self):
         """test recall.gru4rec."""
-        self.yaml_config_name = 'PaddleRec/models/recall/gru4rec/config.yaml'
+        self.yaml_config_name = 'models/recall/gru4rec/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -473,7 +473,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_ncf(self):
         """test recall.ncf."""
-        self.yaml_config_name = 'PaddleRec/models/recall/ncf/config.yaml'
+        self.yaml_config_name = 'models/recall/ncf/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -489,7 +489,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_ssr(self):
         """test recall.ssr."""
-        self.yaml_config_name = 'PaddleRec/models/recall/ssr/config.yaml'
+        self.yaml_config_name = 'models/recall/ssr/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -505,7 +505,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_word2vec(self):
         """test recall.word2vec."""
-        self.yaml_config_name = 'PaddleRec/models/recall/word2vec/config.yaml'
+        self.yaml_config_name = 'models/recall/word2vec/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -521,7 +521,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_youtube_dnn(self):
         """test recall.youtube_dnn."""
-        self.yaml_config_name = 'PaddleRec/models/recall/youtube_dnn/config.yaml'
+        self.yaml_config_name = 'models/recall/youtube_dnn/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -537,7 +537,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_listwise(self):
         """test rerank.listwise."""
-        self.yaml_config_name = 'PaddleRec/models/rerank/listwise/config.yaml'
+        self.yaml_config_name = 'models/rerank/listwise/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -553,7 +553,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_tdm(self):
         """test treebased.tdm."""
-        self.yaml_config_name = 'PaddleRec/models/treebased/tdm/config.yaml'
+        self.yaml_config_name = 'models/treebased/tdm/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -567,4 +567,3 @@ class TestPaddleRecModels(PaddleRecBase):
     #     self.run_yaml(generate=False, cuda_devices="0")
     #     built_in.equals(self.pro.returncode, 0, self.err_msg)
     #     built_in.not_contains(self.err, 'Traceback', self.err_msg)
-
