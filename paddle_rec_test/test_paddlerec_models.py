@@ -272,7 +272,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_fm(self):
         """test ran.fm."""
-        self.yaml_config_name = 'PaddleRec/models/rank/fm/config.yaml'
+        self.yaml_config_name = 'models/rank/fm/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -320,7 +320,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_nfm(self):
         """test ran.nfm."""
-        self.yaml_config_name = 'PaddleRec/models/rank/nfm/config.yaml'
+        self.yaml_config_name = 'models/rank/nfm/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
@@ -369,7 +369,7 @@ class TestPaddleRecModels(PaddleRecBase):
 
     def test_xdeepfm(self):
         """test ran.xdeepfm."""
-        self.yaml_config_name = 'PaddleRec/models/rank/xdeepfm/config.yaml'
+        self.yaml_config_name = 'models/rank/xdeepfm/config.yaml'
         self.run_yaml(generate=False)
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
