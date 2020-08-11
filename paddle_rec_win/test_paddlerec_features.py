@@ -111,20 +111,20 @@ class TestRankDNN(RankDNNBase):
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
         built_in.regex_match_len(self.out, self.epoch_re, 2, self.err_msg)
 
-    def test_optimizer_lr(self):
-        """test optimizer lr"""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["hyper_parameters"]['optimizer']['class'] = 'SGD'
-        self.yaml_content["hyper_parameters"]['optimizer']['learning_rate'] = 0.02
-        self.yaml_content["hyper_parameters"]['reg'] = 0.1
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
-        built_in.regex_match_len(self.out, self.epoch_re, 2, self.err_msg)
-        built_in.regex_match_equal(self.out,
-                                   '\nhyper_parameters.optimizer.learning_rate\s+(\S+)\s+\n',
-                                   '0.02',
-                                   self.err_msg)
+#     def test_optimizer_lr(self):
+#         """test optimizer lr"""
+#         self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+#         self.yaml_content["hyper_parameters"]['optimizer']['class'] = 'SGD'
+#         self.yaml_content["hyper_parameters"]['optimizer']['learning_rate'] = 0.02
+#         self.yaml_content["hyper_parameters"]['reg'] = 0.1
+#         self.run_yaml()
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#         built_in.regex_match_len(self.out, self.epoch_re, 2, self.err_msg)
+#         built_in.regex_match_equal(self.out,
+#                                    '\nhyper_parameters.optimizer.learning_rate\s+(\S+)\s+\n',
+#                                    '0.02',
+#                                    self.err_msg)
 
     def test_increment_train(self):
         """test increment train."""
@@ -162,23 +162,23 @@ class TestRankDNN(RankDNNBase):
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
         built_in.regex_match_len(self.out, self.run_time_re, 4, self.err_msg)
 
-    def test_thread_num(self):
-        """test thread num."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content['phase'].append({
-            'name': 'phase2',
-            'model': '{workspace}/model.py',  # user-defined model
-            'dataset_name': 'dataset_infer',  # select dataset by name
-            'thread_num': 2
-        })
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
-        built_in.regex_match_len(self.out, self.run_time_re, 4, self.err_msg)
-        built_in.regex_match_equal(self.out,
-                                   '\nphase.phase2.thread_num\s+(\S+)\s+\n',
-                                   2,
-                                   self.err_msg)
+#     def test_thread_num(self):
+#         """test thread num."""
+#         self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+#         self.yaml_content['phase'].append({
+#             'name': 'phase2',
+#             'model': '{workspace}/model.py',  # user-defined model
+#             'dataset_name': 'dataset_infer',  # select dataset by name
+#             'thread_num': 2
+#         })
+#         self.run_yaml()
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#         built_in.regex_match_len(self.out, self.run_time_re, 4, self.err_msg)
+#         built_in.regex_match_equal(self.out,
+#                                    '\nphase.phase2.thread_num\s+(\S+)\s+\n',
+#                                    2,
+#                                    self.err_msg)
 
     def test_infer_twice(self):
         """test infer twice."""
@@ -294,21 +294,21 @@ class TestRankDNN(RankDNNBase):
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
         built_in.regex_match_len(self.out, self.epoch_re, 2, self.err_msg)
 
-    def test_optimizer_lr_gpu(self):
-        """test optimizer lr with gpu."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["runner"][0]["device"] = 'gpu'
-        self.yaml_content["hyper_parameters"]['optimizer']['class'] = 'SGD'
-        self.yaml_content["hyper_parameters"]['optimizer']['learning_rate'] = 0.02
-        self.yaml_content["hyper_parameters"]['reg'] = 0.1
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
-        built_in.regex_match_len(self.out, self.epoch_re, 2, self.err_msg)
-        built_in.regex_match_equal(self.out,
-                                   '\nhyper_parameters.optimizer.learning_rate\s+(\S+)\s+\n',
-                                   '0.02',
-                                   self.err_msg)
+#     def test_optimizer_lr_gpu(self):
+#         """test optimizer lr with gpu."""
+#         self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+#         self.yaml_content["runner"][0]["device"] = 'gpu'
+#         self.yaml_content["hyper_parameters"]['optimizer']['class'] = 'SGD'
+#         self.yaml_content["hyper_parameters"]['optimizer']['learning_rate'] = 0.02
+#         self.yaml_content["hyper_parameters"]['reg'] = 0.1
+#         self.run_yaml()
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#         built_in.regex_match_len(self.out, self.epoch_re, 2, self.err_msg)
+#         built_in.regex_match_equal(self.out,
+#                                    '\nhyper_parameters.optimizer.learning_rate\s+(\S+)\s+\n',
+#                                    '0.02',
+#                                    self.err_msg)
 
     def test_increment_train_gpu(self):
         """test increment train with gpu."""
@@ -346,24 +346,24 @@ class TestRankDNN(RankDNNBase):
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
         built_in.regex_match_len(self.out, self.run_time_re, 4, self.err_msg)
 
-    def test_thread_num_gpu(self):
-        """test thread num with gpu."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["runner"][0]["device"] = 'gpu'
-        self.yaml_content['phase'].append({
-            'name': 'phase2',
-            'model': '{workspace}/model.py',  # user-defined model
-            'dataset_name': 'dataset_infer',  # select dataset by name
-            'thread_num': 2
-        })
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
-        built_in.regex_match_len(self.out, self.epoch_re, 4, self.err_msg)
-        built_in.regex_match_equal(self.out,
-                                   '\nphase.phase2.thread_num\s+(\S+)\s+\n',
-                                   2,
-                                   self.err_msg)
+#     def test_thread_num_gpu(self):
+#         """test thread num with gpu."""
+#         self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+#         self.yaml_content["runner"][0]["device"] = 'gpu'
+#         self.yaml_content['phase'].append({
+#             'name': 'phase2',
+#             'model': '{workspace}/model.py',  # user-defined model
+#             'dataset_name': 'dataset_infer',  # select dataset by name
+#             'thread_num': 2
+#         })
+#         self.run_yaml()
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#         built_in.regex_match_len(self.out, self.epoch_re, 4, self.err_msg)
+#         built_in.regex_match_equal(self.out,
+#                                    '\nphase.phase2.thread_num\s+(\S+)\s+\n',
+#                                    2,
+#                                    self.err_msg)
 
     def test_infer_twice_gpu(self):
         """test infer twice with gpu."""
