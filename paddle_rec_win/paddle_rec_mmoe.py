@@ -22,7 +22,7 @@ class MultiTaskMMOEBase(PaddleRecBase):
 
     def _construct_global_vars(self):
         self.yaml_content['debug'] = True
-        self.yaml_content['workspace'] = "paddlerec.models.multitask.mmoe"
+        self.yaml_content['workspace'] = "models/multitask/mmoe"
         self.yaml_content['mode'] = 'runner0'
 
 
