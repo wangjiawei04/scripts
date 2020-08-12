@@ -68,7 +68,7 @@ class TestRankDNN(RankDNNBase):
     def test_workspace_abs(self):
         """test abs worksapce."""
         self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["workspace"] = './PaddleRec/models/rank/dnn'
+        self.yaml_content["workspace"] = 'models/rank/dnn'
         self.run_yaml()
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
