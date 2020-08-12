@@ -83,7 +83,7 @@ class RankDNNBase(PaddleRecBase):
 
     def _construct_global_vars(self):
         self.yaml_content['debug'] = True
-        self.yaml_content['workspace'] = "paddlerec.models.rank.dnn"
+        self.yaml_content['workspace'] = "models/rank/dnn"
         self.yaml_content['mode'] = 'runner0'
 
 
@@ -171,7 +171,7 @@ class RankDNNBaseNewConfig(PaddleRecBase):
 
     def _construct_global_vars(self):
         self.yaml_content['debug'] = True
-        self.yaml_content['workspace'] = "paddlerec.models.rank.dnn"
+        self.yaml_content['workspace'] = "models/rank/dnn"
         self.yaml_content['mode'] = ['runner0']
 
 
