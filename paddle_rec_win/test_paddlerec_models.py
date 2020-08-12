@@ -455,21 +455,21 @@ class TestPaddleRecModels(PaddleRecBase):
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
-    def test_gru4rec(self):
-        """test recall.gru4rec."""
-        self.yaml_config_name = 'models/recall/gru4rec/config.yaml'
-        self.run_yaml(generate=False)
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#     def test_gru4rec(self):
+#        """test recall.gru4rec."""
+#        self.yaml_config_name = 'models/recall/gru4rec/config.yaml'
+#        self.run_yaml(generate=False)
+#        built_in.equals(self.pro.returncode, 0, self.err_msg)
+#        built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
-    def test_gru4rec_gpu(self):
-        """test recall.gru4rec with gpu."""
-        self.yaml_config_name = "models/recall/gru4rec/config.yaml"
-        sed_gpu_cmd = "sed -i 's/device:.*cpu/device: gpu/g' {}".format(self.yaml_config_name)
-        utils.cmd_shell(sed_gpu_cmd)
-        self.run_yaml(generate=False, cuda_devices="0")
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#    def test_gru4rec_gpu(self):
+#        """test recall.gru4rec with gpu."""
+#        self.yaml_config_name = "models/recall/gru4rec/config.yaml"
+#        sed_gpu_cmd = "sed -i 's/device:.*cpu/device: gpu/g' {}".format(self.yaml_config_name)
+#         utils.cmd_shell(sed_gpu_cmd)
+#         self.run_yaml(generate=False, cuda_devices="0")
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
     def test_ncf(self):
         """test recall.ncf."""
@@ -478,14 +478,14 @@ class TestPaddleRecModels(PaddleRecBase):
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
-    def test_ncf_gpu(self):
-        """test recall.ncf with gpu."""
-        self.yaml_config_name = "models/recall/ncf/config.yaml"
-        sed_gpu_cmd = "sed -i 's/device:.*cpu/device: gpu/g' {}".format(self.yaml_config_name)
-        utils.cmd_shell(sed_gpu_cmd)
-        self.run_yaml(generate=False, cuda_devices="0")
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#     def test_ncf_gpu(self):
+#         """test recall.ncf with gpu."""
+#         self.yaml_config_name = "models/recall/ncf/config.yaml"
+#         sed_gpu_cmd = "sed -i 's/device:.*cpu/device: gpu/g' {}".format(self.yaml_config_name)
+#         utils.cmd_shell(sed_gpu_cmd)
+#         self.run_yaml(generate=False, cuda_devices="0")
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
     def test_ssr(self):
         """test recall.ssr."""
