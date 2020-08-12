@@ -6,7 +6,7 @@ function setproxy(){
 }
 
 function prepare(){
-    setproxy
+    #setproxy
     cd PaddleRec
     pip uninstall paddle-rec -y
     python setup.py install
