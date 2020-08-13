@@ -64,7 +64,7 @@ function before_hook(){
   setproxy
   cd /workspace/Serving/python
   pip3 install --upgrade pip
-  pip3 install -r python/requirements.txt
+  pip3 install -r requirements.txt
   pip3 install numpy==1.16.4
  # pip3 install grpcio-tools==1.28.1
  # pip3 install grpcio==1.28.1
