@@ -158,7 +158,8 @@ function build_cpu_server(){
 
 function build_app() {
   setproxy
-  pip3 install paddlepaddle paddlehub ujson paddle_serving_client opencv-python Pillow
+  pip3 install paddlepaddle paddlehub ujson paddle_serving_client Pillow
+  pip3 install opencv-python==4.2.0.32
   yum install -y libXext libSM libXrender
   cd ${build_path}
   if [ -d build ];then
