@@ -62,11 +62,12 @@ function check_result() {
 
 function before_hook(){
   setproxy
-  cd /workspace/Serving/
+  cd /workspace/Serving/python
   pip3 install --upgrade pip
-  pip3 install numpy==1.16.4 sentencepiece
-  pip3 install grpcio-tools==1.28.1
-  pip3 install grpcio==1.28.1
+  pip3 install -r python/requirements.txt
+  pip3 install numpy==1.16.4
+ # pip3 install grpcio-tools==1.28.1
+ # pip3 install grpcio==1.28.1
   echo "env configuration succ.... "
 }
 
