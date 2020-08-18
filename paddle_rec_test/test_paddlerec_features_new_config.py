@@ -45,22 +45,22 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
         built_in.regex_match_len(self.out, self.epoch_re, 2, self.err_msg)
 
-  #  def test_QueueDataset_train_c2(self):
-   #     """test QueueDataset in train."""
-   #     self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-   #     self.yaml_content["dataset"][0]["type"] = "QueueDataset"
-   #     self.run_yaml()
-   #     built_in.equals(self.pro.returncode, 0, self.err_msg)
-   #     built_in.not_contains(self.err, 'Traceback', self.err_msg)
-   #     built_in.regex_match_len(self.out, self.epoch_re, 2, self.err_msg)
-    #    # NOTE windows和mac直接会强行切换到dataloader
-    #    if utils.get_platform() != "LINUX" or not six.PY2:
-   #         check_type = "DataLoader"
-   #     else:
-   #         check_type = "QueueDataset"
-   #     built_in.regex_match_equal(self.out,
-   #                                r'\ndataset.dataset_train.type\s+(\S+)\s+\n',
-   #                                check_type,
+    def test_QueueDataset_train_c2(self):
+        """test QueueDataset in train."""
+        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+        self.yaml_content["dataset"][0]["type"] = "QueueDataset"
+        self.run_yaml()
+        built_in.equals(self.pro.returncode, 0, self.err_msg)
+        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+        built_in.regex_match_len(self.out, self.epoch_re, 2, self.err_msg)
+        # NOTE windows和mac直接会强行切换到dataloader
+        if utils.get_platform() != "LINUX" or not six.PY2:
+            check_type = "DataLoader"
+        else:
+            check_type = "QueueDataset"
+    #    built_in.regex_match_equal(self.out,
+    #                               r'\ndataset.dataset_train.type\s+(\S+)\s+\n',
+    #                               check_type,
    #                                self.err_msg)
 
     def test_workspace_abs_c2(self):
