@@ -248,10 +248,10 @@ class TestRankDNN(RankDNNBase):
             check_type = "DataLoader"
         else:
             check_type = "QueueDataset"
-        built_in.regex_match_equal(self.out,
-                                   '\ndataset.dataset_train.type\s+(\S+)\s+\n',
-                                   check_type,
-                                   self.err_msg)
+    #    built_in.regex_match_equal(self.out,
+    #                               '\ndataset.dataset_train.type\s+(\S+)\s+\n',
+    #                               check_type,
+    #                               self.err_msg)
 
     def test_debug_open_gpu(self):
         """test debug open with gpu."""
