@@ -34,23 +34,23 @@ class TestMMOE(MultiTaskMMOEBase):
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
         built_in.regex_match_len(self.out, 'epoch.+done', 2, self.err_msg)
 
-   # def test_QueueDataset_train(self):
-   #     """test QueueDataset in train."""
-   #     self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-   #     if six.PY3:
-   #        self.yaml_content["dataset"][0]["type"] = "DataLoader"
-   #     else:
-   #        self.yaml_content["dataset"][0]["type"] = "QueueDataset"
-   #     self.run_yaml()
-   #     built_in.equals(self.pro.returncode, 0, self.err_msg)
-   #     built_in.not_contains(self.err, 'Traceback', self.err_msg)
-   #     built_in.regex_match_len(self.out, 'epoch.+done', 2, self.err_msg)
-   #     # NOTE windows和mac直接会强行切换到dataloader
-   #     check_type = "DataLoader" if utils.get_platform() != "LINUX" else "QueueDataset"
-   #     if six.PY3:
-   #        check_type = "DataLoader"
-   #     else:
-   #        check_type = "DataLoader" if utils.get_platform() != "LINUX" else "QueueDataset"
+    def test_QueueDataset_train(self):
+        """test QueueDataset in train."""
+        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+        if six.PY3:
+           self.yaml_content["dataset"][0]["type"] = "DataLoader"
+        else:
+           self.yaml_content["dataset"][0]["type"] = "QueueDataset"
+        self.run_yaml()
+        built_in.equals(self.pro.returncode, 0, self.err_msg)
+        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+        built_in.regex_match_len(self.out, 'epoch.+done', 2, self.err_msg)
+        # NOTE windows和mac直接会强行切换到dataloader
+        check_type = "DataLoader" if utils.get_platform() != "LINUX" else "QueueDataset"
+        if six.PY3:
+           check_type = "DataLoader"
+        else:
+           check_type = "DataLoader" if utils.get_platform() != "LINUX" else "QueueDataset"
    #     built_in.regex_match_equal(self.out,
    #                                '\ndataset.dataset_train.type\s+(\S+)\s+\n',
    #                                check_type,
