@@ -125,7 +125,22 @@ class TestRankDNN(RankDNNBase):
                                    '\nhyper_parameters.optimizer.learning_rate\s+(\S+)\s+\n',
                                    '0.02',
                                    self.err_msg)
-
+        
+    def test_optimizer_lr_le(self):
+        """test optimizer lr"""
+        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+        self.yaml_content["hyper_parameters"]['optimizer']['class'] = 'SGD'
+        self.yaml_content["hyper_parameters"]['optimizer']['learning_rate'] = 2e-2
+        self.yaml_content["hyper_parameters"]['reg'] = 0.1
+        self.run_yaml()
+        built_in.equals(self.pro.returncode, 0, self.err_msg)
+        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+        built_in.regex_match_len(self.out, self.epoch_re, 2, self.err_msg)
+        built_in.regex_match_equal(self.out,
+                                   '\nhyper_parameters.optimizer.learning_rate\s+(\S+)\s+\n',
+                                   '0.02',
+                                   self.err_msg)
+        
     def test_increment_train(self):
         """test increment train."""
         self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
