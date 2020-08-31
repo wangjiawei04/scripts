@@ -520,4 +520,4 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
         self.run_yaml()
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
-        built_in.regex_match_len(self.out, self.auc_re_bug, 0, self.err_msg)
+        built_in.regex_match_len(self.out, self.auc_re_bug, 3, self.err_msg)
