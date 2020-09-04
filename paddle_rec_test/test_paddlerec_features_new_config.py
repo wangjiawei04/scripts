@@ -198,17 +198,17 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
         built_in.regex_match_len('logs/worker.0', self.epoch_re, 2, self.err_msg)
 
-    def test_mode_list_ps_local_cluster_and_infer_c2(self):
-        """test mode list has two elements .
-           one is local cluster and one is infer.
-        """
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["runner"][0]["class"] = "local_cluster_train"
-        self.yaml_content["mode"] = ["runner0", "runner2"]
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
-        built_in.regex_match_len(self.out, self.auc_re_bug, 0, self.err_msg)
+#     def test_mode_list_ps_local_cluster_and_infer_c2(self):
+#         """test mode list has two elements .
+#            one is local cluster and one is infer.
+#         """
+#         self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+#         self.yaml_content["runner"][0]["class"] = "local_cluster_train"
+#         self.yaml_content["mode"] = ["runner0", "runner2"]
+#         self.run_yaml()
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#         built_in.regex_match_len(self.out, self.auc_re_bug, 0, self.err_msg)
 
     def test_mode_str_ps_local_cluster_1p_1t_async_c2(self):
         """test_mode_str_ps_local_cluster_1p_1t_c2."""
@@ -505,19 +505,19 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
         built_in.regex_match_len('logs/worker.1', self.epoch_re, 2, self.err_msg)
         built_in.regex_match_len('logs/worker.1', '.+load.+increment_dnn', 1, self.err_msg)
 
-    def test_mode_list_collective_local_cluster_and_infer_c2(self):
-        """test mode list has two elements .
-           one is local cluster and one is infer.
-        """
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["runner"][0]["device"] = 'gpu'
-        self.yaml_content["runner"][0]["selected_gpus"] = "0,1"
-        self.yaml_content["runner"][0]["class"] = "local_cluster_train"
-        self.yaml_content["runner"][0]["fleet_mode"] = "collective"
-        self.yaml_content["dataset"][0]["data_path"] = "criteo_data"
-        self.yaml_content["runner"][2]["device"] = 'gpu'
-        self.yaml_content["mode"] = ["runner0", "runner2"]
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
-        built_in.regex_match_len(self.out, self.auc_re_bug, 0, self.err_msg)
+#     def test_mode_list_collective_local_cluster_and_infer_c2(self):
+#         """test mode list has two elements .
+#            one is local cluster and one is infer.
+#         """
+#         self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+#         self.yaml_content["runner"][0]["device"] = 'gpu'
+#         self.yaml_content["runner"][0]["selected_gpus"] = "0,1"
+#         self.yaml_content["runner"][0]["class"] = "local_cluster_train"
+#         self.yaml_content["runner"][0]["fleet_mode"] = "collective"
+#         self.yaml_content["dataset"][0]["data_path"] = "criteo_data"
+#         self.yaml_content["runner"][2]["device"] = 'gpu'
+#         self.yaml_content["mode"] = ["runner0", "runner2"]
+#         self.run_yaml()
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#         built_in.regex_match_len(self.out, self.auc_re_bug, 0, self.err_msg)
