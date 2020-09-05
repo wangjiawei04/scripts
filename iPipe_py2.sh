@@ -337,7 +337,7 @@ function faster_rcnn_model_rpc(){
   tar xf faster_rcnn_model.tar.gz
   wget https://paddle-serving.bj.bcebos.com/pddet_demo/infer_cfg.yml >/dev/null 2>&1
   mv faster_rcnn_model/pddet* ./
-  sed -i "30s/127.0.0.1:9494/${host}:8870/g" test_client.py
+  sed -i 's/9494/8870/g' test_client.py
   python -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 > haha 2>&1 &
   sleep 3
   python test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
