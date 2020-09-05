@@ -267,7 +267,7 @@ function cnn_rpc(){
   cd ${build_path}/python/examples/imdb
   cp -r /root/.cache/dist_data/serving/imdb/* ./
   tar xf imdb_model.tar.gz && tar xf text_classification_data.tar.gz
-  sed -i "21cclient.connect(['${host}:8865'])" test_client.py
+  sed -i 's/9292/8865/g' test_client.py
   python -m paddle_serving_server.serve --model imdb_cnn_model/ --port 8865 > cnn_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python test_client.py imdb_cnn_client_conf/serving_client_conf.prototxt imdb.vocab
@@ -279,7 +279,7 @@ function bow_rpc(){
   setproxy
   run_cpu_env
   cd ${build_path}/python/examples/imdb
-  sed -i "21cclient.connect(['${host}:8866'])" test_client.py
+  sed -i 's/8865/8866/g' test_client.py
   python -m paddle_serving_server.serve --model imdb_bow_model/ --port 8866 > bow_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python test_client.py imdb_bow_client_conf/serving_client_conf.prototxt imdb.vocab
@@ -292,7 +292,7 @@ function lstm_rpc(){
   setproxy
   run_cpu_env
   cd ${build_path}/python/examples/imdb
-  sed -i "21cclient.connect(['${host}:8867'])" test_client.py
+  sed -i 's/8866/8867/g' test_client.py
   python -m paddle_serving_server.serve --model imdb_lstm_model/ --port 8867 > lstm_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python test_client.py imdb_lstm_client_conf/serving_client_conf.prototxt imdb.vocab
@@ -307,7 +307,7 @@ function lac_rpc(){
   cd ${build_path}/python/examples/lac
   python -m paddle_serving_app.package --get_model lac >/dev/null 2>&1
   tar xf lac.tar.gz
-  sed -i "25cclient.connect(['${host}:8868'])" lac_client.py
+  sed -i 's/9292/8868/g' lac_client.py
   python -m paddle_serving_server.serve --model lac_model/ --port 8868 > lac_rpc 2>&1 &
   sleep 5
   echo "我爱北京天安门" | python lac_client.py lac_client/serving_client_conf.prototxt lac_dict/
