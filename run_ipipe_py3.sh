@@ -161,9 +161,7 @@ function build_cpu_server(){
 
 function build_app() {
   setproxy
-  pip3 install paddlepaddle paddlehub ujson paddle_serving_client Pillow
-  pip3 install opencv-python==4.2.0.32
-  yum install -y libXext libSM libXrender
+  #pip3 install paddlepaddle paddlehub ujson paddle_serving_client Pillow
   cd ${build_path}
   if [ -d build ];then
       cd build && rm -rf *
@@ -184,7 +182,7 @@ function bert_rpc_gpu(){
   setproxy
   cd ${build_path}/python/examples/bert
   sh get_data.sh >/dev/null 2>&1
-  sed -i "26cendpoint_list = ['${host}:8860']" bert_client.py
+  sed -i 's/9292/8860/g' bert_client.py
   sed -i '$aprint(result)' bert_client.py
   cp -r /root/.cache/dist_data/serving/bert/bert_seq128_* ./
   ls -hlst
@@ -199,7 +197,7 @@ function bert_rpc_cpu(){
   run_cpu_env
   setproxy
   cd ${build_path}/python/examples/bert
-  sed -i "26cendpoint_list = ['${host}:8861']" bert_client.py
+  sed -i 's/8860/8861/g' bert_client.py
   python3 -m paddle_serving_server.serve --model bert_seq128_model/ --port 8861 > bert_rpc_cpu 2>&1 &
   sleep 3
   cp data-c.txt.1 data-c.txt
@@ -238,7 +236,7 @@ function ResNet50_rpc(){
   setproxy
   cd ${build_path}/python/examples/imagenet
   cp -r /root/.cache/dist_data/serving/imagenet/* ./
-  sed -i "23cclient.connect(['127.0.0.1:8863'])" resnet50_rpc_client.py
+  sed -i 's/9696/8863/g' resnet50_rpc_client.py
   python3 -m paddle_serving_server_gpu.serve --model ResNet50_vd_model --port 8863 --gpu_ids 0 > ResNet50_rpc 2>&1 &
   sleep 5
   python3 resnet50_rpc_client.py ResNet50_vd_client_config/serving_client_conf.prototxt
@@ -319,7 +317,7 @@ function fit_a_line_rpc(){
   cd ${build_path}/python/examples/fit_a_line
   sh get_data.sh >/dev/null 2>&1
   sed -i "35cserver.prepare_server(workdir='work_dir1', port=8869, device='cpu')" test_server.py
-  sed -i "21cclient.connect(['${host}:8869'])" test_client.py
+  sed -i 's/9393/8869/g' test_client.py
   python3 test_server.py uci_housing_model/ > line_rpc 2>&1 &
   sleep 5
   python3 test_client.py uci_housing_client/serving_client_conf.prototxt
@@ -336,7 +334,6 @@ function faster_rcnn_model_rpc(){
   wget https://paddle-serving.bj.bcebos.com/pddet_demo/infer_cfg.yml >/dev/null 2>&1
   mv faster_rcnn_model/pddet* ./
   sed -i 's/9494/8870/g' test_client.py
-  #sed -i "30s/127.0.0.1:9494/${host}:8870/g" test_client.py
   python3 -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 > haha 2>&1 &
   echo "faster rcnn running ..."
   sleep 5
