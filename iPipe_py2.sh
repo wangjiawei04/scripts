@@ -69,10 +69,6 @@ function before_hook(){
   cd ${build_path}/python
   pip install --upgrade pip
   pip install -r requirements.txt
-#   pip install numpy==1.16.4 sentencepiece
-#   pip install importlib-resources==1.0
-#   pip install grpcio-tools==1.28.1
-#   pip install grpcio==1.28.1
   echo "env configuration succ.... "
 }
 
@@ -163,9 +159,8 @@ function build_cpu_server(){
 
 function build_app() {
   setproxy
-  pip install paddlepaddle paddlehub ujson paddle_serving_client Pillow
-  pip install opencv-python==4.2.0.32
-  yum install -y libXext libSM libXrender
+ # pip install paddlepaddle paddlehub ujson paddle_serving_client Pillow
+ # pip install opencv-python==4.2.0.32
   cd ${build_path}
   if [ -d build ];then
       cd build && rm -rf *
