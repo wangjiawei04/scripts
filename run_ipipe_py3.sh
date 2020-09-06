@@ -276,7 +276,6 @@ function bow_rpc(){
   run_cpu_env
   cd ${build_path}/python/examples/imdb
   sed -i 's/8865/8866/g' test_client.py
-  sed -i "21cclient.connect(['${host}:8866'])" test_client.py
   python3 -m paddle_serving_server.serve --model imdb_bow_model/ --port 8866 > bow_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python3 test_client.py imdb_bow_client_conf/serving_client_conf.prototxt imdb.vocab
@@ -289,7 +288,6 @@ function lstm_rpc(){
   run_cpu_env
   cd ${build_path}/python/examples/imdb
   sed -i 's/8866/8867/g' test_client.py
-  sed -i "21cclient.connect(['${host}:8867'])" test_client.py
   python3 -m paddle_serving_server.serve --model imdb_lstm_model/ --port 8867 > lstm_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python3 test_client.py imdb_lstm_client_conf/serving_client_conf.prototxt imdb.vocab
@@ -348,7 +346,7 @@ function cascade_rcnn_rpc(){
   cd ${build_path}/python/examples/cascade_rcnn
   cp -r /root/.cache/dist_data/serving/cascade_rcnn/cascade_rcnn_r50_fpx_1x_serving.tar.gz ./
   tar xf cascade_rcnn_r50_fpx_1x_serving.tar.gz
-  sed -i "13s/9292/8879/g" test_client.py
+  sed -i "s/9292/8879/g" test_client.py
   python3 -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 > rcnn_rpc 2>&1 &
   sleep 5
   python3 test_client.py
@@ -362,7 +360,7 @@ function deeplabv3_rpc() {
   cd ${build_path}/python/examples/deeplabv3
   cp -r /root/.cache/dist_data/serving/deeplabv3/deeplabv3.tar.gz ./
   tar xf deeplabv3.tar.gz
-  sed -i "22s/9494/8880/g" deeplabv3_client.py
+  sed -i "s/9494/8880/g" deeplabv3_client.py
   python3 -m paddle_serving_server_gpu.serve --model deeplabv3_server --gpu_ids 0 --port 8880 > deeplab_rpc 2>&1 &
   sleep 5
   python3 deeplabv3_client.py
@@ -376,7 +374,7 @@ function mobilenet_rpc() {
   cd ${build_path}/python/examples/mobilenet
   python3 -m paddle_serving_app.package --get_model mobilenet_v2_imagenet >/dev/null 2>&1
   tar xf mobilenet_v2_imagenet.tar.gz
-  sed -i "22s/9393/8881/g" mobilenet_tutorial.py
+  sed -i "s/9393/8881/g" mobilenet_tutorial.py
   python3 -m paddle_serving_server_gpu.serve --model mobilenet_v2_imagenet_model --gpu_ids 0 --port 8881 > mobilenet_rpc 2>&1 &
   sleep 5
   python3 mobilenet_tutorial.py
@@ -390,7 +388,7 @@ function unet_rpc() {
  cd ${build_path}/python/examples/unet_for_image_seg
  python3 -m paddle_serving_app.package --get_model unet >/dev/null 2>&1
  tar xf unet.tar.gz
- sed -i "22s/9494/8882/g" seg_client.py
+ sed -i "s/9494/8882/g" seg_client.py
  python3 -m paddle_serving_server_gpu.serve --model unet_model --gpu_ids 0 --port 8882 > haha 2>&1 &
  sleep 5
  python3 seg_client.py
