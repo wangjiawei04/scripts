@@ -17,6 +17,7 @@ rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc lac
 cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2_rpc \
 ocr_rpc criteo_ctr_rpc_cpu criteo_ctr_rpc_gpu yolov4_rpc_gpu)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
+
 go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 go get -u github.com/golang/protobuf/protoc-gen-go
@@ -182,7 +183,6 @@ function bert_rpc_gpu(){
   cd ${build_path}/python/examples/bert
   sh get_data.sh >/dev/null 2>&1
   sed -i 's/9292/8860/g' bert_client.py
-  #sed -i "26cendpoint_list = ['${host}:8860']" bert_client.py
   sed -i '$aprint(result)' bert_client.py
   cp -r /root/.cache/dist_data/serving/bert/bert_seq128_* ./
   ls -hlst
@@ -198,7 +198,6 @@ function bert_rpc_cpu(){
   setproxy
   cd ${build_path}/python/examples/bert
   sed -i 's/8860/8861/g' bert_client.py
-  #sed -i "26cendpoint_list = ['${host}:8861']" bert_client.py
   python -m paddle_serving_server.serve --model bert_seq128_model/ --port 8861 > bert_rpc_cpu 2>&1 &
   sleep 3
   cp data-c.txt.1 data-c.txt
@@ -348,7 +347,7 @@ function cascade_rcnn_rpc(){
   cd ${build_path}/python/examples/cascade_rcnn
   cp -r /root/.cache/dist_data/serving/cascade_rcnn/cascade_rcnn_r50_fpx_1x_serving.tar.gz ./
   tar xf cascade_rcnn_r50_fpx_1x_serving.tar.gz
-  sed -i "13s/9292/8879/g" test_client.py
+  sed -i "s/9292/8879/g" test_client.py
   python -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 > rcnn_rpc 2>&1 &
   ls -hlst
   python test_client.py
@@ -363,7 +362,7 @@ function deeplabv3_rpc() {
   cd ${build_path}/python/examples/deeplabv3
   cp -r /root/.cache/dist_data/serving/deeplabv3/deeplabv3.tar.gz ./
   tar xf deeplabv3.tar.gz
-  sed -i "22s/9494/8880/g" deeplabv3_client.py
+  sed -i "s/9494/8880/g" deeplabv3_client.py
   python -m paddle_serving_server_gpu.serve --model deeplabv3_server --gpu_ids 0 --port 8880 > deeplab_rpc 2>&1 &
   sleep 5
   python deeplabv3_client.py
@@ -377,7 +376,7 @@ function mobilenet_rpc() {
   cd ${build_path}/python/examples/mobilenet
   python -m paddle_serving_app.package --get_model mobilenet_v2_imagenet >/dev/null 2>&1
   tar xf mobilenet_v2_imagenet.tar.gz
-  sed -i "22s/9393/8881/g" mobilenet_tutorial.py
+  sed -i "s/9393/8881/g" mobilenet_tutorial.py
   python -m paddle_serving_server_gpu.serve --model mobilenet_v2_imagenet_model --gpu_ids 0 --port 8881 > mobilenet_rpc 2>&1 &
   sleep 5
   python mobilenet_tutorial.py
@@ -391,7 +390,7 @@ function unet_rpc() {
  cd ${build_path}/python/examples/unet_for_image_seg
  python -m paddle_serving_app.package --get_model unet >/dev/null 2>&1
  tar xf unet.tar.gz
- sed -i "22s/9494/8882/g" seg_client.py
+ sed -i "s/9494/8882/g" seg_client.py
  python -m paddle_serving_server_gpu.serve --model unet_model --gpu_ids 0 --port 8882 > unet_rpc 2>&1 &
  sleep 5
  python seg_client.py
