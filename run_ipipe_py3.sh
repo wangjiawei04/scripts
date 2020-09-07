@@ -161,7 +161,7 @@ function build_cpu_server(){
 
 function build_app() {
   setproxy
-  #pip3 install paddlepaddle paddlehub ujson paddle_serving_client Pillow
+  pip3 install paddlepaddle paddlehub ujson paddle_serving_client Pillow
   cd ${build_path}
   if [ -d build ];then
       cd build && rm -rf *
@@ -188,6 +188,7 @@ function bert_rpc_gpu(){
   ls -hlst
   python3 -m paddle_serving_server_gpu.serve --model bert_seq128_model/ --port 8860 --gpu_ids 0 > bert_rpc_gpu 2>&1 &
   sleep 15
+  tail bert_rpc_gpu
   head data-c.txt | python3 bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
   check_result $FUNCNAME
   kill_server_process
