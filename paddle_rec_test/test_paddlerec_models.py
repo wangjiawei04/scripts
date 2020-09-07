@@ -45,21 +45,21 @@ class TestPaddleRecModels(PaddleRecBase):
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
-    def test_classification(self):
-        """test contentunderstanding.classification."""
-        self.yaml_config_name = 'models/contentunderstanding/classification/config.yaml'
-        self.run_yaml(generate=False)
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#     def test_classification(self):
+#         """test contentunderstanding.classification."""
+#         self.yaml_config_name = 'models/contentunderstanding/classification/config.yaml'
+#         self.run_yaml(generate=False)
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
-    def test_classification_gpu(self):
-        """test contentunderstanding.classification with gpu."""
-        self.yaml_config_name = "models/contentunderstanding/classification/config.yaml"
-        sed_gpu_cmd = "sed -i 's/device:.*cpu/device: gpu/g' {}".format(self.yaml_config_name)
-        utils.cmd_shell(sed_gpu_cmd)
-        self.run_yaml(generate=False, cuda_devices="0")
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#     def test_classification_gpu(self):
+#         """test contentunderstanding.classification with gpu."""
+#         self.yaml_config_name = "models/contentunderstanding/classification/config.yaml"
+#         sed_gpu_cmd = "sed -i 's/device:.*cpu/device: gpu/g' {}".format(self.yaml_config_name)
+#         utils.cmd_shell(sed_gpu_cmd)
+#         self.run_yaml(generate=False, cuda_devices="0")
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
     def test_dssm(self):
         """test match.dssm."""
