@@ -90,8 +90,9 @@ function ctr_app() {
     cd ${fleetx_path}/examples
     sed -i "s/epoch=10/epoch=1/g" ctr_app.py
     sed -i "s/ctr_data/train_data/raw_data/g" ctr_app.py
-    ln -s /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data ./
-    fleetrun --gpus 0,1 ctr_app.py
+    cp -r /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data/part-0 ./raw_data
+    cp -r /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data/part-1 ./raw_data
+    fleetrun ctr_app.py
     check_result $FUNCNAME
     kill_fleetx_process
 }
@@ -99,7 +100,7 @@ function ctr_app() {
 
 function w2v() {
     cd ${fleetx_path}/examples
-    fleetrun --gpus 0,1 word2vec_app.py
+    fleetrun word2vec_app.py
     check_result $FUNCNAME
     kill_fleetx_process
 }
