@@ -3,7 +3,7 @@ fleetx_path=/workspace/FleetX
 version=`date -d @$(git log -1 --pretty=format:%ct) "+%Y%m%d"`
 fleet_cpu_model_list=(ctr_app w2v)
 fleet_gpu_model_list=(resnet_app vgg_app bert_app transformer_app)
-fleet_test_models=(ctr_app w2v)
+fleet_test_models=(resnet_single ctr_app)
 
 
 function setproxy(){
