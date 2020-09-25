@@ -89,7 +89,7 @@ function transformer_app() {
 function ctr_app() {
     cd ${fleetx_path}/examples
     sed -i "s/epoch=10/epoch=1/g" ctr_app.py
-    sed -i "s/ctr_data/train_data/raw_data/g" ctr_app.py
+    sed -i "s/train_data/raw_data/g" ctr_app.py
     mkdir raw_data
     cp -r /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data/part-0 ./raw_data/
     cp -r /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data/part-1 ./raw_data/
