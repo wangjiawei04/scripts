@@ -34,8 +34,9 @@ function check_result() {
 
 
 function before_hook() {
-    wget --no-check-certificate https://fleet.bj.bcebos.com/test/fleet_x-0.0.4-py3-none-any.whl
-    pip install fleet_x-0.0.4-py3-none-any.whl
+#     wget --no-check-certificate https://fleet.bj.bcebos.com/test/fleet_x-0.0.4-py3-none-any.whl
+    wget --no-check-certificate https://fleet.bj.bcebos.com/test/fleet_x-0.0.5-py3-none-any.whl
+    pip install fleet_x-0.0.5-py3-none-any.whl
     echo "fleetx installed succ"
 
     wget https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10-cudnn7-mkl/paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl
