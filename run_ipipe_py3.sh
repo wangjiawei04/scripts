@@ -18,10 +18,13 @@ cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet
 criteo_ctr_rpc_cpu criteo_ctr_rpc_gpu ocr_rpc yolov4_rpc_gpu)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
-go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
-go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
-go get -u github.com/golang/protobuf/protoc-gen-go
-go get -u google.golang.org/grpc
+go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn,direct
+
+go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@v1.15.2
+go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger@v1.15.2
+go get -u github.com/golang/protobuf/protoc-gen-go@v1.4.3
+go get -u google.golang.org/grpc@v1.33.0
 
 function setproxy(){
   export http_proxy=${proxy}
