@@ -38,3 +38,6 @@ echo 'run vgg16_fp32_n4c32
 cd ${vgg_path}/n4c32_fp32
 fleetsub -f vgg.yaml
 
+echo "vgg16 jobs submit over"
+
+
