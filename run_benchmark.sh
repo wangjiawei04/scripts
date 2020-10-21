@@ -28,7 +28,7 @@ echo 'run vgg16_fp16_n4c32
 cd ${vgg_path}/n4c32_fp16
 fleetsub -f vgg.yaml
 
-echo 'run vgg16_fp32_n2c16
+echo 'run vgg16_fp32_n4c32
 cd ${vgg_path}/n4c32_fp32
 fleetsub -f vgg.yaml
 
