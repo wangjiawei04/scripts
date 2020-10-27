@@ -12,13 +12,15 @@ function prepare(){
     pip install skbuild -y
     python setup.py install
     pip uninstall paddlepaddle -y
+    wget https://paddle-wheel.bj.bcebos.com/1.8.5-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.8.5.post107-cp27-cp27mu-linux_x86_64.whl --no-check-certificate
+    mv 1.8.5-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.8.5.post107-cp27-cp27mu-linux_x86_64.whl paddlepaddle_gpu-1.8.5.post107-cp27-cp27mu-linux_x86_64.whl
     
-    wget https://paddle-wheel.bj.bcebos.com/1.7.2-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl --no-check-certificate
-    mv 1.7.2-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl paddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl
+#     wget https://paddle-wheel.bj.bcebos.com/1.7.2-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl --no-check-certificate
+#     mv 1.7.2-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl paddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl
 #     wget https://paddle-wheel.bj.bcebos.com/1.8.3-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.8.3.post107-cp27-cp27mu-linux_x86_64.whl --no-check-certificate
 #     mv 1.8.3-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.8.3.post107-cp27-cp27mu-linux_x86_64.whl paddlepaddle_gpu-1.8.3.post107-cp27-cp27mu-linux_x86_64.whl
     /opt/_internal/cpython-2.7.11-ucs4/bin/python -m pip install --upgrade pip
-    /opt/_internal/cpython-2.7.11-ucs4/bin/python -m pip install paddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl
+    /opt/_internal/cpython-2.7.11-ucs4/bin/python -m pip install paddlepaddle_gpu-1.8.5.post107-cp27-cp27mu-linux_x86_64.whl
 #    wget http://yq01-gpu-255-125-19-00.epc.baidu.com:8988/1.7.2/paddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl
 #    pip install paddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl
 #    wget http://yq01-gpu-255-125-19-00.epc.baidu.com:8988/paddlepaddle_gpu-0.0.0.2020.0803.102112.post107.develop-cp27-cp27mu-linux_x86_64.whl
