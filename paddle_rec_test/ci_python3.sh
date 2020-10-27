@@ -9,6 +9,7 @@ function prepare(){
     #setproxy
     cd PaddleRec
     python3 -m pip uninstall paddle-rec -y
+    pip install skbuild -y
     python3 setup.py install
     python3 -m pip uninstall paddlepaddle -y
     wget https://paddle-wheel.bj.bcebos.com/1.7.2-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.7.2.post107-cp35-cp35m-linux_x86_64.whl --no-check-certificate
