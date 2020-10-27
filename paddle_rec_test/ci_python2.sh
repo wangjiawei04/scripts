@@ -9,8 +9,10 @@ function prepare(){
     #setproxy
     cd PaddleRec
     pip uninstall paddle-rec -y
+    pip install skbuild -y
     python setup.py install
     pip uninstall paddlepaddle -y
+    
     wget https://paddle-wheel.bj.bcebos.com/1.7.2-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl --no-check-certificate
     mv 1.7.2-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl paddlepaddle_gpu-1.7.2.post107-cp27-cp27mu-linux_x86_64.whl
 #     wget https://paddle-wheel.bj.bcebos.com/1.8.3-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.8.3.post107-cp27-cp27mu-linux_x86_64.whl --no-check-certificate
