@@ -11,6 +11,7 @@ echo "#                                                              #"
 echo "################################################################"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export CUDA_INCLUDE_DIRS=/usr/local/cuda-10.0/include
 build_path=/workspace/Serving/
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
 rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc lac_rpc \
