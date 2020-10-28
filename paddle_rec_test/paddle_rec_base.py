@@ -1,18 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#======================================================================
-#
-# Copyright (c) 2017 Baidu.com, Inc. All Rights Reserved
-#
-#======================================================================
-
-"""
-@Desc: PaddleRecBase module
-@File: paddle_rec_base.py
-@Author: liangjinhua
-@Date: 2020/06/10 16:16
-"""
-
 import collections
 import six
 import abc
