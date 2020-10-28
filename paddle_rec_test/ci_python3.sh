@@ -9,8 +9,8 @@ function prepare(){
     #setproxy
     cd PaddleRec
     python3 -m pip uninstall paddle-rec -y
-    pip3 install skbuild 
-    pip3 install opencv-python==4.2.0.32 
+#     pip3 install skbuild 
+#     pip3 install opencv-python==4.2.0.32 
     python3 setup.py install
     python3 -m pip uninstall paddlepaddle -y
     wget https://paddle-wheel.bj.bcebos.com/1.8.5-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.8.5.post107-cp35-cp35m-linux_x86_64.whl --no-check-certificate
