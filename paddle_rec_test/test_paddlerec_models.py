@@ -1,17 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#======================================================================
-#
-# Copyright (c) 2017 Baidu.com, Inc. All Rights Reserved
-#
-#======================================================================
 
-"""
-@Desc: test_paddle_models module
-@File: test_paddle_models.py
-@Author: liangjinhua
-@Date: 2020/06/10 16:16
-"""
 import sys
 import os
 sys.path.append(os.path.dirname(__file__))
