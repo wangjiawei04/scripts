@@ -1,17 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#======================================================================
-#
-# Copyright (c) 2017 Baidu.com, Inc. All Rights Reserved
-#
-#======================================================================
-
-"""
-@Desc: test_paddle_mmoe module
-@File: test_paddle_mmoe.py
-@Author: liangjinhua
-@Date: 2020/06/10 16:16
-"""
 import os
 import six
 import sys
