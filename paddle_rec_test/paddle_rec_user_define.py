@@ -1,17 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#======================================================================
-#
-# Copyright (c) 2017 Baidu.com, Inc. All Rights Reserved
-#
-#======================================================================
 
-"""
-@Desc: paddle rec user define reader | model| phase module
-@File: paddle_rec_user_define.py
-@Author: liangjinhua
-@Date: 2020/06/10 16:16
-"""
 from paddlerec.core.reader import ReaderBase
 from paddlerec.core.utils import envs
 from paddlerec.core.trainers.framework.instance import SingleInstance
