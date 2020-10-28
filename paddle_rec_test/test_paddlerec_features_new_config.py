@@ -1,17 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#======================================================================
-#
-# Copyright (c) 2017 Baidu.com, Inc. All Rights Reserved
-#
-#======================================================================
-
-"""
-@Desc: test_paddle_features_new_config module
-@File: test_paddle_features_new_config.py
-@Author: liangjinhua
-@Date: 2020/06/15 16:16
-"""
 import os
 import sys
 import six
