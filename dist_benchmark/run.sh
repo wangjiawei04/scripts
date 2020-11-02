@@ -17,7 +17,11 @@ function run_benchmark() {
   sleep 1200
   sh run_bert_base.sh > job_bert_base_log
   sleep 1200
+  sh run_bert_base128.sh > job_bert_base128_log
+  sleep 1200
   sh run_bert_large.sh > job_bert_large_log
+  sleep 1200
+  sh run_bert_large128.sh > job_bert_large128_log
   echo "all job submit succ"
 }
 
