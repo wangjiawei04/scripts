@@ -12,6 +12,7 @@ echo "################################################################"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export CUDA_INCLUDE_DIRS=/usr/local/cuda-10.0/include
+export PYTHONROOT=/usr
 build_path=/workspace/Serving/
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
 rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc lac_rpc \
@@ -71,7 +72,7 @@ function check_result() {
 
 function before_hook(){
   setproxy
-  cd /workspace/Serving/python
+  cd ${build_path}/python
   pip3 install --upgrade pip
   pip3 install -r requirements.txt
   pip3 install numpy==1.16.4
@@ -93,6 +94,7 @@ function run_gpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_gpu/ ${build_path}/build
+  export SERVING_BIN=${build_path}/build_gpu/core/general-server/serving
 }
 
 function run_cpu_env(){
@@ -101,6 +103,7 @@ function run_cpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_cpu/ ${build_path}/build
+  export SERVING_BIN=${build_path}/build_cpu/core/general-server/serving
 }
 
 function build_gpu_server() {

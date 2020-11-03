@@ -11,6 +11,7 @@ echo "#                                                              #"
 echo "################################################################"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export PYTHONROOT=/usr
 export CUDA_INCLUDE_DIRS=/usr/local/cuda-10.0/include
 build_path=/workspace/Serving
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
@@ -26,7 +27,6 @@ go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@v1.15.2
 go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger@v1.15.2
 go get -u github.com/golang/protobuf/protoc-gen-go@v1.4.3
 go get -u google.golang.org/grpc@1.33.0
-
 function setproxy(){
   export http_proxy=${proxy}
   export https_proxy=${proxy}
@@ -92,6 +92,7 @@ function run_gpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_gpu/ ${build_path}/build
+  export SERVING_BIN=${build_path}/build_gpu/core/general-server/serving
 }
 
 function run_cpu_env(){
@@ -100,6 +101,7 @@ function run_cpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_cpu/ ${build_path}/build
+  export SERVING_BIN=${build_path}/build_cpu/core/general-server/serving
 }
 
 function build_gpu_server() {
@@ -356,7 +358,7 @@ function cascade_rcnn_rpc(){
   ls -hlst
   python test_client.py
   sleep 5
- # check_result $FUNCNAME
+  check_result $FUNCNAME
   kill_server_process
 }
 
