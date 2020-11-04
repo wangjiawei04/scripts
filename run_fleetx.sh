@@ -38,6 +38,7 @@ function before_hook() {
 #     wget --no-check-certificate https://fleet.bj.bcebos.com/test/fleet_x-0.0.4-py2-none-any.whl
     wget --no-check-certificate https://fleet.bj.bcebos.com/test/fleet_x-0.0.8-py2-none-any.whl
     pip install fleet_x-0.0.8-py2-none-any.whl
+    pip install opencv-python==4.2.0.32
     echo "fleetx installed succ"
 
     wget https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10-cudnn7-mkl/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
