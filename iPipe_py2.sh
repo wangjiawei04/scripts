@@ -92,7 +92,7 @@ function run_gpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_gpu/ ${build_path}/build
-  export SERVING_BIN=${build_path}/build_gpu/core/general-server/serving
+  export SERVING_BIN=${build_path}/build_gpu/build/core/general-server/serving
 }
 
 function run_cpu_env(){
@@ -101,7 +101,7 @@ function run_cpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_cpu/ ${build_path}/build
-  export SERVING_BIN=${build_path}/build_cpu/core/general-server/serving
+  export SERVING_BIN=${build_path}/build_cpu/build/core/general-server/serving
 }
 
 function build_gpu_server() {
