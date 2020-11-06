@@ -387,7 +387,7 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
                                    '\ntrain.trainer.engine\s+(\S+)\s+\n',
                                    "single",
                                    self.err_msg)
-
+    
     def test_mode_list_ps_selected_gpus_2f_2card_c2(self):
         """test selected gpus 2card with two files and not set fleet mode,
            it will change ps to collective and run with local_cluster_train mode
@@ -404,7 +404,10 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
                                    '\ntrain.trainer.engine\s+(\S+)\s+\n',
                                    "local_cluster",
                                    self.err_msg)
-        built_in.regex_match_len('logs/worker.1', self.auc_re, 7, self.err_msg)
+        if six.PY2:
+            built_in.regex_match_len('logs/worker.1', self.auc_re, 7, self.err_msg)
+        elif six.PY3:
+            built_in.regex_match_len('logs/worker.1', self.auc_re, 8, self.err_msg)
 
     # NOTE: this case is error, open if after fixed
     # def test_mode_list_collective_selected_gpus_1f_2cards_c2(self):
