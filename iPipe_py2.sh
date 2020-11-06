@@ -19,7 +19,7 @@ rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc lac
 cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2_rpc \
 ocr_rpc criteo_ctr_rpc_cpu criteo_ctr_rpc_gpu yolov4_rpc_gpu)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
-
+#export proxy=http://172.19.57.45:3128/
 go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.cn,direct
 
@@ -83,6 +83,9 @@ function run_env(){
   pip install --upgrade scipy==1.2.1
   pip install --upgrade setuptools==41.0.0
   pip install paddlehub ujson paddlepaddle
+  cp /usr/lib64/python2.7/site-packages/paddle/libs/libiomp5.so /usr/lib64
+  cp /usr/lib64/python2.7/site-packages/paddle/libs/libmklml_intel.so /usr/lib64/
+  cp /usr/lib64/python2.7/site-packages/paddle/libs/libdnnl.so.1 /usr/lib64
   echo "env configuration succ.... "
 }
 
@@ -92,6 +95,7 @@ function run_gpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_gpu/ ${build_path}/build
+  yes | cp /workspace/Serving/build_gpu/build/third_party/install/Paddle/lib/libpaddle_fluid.so /usr/lib64
   export SERVING_BIN=${build_path}/build_gpu/build/core/general-server/serving
 }
 
@@ -101,6 +105,7 @@ function run_cpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_cpu/ ${build_path}/build
+  yes | cp /workspace/Serving/build_cpu/build/third_party/install/Paddle/lib/libpaddle_fluid.so /usr/lib64
   export SERVING_BIN=${build_path}/build_cpu/build/core/general-server/serving
 }
 
@@ -195,6 +200,7 @@ function bert_rpc_gpu(){
   python -m paddle_serving_server_gpu.serve --model bert_seq128_model/ --port 8860 --gpu_ids 0 > bert_rpc_gpu 2>&1 &
   sleep 15
   head data-c.txt | python bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
+  cat bert_rpc_gpu
   check_result $FUNCNAME
   kill_server_process
 }
@@ -208,6 +214,7 @@ function bert_rpc_cpu(){
   sleep 3
   cp data-c.txt.1 data-c.txt
   head data-c.txt | python bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
+  cat bert_rpc_cpu
   check_result $FUNCNAME
   kill_server_process
 }
@@ -232,6 +239,7 @@ function criteo_ctr_with_cube_rpc(){
   python test_server.py ctr_serving_model_kv > criteo_ctr_rpc 2>&1 &
   sleep 5
   python test_client.py ctr_client_conf/serving_client_conf.prototxt ./raw_data
+  cat criteo_ctr_rpc 
   check_result $FUNCNAME
   kill `ps -ef|grep cube|awk '{print $2}'`
   kill_server_process
@@ -246,6 +254,7 @@ function ResNet50_rpc(){
   python -m paddle_serving_server_gpu.serve --model ResNet50_vd_model --port 8863 --gpu_ids 0 > ResNet50_rpc 2>&1 &
   sleep 5
   python resnet50_rpc_client.py ResNet50_vd_client_config/serving_client_conf.prototxt
+  cat ResNet50_rpc
   check_result $FUNCNAME
   kill_server_process
   sleep 5
@@ -259,6 +268,7 @@ function ResNet101_rpc(){
   python -m paddle_serving_server_gpu.serve --model ResNet101_vd_model --port 8864 --gpu_ids 0 > ResNet101_rpc 2>&1 &
   sleep 5
   python image_rpc_client.py ResNet101_vd_client_config/serving_client_conf.prototxt
+  cat ResNet101_rpc
   kill_server_process
   check_result $FUNCNAME
 }
@@ -273,6 +283,7 @@ function cnn_rpc(){
   python -m paddle_serving_server.serve --model imdb_cnn_model/ --port 8865 > cnn_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python test_client.py imdb_cnn_client_conf/serving_client_conf.prototxt imdb.vocab
+  cat cnn_rpc
   check_result $FUNCNAME
   kill_server_process
 }
@@ -285,6 +296,7 @@ function bow_rpc(){
   python -m paddle_serving_server.serve --model imdb_bow_model/ --port 8866 > bow_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python test_client.py imdb_bow_client_conf/serving_client_conf.prototxt imdb.vocab
+  cat bow_rpc
   check_result $FUNCNAME
   kill_server_process
   sleep 5
@@ -298,6 +310,7 @@ function lstm_rpc(){
   python -m paddle_serving_server.serve --model imdb_lstm_model/ --port 8867 > lstm_rpc 2>&1 &
   sleep 5
   head test_data/part-0 | python test_client.py imdb_lstm_client_conf/serving_client_conf.prototxt imdb.vocab
+  cat lstm_rpc
   check_result $FUNCNAME
   kill_server_process
   kill `ps -ef|grep imdb|awk '{print $2}'`
@@ -313,6 +326,7 @@ function lac_rpc(){
   python -m paddle_serving_server.serve --model lac_model/ --port 8868 > lac_rpc 2>&1 &
   sleep 5
   echo "我爱北京天安门" | python lac_client.py lac_client/serving_client_conf.prototxt lac_dict/
+  cat lac_rpc
   check_result $FUNCNAME
   kill_server_process
 }
@@ -327,6 +341,7 @@ function fit_a_line_rpc(){
   python test_server.py uci_housing_model/ > line_rpc 2>&1 &
   sleep 5
   python test_client.py uci_housing_client/serving_client_conf.prototxt
+  cat line_rpc
   check_result $FUNCNAME
   kill_server_process
 }
@@ -343,6 +358,7 @@ function faster_rcnn_model_rpc(){
   python -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 > haha 2>&1 &
   sleep 3
   python test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
+  cat haha
   check_result $FUNCNAME
   kill_server_process
 }
@@ -356,8 +372,9 @@ function cascade_rcnn_rpc(){
   sed -i "s/9292/8879/g" test_client.py
   python -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 > rcnn_rpc 2>&1 &
   ls -hlst
-  python test_client.py
   sleep 5
+  python test_client.py
+  cat rcnn_rpc
   check_result $FUNCNAME
   kill_server_process
 }
@@ -372,6 +389,7 @@ function deeplabv3_rpc() {
   python -m paddle_serving_server_gpu.serve --model deeplabv3_server --gpu_ids 0 --port 8880 > deeplab_rpc 2>&1 &
   sleep 5
   python deeplabv3_client.py
+  cat deeplab_rpc
   check_result $FUNCNAME
   kill_server_process
 }
@@ -386,6 +404,7 @@ function mobilenet_rpc() {
   python -m paddle_serving_server_gpu.serve --model mobilenet_v2_imagenet_model --gpu_ids 0 --port 8881 > mobilenet_rpc 2>&1 &
   sleep 5
   python mobilenet_tutorial.py
+  cat mobilenet_rpc
   check_result $FUNCNAME
   kill_server_process
 }
@@ -400,6 +419,7 @@ function unet_rpc() {
  python -m paddle_serving_server_gpu.serve --model unet_model --gpu_ids 0 --port 8882 > unet_rpc 2>&1 &
  sleep 5
  python seg_client.py
+ cat unet_rpc
  check_result $FUNCNAME
  kill_server_process
 }
@@ -414,6 +434,7 @@ function resnetv2_rpc() {
   python -m paddle_serving_server_gpu.serve --model resnet_v2_50_imagenet_model --gpu_ids 0 --port 8883 > v2_log 2>&1 &
   sleep 10
   python resnet50_v2_tutorial.py
+  cat v2_log
   check_result $FUNCNAME
   kill_server_process
 }
@@ -429,6 +450,7 @@ function ocr_rpc() {
   python -m paddle_serving_server.serve --model ocr_rec_model --port 8884 > ocr_rpc 2>&1 &
   sleep 5
   python test_ocr_rec_client.py
+  cat ocr_rpc
   check_result $FUNCNAME
   kill_server_process
 }
@@ -446,6 +468,7 @@ function criteo_ctr_rpc_cpu() {
   python -m paddle_serving_server.serve --model ctr_serving_model/ --port 8885 > criteo_ctr_cpu_rpc 2>&1 &
   sleep 5
   python test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
+  cat criteo_ctr_cpu_rpc
   check_result $FUNCNAME
   kill_server_process
 }
@@ -458,6 +481,7 @@ function criteo_ctr_rpc_gpu() {
   python -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8886 --gpu_ids 0 > criteo_ctr_gpu_rpc 2>&1 &
   sleep 5
   python test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
+  cat criteo_ctr_gpu_rpc
   check_result $FUNCNAME
   kill_server_process
 }
@@ -472,7 +496,8 @@ function yolov4_rpc_gpu() {
   python -m paddle_serving_server_gpu.serve --model yolov4_model --port 8887 --gpu_ids 0 > yolov4_rpc_log 2>&1 &
   sleep 5
   python test_client.py 000000570688.jpg
- # check_result $FUNCNAME
+  cat yolov4_rpc_log 
+# check_result $FUNCNAME
   kill_server_process
 }
 
@@ -486,6 +511,7 @@ function senta_rpc_cpu() {
   python -m paddle_serving_server_gpu.serve --model yolov4_model --port 8887 --gpu_ids 0 > yolov4_rpc_log 2>&1 &
   sleep 5
   python test_client.py 000000570688.jpg
+  cat yolov4_rpc_log
   check_result $FUNCNAME
   kill_server_process
 }
