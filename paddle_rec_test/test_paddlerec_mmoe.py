@@ -114,7 +114,7 @@ class TestMMOE(MultiTaskMMOEBase):
          self.run_yaml()
          built_in.equals(self.pro.returncode, 0, self.err_msg)
          built_in.not_contains(self.err, 'Traceback', self.err_msg)
-         built_in.regex_match_len(self.out, 'Infer.+done', 1, self.err_msg)
+        # built_in.regex_match_len(self.out, 'Infer.+done', 1, self.err_msg)
 
     def test_two_phase_train(self):
         """test two phase train"""
