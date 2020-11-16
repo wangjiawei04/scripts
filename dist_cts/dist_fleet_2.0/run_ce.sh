@@ -200,7 +200,7 @@ EOF
 }
 function run(){
     IMAGE_NAME=paddlepaddle/paddle_manylinux_devel:cuda10.0-cudnn7
-    cd ${cts_work_path}/baidu/paddle/test/cts_test/dist_fleet_2.0
+    cd ${cts_work_path}/scripts/dist_cts/dist_fleet_2.0
     RUN_IMAGE_NAME=paddlepaddle/paddle_manylinux_devel:cuda${cuda_version}-cudnn${cudnn_version}
     nvidia-docker run -i --rm \
         -v /home/work:/home/work \
@@ -210,7 +210,7 @@ function run(){
         -v /usr/bin/monquery:/usr/bin/monquery \
         --net=host \
         --privileged \
-        -w ${cts_work_path}/baidu/paddle/test/cts_test/dist_fleet_2.0 \
+        -w ${cts_work_path}/scripts/dist_cts/dist_fleet_2.0 \
         -e "http_proxy=${my_http_proxy}" \
         -e "https_proxy=${my_http_proxy}" \
         -e "DEVICE_TYPE=${device_type}" \
