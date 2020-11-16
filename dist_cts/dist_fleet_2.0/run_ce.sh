@@ -210,7 +210,7 @@ function run(){
         -v /usr/bin/monquery:/usr/bin/monquery \
         --net=host \
         --privileged \
-        -w ${cts_work_path}/baidu/paddle/test/cts_test/dist_fleet \
+        -w ${cts_work_path}/baidu/paddle/test/cts_test/dist_fleet_2.0 \
         -e "http_proxy=${my_http_proxy}" \
         -e "https_proxy=${my_http_proxy}" \
         -e "DEVICE_TYPE=${device_type}" \
