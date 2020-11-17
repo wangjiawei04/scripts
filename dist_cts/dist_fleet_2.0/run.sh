@@ -8,17 +8,19 @@ function prepare(){
     export PATH=/opt/_internal/cpython-2.7.15-ucs4/bin/:${PATH}
     pip uninstall paddlepaddle-gpu -y
     pip uninstall paddlepaddle -y
-    pip install ${IMAGE_NAME}
+    pip install ${all_path}/images/${IMAGE_NAME}
+    echo "paddlepaddle install succ"
     pip install nose
     pip install nose-html-reporting
     unset http_proxy
     unset https_proxy
     echo "IMAGE_NAME is: ${IMAGE_NAME}, RUN_FREQUENCY is: ${RUN_FREQUENCY}"
-    echo "paddlepaddle install succ"
 }
 
 function run(){
-    cases = "test_dist_fleet_vgg.py"
+    cases="test_dist_fleet_vgg.py \
+           test_dist_fleet_dygraph.py \
+           test_dist_fleet_strategy"
     for file in ${cases}
     do
         echo ${file}
