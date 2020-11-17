@@ -108,9 +108,9 @@ function build_gpu_server() {
           -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python3 \
           -DSERVER=ON \
           -DWITH_GPU=ON ..
-    make -j10
-    make -j10
-    make install -j10
+    make -j18
+    make -j18
+    make install -j18
     pip3 install ${build_path}/build/python/dist/*
     cp  ${build_path}/build/python/dist/* ../
     cp -r ${build_path}/build/ ${build_path}/build_gpu
@@ -128,8 +128,8 @@ function build_client() {
            -DPYTHON_LIBRARIES=$PYTHONROOT/lib64/libpython3.6.so \
            -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python3 \
            -DCLIENT=ON ..
-     make -j10
-     make -j10
+     make -j18
+     make -j18
      cp ${build_path}/build/python/dist/* ../
      pip3 install ${build_path}/build/python/dist/*
 }
@@ -146,9 +146,9 @@ function build_cpu_server(){
             -DPYTHON_LIBRARIES=$PYTHONROOT/lib64/libpython3.6.so \
             -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python3 \
             -DSERVER=ON ..
-      make -j10
-      make -j10
-      make install -j10
+      make -j18
+      make -j18
+      make install -j18
       cp ${build_path}/build/python/dist/* ../
       pip3 install ${build_path}/build/python/dist/*
       cp -r ${build_path}/build/ ${build_path}/build_cpu
