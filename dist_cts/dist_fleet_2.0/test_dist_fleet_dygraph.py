@@ -51,7 +51,7 @@ class TestDygraph():
       pro.returncode == 0
 
     def test_dist_fleet_dygraph_lr_1gpus(self):
-      """test_dist_fleet_dygraph_lr_2gpus"""
+      """test_dist_fleet_dygraph_lr_1gpus"""
       cmd='fleetrun --gpu=0 dist_fleet_dygraph_lr.py'
       pro = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
       pro.wait()
