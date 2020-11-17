@@ -234,7 +234,7 @@ function zip_log(){
         cp ${all_path}/images/${IMAGE_NAME}  output/
     fi
 }
-# build
+build
 run
 #zip_log
 #send_email
