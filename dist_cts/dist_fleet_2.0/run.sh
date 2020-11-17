@@ -18,9 +18,11 @@ function prepare(){
 }
 
 function run(){
-    cases="test_dist_fleet_vgg.py \
-           test_dist_fleet_dygraph.py \
-           test_dist_fleet_strategy"
+    cases="test_dist_fleet_static_vgg.py \
+           test_dist_fleet_dygraph_api.py \
+           test_dist_fleet_static_strategy.py \
+           test_dist_fleet_static_launch.py \
+           test_dist_fleet_static_fleetrun.py "
     for file in ${cases}
     do
         echo ${file}
