@@ -32,7 +32,7 @@ class TestDistVgg16(TestFleetBase):
         self.single_sync_gpu_data = [
             1.5387154, 1.5342727, 1.525869, 1.5140724, 1.499335
         ]
-        self._model_file = 'dist_fleet_vgg.py'
+        self._model_file = 'dist_fleet_static_vgg.py'
 
     def check_data(self, loss, delta=None, expect=None):
         """
