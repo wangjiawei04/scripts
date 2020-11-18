@@ -28,7 +28,7 @@ function _print_usage(){
 }
 function _init_parameters(){
     cts_work_path=$(pwd)
-    all_path=/ssd1/ljh
+    all_path=/ssd3/ljh/cts_ce/
     device_type='GPU'
     cuda_version=10.0
     cudnn_version=7
