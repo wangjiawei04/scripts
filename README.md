@@ -1,4 +1,4 @@
 # scripts
-      run serving and paddlerec scripts
+      run serving、fleetx、 paddlerec scripts 
 
  
