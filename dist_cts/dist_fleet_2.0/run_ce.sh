@@ -199,7 +199,7 @@ EOF
     fi
 }
 function run(){
-    IMAGE_NAME=paddlepaddle/paddle_manylinux_devel:cuda10.0-cudnn7
+   # IMAGE_NAME=paddlepaddle/paddle_manylinux_devel:cuda10.0-cudnn7
     cd ${cts_work_path}/scripts/dist_cts/dist_fleet_2.0
     RUN_IMAGE_NAME=paddlepaddle/paddle_manylinux_devel:cuda${cuda_version}-cudnn${cudnn_version}
     nvidia-docker run -i --rm \
