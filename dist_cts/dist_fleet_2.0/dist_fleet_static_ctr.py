@@ -10,7 +10,7 @@
 /***************************************************************************
   *
   * Copyright (c) 2019 Baidu.com, Inc. All Rights Reserved
-  * @file dist_fleet_ctr.py
+  * @file dist_fleet_static_ctr.py
   * @author liyang109@baidu.com
   * @date 2020-11-10 14:17
   * @brief 
@@ -38,8 +38,8 @@ params = {
 }
 
 # Fix seed for test
-# fluid.default_startup_program().random_seed = 1
-# fluid.default_main_program().random_seed = 1
+fluid.default_startup_program().random_seed = 1
+fluid.default_main_program().random_seed = 1
 np.random.seed(1)
 
 DATA_PATH = 'thirdparty/data/dist_data/ctr_data/part-100'
@@ -101,8 +101,9 @@ class TestDistCTR(FleetDistRunnerBase):
         """
         self.inputs = self.input_data()
         #if not args.run_params.get("run_from_dataset", False):
-        #    self.pyreader = self.py_reader()
-        #    self.inputs = fluid.layers.read_file(self.pyreader)
+        if args.run_params["reader"]=="pyreader":
+            self.pyreader = self.py_reader()
+            self.inputs = fluid.layers.read_file(self.pyreader)
 
         sparse_feature_dim = 1000001
         embedding_size = 10
@@ -181,8 +182,8 @@ class TestDistCTR(FleetDistRunnerBase):
 #        if args.run_params.get("increment", False):
 #            global DATA_PATH
 #            DATA_PATH = DATA_PATH + '.increment'
-        exe = fluid.Executor(fluid.CPUPlace())
-        exe.run(paddle.static.default_main_program())
+        exe = fluid.Executor(paddle.CPUPlace())
+        exe.run(paddle.static.default_startup_program())
         fleet.init_worker()
         train_generator = py_reader1.CriteoDataset(1000001)
         file_list = [str(DATA_PATH)] * 2
@@ -190,48 +191,54 @@ class TestDistCTR(FleetDistRunnerBase):
             train_generator.train(file_list, args.trainers, args.current_id),
             batch_size=4)
         self.pyreader.decorate_paddle_reader(train_reader)
-        # if os.getenv("PADDLE_COMPATIBILITY_CHECK", False):
         exec_strategy = fluid.ExecutionStrategy()
         exec_strategy.num_threads = int(2)
-        build_strategy = fluid.BuildStrategy()
-        build_strategy.reduce_strategy = fluid.BuildStrategy.ReduceStrategy.Reduce
-        compiled_prog = fluid.compiler.CompiledProgram(
-            paddle.static.default_main_program()).with_data_parallel(
-                loss_name=self.avg_cost.name,
-                build_strategy=build_strategy,
-                exec_strategy=exec_strategy)
-
+        # build_strategy = fluid.BuildStrategy()
+        # build_strategy.reduce_strategy = fluid.BuildStrategy.ReduceStrategy.Reduce
+        # compiled_prog = fluid.compiler.CompiledProgram(
+        #     paddle.static.default_main_program()).with_data_parallel(
+        #         loss_name=self.avg_cost.name,
+        #         build_strategy=build_strategy,
+        #         exec_strategy=exec_strategy)
+       # compiled_prog = paddle.static.CompiledProgram(
+            # paddle.static.default_main_program()).with_data_parallel(
+            #     loss_name=self.avg_cost.name,
+            #     build_strategy=build_strategy,
+            #     exec_strategy=exec_strategy)
         # Notice: py_reader should use try & catch EOFException method to enter the dataset
         # reader.start() must declare in advance
         self.pyreader.start()
         train_info = []
         batch_id = 0
+        # with open("./file", 'w') as f:
+        #    f.write(str(paddle.static.default_main_program()))
         try:
             while True:
-                avg_cost = exe.run(program=compiled_prog,
+                avg_cost = exe.run(program=paddle.static.default_main_program(),
                                    fetch_list=[self.avg_cost.name])
                 avg_cost = np.mean(avg_cost)
                 train_info.append(avg_cost)
                 batch_id += 1
-                if batch_id == args.run_params.get("total_batch_size", 5):
-                    if params["is_first_trainer"]:
-                        if params["is_pyreader_train"]:
-                            model_path = str(params["model_path"] + "/final" +
-                                             "_pyreader")
-                            fleet.save_persistables(
-                                executor=fluid.Executor(fluid.CPUPlace()),
-                                dirname=model_path)
-                        elif params["is_dataset_train"]:
-                            model_path = str(params["model_path"] + '/final' +
-                                             "_dataset")
-                            fleet.save_persistables(
-                                executor=fluid.Executor(fluid.CPUPlace()),
-                                dirname=model_path)
-                        else:
-                            raise ValueError(
-                                "Program must has Date feed method: is_pyreader_train / is_dataset_train"
-                            )
-                    break
+                # save has a bug, waitting for fix.
+                # if batch_id == args.run_params.get("total_batch_size", 5):
+                #     if params["is_first_trainer"]:
+                #         if params["is_pyreader_train"]:
+                #             model_path = str(params["model_path"] + "/final" +
+                #                              "_pyreader")
+                #             fleet.save_persistables(
+                #                 executor=fluid.Executor(fluid.CPUPlace()),
+                #                 dirname=model_path)
+                #         elif params["is_dataset_train"]:
+                #             model_path = str(params["model_path"] + '/final' +
+                #                              "_dataset")
+                #             fleet.save_persistables(
+                #                 executor=fluid.Executor(paddle.CPUPlace()),
+                #                 dirname=model_path)
+                #         else:
+                #             raise ValueError(
+                #                 "Program must has Date feed method: is_pyreader_train / is_dataset_train"
+                #             )
+                #     break
         except fluid.core.EOFException:
             self.pyreader.reset()
         fleet.stop_worker()
@@ -246,11 +253,11 @@ class TestDistCTR(FleetDistRunnerBase):
         Returns:
             list
         """
-        exe = fluid.Executor(fluid.CPUPlace())
+        exe = fluid.Executor(paddle.CPUPlace())
         exe.run(paddle.static.default_startup_program())
         fleet.init_worker()
         dataset = self.dataset_reader()
-        file_list = [str(DATA_PATH)] * 2
+        file_list = [str(DATA_PATH)] * 10
         for epoch in range(1):
             dataset.set_filelist(file_list)
             var_dict = {"loss": self.avg_cost}
