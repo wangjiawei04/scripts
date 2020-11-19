@@ -51,16 +51,16 @@ class FleetDistRunnerBase(object):
         """配置运行的distributed_strategy,
            build_strategy 配置在do_training中"""
         self.dist_strategy = fleet.DistributedStrategy()
-        if args.run_params["sync_mode"] == "sync":
+        if args.run_params["mode"] == "sync":
             self.dist_strategy.a_sync = False
-        elif args.run_params["sync_mode"] == "async":
+        elif args.run_params["mode"] == "async":
             self.dist_strategy.a_sync = True
-        elif args.run_params["sync_mode"] == "geo_async":
+        elif args.run_params["mode"] == "geo_async":
             self.dist_strategy.a_sync = True
             self.dist_strategy.a_sync_configs = {
                 "k_steps": 2
             }
-        elif args.run_params["sync_mode"] == "auto":
+        elif args.run_params["mode"] == "auto":
             self.dist_strategy.auto = True
 
 
@@ -98,9 +98,10 @@ class FleetDistRunnerBase(object):
         optimizer = fleet.distributed_optimizer(optimizer, self.dist_strategy)
         optimizer.minimize(avg_cost)
         # if args.run_params.get("run_from_dataset", False):
-        losses = self.do_training_from_dataset(fleet, args)
-        # else:
-        #     losses = self.do_training(fleet, args)
+        if args.run_params["reader"] == "pyreader":
+            losses = self.do_training_from_dataset(fleet, args)
+        else:
+            losses = self.do_training(fleet, args)
         losses = "" if not losses else losses
         print(losses)
 
