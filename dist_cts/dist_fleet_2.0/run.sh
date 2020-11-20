@@ -8,7 +8,7 @@ function prepare(){
     export PATH=/opt/_internal/cpython-2.7.15-ucs4/bin/:${PATH}
     pip uninstall paddlepaddle-gpu -y
     pip uninstall paddlepaddle -y
-    pip install ${all_path}/images/${IMAGE_NAME}
+    pip install ${IMAGE_NAME}
     echo "paddlepaddle install succ"
     pip install nose
     pip install nose-html-reporting
