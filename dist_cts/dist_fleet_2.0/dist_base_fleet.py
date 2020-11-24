@@ -99,9 +99,9 @@ class FleetDistRunnerBase(object):
         optimizer.minimize(avg_cost)
         # if args.run_params.get("run_from_dataset", False):
         if args.run_params["reader"] == "pyreader":
-            losses = self.do_training_from_dataset(fleet, args)
-        else:
             losses = self.do_training(fleet, args)
+        else:
+            losses = self.do_training_from_dataset(fleet, args)
         losses = "" if not losses else losses
         print(losses)
 
