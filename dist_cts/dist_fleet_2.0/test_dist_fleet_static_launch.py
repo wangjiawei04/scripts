@@ -34,11 +34,11 @@ class TestDistLaunch():
         self.test_info1 = []
         self.test_info2 = []
         self.all_args = [
-            "--selected_gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
+            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
              --started_port=6070 --log_level=10 dist_fleet_static_fleetrun.py",
             "--log_dir=mylog --print_config=True --use_paddlecloud \
              --started_port=6070 --log_level=10 dist_fleet_static_fleetrun.py",
-            "--selected_gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
+            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
              --started_port=6070 --log_level=10 dist_fleet_static_fleetrun.py",
             "--log_dir=mylog --print_config=False --use_paddlecloud \
              --started_port=6070 --log_level=10 dist_fleet_static_fleetrun.py",
@@ -50,19 +50,19 @@ class TestDistLaunch():
              --log_level=10 dist_fleet_static_fleetrun.py",
             "--log_dir=mylog --print_config=False --use_paddlecloud \
              --log_level=10 dist_fleet_static_fleetrun.py",
-            "--selected_gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
+            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
              --started_port=6070 dist_fleet_static_fleetrun.py",
             "--log_dir=mylog --print_config=True --use_paddlecloud \
              --started_port=6070 dist_fleet_static_fleetrun.py",
-            "--selected_gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
+            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
              --started_port=6070 dist_fleet_static_fleetrun.py",
             "--log_dir=mylog --print_config=False --use_paddlecloud \
              --started_port=6070 dist_fleet_static_fleetrun.py",
-            "--selected_gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
+            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
              dist_fleet_static_fleetrun.py",
             "--log_dir=mylog --print_config=True --use_paddlecloud \
              dist_fleet_static_fleetrun.py",
-            "--selected_gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
+            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
              dist_fleet_static_fleetrun.py",
             "--log_dir=mylog --print_config=False --use_paddlecloud \
              dist_fleet_static_fleetrun.py",
