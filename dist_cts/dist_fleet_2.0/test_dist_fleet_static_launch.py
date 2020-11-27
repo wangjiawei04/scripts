@@ -42,11 +42,11 @@ class TestDistLaunch():
              --started_port=6070 --log_level=10 dist_fleet_static_fleetrun.py",
             "--log_dir=mylog --print_config=False --use_paddlecloud \
              --started_port=6070 --log_level=10 dist_fleet_static_fleetrun.py",
-            "--selected_gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
+            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
              --log_level=10 dist_fleet_static_fleetrun.py",
             "--log_dir=mylog --print_config=True --use_paddlecloud \
              --log_level=10 dist_fleet_static_fleetrun.py",
-            "--selected_gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
+            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
              --log_level=10 dist_fleet_static_fleetrun.py",
             "--log_dir=mylog --print_config=False --use_paddlecloud \
              --log_level=10 dist_fleet_static_fleetrun.py",
