@@ -13,7 +13,7 @@
   * @file test_dist_fleet_static_launch.py
   * @author liyang109@baidu.com
   * @date 2020-11-17 17:31
-  * @brief 
+  * @brief
   *
   **************************************************************************/
 """
@@ -34,38 +34,9 @@ class TestDistLaunch():
         self.test_info1 = []
         self.test_info2 = []
         self.all_args = [
-            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
-             --started_port=6070 --log_level=10 dist_fleet_static_fleetrun.py",
-            "--log_dir=mylog --print_config=True --use_paddlecloud \
-             --started_port=6070 --log_level=10 dist_fleet_static_fleetrun.py",
-            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
-             --started_port=6070 --log_level=10 dist_fleet_static_fleetrun.py",
-            "--log_dir=mylog --print_config=False --use_paddlecloud \
-             --started_port=6070 --log_level=10 dist_fleet_static_fleetrun.py",
-            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
-             --log_level=10 dist_fleet_static_fleetrun.py",
-            "--log_dir=mylog --print_config=True --use_paddlecloud \
-             --log_level=10 dist_fleet_static_fleetrun.py",
-            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
-             --log_level=10 dist_fleet_static_fleetrun.py",
-            "--log_dir=mylog --print_config=False --use_paddlecloud \
-             --log_level=10 dist_fleet_static_fleetrun.py",
-            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
-             --started_port=6070 dist_fleet_static_fleetrun.py",
-            "--log_dir=mylog --print_config=True --use_paddlecloud \
-             --started_port=6070 dist_fleet_static_fleetrun.py",
-            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
-             --started_port=6070 dist_fleet_static_fleetrun.py",
-            "--log_dir=mylog --print_config=False --use_paddlecloud \
-             --started_port=6070 dist_fleet_static_fleetrun.py",
-            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
-             dist_fleet_static_fleetrun.py",
-            "--log_dir=mylog --print_config=True --use_paddlecloud \
-             dist_fleet_static_fleetrun.py",
-            "--gpus=0,1 --log_dir=mylog --print_config=False --use_paddlecloud \
-             dist_fleet_static_fleetrun.py",
-            "--log_dir=mylog --print_config=False --use_paddlecloud \
-             dist_fleet_static_fleetrun.py",
+            "--gpus=0,1 --log_dir=mylog dist_fleet_static_fleetrun.py",
+            "--log_dir=mylog  dist_fleet_static_fleetrun.py",
+            "--gpus=0,1 dist_fleet_static_fleetrun.py",
         ]
 
     def check_data(self, loss, delta=None, expect=None):
@@ -90,7 +61,7 @@ class TestDistLaunch():
     def start_proc(self, cmd):
         """start process."""
         p = subprocess.Popen(
-            "python -m paddle.distributed.launch --cluster_node_ips=127.0.0.1 --node_ip=127.0.0.1 " + cmd,
+            "python -m paddle.distributed.launch --ips=127.0.0.1 " + cmd,
             shell=True,
             stderr=open("/tmp/launch.log", "wb"),
             stdout=subprocess.PIPE)
@@ -127,69 +98,4 @@ class TestDistLaunch():
     def test_dist_launch_Tsg_Tld_Fpc_Tup_Tsp_Tll(self):
         """test_dist_launch_Tsg_Tld_Fpc_Tup_Tsp_Tll."""
         args = self.all_args[2]
-        self.get_result(args)
-
-    def test_dist_launch_Fsg_Tld_Fpc_Tup_Tsp_Tll(self):
-        """test_dist_launch_Fsg_Tld_Fpc_Tup_Tsp_Tll."""
-        args = self.all_args[3]
-        self.get_result(args)
-
-    def test_dist_launch_Tsg_Tld_Tpc_Tup_Fsp_Tll(self):
-        """test_dist_launch_Tsg_Tld_Tpc_Tup_Fsp_Tll."""
-        args = self.all_args[4]
-        self.get_result(args)
-
-    def test_dist_launch_Fsg_Tld_Tpc_Tup_Fsp_Tll(self):
-        """test_dist_launch_Fsg_Tld_Tpc_Tup_Fsp_Tll."""
-        args = self.all_args[5]
-        self.get_result(args)
-
-    def test_dist_launch_Tsg_Tld_Fpc_Tup_Fsp_Tll(self):
-        """test_dist_launch_Tsg_Tld_Fpc_Tup_Fsp_Tll."""
-        args = self.all_args[6]
-        self.get_result(args)
-
-    def test_dist_launch_Fsg_Tld_Fpc_Tup_Fsp_Tll(self):
-        """test_dist_launch_Fsg_Tld_Fpc_Tup_Fsp_Tll."""
-        args = self.all_args[7]
-        self.get_result(args)
-
-    def test_dist_launch_Tsg_Tld_Tpc_Tup_Tsp_Fll(self):
-        """test_dist_launch_Tsg_Tld_Tpc_Tup_Tsp_Fll."""
-        args = self.all_args[8]
-        self.get_result(args)
-
-    def test_dist_launch_Fsg_Tld_Tpc_Tup_Tsp_Fll(self):
-        """test_dist_launch_Fsg_Tld_Tpc_Tup_Tsp_Fll."""
-        args = self.all_args[9]
-        self.get_result(args)
-
-    def test_dist_launch_Tsg_Tld_Fpc_Tup_Tsp_Fll(self):
-        """test_dist_launch_Tsg_Tld_Fpc_Tup_Tsp_Fll."""
-        args = self.all_args[10]
-        self.get_result(args)
-
-    def test_dist_launch_Fsg_Tld_Fpc_Tup_Tsp_Fll(self):
-        """test_dist_launch_Fsg_Tld_Fpc_Tup_Tsp_Fll."""
-        args = self.all_args[11]
-        self.get_result(args)
-
-    def test_dist_launch_Tsg_Tld_Tpc_Tup_Fsp_Fll(self):
-        """test_dist_launch_Tsg_Tld_Tpc_Tup_Fsp_Fll."""
-        args = self.all_args[12]
-        self.get_result(args)
-
-    def test_dist_launch_Fsg_Tld_Tpc_Tup_Fsp_Fll(self):
-        """test_dist_launch_Fsg_Tld_Tpc_Tup_Fsp_Fll."""
-        args = self.all_args[13]
-        self.get_result(args)
-
-    def test_dist_launch_Tsg_Tld_Fpc_Tup_Fsp_Fll(self):
-        """test_dist_launch_Tsg_Tld_Fpc_Tup_Fsp_Fll."""
-        args = self.all_args[14]
-        self.get_result(args)
-
-    def test_dist_launch_Fsg_Tld_Fpc_Tup_Fsp_Fll(self):
-        """test_dist_launch_Fsg_Tld_Fpc_Tup_Fsp_Fll."""
-        args = self.all_args[15]
         self.get_result(args)
