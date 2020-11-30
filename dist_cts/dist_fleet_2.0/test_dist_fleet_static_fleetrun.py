@@ -31,11 +31,11 @@ class TestDistLaunch():
         self.test_info1 = []
         self.test_info2 = []
         self.all_args = [
-            "--gpus=0,1 --log_dir=mylog  dist_fleet_static_fleetrun.py",
+            "--gpus=0,1 --log_dir=log  dist_fleet_static_fleetrun.py",
             "--gpus=0,1  dist_fleet_static_fleetrun.py",
-            "--log_dir=mylog  dist_fleet_static_fleetrun.py",
+            "--log_dir=log  dist_fleet_static_fleetrun.py",
             "dist_fleet_static_fleetrun.py",
-            "--gpus=0 --log_dir=mylog  dist_fleet_static_fleetrun.py",
+            "--gpus=0 --log_dir=log  dist_fleet_static_fleetrun.py",
             "--gpus=0 dist_fleet_static_fleetrun.py",
         ]
     def check_data(self, loss, delta=None, expect=None):
@@ -64,7 +64,7 @@ class TestDistLaunch():
             stderr=open("/tmp/launch.log", "wb"),
             stdout=subprocess.PIPE)
         p.communicate()
-        with open('mylog/workerlog.0', 'r') as f:
+        with open('log/workerlog.0', 'r') as f:
             lines = f.readlines()[-1].lstrip('[').rstrip(']\n').split(',')
         loss = [eval(i) for i in lines]
         return loss
