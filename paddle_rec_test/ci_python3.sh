@@ -14,7 +14,7 @@ function prepare(){
 #     pip3 install opencv-python==4.2.0.32 
     python setup.py install
     python -m pip uninstall paddlepaddle -y
-    wget wget https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10-cudnn7-mkl/paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl --no-check-certificate
+    wget https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10-cudnn7-mkl/paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl --no-check-certificate
 #     wget https://paddle-wheel.bj.bcebos.com/1.8.5-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.8.5.post107-cp37-cp37m-linux_x86_64.whl --no-check-certificate
 #     mv 1.8.5-gpu-cuda10-cudnn7-mkl%2Fpaddlepaddle_gpu-1.8.5.post107-cp37-cp37m-linux_x86_64.whl paddlepaddle_gpu-1.8.5.post107-cp37-cp37m-linux_x86_64.whl
     python -m pip install paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl
