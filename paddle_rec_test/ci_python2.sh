@@ -5,6 +5,20 @@ function setproxy(){
   export https_proxy=${proxy}
 }
 
+function check_style() {
+  set -e
+
+  export PATH=/usr/bin:$PATH
+  pre-commit install
+
+  if ! pre-commit run -a; then
+    git diff
+    exit 1
+  fi
+
+  exit 0
+}
+
 function prepare(){
     #setproxy
     cd PaddleRec
@@ -58,4 +72,5 @@ function run(){
     done
 }
 prepare
+check_style
 #run
