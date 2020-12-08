@@ -98,7 +98,7 @@ function run(){
     done
 }
 prepare
-init
-check_style
+# init
+# check_style
 # check_style
 #run
