@@ -72,5 +72,5 @@ function run(){
     done
 }
 prepare
-check_style
+# check_style
 #run
