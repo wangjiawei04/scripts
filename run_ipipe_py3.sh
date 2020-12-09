@@ -334,7 +334,7 @@ function fit_a_line_rpc(){
 function faster_rcnn_model_rpc(){
   setproxy
   run_gpu_env
-  cd ${build_path}/python/examples/faster_rcnn_model
+  cd ${build_path}/python/examples/faster_rcnn
   cp -r /root/.cache/dist_data/serving/faster_rcnn/faster_rcnn_model.tar.gz ./
   tar xf faster_rcnn_model.tar.gz
   wget https://paddle-serving.bj.bcebos.com/pddet_demo/infer_cfg.yml >/dev/null 2>&1
