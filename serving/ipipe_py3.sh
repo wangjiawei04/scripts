@@ -11,6 +11,8 @@ echo "#                                                              #"
 echo "################################################################"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export CUDA_INCLUDE_DIRS=/usr/local/cuda-10.0/include
+export PYTHONROOT=/usr
 build_path=/workspace/Serving/
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
 rpc_model_list=(bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc lac_rpc \
@@ -70,7 +72,7 @@ function check_result() {
 
 function before_hook(){
   setproxy
-  cd /workspace/Serving/python
+  cd ${build_path}/python
   pip3 install --upgrade pip
   pip3 install -r requirements.txt
   pip3 install numpy==1.16.4
@@ -92,6 +94,7 @@ function run_gpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_gpu/ ${build_path}/build
+  export SERVING_BIN=${build_path}/build_gpu/core/general-server/serving
 }
 
 function run_cpu_env(){
@@ -100,6 +103,7 @@ function run_cpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_cpu/ ${build_path}/build
+  export SERVING_BIN=${build_path}/build_cpu/core/general-server/serving
 }
 
 function build_gpu_server() {
@@ -116,9 +120,9 @@ function build_gpu_server() {
           -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python3 \
           -DSERVER=ON \
           -DWITH_GPU=ON ..
-    make -j10
-    make -j10
-    make install -j10
+    make -j18
+    make -j18
+    make install -j18
     pip3 install ${build_path}/build/python/dist/*
     cp  ${build_path}/build/python/dist/* ../
     cp -r ${build_path}/build/ ${build_path}/build_gpu
@@ -136,8 +140,8 @@ function build_client() {
            -DPYTHON_LIBRARIES=$PYTHONROOT/lib64/libpython3.6.so \
            -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python3 \
            -DCLIENT=ON ..
-     make -j10
-     make -j10
+     make -j18
+     make -j18
      cp ${build_path}/build/python/dist/* ../
      pip3 install ${build_path}/build/python/dist/*
 }
@@ -154,9 +158,9 @@ function build_cpu_server(){
             -DPYTHON_LIBRARIES=$PYTHONROOT/lib64/libpython3.6.so \
             -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python3 \
             -DSERVER=ON ..
-      make -j10
-      make -j10
-      make install -j10
+      make -j18
+      make -j18
+      make install -j18
       cp ${build_path}/build/python/dist/* ../
       pip3 install ${build_path}/build/python/dist/*
       cp -r ${build_path}/build/ ${build_path}/build_cpu
@@ -330,7 +334,7 @@ function fit_a_line_rpc(){
 function faster_rcnn_model_rpc(){
   setproxy
   run_gpu_env
-  cd ${build_path}/python/examples/faster_rcnn_model
+  cd ${build_path}/python/examples/faster_rcnn
   cp -r /root/.cache/dist_data/serving/faster_rcnn/faster_rcnn_model.tar.gz ./
   tar xf faster_rcnn_model.tar.gz
   wget https://paddle-serving.bj.bcebos.com/pddet_demo/infer_cfg.yml >/dev/null 2>&1
