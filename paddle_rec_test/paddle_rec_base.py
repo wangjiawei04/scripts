@@ -85,6 +85,8 @@ class RankDNNBase(PaddleRecBase):
             'save_checkpoint_interval': 2,
             'save_checkpoint_path': 'increment_dnn',
             'save_inference_interval': 2,
+            'sparse_inputs_slots': 27,
+            'dense_input_dim': 13,
             'save_inference_path': 'inference_dnn',
             'save_inference_feed_varnames': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
                                              '11', '12', '13', '14', '15', '16', '17', '18', '19',
