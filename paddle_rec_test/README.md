@@ -1,3 +1,4 @@
+```bash
 paddlerec测试case复现
 
 一：代码准备
@@ -21,3 +22,4 @@ paddlerec测试case复现
 12：python -m pip install ruamel.yaml
 13：nosetests -s -v test_paddlerec_features_new_config.yaml
 14: nosetests -s -v ...
+```
