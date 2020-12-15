@@ -251,7 +251,10 @@ function pipeline_imagenet(){
   cd ${build_path}/python/examples/pipeline/imagenet/
   cp -r /root/.cache/dist_data/serving/imagenet/* ./
   python resnet50_web_service.py > piplelog 2>&1 &
+  sleep 5
   python pipeline_rpc_client.py
+  check_result $FUNCNAME
+  kill_server_process
 }
 
 function ResNet50_rpc(){
