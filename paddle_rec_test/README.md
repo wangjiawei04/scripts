@@ -1,7 +1,6 @@
 ```bash
 paddlerec测试case复现
 
-一：代码准备
 1：git clone https://github.com/gentelyang/scripts.git
 2：cd scripts
 3：git clone https://github.com/PaddlePaddle/PaddleRec.git
