@@ -632,7 +632,7 @@ grpc_impl(){
   # check_result $FUNCNAME
   kill_server_process
 }
-}
+
 
 function build_all_whl(){
   for whl in ${build_whl_list[@]}
