@@ -26,21 +26,21 @@ patch_torch_functions  : False
 keep_batchnorm_fp32    : True
 master_weights         : True
 loss_scale             : dynamic
-yq01-sys-hic-k8s-v100-box-a225-0459:13660:13660 [0] NCCL INFO Bootstrap : Using [0]xgbe0:10.127.20.11<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13660:13660 [0] NCCL INFO Bootstrap : Using [0]xgbe0:ip<0>
 yq01-sys-hic-k8s-v100-box-a225-0459:13660:13660 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
 
 yq01-sys-hic-k8s-v100-box-a225-0459:13660:13660 [0] misc/ibvwrap.cc:212 NCCL WARN Call to ibv_open_device failed
 
 yq01-sys-hic-k8s-v100-box-a225-0459:13660:13660 [0] transport/net_ib.cc:117 NCCL WARN NET/IB : Unable to open device mlx5_0
 yq01-sys-hic-k8s-v100-box-a225-0459:13660:13660 [0] NCCL INFO NET/IB : No device found.
-yq01-sys-hic-k8s-v100-box-a225-0459:13660:13660 [0] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.20.11<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13660:13660 [0] NCCL INFO NET/Socket : Using [0]xgbe0:ip<0>
 NCCL version 2.4.8+cuda10.1
-yq01-sys-hic-k8s-v100-box-a225-0459:13661:13661 [1] NCCL INFO Bootstrap : Using [0]xgbe0:10.127.20.11<0>
-yq01-sys-hic-k8s-v100-box-a225-0459:13663:13663 [3] NCCL INFO Bootstrap : Using [0]xgbe0:10.127.20.11<0>
-yq01-sys-hic-k8s-v100-box-a225-0459:13666:13666 [6] NCCL INFO Bootstrap : Using [0]xgbe0:10.127.20.11<0>
-yq01-sys-hic-k8s-v100-box-a225-0459:13665:13665 [5] NCCL INFO Bootstrap : Using [0]xgbe0:10.127.20.11<0>
-yq01-sys-hic-k8s-v100-box-a225-0459:13667:13667 [7] NCCL INFO Bootstrap : Using [0]xgbe0:10.127.20.11<0>
-yq01-sys-hic-k8s-v100-box-a225-0459:13664:13664 [4] NCCL INFO Bootstrap : Using [0]xgbe0:10.127.20.11<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13661:13661 [1] NCCL INFO Bootstrap : Using [0]xgbe0:ip<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13663:13663 [3] NCCL INFO Bootstrap : Using [0]xgbe0:ip<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13666:13666 [6] NCCL INFO Bootstrap : Using [0]xgbe0:ip<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13665:13665 [5] NCCL INFO Bootstrap : Using [0]xgbe0:ip<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13667:13667 [7] NCCL INFO Bootstrap : Using [0]xgbe0:ip<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13664:13664 [4] NCCL INFO Bootstrap : Using [0]xgbe0:ip<0>
 yq01-sys-hic-k8s-v100-box-a225-0459:13661:13661 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
 yq01-sys-hic-k8s-v100-box-a225-0459:13663:13663 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
 yq01-sys-hic-k8s-v100-box-a225-0459:13667:13667 [7] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
@@ -52,13 +52,13 @@ yq01-sys-hic-k8s-v100-box-a225-0459:13666:13666 [6] misc/ibvwrap.cc:212 NCCL WAR
 
 yq01-sys-hic-k8s-v100-box-a225-0459:13666:13666 [6] transport/net_ib.cc:117 NCCL WARN NET/IB : Unable to open device mlx5_0
 yq01-sys-hic-k8s-v100-box-a225-0459:13666:13666 [6] NCCL INFO NET/IB : No device found.
-yq01-sys-hic-k8s-v100-box-a225-0459:13666:13666 [6] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.20.11<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13666:13666 [6] NCCL INFO NET/Socket : Using [0]xgbe0:ip<0>
 
 yq01-sys-hic-k8s-v100-box-a225-0459:13665:13665 [5] misc/ibvwrap.cc:212 NCCL WARN Call to ibv_open_device failed
 
 yq01-sys-hic-k8s-v100-box-a225-0459:13665:13665 [5] transport/net_ib.cc:117 NCCL WARN NET/IB : Unable to open device mlx5_0
 yq01-sys-hic-k8s-v100-box-a225-0459:13665:13665 [5] NCCL INFO NET/IB : No device found.
-yq01-sys-hic-k8s-v100-box-a225-0459:13665:13665 [5] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.20.11<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13665:13665 [5] NCCL INFO NET/Socket : Using [0]xgbe0:ip<0>
 
 yq01-sys-hic-k8s-v100-box-a225-0459:13661:13661 [1] misc/ibvwrap.cc:212 NCCL WARN Call to ibv_open_device failed
 
@@ -76,21 +76,21 @@ yq01-sys-hic-k8s-v100-box-a225-0459:13667:13667 [7] NCCL INFO NET/IB : No device
 yq01-sys-hic-k8s-v100-box-a225-0459:13663:13663 [3] NCCL INFO NET/IB : No device found.
 
 yq01-sys-hic-k8s-v100-box-a225-0459:13664:13664 [4] misc/ibvwrap.cc:212 NCCL WARN Call to ibv_open_device failed
-yq01-sys-hic-k8s-v100-box-a225-0459:13661:13661 [1] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.20.11<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13661:13661 [1] NCCL INFO NET/Socket : Using [0]xgbe0:ip<0>
 
 yq01-sys-hic-k8s-v100-box-a225-0459:13664:13664 [4] transport/net_ib.cc:117 NCCL WARN NET/IB : Unable to open device mlx5_0
 yq01-sys-hic-k8s-v100-box-a225-0459:13664:13664 [4] NCCL INFO NET/IB : No device found.
-yq01-sys-hic-k8s-v100-box-a225-0459:13667:13667 [7] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.20.11<0>
-yq01-sys-hic-k8s-v100-box-a225-0459:13663:13663 [3] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.20.11<0>
-yq01-sys-hic-k8s-v100-box-a225-0459:13664:13664 [4] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.20.11<0>
-yq01-sys-hic-k8s-v100-box-a225-0459:13662:13662 [2] NCCL INFO Bootstrap : Using [0]xgbe0:10.127.20.11<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13667:13667 [7] NCCL INFO NET/Socket : Using [0]xgbe0:ip<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13663:13663 [3] NCCL INFO NET/Socket : Using [0]xgbe0:ip<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13664:13664 [4] NCCL INFO NET/Socket : Using [0]xgbe0:ip<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13662:13662 [2] NCCL INFO Bootstrap : Using [0]xgbe0:ip<0>
 yq01-sys-hic-k8s-v100-box-a225-0459:13662:13662 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
 
 yq01-sys-hic-k8s-v100-box-a225-0459:13662:13662 [2] misc/ibvwrap.cc:212 NCCL WARN Call to ibv_open_device failed
 
 yq01-sys-hic-k8s-v100-box-a225-0459:13662:13662 [2] transport/net_ib.cc:117 NCCL WARN NET/IB : Unable to open device mlx5_0
 yq01-sys-hic-k8s-v100-box-a225-0459:13662:13662 [2] NCCL INFO NET/IB : No device found.
-yq01-sys-hic-k8s-v100-box-a225-0459:13662:13662 [2] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.20.11<0>
+yq01-sys-hic-k8s-v100-box-a225-0459:13662:13662 [2] NCCL INFO NET/Socket : Using [0]xgbe0:ip<0>
 yq01-sys-hic-k8s-v100-box-a225-0459:13666:13711 [6] NCCL INFO Setting affinity for GPU 6 to ffffff
 yq01-sys-hic-k8s-v100-box-a225-0459:13664:13716 [4] NCCL INFO Setting affinity for GPU 4 to ffffff
 yq01-sys-hic-k8s-v100-box-a225-0459:13661:13713 [1] NCCL INFO Setting affinity for GPU 1 to ffffff
@@ -221,7 +221,8 @@ DLL 2020-12-15 08:33:46.202290 - PARAMETER SEED : 42
 DLL 2020-12-15 08:33:46.202547 - PARAMETER train_start : True 
 DLL 2020-12-15 08:33:46.202605 - PARAMETER batch_size_per_gpu : 96 
 DLL 2020-12-15 08:33:46.202645 - PARAMETER learning_rate : 0.006 
-Iteration:   0%|          | 0/6580 [00:00<?, ?it/s]run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
+
+Iteration:   0%|          | 0/6580 [00:00<?, ?it/s]run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
 	nonzero()
 Consider using one of the following signatures instead:
 	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
@@ -390,7 +391,8 @@ Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 524288.0
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 524288.0
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 524288.0
 DLL 2020-12-15 08:33:51.174067 - Training Epoch: 0 Training Iteration: 1  average_loss : 11.1875  step_loss : 11.1875  learning_rate : 5e-05 
-Iteration:   0%|          | 1/6580 [00:00<1:39:43,  1.10it/s]Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
+
+Iteration:   0%|          | 1/6580 [00:00<1:39:43,  1.10it/s]Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
@@ -399,7 +401,8 @@ Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 DLL 2020-12-15 08:33:51.367471 - Training Epoch: 0 Training Iteration: 2  average_loss : 11.1953125  step_loss : 11.1953125  learning_rate : 5e-05 
-Iteration:   0%|          | 2/6580 [00:01<1:16:09,  1.44it/s]Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 131072.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 131072.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 131072.0
+
+Iteration:   0%|          | 2/6580 [00:01<1:16:09,  1.44it/s]Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 131072.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 131072.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 131072.0
 
 
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 131072.0
@@ -408,7 +411,8 @@ Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 131072.0
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 131072.0
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 131072.0
 DLL 2020-12-15 08:33:51.555033 - Training Epoch: 0 Training Iteration: 3  average_loss : 11.21875  step_loss : 11.21875  learning_rate : 5e-05 
-Iteration:   0%|          | 3/6580 [00:01<59:28,  1.84it/s]  Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 65536.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 65536.0
+
+Iteration:   0%|          | 3/6580 [00:01<59:28,  1.84it/s]  Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 65536.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 65536.0
 
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 65536.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 65536.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 65536.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 65536.0
 
@@ -417,7 +421,8 @@ Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 65536.0G
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 65536.0
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 65536.0
 DLL 2020-12-15 08:33:51.743181 - Training Epoch: 0 Training Iteration: 4  average_loss : 11.234375  step_loss : 11.234375  learning_rate : 5e-05 
-Iteration:   0%|          | 4/6580 [00:01<47:48,  2.29it/s]Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 32768.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 32768.0
+
+Iteration:   0%|          | 4/6580 [00:01<47:48,  2.29it/s]Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 32768.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 32768.0
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 32768.0Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 32768.0
 
 
@@ -426,123 +431,239 @@ Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 32768.0G
 
 Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 32768.0
 DLL 2020-12-15 08:33:51.930653 - Training Epoch: 0 Training Iteration: 5  average_loss : 11.2109375  step_loss : 11.2109375  learning_rate : 5e-05 
-Iteration:   0%|          | 5/6580 [00:01<39:37,  2.77it/s]DLL 2020-12-15 08:33:52.134134 - Training Epoch: 0 Training Iteration: 6  average_loss : 11.2109375  step_loss : 11.2109375  learning_rate : 5e-05 
-Iteration:   0%|          | 6/6580 [00:01<34:25,  3.18it/s]DLL 2020-12-15 08:33:52.335303 - Training Epoch: 0 Training Iteration: 7  average_loss : 11.234375  step_loss : 11.234375  learning_rate : 0.0001 
-Iteration:   0%|          | 7/6580 [00:02<30:42,  3.57it/s]DLL 2020-12-15 08:33:52.535673 - Training Epoch: 0 Training Iteration: 8  average_loss : 11.1875  step_loss : 11.1875  learning_rate : 0.00015000000000000001 
-Iteration:   0%|          | 8/6580 [00:02<28:04,  3.90it/s]DLL 2020-12-15 08:33:52.735655 - Training Epoch: 0 Training Iteration: 9  average_loss : 11.09375  step_loss : 11.09375  learning_rate : 0.0002 
-Iteration:   0%|          | 9/6580 [00:02<26:13,  4.18it/s]DLL 2020-12-15 08:33:52.935598 - Training Epoch: 0 Training Iteration: 10  average_loss : 11.0  step_loss : 11.0  learning_rate : 0.00025 
-Iteration:   0%|          | 10/6580 [00:02<24:55,  4.39it/s]DLL 2020-12-15 08:33:53.135033 - Training Epoch: 0 Training Iteration: 11  average_loss : 10.875  step_loss : 10.875  learning_rate : 0.00030000000000000003 
-Iteration:   0%|          | 11/6580 [00:02<23:59,  4.56it/s]DLL 2020-12-15 08:33:53.335670 - Training Epoch: 0 Training Iteration: 12  average_loss : 10.765625  step_loss : 10.765625  learning_rate : 0.00035 
-Iteration:   0%|          | 12/6580 [00:03<23:22,  4.68it/s]DLL 2020-12-15 08:33:53.537741 - Training Epoch: 0 Training Iteration: 13  average_loss : 10.6796875  step_loss : 10.6796875  learning_rate : 0.0004 
-Iteration:   0%|          | 13/6580 [00:03<22:59,  4.76it/s]DLL 2020-12-15 08:33:53.740393 - Training Epoch: 0 Training Iteration: 14  average_loss : 10.6171875  step_loss : 10.6171875  learning_rate : 0.00045 
-Iteration:   0%|          | 14/6580 [00:03<22:44,  4.81it/s]DLL 2020-12-15 08:33:53.940259 - Training Epoch: 0 Training Iteration: 15  average_loss : 10.5546875  step_loss : 10.5546875  learning_rate : 0.0005 
-Iteration:   0%|          | 15/6580 [00:03<22:28,  4.87it/s]DLL 2020-12-15 08:33:54.140815 - Training Epoch: 0 Training Iteration: 16  average_loss : 10.375  step_loss : 10.375  learning_rate : 0.0005499999999999999 
-Iteration:   0%|          | 16/6580 [00:03<22:19,  4.90it/s]DLL 2020-12-15 08:33:54.341771 - Training Epoch: 0 Training Iteration: 17  average_loss : 10.3515625  step_loss : 10.3515625  learning_rate : 0.0006000000000000001 
-Iteration:   0%|          | 17/6580 [00:04<22:12,  4.92it/s]DLL 2020-12-15 08:33:54.541632 - Training Epoch: 0 Training Iteration: 18  average_loss : 10.2890625  step_loss : 10.2890625  learning_rate : 0.0006500000000000001 
-Iteration:   0%|          | 18/6580 [00:04<22:06,  4.95it/s]DLL 2020-12-15 08:33:54.743492 - Training Epoch: 0 Training Iteration: 19  average_loss : 10.265625  step_loss : 10.265625  learning_rate : 0.0007 
-Iteration:   0%|          | 19/6580 [00:04<22:05,  4.95it/s]DLL 2020-12-15 08:33:54.945752 - Training Epoch: 0 Training Iteration: 20  average_loss : 10.1640625  step_loss : 10.1640625  learning_rate : 0.00075 
-Iteration:   0%|          | 20/6580 [00:04<22:05,  4.95it/s]DLL 2020-12-15 08:33:55.148416 - Training Epoch: 0 Training Iteration: 21  average_loss : 10.1171875  step_loss : 10.1171875  learning_rate : 0.0008 
-Iteration:   0%|          | 21/6580 [00:04<22:06,  4.94it/s]DLL 2020-12-15 08:33:55.351642 - Training Epoch: 0 Training Iteration: 22  average_loss : 10.09375  step_loss : 10.09375  learning_rate : 0.00085 
-Iteration:   0%|          | 22/6580 [00:05<22:08,  4.94it/s]DLL 2020-12-15 08:33:55.553152 - Training Epoch: 0 Training Iteration: 23  average_loss : 10.078125  step_loss : 10.078125  learning_rate : 0.0009 
-Iteration:   0%|          | 23/6580 [00:05<22:06,  4.94it/s]DLL 2020-12-15 08:33:55.757021 - Training Epoch: 0 Training Iteration: 24  average_loss : 9.9609375  step_loss : 9.9609375  learning_rate : 0.00095 
-Iteration:   0%|          | 24/6580 [00:05<22:09,  4.93it/s]DLL 2020-12-15 08:33:57.915462 - Training Epoch: 0 Training Iteration: 25  average_loss : 9.9453125  step_loss : 9.9453125  learning_rate : 0.001 
-Iteration:   0%|          | 25/6580 [00:07<1:29:45,  1.22it/s]DLL 2020-12-15 08:33:58.372851 - Training Epoch: 0 Training Iteration: 26  average_loss : 9.96875  step_loss : 9.96875  learning_rate : 0.00105 
-Iteration:   0%|          | 26/6580 [00:08<1:14:17,  1.47it/s]DLL 2020-12-15 08:33:58.568900 - Training Epoch: 0 Training Iteration: 27  average_loss : 9.9375  step_loss : 9.9375  learning_rate : 0.0010999999999999998 
-Iteration:   0%|          | 27/6580 [00:08<58:25,  1.87it/s]  DLL 2020-12-15 08:33:58.772695 - Training Epoch: 0 Training Iteration: 28  average_loss : 9.7734375  step_loss : 9.7734375  learning_rate : 0.0011500000000000002 
-Iteration:   0%|          | 28/6580 [00:08<47:34,  2.30it/s]DLL 2020-12-15 08:33:58.974562 - Training Epoch: 0 Training Iteration: 29  average_loss : 9.671875  step_loss : 9.671875  learning_rate : 0.0012000000000000001 
-Iteration:   0%|          | 29/6580 [00:08<39:54,  2.74it/s]DLL 2020-12-15 08:33:59.175464 - Training Epoch: 0 Training Iteration: 30  average_loss : 9.796875  step_loss : 9.796875  learning_rate : 0.00125 
-Iteration:   0%|          | 30/6580 [00:08<34:30,  3.16it/s]DLL 2020-12-15 08:33:59.377829 - Training Epoch: 0 Training Iteration: 31  average_loss : 9.734375  step_loss : 9.734375  learning_rate : 0.0013000000000000002 
-Iteration:   0%|          | 31/6580 [00:09<30:46,  3.55it/s]DLL 2020-12-15 08:33:59.580680 - Training Epoch: 0 Training Iteration: 32  average_loss : 9.6796875  step_loss : 9.6796875  learning_rate : 0.00135 
-Iteration:   0%|          | 32/6580 [00:09<28:10,  3.87it/s]DLL 2020-12-15 08:33:59.781189 - Training Epoch: 0 Training Iteration: 33  average_loss : 9.5546875  step_loss : 9.5546875  learning_rate : 0.0014 
-Iteration:   1%|          | 33/6580 [00:09<26:17,  4.15it/s]DLL 2020-12-15 08:33:59.982029 - Training Epoch: 0 Training Iteration: 34  average_loss : 9.5390625  step_loss : 9.5390625  learning_rate : 0.0014500000000000001 
-Iteration:   1%|          | 34/6580 [00:09<24:58,  4.37it/s]DLL 2020-12-15 08:34:00.182020 - Training Epoch: 0 Training Iteration: 35  average_loss : 9.4921875  step_loss : 9.4921875  learning_rate : 0.0015 
-Iteration:   1%|          | 35/6580 [00:09<24:01,  4.54it/s]DLL 2020-12-15 08:34:00.384181 - Training Epoch: 0 Training Iteration: 36  average_loss : 9.5625  step_loss : 9.5625  learning_rate : 0.0015500000000000002 
-Iteration:   1%|          | 36/6580 [00:10<23:26,  4.65it/s]DLL 2020-12-15 08:34:00.581737 - Training Epoch: 0 Training Iteration: 37  average_loss : 9.515625  step_loss : 9.515625  learning_rate : 0.0016 
-Iteration:   1%|          | 37/6580 [00:10<22:51,  4.77it/s]DLL 2020-12-15 08:34:00.782893 - Training Epoch: 0 Training Iteration: 38  average_loss : 9.3828125  step_loss : 9.3828125  learning_rate : 0.0016500000000000002 
-Iteration:   1%|          | 38/6580 [00:10<22:34,  4.83it/s]DLL 2020-12-15 08:34:00.984391 - Training Epoch: 0 Training Iteration: 39  average_loss : 9.4140625  step_loss : 9.4140625  learning_rate : 0.0017 
-Iteration:   1%|          | 39/6580 [00:10<22:23,  4.87it/s]DLL 2020-12-15 08:34:01.186892 - Training Epoch: 0 Training Iteration: 40  average_loss : 9.40625  step_loss : 9.40625  learning_rate : 0.0017500000000000003 
-Iteration:   1%|          | 40/6580 [00:10<22:17,  4.89it/s]DLL 2020-12-15 08:34:01.387696 - Training Epoch: 0 Training Iteration: 41  average_loss : 9.1953125  step_loss : 9.1953125  learning_rate : 0.0018 
-Iteration:   1%|          | 41/6580 [00:11<22:10,  4.92it/s]DLL 2020-12-15 08:34:01.589044 - Training Epoch: 0 Training Iteration: 42  average_loss : 9.15625  step_loss : 9.15625  learning_rate : 0.00185 
-Iteration:   1%|          | 42/6580 [00:11<22:05,  4.93it/s]DLL 2020-12-15 08:34:01.788760 - Training Epoch: 0 Training Iteration: 43  average_loss : 9.2109375  step_loss : 9.2109375  learning_rate : 0.0019 
-Iteration:   1%|          | 43/6580 [00:11<21:59,  4.95it/s]DLL 2020-12-15 08:34:01.989531 - Training Epoch: 0 Training Iteration: 44  average_loss : 9.1484375  step_loss : 9.1484375  learning_rate : 0.0019500000000000001 
-Iteration:   1%|          | 44/6580 [00:11<21:57,  4.96it/s]DLL 2020-12-15 08:34:02.191506 - Training Epoch: 0 Training Iteration: 45  average_loss : 9.0546875  step_loss : 9.0546875  learning_rate : 0.002 
-Iteration:   1%|          | 45/6580 [00:11<21:57,  4.96it/s]DLL 2020-12-15 08:34:02.392240 - Training Epoch: 0 Training Iteration: 46  average_loss : 9.0  step_loss : 9.0  learning_rate : 0.00205 
-Iteration:   1%|          | 46/6580 [00:12<21:55,  4.97it/s]DLL 2020-12-15 08:34:02.594308 - Training Epoch: 0 Training Iteration: 47  average_loss : 8.9921875  step_loss : 8.9921875  learning_rate : 0.0021 
-Iteration:   1%|          | 47/6580 [00:12<21:56,  4.96it/s]DLL 2020-12-15 08:34:02.794596 - Training Epoch: 0 Training Iteration: 48  average_loss : 8.8046875  step_loss : 8.8046875  learning_rate : 0.00215 
-Iteration:   1%|          | 48/6580 [00:12<21:54,  4.97it/s]DLL 2020-12-15 08:34:02.994700 - Training Epoch: 0 Training Iteration: 49  average_loss : 8.8359375  step_loss : 8.8359375  learning_rate : 0.0021999999999999997 
-Iteration:   1%|          | 49/6580 [00:12<21:51,  4.98it/s]DLL 2020-12-15 08:34:03.195493 - Training Epoch: 0 Training Iteration: 50  average_loss : 8.7734375  step_loss : 8.7734375  learning_rate : 0.0022500000000000003 
-Iteration:   1%|          | 50/6580 [00:12<21:51,  4.98it/s]DLL 2020-12-15 08:34:03.394490 - Training Epoch: 0 Training Iteration: 51  average_loss : 8.765625  step_loss : 8.765625  learning_rate : 0.0023000000000000004 
-Iteration:   1%|          | 51/6580 [00:13<21:47,  4.99it/s]DLL 2020-12-15 08:34:03.594473 - Training Epoch: 0 Training Iteration: 52  average_loss : 8.7578125  step_loss : 8.7578125  learning_rate : 0.00235 
-Iteration:   1%|          | 52/6580 [00:13<21:46,  5.00it/s]DLL 2020-12-15 08:34:03.795422 - Training Epoch: 0 Training Iteration: 53  average_loss : 8.75  step_loss : 8.75  learning_rate : 0.0024000000000000002 
-Iteration:   1%|          | 53/6580 [00:13<21:48,  4.99it/s]DLL 2020-12-15 08:34:03.994744 - Training Epoch: 0 Training Iteration: 54  average_loss : 8.6953125  step_loss : 8.6953125  learning_rate : 0.00245 
-Iteration:   1%|          | 54/6580 [00:13<21:45,  5.00it/s]DLL 2020-12-15 08:34:04.195201 - Training Epoch: 0 Training Iteration: 55  average_loss : 8.578125  step_loss : 8.578125  learning_rate : 0.0025 
-Iteration:   1%|          | 55/6580 [00:13<21:46,  5.00it/s]DLL 2020-12-15 08:34:04.396547 - Training Epoch: 0 Training Iteration: 56  average_loss : 8.546875  step_loss : 8.546875  learning_rate : 0.00255 
-Iteration:   1%|          | 56/6580 [00:14<21:48,  4.99it/s]DLL 2020-12-15 08:34:04.595704 - Training Epoch: 0 Training Iteration: 57  average_loss : 8.4453125  step_loss : 8.4453125  learning_rate : 0.0026000000000000003 
-Iteration:   1%|          | 57/6580 [00:14<21:45,  5.00it/s]DLL 2020-12-15 08:34:04.794886 - Training Epoch: 0 Training Iteration: 58  average_loss : 8.3671875  step_loss : 8.3671875  learning_rate : 0.00265 
-Iteration:   1%|          | 58/6580 [00:14<21:43,  5.00it/s]DLL 2020-12-15 08:34:04.994118 - Training Epoch: 0 Training Iteration: 59  average_loss : 8.4296875  step_loss : 8.4296875  learning_rate : 0.0027 
-Iteration:   1%|          | 59/6580 [00:14<21:41,  5.01it/s]DLL 2020-12-15 08:34:05.193402 - Training Epoch: 0 Training Iteration: 60  average_loss : 8.375  step_loss : 8.375  learning_rate : 0.00275 
-Iteration:   1%|          | 60/6580 [00:14<21:41,  5.01it/s]DLL 2020-12-15 08:34:05.393773 - Training Epoch: 0 Training Iteration: 61  average_loss : 8.234375  step_loss : 8.234375  learning_rate : 0.0028 
-Iteration:   1%|          | 61/6580 [00:15<21:42,  5.01it/s]DLL 2020-12-15 08:34:05.593052 - Training Epoch: 0 Training Iteration: 62  average_loss : 8.3828125  step_loss : 8.3828125  learning_rate : 0.00285 
-Iteration:   1%|          | 62/6580 [00:15<21:41,  5.01it/s]DLL 2020-12-15 08:34:05.791924 - Training Epoch: 0 Training Iteration: 63  average_loss : 8.078125  step_loss : 8.078125  learning_rate : 0.0029000000000000002 
-Iteration:   1%|          | 63/6580 [00:15<21:39,  5.01it/s]DLL 2020-12-15 08:34:05.991292 - Training Epoch: 0 Training Iteration: 64  average_loss : 8.109375  step_loss : 8.109375  learning_rate : 0.00295 
-Iteration:   1%|          | 64/6580 [00:15<21:39,  5.01it/s]DLL 2020-12-15 08:34:06.190355 - Training Epoch: 0 Training Iteration: 65  average_loss : 8.1328125  step_loss : 8.1328125  learning_rate : 0.003 
-Iteration:   1%|          | 65/6580 [00:15<21:38,  5.02it/s]DLL 2020-12-15 08:34:06.391601 - Training Epoch: 0 Training Iteration: 66  average_loss : 8.09375  step_loss : 8.09375  learning_rate : 0.0030499999999999998 
-Iteration:   1%|          | 66/6580 [00:16<21:42,  5.00it/s]DLL 2020-12-15 08:34:06.592000 - Training Epoch: 0 Training Iteration: 67  average_loss : 8.21875  step_loss : 8.21875  learning_rate : 0.0031000000000000003 
-Iteration:   1%|          | 67/6580 [00:16<21:42,  5.00it/s]DLL 2020-12-15 08:34:06.792385 - Training Epoch: 0 Training Iteration: 68  average_loss : 8.0  step_loss : 8.0  learning_rate : 0.00315 
-Iteration:   1%|          | 68/6580 [00:16<21:43,  5.00it/s]DLL 2020-12-15 08:34:06.992105 - Training Epoch: 0 Training Iteration: 69  average_loss : 8.125  step_loss : 8.125  learning_rate : 0.0032 
-Iteration:   1%|          | 69/6580 [00:16<21:42,  5.00it/s]DLL 2020-12-15 08:34:07.191279 - Training Epoch: 0 Training Iteration: 70  average_loss : 7.93359375  step_loss : 7.93359375  learning_rate : 0.00325 
-Iteration:   1%|          | 70/6580 [00:16<21:40,  5.01it/s]DLL 2020-12-15 08:34:07.390332 - Training Epoch: 0 Training Iteration: 71  average_loss : 8.03125  step_loss : 8.03125  learning_rate : 0.0033000000000000004 
-Iteration:   1%|          | 71/6580 [00:17<21:38,  5.01it/s]DLL 2020-12-15 08:34:07.589391 - Training Epoch: 0 Training Iteration: 72  average_loss : 8.0703125  step_loss : 8.0703125  learning_rate : 0.00335 
-Iteration:   1%|          | 72/6580 [00:17<21:37,  5.02it/s]DLL 2020-12-15 08:34:07.788817 - Training Epoch: 0 Training Iteration: 73  average_loss : 8.0625  step_loss : 8.0625  learning_rate : 0.0034 
-Iteration:   1%|          | 73/6580 [00:17<21:37,  5.01it/s]DLL 2020-12-15 08:34:07.988556 - Training Epoch: 0 Training Iteration: 74  average_loss : 8.09375  step_loss : 8.09375  learning_rate : 0.00345 
-Iteration:   1%|          | 74/6580 [00:17<21:37,  5.01it/s]DLL 2020-12-15 08:34:08.187678 - Training Epoch: 0 Training Iteration: 75  average_loss : 8.0625  step_loss : 8.0625  learning_rate : 0.0035000000000000005 
-Iteration:   1%|          | 75/6580 [00:17<21:37,  5.02it/s]DLL 2020-12-15 08:34:08.387018 - Training Epoch: 0 Training Iteration: 76  average_loss : 8.15625  step_loss : 8.15625  learning_rate : 0.00355 
-Iteration:   1%|          | 76/6580 [00:18<21:36,  5.02it/s]DLL 2020-12-15 08:34:08.587915 - Training Epoch: 0 Training Iteration: 77  average_loss : 8.0625  step_loss : 8.0625  learning_rate : 0.0036 
-Iteration:   1%|          | 77/6580 [00:18<21:39,  5.00it/s]DLL 2020-12-15 08:34:08.786655 - Training Epoch: 0 Training Iteration: 78  average_loss : 8.1796875  step_loss : 8.1796875  learning_rate : 0.0036499999999999996 
-Iteration:   1%|          | 78/6580 [00:18<21:37,  5.01it/s]DLL 2020-12-15 08:34:08.984839 - Training Epoch: 0 Training Iteration: 79  average_loss : 8.0859375  step_loss : 8.0859375  learning_rate : 0.0037 
-Iteration:   1%|          | 79/6580 [00:18<21:34,  5.02it/s]DLL 2020-12-15 08:34:09.182398 - Training Epoch: 0 Training Iteration: 80  average_loss : 8.1328125  step_loss : 8.1328125  learning_rate : 0.00375 
-Iteration:   1%|          | 80/6580 [00:18<21:31,  5.03it/s]DLL 2020-12-15 08:34:09.382339 - Training Epoch: 0 Training Iteration: 81  average_loss : 8.1484375  step_loss : 8.1484375  learning_rate : 0.0038 
-Iteration:   1%|          | 81/6580 [00:19<21:33,  5.02it/s]DLL 2020-12-15 08:34:09.581695 - Training Epoch: 0 Training Iteration: 82  average_loss : 8.0859375  step_loss : 8.0859375  learning_rate : 0.0038500000000000006 
-Iteration:   1%|          | 82/6580 [00:19<21:33,  5.02it/s]DLL 2020-12-15 08:34:09.782274 - Training Epoch: 0 Training Iteration: 83  average_loss : 8.0078125  step_loss : 8.0078125  learning_rate : 0.0039000000000000003 
-Iteration:   1%|▏         | 83/6580 [00:19<21:36,  5.01it/s]DLL 2020-12-15 08:34:09.981783 - Training Epoch: 0 Training Iteration: 84  average_loss : 7.96484375  step_loss : 7.96484375  learning_rate : 0.00395 
-Iteration:   1%|▏         | 84/6580 [00:19<21:36,  5.01it/s]DLL 2020-12-15 08:34:10.180665 - Training Epoch: 0 Training Iteration: 85  average_loss : 8.0703125  step_loss : 8.0703125  learning_rate : 0.004 
-Iteration:   1%|▏         | 85/6580 [00:19<21:34,  5.02it/s]DLL 2020-12-15 08:34:10.379969 - Training Epoch: 0 Training Iteration: 86  average_loss : 8.0  step_loss : 8.0  learning_rate : 0.004050000000000001 
-Iteration:   1%|▏         | 86/6580 [00:20<21:34,  5.02it/s]DLL 2020-12-15 08:34:10.579447 - Training Epoch: 0 Training Iteration: 87  average_loss : 8.046875  step_loss : 8.046875  learning_rate : 0.0041 
-Iteration:   1%|▏         | 87/6580 [00:20<21:34,  5.02it/s]DLL 2020-12-15 08:34:10.777946 - Training Epoch: 0 Training Iteration: 88  average_loss : 7.984375  step_loss : 7.984375  learning_rate : 0.00415 
-Iteration:   1%|▏         | 88/6580 [00:20<21:32,  5.02it/s]DLL 2020-12-15 08:34:10.976123 - Training Epoch: 0 Training Iteration: 89  average_loss : 8.0234375  step_loss : 8.0234375  learning_rate : 0.0042 
-Iteration:   1%|▏         | 89/6580 [00:20<21:30,  5.03it/s]DLL 2020-12-15 08:34:11.175145 - Training Epoch: 0 Training Iteration: 90  average_loss : 8.1875  step_loss : 8.1875  learning_rate : 0.00425 
-Iteration:   1%|▏         | 90/6580 [00:20<21:30,  5.03it/s]DLL 2020-12-15 08:34:11.374281 - Training Epoch: 0 Training Iteration: 91  average_loss : 8.0703125  step_loss : 8.0703125  learning_rate : 0.0043 
-Iteration:   1%|▏         | 91/6580 [00:21<21:31,  5.03it/s]DLL 2020-12-15 08:34:11.573577 - Training Epoch: 0 Training Iteration: 92  average_loss : 8.0  step_loss : 8.0  learning_rate : 0.00435 
-Iteration:   1%|▏         | 92/6580 [00:21<21:31,  5.02it/s]DLL 2020-12-15 08:34:11.772654 - Training Epoch: 0 Training Iteration: 93  average_loss : 8.03125  step_loss : 8.03125  learning_rate : 0.004399999999999999 
-Iteration:   1%|▏         | 93/6580 [00:21<21:31,  5.02it/s]DLL 2020-12-15 08:34:11.971308 - Training Epoch: 0 Training Iteration: 94  average_loss : 8.078125  step_loss : 8.078125  learning_rate : 0.00445 
-Iteration:   1%|▏         | 94/6580 [00:21<21:30,  5.03it/s]DLL 2020-12-15 08:34:12.169272 - Training Epoch: 0 Training Iteration: 95  average_loss : 7.984375  step_loss : 7.984375  learning_rate : 0.0045000000000000005 
-Iteration:   1%|▏         | 95/6580 [00:21<21:28,  5.03it/s]DLL 2020-12-15 08:34:12.366636 - Training Epoch: 0 Training Iteration: 96  average_loss : 8.0  step_loss : 8.0  learning_rate : 0.00455 
-Iteration:   1%|▏         | 96/6580 [00:22<21:25,  5.04it/s]DLL 2020-12-15 08:34:12.564618 - Training Epoch: 0 Training Iteration: 97  average_loss : 8.140625  step_loss : 8.140625  learning_rate : 0.004600000000000001 
-Iteration:   1%|▏         | 97/6580 [00:22<21:24,  5.05it/s]DLL 2020-12-15 08:34:12.763923 - Training Epoch: 0 Training Iteration: 98  average_loss : 7.9609375  step_loss : 7.9609375  learning_rate : 0.0046500000000000005 
-Iteration:   1%|▏         | 98/6580 [00:22<21:26,  5.04it/s]DLL 2020-12-15 08:34:12.964543 - Training Epoch: 0 Training Iteration: 99  average_loss : 8.078125  step_loss : 8.078125  learning_rate : 0.0047 
-Iteration:   2%|▏         | 99/6580 [00:22<21:30,  5.02it/s]DLL 2020-12-15 08:34:13.163393 - Training Epoch: 0 Training Iteration: 100  average_loss : 7.98046875  step_loss : 7.98046875  learning_rate : 0.00475 
-Iteration:   2%|▏         | 100/6580 [00:22<21:30,  5.02it/s]DLL 2020-12-15 08:34:13.359872 - Training Epoch: 0 Training Iteration: 101  average_loss : 7.98046875  step_loss : 7.98046875  learning_rate : 0.0048000000000000004 
-Iteration:   2%|▏         | 101/6580 [00:23<21:24,  5.04it/s]DLL 2020-12-15 08:34:13.557979 - Training Epoch: 0 Training Iteration: 102  average_loss : 8.015625  step_loss : 8.015625  learning_rate : 0.00485 
-Iteration:   2%|▏         | 102/6580 [00:23<21:24,  5.04it/s]DLL 2020-12-15 08:34:13.757554 - Training Epoch: 0 Training Iteration: 103  average_loss : 7.953125  step_loss : 7.953125  learning_rate : 0.0049 
-Iteration:   2%|▏         | 103/6580 [00:23<21:26,  5.03it/s]DLL 2020-12-15 08:34:13.959031 - Training Epoch: 0 Training Iteration: 104  average_loss : 7.94921875  step_loss : 7.94921875  learning_rate : 0.0049499999999999995 
-Iteration:   2%|▏         | 104/6580 [00:23<21:31,  5.01it/s]DLL 2020-12-15 08:34:14.158367 - Training Epoch: 0 Training Iteration: 105  average_loss : 7.95703125  step_loss : 7.95703125  learning_rate : 0.005 
-Iteration:   2%|▏         | 105/6580 [00:23<21:31,  5.01it/s]DLL 2020-12-15 08:34:14.356204 - Training Epoch: 0 Training Iteration: 106  average_loss : 8.1171875  step_loss : 8.1171875  learning_rate : 0.00505 
-Iteration:   2%|▏         | 106/6580 [00:24<21:28,  5.03it/s]DLL 2020-12-15 08:34:14.554544 - Training Epoch: 0 Training Iteration: 107  average_loss : 8.1875  step_loss : 8.1875  learning_rate : 0.0051 
-Iteration:   2%|▏         | 107/6580 [00:24<21:26,  5.03it/s]DLL 2020-12-15 08:34:14.754733 - Training Epoch: 0 Training Iteration: 108  average_loss : 8.015625  step_loss : 8.015625  learning_rate : 0.00515 
-Iteration:   2%|▏         | 108/6580 [00:24<21:29,  5.02it/s]DLL 2020-12-15 08:34:14.955643 - Training Epoch: 0 Training Iteration: 109  average_loss : 7.99609375  step_loss : 7.99609375  learning_rate : 0.005200000000000001 
-Iteration:   2%|▏         | 109/6580 [00:24<21:32,  5.01it/s]DLL 2020-12-15 08:34:15.153398 - Training Epoch: 0 Training Iteration: 110  average_loss : 8.0390625  step_loss : 8.0390625  learning_rate : 0.00525 
-Iteration:   2%|▏         | 110/6580 [00:24<21:28,  5.02it/s]DLL 2020-12-15 08:34:15.351851 - Training Epoch: 0 Training Iteration: 111  average_loss : 8.0234375  step_loss : 8.0234375  learning_rate : 0.0053 
-Iteration:   2%|▏         | 111/6580 [00:25<21:26,  5.03it/s]DLL 2020-12-15 08:34:15.549721 - Training Epoch: 0 Training Iteration: 112  average_loss : 7.9921875  step_loss : 7.9921875  learning_rate : 0.005350000000000001 
-Iteration:   2%|▏         | 112/6580 [00:25<21:24,  5.04it/s]DLL 2020-12-15 08:34:15.747144 - Training Epoch: 0 Training Iteration: 113  average_loss : 8.015625  step_loss : 8.015625  learning_rate : 0.0054 
-Iteration:   2%|▏         | 113/6580 [00:25<21:22,  5.04it/s]DLL 2020-12-15 08:34:15.947453 - Training Epoch: 0 Training Iteration: 114  average_loss : 7.89453125  step_loss : 7.89453125  learning_rate : 0.00545 
-Iteration:   2%|▏         | 114/6580 [00:25<21:25,  5.03it/s]DLL 2020-12-15 08:34:16.148471 - Training Epoch: 0 Training Iteration: 115  average_loss : 7.95703125  step_loss : 7.95703125  learning_rate : 0.0055 
-Iteration:   2%|▏         | 115/6580 [00:25<21:29,  5.01it/s]DLL 2020-12-15 08:34:16.346872 - Training Epoch: 0 Training Iteration: 116  average_loss : 8.109375  step_loss : 8.109375  learning_rate : 0.00555 
-Iteration:   2%|▏         | 116/6580 [00:26<21:27,  5.02it/s]DLL 2020-12-15 08:34:16.543476 - Training Epoch: 0 Training Iteration: 117  average_loss : 8.125  step_loss : 8.125  learning_rate : 0.0056 
-Iteration:   2%|▏         | 117/6580 [00:26<21:22,  5.04it/s]DLL 2020-12-15 08:34:16.741117 - Training Epoch: 0 Training Iteration: 118  average_loss : 7.92578125  step_loss : 7.92578125  learning_rate : 0.00565 
-Iteration:   2%|▏         | 118/6580 [00:26<21:20,  5.05it/s]DLL 2020-12-15 08:34:16.940064 - Training Epoch: 0 Training Iteration: 119  average_loss : 7.96875  step_loss : 7.96875  learning_rate : 0.0057 
-Iteration:   2%|▏         | 119/6580 [00:26<21:21,  5.04it/s]DLL 2020-12-15 08:34:17.140608 - Training Epoch: 0 Training Iteration: 120  final_loss : 8.02392578125 
+
+Iteration:   0%|          | 5/6580 [00:01<39:37,  2.77it/s]DLL 2020-12-15 08:33:52.134134 - Training Epoch: 0 Training Iteration: 6  average_loss : 11.2109375  step_loss : 11.2109375  learning_rate : 5e-05 
+
+Iteration:   0%|          | 6/6580 [00:01<34:25,  3.18it/s]DLL 2020-12-15 08:33:52.335303 - Training Epoch: 0 Training Iteration: 7  average_loss : 11.234375  step_loss : 11.234375  learning_rate : 0.0001 
+
+Iteration:   0%|          | 7/6580 [00:02<30:42,  3.57it/s]DLL 2020-12-15 08:33:52.535673 - Training Epoch: 0 Training Iteration: 8  average_loss : 11.1875  step_loss : 11.1875  learning_rate : 0.00015000000000000001 
+
+Iteration:   0%|          | 8/6580 [00:02<28:04,  3.90it/s]DLL 2020-12-15 08:33:52.735655 - Training Epoch: 0 Training Iteration: 9  average_loss : 11.09375  step_loss : 11.09375  learning_rate : 0.0002 
+
+Iteration:   0%|          | 9/6580 [00:02<26:13,  4.18it/s]DLL 2020-12-15 08:33:52.935598 - Training Epoch: 0 Training Iteration: 10  average_loss : 11.0  step_loss : 11.0  learning_rate : 0.00025 
+
+Iteration:   0%|          | 10/6580 [00:02<24:55,  4.39it/s]DLL 2020-12-15 08:33:53.135033 - Training Epoch: 0 Training Iteration: 11  average_loss : 10.875  step_loss : 10.875  learning_rate : 0.00030000000000000003 
+
+Iteration:   0%|          | 11/6580 [00:02<23:59,  4.56it/s]DLL 2020-12-15 08:33:53.335670 - Training Epoch: 0 Training Iteration: 12  average_loss : 10.765625  step_loss : 10.765625  learning_rate : 0.00035 
+
+Iteration:   0%|          | 12/6580 [00:03<23:22,  4.68it/s]DLL 2020-12-15 08:33:53.537741 - Training Epoch: 0 Training Iteration: 13  average_loss : 10.6796875  step_loss : 10.6796875  learning_rate : 0.0004 
+
+Iteration:   0%|          | 13/6580 [00:03<22:59,  4.76it/s]DLL 2020-12-15 08:33:53.740393 - Training Epoch: 0 Training Iteration: 14  average_loss : 10.6171875  step_loss : 10.6171875  learning_rate : 0.00045 
+
+Iteration:   0%|          | 14/6580 [00:03<22:44,  4.81it/s]DLL 2020-12-15 08:33:53.940259 - Training Epoch: 0 Training Iteration: 15  average_loss : 10.5546875  step_loss : 10.5546875  learning_rate : 0.0005 
+
+Iteration:   0%|          | 15/6580 [00:03<22:28,  4.87it/s]DLL 2020-12-15 08:33:54.140815 - Training Epoch: 0 Training Iteration: 16  average_loss : 10.375  step_loss : 10.375  learning_rate : 0.0005499999999999999 
+
+Iteration:   0%|          | 16/6580 [00:03<22:19,  4.90it/s]DLL 2020-12-15 08:33:54.341771 - Training Epoch: 0 Training Iteration: 17  average_loss : 10.3515625  step_loss : 10.3515625  learning_rate : 0.0006000000000000001 
+
+Iteration:   0%|          | 17/6580 [00:04<22:12,  4.92it/s]DLL 2020-12-15 08:33:54.541632 - Training Epoch: 0 Training Iteration: 18  average_loss : 10.2890625  step_loss : 10.2890625  learning_rate : 0.0006500000000000001 
+
+Iteration:   0%|          | 18/6580 [00:04<22:06,  4.95it/s]DLL 2020-12-15 08:33:54.743492 - Training Epoch: 0 Training Iteration: 19  average_loss : 10.265625  step_loss : 10.265625  learning_rate : 0.0007 
+
+Iteration:   0%|          | 19/6580 [00:04<22:05,  4.95it/s]DLL 2020-12-15 08:33:54.945752 - Training Epoch: 0 Training Iteration: 20  average_loss : 10.1640625  step_loss : 10.1640625  learning_rate : 0.00075 
+
+Iteration:   0%|          | 20/6580 [00:04<22:05,  4.95it/s]DLL 2020-12-15 08:33:55.148416 - Training Epoch: 0 Training Iteration: 21  average_loss : 10.1171875  step_loss : 10.1171875  learning_rate : 0.0008 
+
+Iteration:   0%|          | 21/6580 [00:04<22:06,  4.94it/s]DLL 2020-12-15 08:33:55.351642 - Training Epoch: 0 Training Iteration: 22  average_loss : 10.09375  step_loss : 10.09375  learning_rate : 0.00085 
+
+Iteration:   0%|          | 22/6580 [00:05<22:08,  4.94it/s]DLL 2020-12-15 08:33:55.553152 - Training Epoch: 0 Training Iteration: 23  average_loss : 10.078125  step_loss : 10.078125  learning_rate : 0.0009 
+
+Iteration:   0%|          | 23/6580 [00:05<22:06,  4.94it/s]DLL 2020-12-15 08:33:55.757021 - Training Epoch: 0 Training Iteration: 24  average_loss : 9.9609375  step_loss : 9.9609375  learning_rate : 0.00095 
+
+Iteration:   0%|          | 24/6580 [00:05<22:09,  4.93it/s]DLL 2020-12-15 08:33:57.915462 - Training Epoch: 0 Training Iteration: 25  average_loss : 9.9453125  step_loss : 9.9453125  learning_rate : 0.001 
+
+Iteration:   0%|          | 25/6580 [00:07<1:29:45,  1.22it/s]DLL 2020-12-15 08:33:58.372851 - Training Epoch: 0 Training Iteration: 26  average_loss : 9.96875  step_loss : 9.96875  learning_rate : 0.00105 
+
+Iteration:   0%|          | 26/6580 [00:08<1:14:17,  1.47it/s]DLL 2020-12-15 08:33:58.568900 - Training Epoch: 0 Training Iteration: 27  average_loss : 9.9375  step_loss : 9.9375  learning_rate : 0.0010999999999999998 
+
+Iteration:   0%|          | 27/6580 [00:08<58:25,  1.87it/s]  DLL 2020-12-15 08:33:58.772695 - Training Epoch: 0 Training Iteration: 28  average_loss : 9.7734375  step_loss : 9.7734375  learning_rate : 0.0011500000000000002 
+
+Iteration:   0%|          | 28/6580 [00:08<47:34,  2.30it/s]DLL 2020-12-15 08:33:58.974562 - Training Epoch: 0 Training Iteration: 29  average_loss : 9.671875  step_loss : 9.671875  learning_rate : 0.0012000000000000001 
+
+Iteration:   0%|          | 29/6580 [00:08<39:54,  2.74it/s]DLL 2020-12-15 08:33:59.175464 - Training Epoch: 0 Training Iteration: 30  average_loss : 9.796875  step_loss : 9.796875  learning_rate : 0.00125 
+
+Iteration:   0%|          | 30/6580 [00:08<34:30,  3.16it/s]DLL 2020-12-15 08:33:59.377829 - Training Epoch: 0 Training Iteration: 31  average_loss : 9.734375  step_loss : 9.734375  learning_rate : 0.0013000000000000002 
+
+Iteration:   0%|          | 31/6580 [00:09<30:46,  3.55it/s]DLL 2020-12-15 08:33:59.580680 - Training Epoch: 0 Training Iteration: 32  average_loss : 9.6796875  step_loss : 9.6796875  learning_rate : 0.00135 
+
+Iteration:   0%|          | 32/6580 [00:09<28:10,  3.87it/s]DLL 2020-12-15 08:33:59.781189 - Training Epoch: 0 Training Iteration: 33  average_loss : 9.5546875  step_loss : 9.5546875  learning_rate : 0.0014 
+
+Iteration:   1%|          | 33/6580 [00:09<26:17,  4.15it/s]DLL 2020-12-15 08:33:59.982029 - Training Epoch: 0 Training Iteration: 34  average_loss : 9.5390625  step_loss : 9.5390625  learning_rate : 0.0014500000000000001 
+
+Iteration:   1%|          | 34/6580 [00:09<24:58,  4.37it/s]DLL 2020-12-15 08:34:00.182020 - Training Epoch: 0 Training Iteration: 35  average_loss : 9.4921875  step_loss : 9.4921875  learning_rate : 0.0015 
+
+Iteration:   1%|          | 35/6580 [00:09<24:01,  4.54it/s]DLL 2020-12-15 08:34:00.384181 - Training Epoch: 0 Training Iteration: 36  average_loss : 9.5625  step_loss : 9.5625  learning_rate : 0.0015500000000000002 
+
+Iteration:   1%|          | 36/6580 [00:10<23:26,  4.65it/s]DLL 2020-12-15 08:34:00.581737 - Training Epoch: 0 Training Iteration: 37  average_loss : 9.515625  step_loss : 9.515625  learning_rate : 0.0016 
+
+Iteration:   1%|          | 37/6580 [00:10<22:51,  4.77it/s]DLL 2020-12-15 08:34:00.782893 - Training Epoch: 0 Training Iteration: 38  average_loss : 9.3828125  step_loss : 9.3828125  learning_rate : 0.0016500000000000002 
+
+Iteration:   1%|          | 38/6580 [00:10<22:34,  4.83it/s]DLL 2020-12-15 08:34:00.984391 - Training Epoch: 0 Training Iteration: 39  average_loss : 9.4140625  step_loss : 9.4140625  learning_rate : 0.0017 
+
+Iteration:   1%|          | 39/6580 [00:10<22:23,  4.87it/s]DLL 2020-12-15 08:34:01.186892 - Training Epoch: 0 Training Iteration: 40  average_loss : 9.40625  step_loss : 9.40625  learning_rate : 0.0017500000000000003 
+
+Iteration:   1%|          | 40/6580 [00:10<22:17,  4.89it/s]DLL 2020-12-15 08:34:01.387696 - Training Epoch: 0 Training Iteration: 41  average_loss : 9.1953125  step_loss : 9.1953125  learning_rate : 0.0018 
+
+Iteration:   1%|          | 41/6580 [00:11<22:10,  4.92it/s]DLL 2020-12-15 08:34:01.589044 - Training Epoch: 0 Training Iteration: 42  average_loss : 9.15625  step_loss : 9.15625  learning_rate : 0.00185 
+
+Iteration:   1%|          | 42/6580 [00:11<22:05,  4.93it/s]DLL 2020-12-15 08:34:01.788760 - Training Epoch: 0 Training Iteration: 43  average_loss : 9.2109375  step_loss : 9.2109375  learning_rate : 0.0019 
+
+Iteration:   1%|          | 43/6580 [00:11<21:59,  4.95it/s]DLL 2020-12-15 08:34:01.989531 - Training Epoch: 0 Training Iteration: 44  average_loss : 9.1484375  step_loss : 9.1484375  learning_rate : 0.0019500000000000001 
+
+Iteration:   1%|          | 44/6580 [00:11<21:57,  4.96it/s]DLL 2020-12-15 08:34:02.191506 - Training Epoch: 0 Training Iteration: 45  average_loss : 9.0546875  step_loss : 9.0546875  learning_rate : 0.002 
+
+Iteration:   1%|          | 45/6580 [00:11<21:57,  4.96it/s]DLL 2020-12-15 08:34:02.392240 - Training Epoch: 0 Training Iteration: 46  average_loss : 9.0  step_loss : 9.0  learning_rate : 0.00205 
+
+Iteration:   1%|          | 46/6580 [00:12<21:55,  4.97it/s]DLL 2020-12-15 08:34:02.594308 - Training Epoch: 0 Training Iteration: 47  average_loss : 8.9921875  step_loss : 8.9921875  learning_rate : 0.0021 
+
+Iteration:   1%|          | 47/6580 [00:12<21:56,  4.96it/s]DLL 2020-12-15 08:34:02.794596 - Training Epoch: 0 Training Iteration: 48  average_loss : 8.8046875  step_loss : 8.8046875  learning_rate : 0.00215 
+
+Iteration:   1%|          | 48/6580 [00:12<21:54,  4.97it/s]DLL 2020-12-15 08:34:02.994700 - Training Epoch: 0 Training Iteration: 49  average_loss : 8.8359375  step_loss : 8.8359375  learning_rate : 0.0021999999999999997 
+
+Iteration:   1%|          | 49/6580 [00:12<21:51,  4.98it/s]DLL 2020-12-15 08:34:03.195493 - Training Epoch: 0 Training Iteration: 50  average_loss : 8.7734375  step_loss : 8.7734375  learning_rate : 0.0022500000000000003 
+
+Iteration:   1%|          | 50/6580 [00:12<21:51,  4.98it/s]DLL 2020-12-15 08:34:03.394490 - Training Epoch: 0 Training Iteration: 51  average_loss : 8.765625  step_loss : 8.765625  learning_rate : 0.0023000000000000004 
+
+Iteration:   1%|          | 51/6580 [00:13<21:47,  4.99it/s]DLL 2020-12-15 08:34:03.594473 - Training Epoch: 0 Training Iteration: 52  average_loss : 8.7578125  step_loss : 8.7578125  learning_rate : 0.00235 
+
+Iteration:   1%|          | 52/6580 [00:13<21:46,  5.00it/s]DLL 2020-12-15 08:34:03.795422 - Training Epoch: 0 Training Iteration: 53  average_loss : 8.75  step_loss : 8.75  learning_rate : 0.0024000000000000002 
+
+Iteration:   1%|          | 53/6580 [00:13<21:48,  4.99it/s]DLL 2020-12-15 08:34:03.994744 - Training Epoch: 0 Training Iteration: 54  average_loss : 8.6953125  step_loss : 8.6953125  learning_rate : 0.00245 
+
+Iteration:   1%|          | 54/6580 [00:13<21:45,  5.00it/s]DLL 2020-12-15 08:34:04.195201 - Training Epoch: 0 Training Iteration: 55  average_loss : 8.578125  step_loss : 8.578125  learning_rate : 0.0025 
+
+Iteration:   1%|          | 55/6580 [00:13<21:46,  5.00it/s]DLL 2020-12-15 08:34:04.396547 - Training Epoch: 0 Training Iteration: 56  average_loss : 8.546875  step_loss : 8.546875  learning_rate : 0.00255 
+
+Iteration:   1%|          | 56/6580 [00:14<21:48,  4.99it/s]DLL 2020-12-15 08:34:04.595704 - Training Epoch: 0 Training Iteration: 57  average_loss : 8.4453125  step_loss : 8.4453125  learning_rate : 0.0026000000000000003 
+
+Iteration:   1%|          | 57/6580 [00:14<21:45,  5.00it/s]DLL 2020-12-15 08:34:04.794886 - Training Epoch: 0 Training Iteration: 58  average_loss : 8.3671875  step_loss : 8.3671875  learning_rate : 0.00265 
+
+Iteration:   1%|          | 58/6580 [00:14<21:43,  5.00it/s]DLL 2020-12-15 08:34:04.994118 - Training Epoch: 0 Training Iteration: 59  average_loss : 8.4296875  step_loss : 8.4296875  learning_rate : 0.0027 
+
+Iteration:   1%|          | 59/6580 [00:14<21:41,  5.01it/s]DLL 2020-12-15 08:34:05.193402 - Training Epoch: 0 Training Iteration: 60  average_loss : 8.375  step_loss : 8.375  learning_rate : 0.00275 
+
+Iteration:   1%|          | 60/6580 [00:14<21:41,  5.01it/s]DLL 2020-12-15 08:34:05.393773 - Training Epoch: 0 Training Iteration: 61  average_loss : 8.234375  step_loss : 8.234375  learning_rate : 0.0028 
+
+Iteration:   1%|          | 61/6580 [00:15<21:42,  5.01it/s]DLL 2020-12-15 08:34:05.593052 - Training Epoch: 0 Training Iteration: 62  average_loss : 8.3828125  step_loss : 8.3828125  learning_rate : 0.00285 
+
+Iteration:   1%|          | 62/6580 [00:15<21:41,  5.01it/s]DLL 2020-12-15 08:34:05.791924 - Training Epoch: 0 Training Iteration: 63  average_loss : 8.078125  step_loss : 8.078125  learning_rate : 0.0029000000000000002 
+
+Iteration:   1%|          | 63/6580 [00:15<21:39,  5.01it/s]DLL 2020-12-15 08:34:05.991292 - Training Epoch: 0 Training Iteration: 64  average_loss : 8.109375  step_loss : 8.109375  learning_rate : 0.00295 
+
+Iteration:   1%|          | 64/6580 [00:15<21:39,  5.01it/s]DLL 2020-12-15 08:34:06.190355 - Training Epoch: 0 Training Iteration: 65  average_loss : 8.1328125  step_loss : 8.1328125  learning_rate : 0.003 
+
+Iteration:   1%|          | 65/6580 [00:15<21:38,  5.02it/s]DLL 2020-12-15 08:34:06.391601 - Training Epoch: 0 Training Iteration: 66  average_loss : 8.09375  step_loss : 8.09375  learning_rate : 0.0030499999999999998 
+
+Iteration:   1%|          | 66/6580 [00:16<21:42,  5.00it/s]DLL 2020-12-15 08:34:06.592000 - Training Epoch: 0 Training Iteration: 67  average_loss : 8.21875  step_loss : 8.21875  learning_rate : 0.0031000000000000003 
+
+Iteration:   1%|          | 67/6580 [00:16<21:42,  5.00it/s]DLL 2020-12-15 08:34:06.792385 - Training Epoch: 0 Training Iteration: 68  average_loss : 8.0  step_loss : 8.0  learning_rate : 0.00315 
+
+Iteration:   1%|          | 68/6580 [00:16<21:43,  5.00it/s]DLL 2020-12-15 08:34:06.992105 - Training Epoch: 0 Training Iteration: 69  average_loss : 8.125  step_loss : 8.125  learning_rate : 0.0032 
+
+Iteration:   1%|          | 69/6580 [00:16<21:42,  5.00it/s]DLL 2020-12-15 08:34:07.191279 - Training Epoch: 0 Training Iteration: 70  average_loss : 7.93359375  step_loss : 7.93359375  learning_rate : 0.00325 
+
+Iteration:   1%|          | 70/6580 [00:16<21:40,  5.01it/s]DLL 2020-12-15 08:34:07.390332 - Training Epoch: 0 Training Iteration: 71  average_loss : 8.03125  step_loss : 8.03125  learning_rate : 0.0033000000000000004 
+
+Iteration:   1%|          | 71/6580 [00:17<21:38,  5.01it/s]DLL 2020-12-15 08:34:07.589391 - Training Epoch: 0 Training Iteration: 72  average_loss : 8.0703125  step_loss : 8.0703125  learning_rate : 0.00335 
+
+Iteration:   1%|          | 72/6580 [00:17<21:37,  5.02it/s]DLL 2020-12-15 08:34:07.788817 - Training Epoch: 0 Training Iteration: 73  average_loss : 8.0625  step_loss : 8.0625  learning_rate : 0.0034 
+
+Iteration:   1%|          | 73/6580 [00:17<21:37,  5.01it/s]DLL 2020-12-15 08:34:07.988556 - Training Epoch: 0 Training Iteration: 74  average_loss : 8.09375  step_loss : 8.09375  learning_rate : 0.00345 
+
+Iteration:   1%|          | 74/6580 [00:17<21:37,  5.01it/s]DLL 2020-12-15 08:34:08.187678 - Training Epoch: 0 Training Iteration: 75  average_loss : 8.0625  step_loss : 8.0625  learning_rate : 0.0035000000000000005 
+
+Iteration:   1%|          | 75/6580 [00:17<21:37,  5.02it/s]DLL 2020-12-15 08:34:08.387018 - Training Epoch: 0 Training Iteration: 76  average_loss : 8.15625  step_loss : 8.15625  learning_rate : 0.00355 
+
+Iteration:   1%|          | 76/6580 [00:18<21:36,  5.02it/s]DLL 2020-12-15 08:34:08.587915 - Training Epoch: 0 Training Iteration: 77  average_loss : 8.0625  step_loss : 8.0625  learning_rate : 0.0036 
+
+Iteration:   1%|          | 77/6580 [00:18<21:39,  5.00it/s]DLL 2020-12-15 08:34:08.786655 - Training Epoch: 0 Training Iteration: 78  average_loss : 8.1796875  step_loss : 8.1796875  learning_rate : 0.0036499999999999996 
+
+Iteration:   1%|          | 78/6580 [00:18<21:37,  5.01it/s]DLL 2020-12-15 08:34:08.984839 - Training Epoch: 0 Training Iteration: 79  average_loss : 8.0859375  step_loss : 8.0859375  learning_rate : 0.0037 
+
+Iteration:   1%|          | 79/6580 [00:18<21:34,  5.02it/s]DLL 2020-12-15 08:34:09.182398 - Training Epoch: 0 Training Iteration: 80  average_loss : 8.1328125  step_loss : 8.1328125  learning_rate : 0.00375 
+
+Iteration:   1%|          | 80/6580 [00:18<21:31,  5.03it/s]DLL 2020-12-15 08:34:09.382339 - Training Epoch: 0 Training Iteration: 81  average_loss : 8.1484375  step_loss : 8.1484375  learning_rate : 0.0038 
+
+Iteration:   1%|          | 81/6580 [00:19<21:33,  5.02it/s]DLL 2020-12-15 08:34:09.581695 - Training Epoch: 0 Training Iteration: 82  average_loss : 8.0859375  step_loss : 8.0859375  learning_rate : 0.0038500000000000006 
+
+Iteration:   1%|          | 82/6580 [00:19<21:33,  5.02it/s]DLL 2020-12-15 08:34:09.782274 - Training Epoch: 0 Training Iteration: 83  average_loss : 8.0078125  step_loss : 8.0078125  learning_rate : 0.0039000000000000003 
+
+Iteration:   1%|▏         | 83/6580 [00:19<21:36,  5.01it/s]DLL 2020-12-15 08:34:09.981783 - Training Epoch: 0 Training Iteration: 84  average_loss : 7.96484375  step_loss : 7.96484375  learning_rate : 0.00395 
+
+Iteration:   1%|▏         | 84/6580 [00:19<21:36,  5.01it/s]DLL 2020-12-15 08:34:10.180665 - Training Epoch: 0 Training Iteration: 85  average_loss : 8.0703125  step_loss : 8.0703125  learning_rate : 0.004 
+
+Iteration:   1%|▏         | 85/6580 [00:19<21:34,  5.02it/s]DLL 2020-12-15 08:34:10.379969 - Training Epoch: 0 Training Iteration: 86  average_loss : 8.0  step_loss : 8.0  learning_rate : 0.004050000000000001 
+
+Iteration:   1%|▏         | 86/6580 [00:20<21:34,  5.02it/s]DLL 2020-12-15 08:34:10.579447 - Training Epoch: 0 Training Iteration: 87  average_loss : 8.046875  step_loss : 8.046875  learning_rate : 0.0041 
+
+Iteration:   1%|▏         | 87/6580 [00:20<21:34,  5.02it/s]DLL 2020-12-15 08:34:10.777946 - Training Epoch: 0 Training Iteration: 88  average_loss : 7.984375  step_loss : 7.984375  learning_rate : 0.00415 
+
+Iteration:   1%|▏         | 88/6580 [00:20<21:32,  5.02it/s]DLL 2020-12-15 08:34:10.976123 - Training Epoch: 0 Training Iteration: 89  average_loss : 8.0234375  step_loss : 8.0234375  learning_rate : 0.0042 
+
+Iteration:   1%|▏         | 89/6580 [00:20<21:30,  5.03it/s]DLL 2020-12-15 08:34:11.175145 - Training Epoch: 0 Training Iteration: 90  average_loss : 8.1875  step_loss : 8.1875  learning_rate : 0.00425 
+
+Iteration:   1%|▏         | 90/6580 [00:20<21:30,  5.03it/s]DLL 2020-12-15 08:34:11.374281 - Training Epoch: 0 Training Iteration: 91  average_loss : 8.0703125  step_loss : 8.0703125  learning_rate : 0.0043 
+
+Iteration:   1%|▏         | 91/6580 [00:21<21:31,  5.03it/s]DLL 2020-12-15 08:34:11.573577 - Training Epoch: 0 Training Iteration: 92  average_loss : 8.0  step_loss : 8.0  learning_rate : 0.00435 
+
+Iteration:   1%|▏         | 92/6580 [00:21<21:31,  5.02it/s]DLL 2020-12-15 08:34:11.772654 - Training Epoch: 0 Training Iteration: 93  average_loss : 8.03125  step_loss : 8.03125  learning_rate : 0.004399999999999999 
+
+Iteration:   1%|▏         | 93/6580 [00:21<21:31,  5.02it/s]DLL 2020-12-15 08:34:11.971308 - Training Epoch: 0 Training Iteration: 94  average_loss : 8.078125  step_loss : 8.078125  learning_rate : 0.00445 
+
+Iteration:   1%|▏         | 94/6580 [00:21<21:30,  5.03it/s]DLL 2020-12-15 08:34:12.169272 - Training Epoch: 0 Training Iteration: 95  average_loss : 7.984375  step_loss : 7.984375  learning_rate : 0.0045000000000000005 
+
+Iteration:   1%|▏         | 95/6580 [00:21<21:28,  5.03it/s]DLL 2020-12-15 08:34:12.366636 - Training Epoch: 0 Training Iteration: 96  average_loss : 8.0  step_loss : 8.0  learning_rate : 0.00455 
+
+Iteration:   1%|▏         | 96/6580 [00:22<21:25,  5.04it/s]DLL 2020-12-15 08:34:12.564618 - Training Epoch: 0 Training Iteration: 97  average_loss : 8.140625  step_loss : 8.140625  learning_rate : 0.004600000000000001 
+
+Iteration:   1%|▏         | 97/6580 [00:22<21:24,  5.05it/s]DLL 2020-12-15 08:34:12.763923 - Training Epoch: 0 Training Iteration: 98  average_loss : 7.9609375  step_loss : 7.9609375  learning_rate : 0.0046500000000000005 
+
+Iteration:   1%|▏         | 98/6580 [00:22<21:26,  5.04it/s]DLL 2020-12-15 08:34:12.964543 - Training Epoch: 0 Training Iteration: 99  average_loss : 8.078125  step_loss : 8.078125  learning_rate : 0.0047 
+
+Iteration:   2%|▏         | 99/6580 [00:22<21:30,  5.02it/s]DLL 2020-12-15 08:34:13.163393 - Training Epoch: 0 Training Iteration: 100  average_loss : 7.98046875  step_loss : 7.98046875  learning_rate : 0.00475 
+
+Iteration:   2%|▏         | 100/6580 [00:22<21:30,  5.02it/s]DLL 2020-12-15 08:34:13.359872 - Training Epoch: 0 Training Iteration: 101  average_loss : 7.98046875  step_loss : 7.98046875  learning_rate : 0.0048000000000000004 
+
+Iteration:   2%|▏         | 101/6580 [00:23<21:24,  5.04it/s]DLL 2020-12-15 08:34:13.557979 - Training Epoch: 0 Training Iteration: 102  average_loss : 8.015625  step_loss : 8.015625  learning_rate : 0.00485 
+
+Iteration:   2%|▏         | 102/6580 [00:23<21:24,  5.04it/s]DLL 2020-12-15 08:34:13.757554 - Training Epoch: 0 Training Iteration: 103  average_loss : 7.953125  step_loss : 7.953125  learning_rate : 0.0049 
+
+Iteration:   2%|▏         | 103/6580 [00:23<21:26,  5.03it/s]DLL 2020-12-15 08:34:13.959031 - Training Epoch: 0 Training Iteration: 104  average_loss : 7.94921875  step_loss : 7.94921875  learning_rate : 0.0049499999999999995 
+
+Iteration:   2%|▏         | 104/6580 [00:23<21:31,  5.01it/s]DLL 2020-12-15 08:34:14.158367 - Training Epoch: 0 Training Iteration: 105  average_loss : 7.95703125  step_loss : 7.95703125  learning_rate : 0.005 
+
+Iteration:   2%|▏         | 105/6580 [00:23<21:31,  5.01it/s]DLL 2020-12-15 08:34:14.356204 - Training Epoch: 0 Training Iteration: 106  average_loss : 8.1171875  step_loss : 8.1171875  learning_rate : 0.00505 
+
+Iteration:   2%|▏         | 106/6580 [00:24<21:28,  5.03it/s]DLL 2020-12-15 08:34:14.554544 - Training Epoch: 0 Training Iteration: 107  average_loss : 8.1875  step_loss : 8.1875  learning_rate : 0.0051 
+
+Iteration:   2%|▏         | 107/6580 [00:24<21:26,  5.03it/s]DLL 2020-12-15 08:34:14.754733 - Training Epoch: 0 Training Iteration: 108  average_loss : 8.015625  step_loss : 8.015625  learning_rate : 0.00515 
+
+Iteration:   2%|▏         | 108/6580 [00:24<21:29,  5.02it/s]DLL 2020-12-15 08:34:14.955643 - Training Epoch: 0 Training Iteration: 109  average_loss : 7.99609375  step_loss : 7.99609375  learning_rate : 0.005200000000000001 
+
+Iteration:   2%|▏         | 109/6580 [00:24<21:32,  5.01it/s]DLL 2020-12-15 08:34:15.153398 - Training Epoch: 0 Training Iteration: 110  average_loss : 8.0390625  step_loss : 8.0390625  learning_rate : 0.00525 
+
+Iteration:   2%|▏         | 110/6580 [00:24<21:28,  5.02it/s]DLL 2020-12-15 08:34:15.351851 - Training Epoch: 0 Training Iteration: 111  average_loss : 8.0234375  step_loss : 8.0234375  learning_rate : 0.0053 
+
+Iteration:   2%|▏         | 111/6580 [00:25<21:26,  5.03it/s]DLL 2020-12-15 08:34:15.549721 - Training Epoch: 0 Training Iteration: 112  average_loss : 7.9921875  step_loss : 7.9921875  learning_rate : 0.005350000000000001 
+
+Iteration:   2%|▏         | 112/6580 [00:25<21:24,  5.04it/s]DLL 2020-12-15 08:34:15.747144 - Training Epoch: 0 Training Iteration: 113  average_loss : 8.015625  step_loss : 8.015625  learning_rate : 0.0054 
+
+Iteration:   2%|▏         | 113/6580 [00:25<21:22,  5.04it/s]DLL 2020-12-15 08:34:15.947453 - Training Epoch: 0 Training Iteration: 114  average_loss : 7.89453125  step_loss : 7.89453125  learning_rate : 0.00545 
+
+Iteration:   2%|▏         | 114/6580 [00:25<21:25,  5.03it/s]DLL 2020-12-15 08:34:16.148471 - Training Epoch: 0 Training Iteration: 115  average_loss : 7.95703125  step_loss : 7.95703125  learning_rate : 0.0055 
+
+Iteration:   2%|▏         | 115/6580 [00:25<21:29,  5.01it/s]DLL 2020-12-15 08:34:16.346872 - Training Epoch: 0 Training Iteration: 116  average_loss : 8.109375  step_loss : 8.109375  learning_rate : 0.00555 
+
+Iteration:   2%|▏         | 116/6580 [00:26<21:27,  5.02it/s]DLL 2020-12-15 08:34:16.543476 - Training Epoch: 0 Training Iteration: 117  average_loss : 8.125  step_loss : 8.125  learning_rate : 0.0056 
+
+Iteration:   2%|▏         | 117/6580 [00:26<21:22,  5.04it/s]DLL 2020-12-15 08:34:16.741117 - Training Epoch: 0 Training Iteration: 118  average_loss : 7.92578125  step_loss : 7.92578125  learning_rate : 0.00565 
+
+Iteration:   2%|▏         | 118/6580 [00:26<21:20,  5.05it/s]DLL 2020-12-15 08:34:16.940064 - Training Epoch: 0 Training Iteration: 119  average_loss : 7.96875  step_loss : 7.96875  learning_rate : 0.0057 
+
+Iteration:   2%|▏         | 119/6580 [00:26<21:21,  5.04it/s]DLL 2020-12-15 08:34:17.140608 - Training Epoch: 0 Training Iteration: 120  final_loss : 8.02392578125 
 DLL 2020-12-15 08:34:17.140764 - PARAMETER checkpoint_step : 120 
-Iteration:   2%|▏         | 119/6580 [00:32<28:59,  3.71it/s]
+
+Iteration:   2%|▏         | 119/6580 [00:32<28:59,  3.71it/s]
 DLL 2020-12-15 08:34:22.372050 -  e2e_train_time : 47.253408670425415  training_sequences_per_second : 3430.018136242529  final_loss : 8.02392578125  raw_train_time : 26.8686625957489 
 *****************************************
 Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
