@@ -1,0 +1,761 @@
+-----------  Configuration Arguments -----------
+gpus: 0,1,2,3,4,5,6,7
+heter_worker_num: None
+heter_workers: 
+http_port: None
+ips: 127.0.0.1
+log_dir: log
+nproc_per_node: None
+server_num: None
+servers: 
+training_script: tools/static/train.py
+training_script_args: ['-c', './configs/ResNet/ResNet50_8gpu_amp_bs256.yaml']
+worker_num: None
+workers: 
+------------------------------------------------
+launch train in GPU mode
+2020-12-16 23:04:34 INFO: 
+===========================================================
+==        PaddleClas is powered by PaddlePaddle !        ==
+===========================================================
+==                                                       ==
+==   For more info please go to the following website.   ==
+==                                                       ==
+==       https://github.com/PaddlePaddle/PaddleClas      ==
+===========================================================
+
+2020-12-16 23:04:34 INFO: ARCHITECTURE : 
+2020-12-16 23:04:34 INFO:     name : ResNet50
+2020-12-16 23:04:34 INFO: ------------------------------------------------------------
+2020-12-16 23:04:34 INFO: LEARNING_RATE : 
+2020-12-16 23:04:34 INFO:     function : Piecewise
+2020-12-16 23:04:34 INFO:     params : 
+2020-12-16 23:04:34 INFO:         decay_epochs : [30, 60, 90]
+2020-12-16 23:04:34 INFO:         gamma : 0.1
+2020-12-16 23:04:34 INFO:         lr : 0.1
+2020-12-16 23:04:34 INFO: ------------------------------------------------------------
+2020-12-16 23:04:34 INFO: OPTIMIZER : 
+2020-12-16 23:04:34 INFO:     function : Momentum
+2020-12-16 23:04:34 INFO:     params : 
+2020-12-16 23:04:34 INFO:         momentum : 0.9
+2020-12-16 23:04:34 INFO:     regularizer : 
+2020-12-16 23:04:34 INFO:         factor : 0.0001
+2020-12-16 23:04:34 INFO:         function : L2
+2020-12-16 23:04:34 INFO: ------------------------------------------------------------
+2020-12-16 23:04:34 INFO: TRAIN : 
+2020-12-16 23:04:34 INFO:     batch_size : 2048
+2020-12-16 23:04:34 INFO:     data_dir : ./dataset/ILSVRC2012/
+2020-12-16 23:04:34 INFO:     file_list : ./dataset/ILSVRC2012/train_list.txt
+2020-12-16 23:04:34 INFO:     num_workers : 4
+2020-12-16 23:04:34 INFO:     shuffle_seed : 0
+2020-12-16 23:04:34 INFO:     transforms : 
+2020-12-16 23:04:34 INFO:         DecodeImage : 
+2020-12-16 23:04:34 INFO:             channel_first : False
+2020-12-16 23:04:34 INFO:             to_np : False
+2020-12-16 23:04:34 INFO:             to_rgb : True
+2020-12-16 23:04:34 INFO:         RandCropImage : 
+2020-12-16 23:04:34 INFO:             size : 224
+2020-12-16 23:04:34 INFO:         RandFlipImage : 
+2020-12-16 23:04:34 INFO:             flip_code : 1
+2020-12-16 23:04:34 INFO:         NormalizeImage : 
+2020-12-16 23:04:34 INFO:             mean : [0.485, 0.456, 0.406]
+2020-12-16 23:04:34 INFO:             order : 
+2020-12-16 23:04:34 INFO:             scale : 1./255.
+2020-12-16 23:04:34 INFO:             std : [0.229, 0.224, 0.225]
+2020-12-16 23:04:34 INFO:         ToCHWImage : None
+2020-12-16 23:04:34 INFO: ------------------------------------------------------------
+2020-12-16 23:04:34 INFO: classes_num : 1000
+2020-12-16 23:04:34 INFO: data_format : NHWC
+2020-12-16 23:04:34 INFO: epochs : 1
+2020-12-16 23:04:34 INFO: image_shape : [4, 224, 224]
+2020-12-16 23:04:34 INFO: is_distributed : True
+2020-12-16 23:04:34 INFO: ls_epsilon : -1
+2020-12-16 23:04:34 INFO: mode : train
+2020-12-16 23:04:34 INFO: model_save_dir : ./output/
+2020-12-16 23:04:34 INFO: multi_precision : True
+2020-12-16 23:04:34 INFO: pretrained_model : 
+2020-12-16 23:04:34 INFO: print_interval : 1
+2020-12-16 23:04:34 INFO: save_interval : 1
+2020-12-16 23:04:34 INFO: scale_loss : 128.0
+2020-12-16 23:04:34 INFO: topk : 5
+2020-12-16 23:04:34 INFO: total_images : 1281167
+2020-12-16 23:04:34 INFO: use_amp : False
+2020-12-16 23:04:34 INFO: use_dali : True
+2020-12-16 23:04:34 INFO: use_dynamic_loss_scaling : True
+2020-12-16 23:04:34 INFO: use_gpu : True
+2020-12-16 23:04:34 INFO: use_mix : False
+2020-12-16 23:04:34 INFO: use_pure_fp16 : True
+2020-12-16 23:04:34 INFO: valid_interval : 1
+2020-12-16 23:04:34 INFO: validate : False
+Gloo init with HTTP: need_init_all: False, args: {'http.host': '127.0.0.1', 'http.port': '6070', 'store.prefix': 'job-0bb5fda1f743831c', 'start_http_server': True, 'http_server_d': <DictProxy object, typeid 'dict' at 0x7f14f0ff8ef0>}
+to start http_server
+worker_key:job-0bb5fda1f743831c_worker, size: {'job-0bb5fda1f743831c_worker': 8}
+server not ready, wait 3 sec to retry...
+not ready endpoints:['127.0.0.1:6070']
+start http_server: 6070, {'job-0bb5fda1f743831c_worker': 8}
+2020-12-16 23:04:39 WARNING: Input image channel is changed to 4, maybe for better speed-up
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/fluid/data_feeder.py:131: UserWarning: The data type of 'x' in transpose only support float16 in GPU now. 
+  (input_name, op_name, extra_message))
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/fluid/data_feeder.py:131: UserWarning: The data type of 'x' in conv2d only support float16 in GPU now. 
+  (input_name, op_name, extra_message))
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/fluid/data_feeder.py:131: UserWarning: The data type of 'input' in BatchNorm only support float16 in GPU now. 
+  (input_name, op_name, extra_message))
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/fluid/data_feeder.py:131: UserWarning: The data type of 'x' in max_pool2d only support float16 in GPU now. 
+  (input_name, op_name, extra_message))
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/fluid/data_feeder.py:131: UserWarning: The data type of 'x' in elementwise_add only support float16 in GPU now. 
+  (input_name, op_name, extra_message))
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/fluid/data_feeder.py:131: UserWarning: The data type of 'y' in elementwise_add only support float16 in GPU now. 
+  (input_name, op_name, extra_message))
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/fluid/data_feeder.py:131: UserWarning: The data type of 'x' in relu only support float16 in GPU now. 
+  (input_name, op_name, extra_message))
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/fluid/data_feeder.py:131: UserWarning: The data type of 'x' in adaptive_avg_pool2d only support float16 in GPU now. 
+  (input_name, op_name, extra_message))
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/fluid/data_feeder.py:131: UserWarning: The data type of 'x' in reshape only support float16 in GPU now. 
+  (input_name, op_name, extra_message))
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/fluid/data_feeder.py:131: UserWarning: The data type of 'x' in linear only support float16 in GPU now. 
+  (input_name, op_name, extra_message))
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/fluid/data_feeder.py:131: UserWarning: The data type of 'dtype' in linear only support float16 in GPU now. 
+  (input_name, op_name, extra_message))
+/usr/local/python378-gcc540/lib/python3.7/site-packages/paddle/distributed/fleet/base/fleet_base.py:617: UserWarning: It is recommended to use DistributedStrategy in fleet.init(). The strategy here is only for compatibility. If the strategy in fleet.distributed_optimizer() is not None, then it will overwrite the DistributedStrategy in fleet.init(), which will take effect in distributed training.
+  "It is recommended to use DistributedStrategy "
+server not ready, wait 3 sec to retry...
+not ready endpoints:['127.0.0.1:6071', '127.0.0.1:6072', '127.0.0.1:6073', '127.0.0.1:6074', '127.0.0.1:6075', '127.0.0.1:6076', '127.0.0.1:6077']
+W1216 23:04:43.331794  7227 device_context.cc:326] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 11.0, Runtime API Version: 10.1
+W1216 23:04:43.331845  7227 device_context.cc:336] device: 0, cuDNN Version: 7.6.
+/root/paddlejob/workspace/env_run/PaddleClas/tools/static/dali.py:80: DeprecationWarning: Argument 'output_dtype' for operator 'CropMirrorNormalize' is now deprecated. Use 'dtype' instead.
+  pad_output=pad_output)
+/root/paddlejob/workspace/env_run/PaddleClas/tools/static/dali.py:80: DeprecationWarning: Argument 'image_type' for operator 'CropMirrorNormalize' is now deprecated. The argument is no longer used and should be removed.
+  pad_output=pad_output)
+/usr/local/python378-gcc540/lib/python3.7/site-packages/nvidia/dali/plugin/base_iterator.py:124: Warning: Please set `reader_name` and don't set last_batch_padded and size manually  whenever possible. This may lead, in some situations, to miss some  samples or return duplicated ones. Check the Sharding section of the documentation for more details.
+  _iterator_deprecation_warning()
+I1216 23:04:51.530210  7227 graph_pattern_detector.cc:101] ---  detected 16 subgraphs
+I1216 23:04:51.593266  7227 graph_pattern_detector.cc:101] ---  detected 16 subgraphs
+W1216 23:04:51.638172  7227 fuse_all_reduce_op_pass.cc:75] Find all_reduce operators: 161. To make the speed faster, some all_reduce ops are fused during training, after fusion, the number of all_reduce ops is 8.
+2020-12-16 23:04:54 INFO: epoch:0   train step:0    loss:  7.1320 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 4.354s ips: 58.79391 images/sec.
+2020-12-16 23:04:54 INFO: epoch:0   train step:1    loss:  7.0340 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 2.293s ips: 111.65378 images/sec.
+2020-12-16 23:04:54 INFO: epoch:0   train step:2    loss:  7.1099 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 1.605s ips: 159.51817 images/sec.
+2020-12-16 23:04:55 INFO: epoch:0   train step:3    loss:  7.0872 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 1.261s ips: 203.06930 images/sec.
+2020-12-16 23:04:55 INFO: epoch:0   train step:4    loss:  7.0977 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 1.054s ips: 242.90397 images/sec.
+2020-12-16 23:04:55 INFO: epoch:0   train step:5    loss:  7.1251 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.237s ips: 1080.00043 images/sec.
+2020-12-16 23:04:55 INFO: epoch:0   train step:6    loss:  7.0595 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.234s ips: 1092.67626 images/sec.
+2020-12-16 23:04:56 INFO: epoch:0   train step:7    loss:  7.1372 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.233s ips: 1100.06191 images/sec.
+2020-12-16 23:04:56 INFO: epoch:0   train step:8    loss:  7.0488 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1104.17595 images/sec.
+2020-12-16 23:04:56 INFO: epoch:0   train step:9    loss:  7.1057 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.234s ips: 1092.31067 images/sec.
+2020-12-16 23:04:56 INFO: epoch:0   train step:10   loss:  7.0929 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.233s ips: 1097.34068 images/sec.
+2020-12-16 23:04:57 INFO: epoch:0   train step:11   loss:  7.1661 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.233s ips: 1098.27172 images/sec.
+2020-12-16 23:04:57 INFO: epoch:0   train step:12   loss:  7.0705 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.232s ips: 1101.14562 images/sec.
+2020-12-16 23:04:57 INFO: epoch:0   train step:13   loss:  7.0961 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.234s ips: 1095.04284 images/sec.
+2020-12-16 23:04:57 INFO: epoch:0   train step:14   loss:  7.1078 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1098.68595 images/sec.
+2020-12-16 23:04:57 INFO: epoch:0   train step:15   loss:  7.1105 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.232s ips: 1102.20311 images/sec.
+2020-12-16 23:04:58 INFO: epoch:0   train step:16   loss:  7.1069 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1104.93411 images/sec.
+2020-12-16 23:04:58 INFO: epoch:0   train step:17   loss:  7.1082 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1105.64854 images/sec.
+2020-12-16 23:04:58 INFO: epoch:0   train step:18   loss:  7.1064 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.231s ips: 1106.22518 images/sec.
+2020-12-16 23:04:58 INFO: epoch:0   train step:19   loss:  7.0690 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1106.64466 images/sec.
+2020-12-16 23:04:59 INFO: epoch:0   train step:20   loss:  7.1158 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1107.71860 images/sec.
+2020-12-16 23:04:59 INFO: epoch:0   train step:21   loss:  7.1294 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1108.43412 images/sec.
+2020-12-16 23:04:59 INFO: epoch:0   train step:22   loss:  7.0642 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.233s ips: 1097.33346 images/sec.
+2020-12-16 23:04:59 INFO: epoch:0   train step:23   loss:  7.0723 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1098.59866 images/sec.
+2020-12-16 23:05:00 INFO: epoch:0   train step:24   loss:  6.9936 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.233s ips: 1100.15546 images/sec.
+2020-12-16 23:05:00 INFO: epoch:0   train step:25   loss:  7.1100 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1100.52364 images/sec.
+2020-12-16 23:05:00 INFO: epoch:0   train step:26   loss:  7.1021 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.233s ips: 1097.44744 images/sec.
+2020-12-16 23:05:00 INFO: epoch:0   train step:27   loss:  7.0408 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.233s ips: 1099.22335 images/sec.
+2020-12-16 23:05:01 INFO: epoch:0   train step:28   loss:  7.0505 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.233s ips: 1100.55558 images/sec.
+2020-12-16 23:05:01 INFO: epoch:0   train step:29   loss:  7.1270 top1: 0.0078 top5: 0.0117 lr: 0.100000 elapse: 0.233s ips: 1100.94639 images/sec.
+2020-12-16 23:05:01 INFO: epoch:0   train step:30   loss:  7.1122 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.233s ips: 1097.40927 images/sec.
+2020-12-16 23:05:01 INFO: epoch:0   train step:31   loss:  7.0561 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.233s ips: 1098.50414 images/sec.
+2020-12-16 23:05:01 INFO: epoch:0   train step:32   loss:  7.1194 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1099.60163 images/sec.
+2020-12-16 23:05:02 INFO: epoch:0   train step:33   loss:  7.0764 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1100.66376 images/sec.
+2020-12-16 23:05:02 INFO: epoch:0   train step:34   loss:  7.0878 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1099.12370 images/sec.
+2020-12-16 23:05:02 INFO: epoch:0   train step:35   loss:  7.1264 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.233s ips: 1100.26008 images/sec.
+2020-12-16 23:05:02 INFO: epoch:0   train step:36   loss:  7.1187 top1: 0.0039 top5: 0.0156 lr: 0.100000 elapse: 0.232s ips: 1101.34003 images/sec.
+2020-12-16 23:05:03 INFO: epoch:0   train step:37   loss:  7.0689 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1102.04059 images/sec.
+2020-12-16 23:05:03 INFO: epoch:0   train step:38   loss:  7.0923 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1098.40730 images/sec.
+2020-12-16 23:05:03 INFO: epoch:0   train step:39   loss:  7.1096 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1099.36652 images/sec.
+2020-12-16 23:05:03 INFO: epoch:0   train step:40   loss:  7.0699 top1: 0.0078 top5: 0.0156 lr: 0.100000 elapse: 0.233s ips: 1099.94317 images/sec.
+2020-12-16 23:05:04 INFO: epoch:0   train step:41   loss:  7.0819 top1: 0.0078 top5: 0.0078 lr: 0.100000 elapse: 0.233s ips: 1100.83120 images/sec.
+2020-12-16 23:05:04 INFO: epoch:0   train step:42   loss:  7.1503 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.233s ips: 1099.65843 images/sec.
+2020-12-16 23:05:04 INFO: epoch:0   train step:43   loss:  7.0887 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1100.27290 images/sec.
+2020-12-16 23:05:04 INFO: epoch:0   train step:44   loss:  7.1471 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.232s ips: 1101.19717 images/sec.
+2020-12-16 23:05:04 INFO: epoch:0   train step:45   loss:  6.9722 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.232s ips: 1101.78375 images/sec.
+2020-12-16 23:05:05 INFO: epoch:0   train step:46   loss:  7.0406 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.232s ips: 1102.23365 images/sec.
+2020-12-16 23:05:05 INFO: epoch:0   train step:47   loss:  7.0813 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1101.38077 images/sec.
+2020-12-16 23:05:05 INFO: epoch:0   train step:48   loss:  7.0749 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1101.94721 images/sec.
+2020-12-16 23:05:05 INFO: epoch:0   train step:49   loss:  7.0265 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.232s ips: 1102.47587 images/sec.
+2020-12-16 23:05:06 INFO: epoch:0   train step:50   loss:  7.1180 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.232s ips: 1103.08947 images/sec.
+2020-12-16 23:05:06 INFO: epoch:0   train step:51   loss:  7.0952 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1103.04730 images/sec.
+2020-12-16 23:05:06 INFO: epoch:0   train step:52   loss:  7.0878 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.232s ips: 1103.64452 images/sec.
+2020-12-16 23:05:06 INFO: epoch:0   train step:53   loss:  7.1100 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1104.15631 images/sec.
+2020-12-16 23:05:07 INFO: epoch:0   train step:54   loss:  7.1299 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.232s ips: 1104.58679 images/sec.
+2020-12-16 23:05:07 INFO: epoch:0   train step:55   loss:  7.1128 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1105.09071 images/sec.
+2020-12-16 23:05:07 INFO: epoch:0   train step:56   loss:  7.1086 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.232s ips: 1105.48149 images/sec.
+2020-12-16 23:05:07 INFO: epoch:0   train step:57   loss:  7.1347 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1105.77517 images/sec.
+2020-12-16 23:05:07 INFO: epoch:0   train step:58   loss:  7.0445 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1106.17901 images/sec.
+2020-12-16 23:05:08 INFO: epoch:0   train step:59   loss:  7.1105 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.231s ips: 1106.47114 images/sec.
+2020-12-16 23:05:08 INFO: epoch:0   train step:60   loss:  7.1086 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.233s ips: 1096.58728 images/sec.
+2020-12-16 23:05:08 INFO: epoch:0   train step:61   loss:  7.0860 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.233s ips: 1097.12933 images/sec.
+2020-12-16 23:05:08 INFO: epoch:0   train step:62   loss:  7.1055 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.233s ips: 1097.82007 images/sec.
+2020-12-16 23:05:09 INFO: epoch:0   train step:63   loss:  6.9766 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.233s ips: 1098.32308 images/sec.
+2020-12-16 23:05:09 INFO: epoch:0   train step:64   loss:  7.0771 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1098.75436 images/sec.
+2020-12-16 23:05:09 INFO: epoch:0   train step:65   loss:  7.0180 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.233s ips: 1099.35422 images/sec.
+2020-12-16 23:05:09 INFO: epoch:0   train step:66   loss:  7.0602 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.233s ips: 1099.93391 images/sec.
+2020-12-16 23:05:10 INFO: epoch:0   train step:67   loss:  7.1147 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.233s ips: 1100.42149 images/sec.
+2020-12-16 23:05:10 INFO: epoch:0   train step:68   loss:  7.0749 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1099.84390 images/sec.
+2020-12-16 23:05:10 INFO: epoch:0   train step:69   loss:  7.0888 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.233s ips: 1100.13643 images/sec.
+2020-12-16 23:05:10 INFO: epoch:0   train step:70   loss:  7.0019 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.233s ips: 1100.61571 images/sec.
+2020-12-16 23:05:11 INFO: epoch:0   train step:71   loss:  7.0305 top1: 0.0078 top5: 0.0156 lr: 0.100000 elapse: 0.233s ips: 1101.07442 images/sec.
+2020-12-16 23:05:11 INFO: epoch:0   train step:72   loss:  7.0343 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.232s ips: 1101.43386 images/sec.
+2020-12-16 23:05:11 INFO: epoch:0   train step:73   loss:  7.0361 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.232s ips: 1101.87378 images/sec.
+2020-12-16 23:05:11 INFO: epoch:0   train step:74   loss:  7.1081 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.232s ips: 1102.40584 images/sec.
+2020-12-16 23:05:11 INFO: epoch:0   train step:75   loss:  7.0711 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.232s ips: 1102.80909 images/sec.
+2020-12-16 23:05:12 INFO: epoch:0   train step:76   loss:  7.0874 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.232s ips: 1103.00282 images/sec.
+2020-12-16 23:05:12 INFO: epoch:0   train step:77   loss:  7.0401 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1103.47385 images/sec.
+2020-12-16 23:05:12 INFO: epoch:0   train step:78   loss:  7.0722 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.232s ips: 1103.76886 images/sec.
+2020-12-16 23:05:12 INFO: epoch:0   train step:79   loss:  7.1170 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1104.02413 images/sec.
+2020-12-16 23:05:13 INFO: epoch:0   train step:80   loss:  7.0514 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.232s ips: 1104.16863 images/sec.
+2020-12-16 23:05:13 INFO: epoch:0   train step:81   loss:  7.0953 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.232s ips: 1104.44697 images/sec.
+2020-12-16 23:05:13 INFO: epoch:0   train step:82   loss:  7.0393 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.232s ips: 1104.89040 images/sec.
+2020-12-16 23:05:13 INFO: epoch:0   train step:83   loss:  7.1070 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.232s ips: 1105.32052 images/sec.
+2020-12-16 23:05:13 INFO: epoch:0   train step:84   loss:  7.0577 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.232s ips: 1105.58903 images/sec.
+2020-12-16 23:05:14 INFO: epoch:0   train step:85   loss:  7.0648 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.231s ips: 1105.99293 images/sec.
+2020-12-16 23:05:14 INFO: epoch:0   train step:86   loss:  7.0525 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.231s ips: 1106.34602 images/sec.
+2020-12-16 23:05:14 INFO: epoch:0   train step:87   loss:  7.0120 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1106.73723 images/sec.
+2020-12-16 23:05:14 INFO: epoch:0   train step:88   loss:  7.0581 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1107.13005 images/sec.
+2020-12-16 23:05:15 INFO: epoch:0   train step:89   loss:  7.0732 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1107.46260 images/sec.
+2020-12-16 23:05:15 INFO: epoch:0   train step:90   loss:  7.0376 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.231s ips: 1107.64845 images/sec.
+2020-12-16 23:05:15 INFO: epoch:0   train step:91   loss:  7.0169 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.231s ips: 1107.77890 images/sec.
+2020-12-16 23:05:15 INFO: epoch:0   train step:92   loss:  7.0957 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1108.12480 images/sec.
+2020-12-16 23:05:16 INFO: epoch:0   train step:93   loss:  7.0144 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.231s ips: 1108.42170 images/sec.
+2020-12-16 23:05:16 INFO: epoch:0   train step:94   loss:  7.0640 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1108.67776 images/sec.
+2020-12-16 23:05:16 INFO: epoch:0   train step:95   loss:  7.1034 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1109.01379 images/sec.
+2020-12-16 23:05:16 INFO: epoch:0   train step:96   loss:  7.0628 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1109.26674 images/sec.
+2020-12-16 23:05:16 INFO: epoch:0   train step:97   loss:  7.0396 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1109.54081 images/sec.
+2020-12-16 23:05:17 INFO: epoch:0   train step:98   loss:  7.0601 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1109.83615 images/sec.
+2020-12-16 23:05:17 INFO: epoch:0   train step:99   loss:  7.0949 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1109.97727 images/sec.
+2020-12-16 23:05:17 INFO: epoch:0   train step:100  loss:  7.1047 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1110.18969 images/sec.
+2020-12-16 23:05:17 INFO: epoch:0   train step:101  loss:  7.0165 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1110.42191 images/sec.
+2020-12-16 23:05:18 INFO: epoch:0   train step:102  loss:  7.1061 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1110.71659 images/sec.
+2020-12-16 23:05:18 INFO: epoch:0   train step:103  loss:  7.0027 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1110.84997 images/sec.
+2020-12-16 23:05:18 INFO: epoch:0   train step:104  loss:  7.0749 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1111.12121 images/sec.
+2020-12-16 23:05:18 INFO: epoch:0   train step:105  loss:  7.0227 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1111.39919 images/sec.
+2020-12-16 23:05:18 INFO: epoch:0   train step:106  loss:  7.1209 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.230s ips: 1111.62905 images/sec.
+2020-12-16 23:05:19 INFO: epoch:0   train step:107  loss:  7.0470 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.230s ips: 1111.88283 images/sec.
+2020-12-16 23:05:19 INFO: epoch:0   train step:108  loss:  7.0791 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1112.04347 images/sec.
+2020-12-16 23:05:19 INFO: epoch:0   train step:109  loss:  6.9673 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.230s ips: 1112.25272 images/sec.
+2020-12-16 23:05:19 INFO: epoch:0   train step:110  loss:  7.0894 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.230s ips: 1112.44457 images/sec.
+2020-12-16 23:05:20 INFO: epoch:0   train step:111  loss:  7.0539 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.230s ips: 1112.51788 images/sec.
+2020-12-16 23:05:20 INFO: epoch:0   train step:112  loss:  7.0402 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1112.73292 images/sec.
+2020-12-16 23:05:20 INFO: epoch:0   train step:113  loss:  7.0605 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1112.93695 images/sec.
+2020-12-16 23:05:20 INFO: epoch:0   train step:114  loss:  7.0597 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.230s ips: 1113.12914 images/sec.
+2020-12-16 23:05:21 INFO: epoch:0   train step:115  loss:  7.0119 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1113.31445 images/sec.
+2020-12-16 23:05:21 INFO: epoch:0   train step:116  loss:  7.0276 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1113.48889 images/sec.
+2020-12-16 23:05:21 INFO: epoch:0   train step:117  loss:  7.0108 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1113.59815 images/sec.
+2020-12-16 23:05:21 INFO: epoch:0   train step:118  loss:  7.0663 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1108.71069 images/sec.
+2020-12-16 23:05:22 INFO: epoch:0   train step:119  loss:  7.0662 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1108.89784 images/sec.
+2020-12-16 23:05:22 INFO: epoch:0   train step:120  loss:  7.0837 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1108.96102 images/sec.
+2020-12-16 23:05:22 INFO: epoch:0   train step:121  loss:  7.0098 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1109.18937 images/sec.
+2020-12-16 23:05:22 INFO: epoch:0   train step:122  loss:  7.0247 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1109.29655 images/sec.
+2020-12-16 23:05:22 INFO: epoch:0   train step:123  loss:  7.0917 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1109.49282 images/sec.
+2020-12-16 23:05:23 INFO: epoch:0   train step:124  loss:  7.0657 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1109.63897 images/sec.
+2020-12-16 23:05:23 INFO: epoch:0   train step:125  loss:  7.0006 top1: 0.0039 top5: 0.0156 lr: 0.100000 elapse: 0.231s ips: 1109.80799 images/sec.
+2020-12-16 23:05:23 INFO: epoch:0   train step:126  loss:  7.0009 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.231s ips: 1110.03694 images/sec.
+2020-12-16 23:05:23 INFO: epoch:0   train step:127  loss:  7.0161 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1110.25442 images/sec.
+2020-12-16 23:05:24 INFO: epoch:0   train step:128  loss:  7.0494 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.231s ips: 1110.41965 images/sec.
+2020-12-16 23:05:24 INFO: epoch:0   train step:129  loss:  7.0209 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.231s ips: 1110.59137 images/sec.
+2020-12-16 23:05:24 INFO: epoch:0   train step:130  loss:  7.0381 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1110.70586 images/sec.
+2020-12-16 23:05:24 INFO: epoch:0   train step:131  loss:  7.0473 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1110.88880 images/sec.
+2020-12-16 23:05:24 INFO: epoch:0   train step:132  loss:  6.9902 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1111.04125 images/sec.
+2020-12-16 23:05:25 INFO: epoch:0   train step:133  loss:  7.1066 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1110.88796 images/sec.
+2020-12-16 23:05:25 INFO: epoch:0   train step:134  loss:  7.0345 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.230s ips: 1111.04504 images/sec.
+2020-12-16 23:05:25 INFO: epoch:0   train step:135  loss:  7.0166 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.230s ips: 1111.19064 images/sec.
+2020-12-16 23:05:25 INFO: epoch:0   train step:136  loss:  7.0376 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.230s ips: 1111.37320 images/sec.
+2020-12-16 23:05:26 INFO: epoch:0   train step:137  loss:  7.0509 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1111.51512 images/sec.
+2020-12-16 23:05:26 INFO: epoch:0   train step:138  loss:  7.0455 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1111.69192 images/sec.
+2020-12-16 23:05:26 INFO: epoch:0   train step:139  loss:  7.0362 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1111.83606 images/sec.
+2020-12-16 23:05:26 INFO: epoch:0   train step:140  loss:  7.0750 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.230s ips: 1112.00228 images/sec.
+2020-12-16 23:05:27 INFO: epoch:0   train step:141  loss:  7.0386 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1112.14589 images/sec.
+2020-12-16 23:05:27 INFO: epoch:0   train step:142  loss:  7.0010 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1112.32415 images/sec.
+2020-12-16 23:05:27 INFO: epoch:0   train step:143  loss:  7.0020 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1112.49525 images/sec.
+2020-12-16 23:05:27 INFO: epoch:0   train step:144  loss:  7.0054 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.230s ips: 1112.68316 images/sec.
+2020-12-16 23:05:27 INFO: epoch:0   train step:145  loss:  7.0597 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1112.79781 images/sec.
+2020-12-16 23:05:28 INFO: epoch:0   train step:146  loss:  7.0969 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1112.96848 images/sec.
+2020-12-16 23:05:28 INFO: epoch:0   train step:147  loss:  7.0209 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1113.14114 images/sec.
+2020-12-16 23:05:28 INFO: epoch:0   train step:148  loss:  7.0328 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1113.29854 images/sec.
+2020-12-16 23:05:28 INFO: epoch:0   train step:149  loss:  7.0625 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1113.39383 images/sec.
+2020-12-16 23:05:29 INFO: epoch:0   train step:150  loss:  7.0528 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1113.48685 images/sec.
+2020-12-16 23:05:29 INFO: epoch:0   train step:151  loss:  7.0954 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1113.61919 images/sec.
+2020-12-16 23:05:29 INFO: epoch:0   train step:152  loss:  7.0260 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1113.78030 images/sec.
+2020-12-16 23:05:29 INFO: epoch:0   train step:153  loss:  7.0592 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1113.94636 images/sec.
+2020-12-16 23:05:30 INFO: epoch:0   train step:154  loss:  7.0045 top1: 0.0039 top5: 0.0156 lr: 0.100000 elapse: 0.230s ips: 1113.25890 images/sec.
+2020-12-16 23:05:30 INFO: epoch:0   train step:155  loss:  7.0445 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1113.41539 images/sec.
+2020-12-16 23:05:30 INFO: epoch:0   train step:156  loss:  7.0083 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1113.56402 images/sec.
+2020-12-16 23:05:30 INFO: epoch:0   train step:157  loss:  7.0185 top1: 0.0039 top5: 0.0156 lr: 0.100000 elapse: 0.230s ips: 1113.70530 images/sec.
+2020-12-16 23:05:30 INFO: epoch:0   train step:158  loss:  6.9797 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1113.79047 images/sec.
+2020-12-16 23:05:31 INFO: epoch:0   train step:159  loss:  7.0594 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1113.91097 images/sec.
+2020-12-16 23:05:31 INFO: epoch:0   train step:160  loss:  6.9998 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1114.01756 images/sec.
+2020-12-16 23:05:31 INFO: epoch:0   train step:161  loss:  7.0778 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.230s ips: 1114.13568 images/sec.
+2020-12-16 23:05:31 INFO: epoch:0   train step:162  loss:  7.0578 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1114.22339 images/sec.
+2020-12-16 23:05:32 INFO: epoch:0   train step:163  loss:  7.0111 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1114.37120 images/sec.
+2020-12-16 23:05:32 INFO: epoch:0   train step:164  loss:  7.0702 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1114.52476 images/sec.
+2020-12-16 23:05:32 INFO: epoch:0   train step:165  loss:  7.0023 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1114.65416 images/sec.
+2020-12-16 23:05:32 INFO: epoch:0   train step:166  loss:  7.0620 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1114.64202 images/sec.
+2020-12-16 23:05:32 INFO: epoch:0   train step:167  loss:  7.0240 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.230s ips: 1114.77732 images/sec.
+2020-12-16 23:05:33 INFO: epoch:0   train step:168  loss:  7.0368 top1: 0.0039 top5: 0.0156 lr: 0.100000 elapse: 0.230s ips: 1114.91830 images/sec.
+2020-12-16 23:05:33 INFO: epoch:0   train step:169  loss:  7.0677 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.230s ips: 1115.03522 images/sec.
+2020-12-16 23:05:33 INFO: epoch:0   train step:170  loss:  7.0298 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.230s ips: 1115.07159 images/sec.
+2020-12-16 23:05:33 INFO: epoch:0   train step:171  loss:  7.0684 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1115.04831 images/sec.
+2020-12-16 23:05:34 INFO: epoch:0   train step:172  loss:  6.9821 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1115.14448 images/sec.
+2020-12-16 23:05:34 INFO: epoch:0   train step:173  loss:  7.0691 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1115.26800 images/sec.
+2020-12-16 23:05:34 INFO: epoch:0   train step:174  loss:  7.0716 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1115.29753 images/sec.
+2020-12-16 23:05:34 INFO: epoch:0   train step:175  loss:  6.9945 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.230s ips: 1115.13023 images/sec.
+2020-12-16 23:05:34 INFO: epoch:0   train step:176  loss:  7.0048 top1: 0.0039 top5: 0.0156 lr: 0.100000 elapse: 0.230s ips: 1115.26872 images/sec.
+2020-12-16 23:05:35 INFO: epoch:0   train step:177  loss:  7.0598 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1115.39257 images/sec.
+2020-12-16 23:05:35 INFO: epoch:0   train step:178  loss:  7.0931 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1115.49519 images/sec.
+2020-12-16 23:05:35 INFO: epoch:0   train step:179  loss:  7.0693 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.230s ips: 1115.23753 images/sec.
+2020-12-16 23:05:35 INFO: epoch:0   train step:180  loss:  7.0168 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1115.27711 images/sec.
+2020-12-16 23:05:36 INFO: epoch:0   train step:181  loss:  6.9931 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.230s ips: 1115.37932 images/sec.
+2020-12-16 23:05:36 INFO: epoch:0   train step:182  loss:  6.9808 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1115.51328 images/sec.
+2020-12-16 23:05:36 INFO: epoch:0   train step:183  loss:  7.0133 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1115.59188 images/sec.
+2020-12-16 23:05:36 INFO: epoch:0   train step:184  loss:  7.0335 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1115.71065 images/sec.
+2020-12-16 23:05:37 INFO: epoch:0   train step:185  loss:  7.0049 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1115.82789 images/sec.
+2020-12-16 23:05:37 INFO: epoch:0   train step:186  loss:  7.0704 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1115.85659 images/sec.
+2020-12-16 23:05:37 INFO: epoch:0   train step:187  loss:  6.9875 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1115.91440 images/sec.
+2020-12-16 23:05:37 INFO: epoch:0   train step:188  loss:  7.0084 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1116.03800 images/sec.
+2020-12-16 23:05:37 INFO: epoch:0   train step:189  loss:  6.9881 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.229s ips: 1116.11777 images/sec.
+2020-12-16 23:05:38 INFO: epoch:0   train step:190  loss:  7.0441 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1116.21240 images/sec.
+2020-12-16 23:05:38 INFO: epoch:0   train step:191  loss:  6.9937 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1116.29276 images/sec.
+2020-12-16 23:05:38 INFO: epoch:0   train step:192  loss:  7.0568 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1116.37081 images/sec.
+2020-12-16 23:05:38 INFO: epoch:0   train step:193  loss:  7.0231 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1116.47716 images/sec.
+2020-12-16 23:05:39 INFO: epoch:0   train step:194  loss:  7.0565 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1116.58721 images/sec.
+2020-12-16 23:05:39 INFO: epoch:0   train step:195  loss:  7.0399 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1116.66773 images/sec.
+2020-12-16 23:05:39 INFO: epoch:0   train step:196  loss:  7.0400 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1116.35597 images/sec.
+2020-12-16 23:05:39 INFO: epoch:0   train step:197  loss:  7.0245 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1116.44752 images/sec.
+2020-12-16 23:05:40 INFO: epoch:0   train step:198  loss:  7.0375 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1116.56421 images/sec.
+2020-12-16 23:05:40 INFO: epoch:0   train step:199  loss:  7.0036 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1116.62708 images/sec.
+2020-12-16 23:05:40 INFO: epoch:0   train step:200  loss:  6.9877 top1: 0.0039 top5: 0.0156 lr: 0.100000 elapse: 0.229s ips: 1116.64494 images/sec.
+2020-12-16 23:05:40 INFO: epoch:0   train step:201  loss:  7.0392 top1: 0.0078 top5: 0.0156 lr: 0.100000 elapse: 0.229s ips: 1116.71914 images/sec.
+2020-12-16 23:05:40 INFO: epoch:0   train step:202  loss:  6.9492 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1116.77844 images/sec.
+2020-12-16 23:05:41 INFO: epoch:0   train step:203  loss:  7.0435 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1116.84074 images/sec.
+2020-12-16 23:05:41 INFO: epoch:0   train step:204  loss:  6.9537 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1116.87246 images/sec.
+2020-12-16 23:05:41 INFO: epoch:0   train step:205  loss:  7.0099 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1116.96702 images/sec.
+2020-12-16 23:05:41 INFO: epoch:0   train step:206  loss:  7.0386 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1117.07888 images/sec.
+2020-12-16 23:05:42 INFO: epoch:0   train step:207  loss:  7.0274 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.229s ips: 1117.16188 images/sec.
+2020-12-16 23:05:42 INFO: epoch:0   train step:208  loss:  7.0165 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1117.21017 images/sec.
+2020-12-16 23:05:42 INFO: epoch:0   train step:209  loss:  6.9641 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1117.28076 images/sec.
+2020-12-16 23:05:42 INFO: epoch:0   train step:210  loss:  7.0323 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1117.34442 images/sec.
+2020-12-16 23:05:42 INFO: epoch:0   train step:211  loss:  7.0235 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1117.41400 images/sec.
+2020-12-16 23:05:43 INFO: epoch:0   train step:212  loss:  7.0283 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1117.50255 images/sec.
+2020-12-16 23:05:43 INFO: epoch:0   train step:213  loss:  7.0356 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1117.59033 images/sec.
+2020-12-16 23:05:43 INFO: epoch:0   train step:214  loss:  6.9999 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1117.65565 images/sec.
+2020-12-16 23:05:43 INFO: epoch:0   train step:215  loss:  7.0576 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1117.73901 images/sec.
+2020-12-16 23:05:44 INFO: epoch:0   train step:216  loss:  7.0320 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1117.80636 images/sec.
+2020-12-16 23:05:44 INFO: epoch:0   train step:217  loss:  7.0900 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.229s ips: 1117.67509 images/sec.
+2020-12-16 23:05:44 INFO: epoch:0   train step:218  loss:  7.0494 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1117.73932 images/sec.
+2020-12-16 23:05:44 INFO: epoch:0   train step:219  loss:  7.0082 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1117.79755 images/sec.
+2020-12-16 23:05:45 INFO: epoch:0   train step:220  loss:  7.0442 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1117.84298 images/sec.
+2020-12-16 23:05:45 INFO: epoch:0   train step:221  loss:  7.0173 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1117.92295 images/sec.
+2020-12-16 23:05:45 INFO: epoch:0   train step:222  loss:  6.9993 top1: 0.0117 top5: 0.0195 lr: 0.100000 elapse: 0.229s ips: 1117.97451 images/sec.
+2020-12-16 23:05:45 INFO: epoch:0   train step:223  loss:  7.0196 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1118.02271 images/sec.
+2020-12-16 23:05:45 INFO: epoch:0   train step:224  loss:  7.0064 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1118.10501 images/sec.
+2020-12-16 23:05:46 INFO: epoch:0   train step:225  loss:  7.0104 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1118.19602 images/sec.
+2020-12-16 23:05:46 INFO: epoch:0   train step:226  loss:  6.9363 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1118.27488 images/sec.
+2020-12-16 23:05:46 INFO: epoch:0   train step:227  loss:  7.0228 top1: 0.0117 top5: 0.0234 lr: 0.100000 elapse: 0.229s ips: 1118.32451 images/sec.
+2020-12-16 23:05:46 INFO: epoch:0   train step:228  loss:  6.9599 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1118.38869 images/sec.
+2020-12-16 23:05:47 INFO: epoch:0   train step:229  loss:  7.0424 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1118.45255 images/sec.
+2020-12-16 23:05:47 INFO: epoch:0   train step:230  loss:  7.0088 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.229s ips: 1118.49684 images/sec.
+2020-12-16 23:05:47 INFO: epoch:0   train step:231  loss:  7.0459 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1118.57224 images/sec.
+2020-12-16 23:05:47 INFO: epoch:0   train step:232  loss:  6.9996 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1118.66147 images/sec.
+2020-12-16 23:05:47 INFO: epoch:0   train step:233  loss:  7.0038 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.229s ips: 1118.71729 images/sec.
+2020-12-16 23:05:48 INFO: epoch:0   train step:234  loss:  7.0258 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1118.78942 images/sec.
+2020-12-16 23:05:48 INFO: epoch:0   train step:235  loss:  7.0263 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1118.85885 images/sec.
+2020-12-16 23:05:48 INFO: epoch:0   train step:236  loss:  6.9946 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1118.93235 images/sec.
+2020-12-16 23:05:48 INFO: epoch:0   train step:237  loss:  7.0332 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1118.99303 images/sec.
+2020-12-16 23:05:49 INFO: epoch:0   train step:238  loss:  7.0003 top1: 0.0078 top5: 0.0234 lr: 0.100000 elapse: 0.229s ips: 1119.01739 images/sec.
+2020-12-16 23:05:49 INFO: epoch:0   train step:239  loss:  7.0383 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1119.06523 images/sec.
+2020-12-16 23:05:49 INFO: epoch:0   train step:240  loss:  6.9950 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.229s ips: 1119.10561 images/sec.
+2020-12-16 23:05:49 INFO: epoch:0   train step:241  loss:  6.9886 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.15672 images/sec.
+2020-12-16 23:05:49 INFO: epoch:0   train step:242  loss:  7.0200 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.14544 images/sec.
+2020-12-16 23:05:50 INFO: epoch:0   train step:243  loss:  7.0085 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.19507 images/sec.
+2020-12-16 23:05:50 INFO: epoch:0   train step:244  loss:  6.9839 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.25113 images/sec.
+2020-12-16 23:05:50 INFO: epoch:0   train step:245  loss:  7.0119 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.23335 images/sec.
+2020-12-16 23:05:50 INFO: epoch:0   train step:246  loss:  7.0237 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1119.28432 images/sec.
+2020-12-16 23:05:51 INFO: epoch:0   train step:247  loss:  7.0009 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.35223 images/sec.
+2020-12-16 23:05:51 INFO: epoch:0   train step:248  loss:  6.9918 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.38831 images/sec.
+2020-12-16 23:05:51 INFO: epoch:0   train step:249  loss:  6.9820 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1119.41459 images/sec.
+2020-12-16 23:05:51 INFO: epoch:0   train step:250  loss:  7.0602 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.40856 images/sec.
+2020-12-16 23:05:52 INFO: epoch:0   train step:251  loss:  7.0298 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.43664 images/sec.
+2020-12-16 23:05:52 INFO: epoch:0   train step:252  loss:  7.0344 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1119.50550 images/sec.
+2020-12-16 23:05:52 INFO: epoch:0   train step:253  loss:  6.9755 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.229s ips: 1119.56523 images/sec.
+2020-12-16 23:05:52 INFO: epoch:0   train step:254  loss:  7.0225 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1119.62858 images/sec.
+2020-12-16 23:05:52 INFO: epoch:0   train step:255  loss:  6.9999 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1119.66837 images/sec.
+2020-12-16 23:05:53 INFO: epoch:0   train step:256  loss:  7.0195 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.72175 images/sec.
+2020-12-16 23:05:53 INFO: epoch:0   train step:257  loss:  7.0251 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1119.78221 images/sec.
+2020-12-16 23:05:53 INFO: epoch:0   train step:258  loss:  6.9662 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.229s ips: 1119.85457 images/sec.
+2020-12-16 23:05:53 INFO: epoch:0   train step:259  loss:  6.9923 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.87373 images/sec.
+2020-12-16 23:05:54 INFO: epoch:0   train step:260  loss:  7.0479 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1119.92286 images/sec.
+2020-12-16 23:05:54 INFO: epoch:0   train step:261  loss:  6.9974 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1119.96994 images/sec.
+2020-12-16 23:05:54 INFO: epoch:0   train step:262  loss:  6.9807 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1119.99828 images/sec.
+2020-12-16 23:05:54 INFO: epoch:0   train step:263  loss:  6.9609 top1: 0.0039 top5: 0.0156 lr: 0.100000 elapse: 0.229s ips: 1120.04762 images/sec.
+2020-12-16 23:05:54 INFO: epoch:0   train step:264  loss:  7.0635 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1120.10881 images/sec.
+2020-12-16 23:05:55 INFO: epoch:0   train step:265  loss:  6.9880 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1120.15767 images/sec.
+2020-12-16 23:05:55 INFO: epoch:0   train step:266  loss:  7.0108 top1: 0.0039 top5: 0.0156 lr: 0.100000 elapse: 0.229s ips: 1120.18372 images/sec.
+2020-12-16 23:05:55 INFO: epoch:0   train step:267  loss:  6.9797 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1120.22756 images/sec.
+2020-12-16 23:05:55 INFO: epoch:0   train step:268  loss:  7.0141 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.229s ips: 1120.11062 images/sec.
+2020-12-16 23:05:56 INFO: epoch:0   train step:269  loss:  6.9938 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1120.16256 images/sec.
+2020-12-16 23:05:56 INFO: epoch:0   train step:270  loss:  6.9967 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1120.20069 images/sec.
+2020-12-16 23:05:56 INFO: epoch:0   train step:271  loss:  7.0025 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1120.23647 images/sec.
+2020-12-16 23:05:56 INFO: epoch:0   train step:272  loss:  7.0118 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.229s ips: 1120.27883 images/sec.
+2020-12-16 23:05:57 INFO: epoch:0   train step:273  loss:  6.9864 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1120.34004 images/sec.
+2020-12-16 23:05:57 INFO: epoch:0   train step:274  loss:  7.0271 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.38938 images/sec.
+2020-12-16 23:05:57 INFO: epoch:0   train step:275  loss:  7.0213 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.43376 images/sec.
+2020-12-16 23:05:57 INFO: epoch:0   train step:276  loss:  6.9836 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1120.47604 images/sec.
+2020-12-16 23:05:57 INFO: epoch:0   train step:277  loss:  7.0182 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1120.53747 images/sec.
+2020-12-16 23:05:58 INFO: epoch:0   train step:278  loss:  6.9525 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.58988 images/sec.
+2020-12-16 23:05:58 INFO: epoch:0   train step:279  loss:  7.0151 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.62583 images/sec.
+2020-12-16 23:05:58 INFO: epoch:0   train step:280  loss:  7.0003 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.65460 images/sec.
+2020-12-16 23:05:58 INFO: epoch:0   train step:281  loss:  7.0098 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1120.70389 images/sec.
+2020-12-16 23:05:59 INFO: epoch:0   train step:282  loss:  7.0068 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.75549 images/sec.
+2020-12-16 23:05:59 INFO: epoch:0   train step:283  loss:  6.9992 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.77123 images/sec.
+2020-12-16 23:05:59 INFO: epoch:0   train step:284  loss:  7.0198 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1120.82203 images/sec.
+2020-12-16 23:05:59 INFO: epoch:0   train step:285  loss:  6.9464 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.229s ips: 1120.30144 images/sec.
+2020-12-16 23:06:00 INFO: epoch:0   train step:286  loss:  6.9883 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.36271 images/sec.
+2020-12-16 23:06:00 INFO: epoch:0   train step:287  loss:  6.9954 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.39008 images/sec.
+2020-12-16 23:06:00 INFO: epoch:0   train step:288  loss:  6.9795 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.42946 images/sec.
+2020-12-16 23:06:00 INFO: epoch:0   train step:289  loss:  7.0217 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.45044 images/sec.
+2020-12-16 23:06:00 INFO: epoch:0   train step:290  loss:  7.0309 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.47977 images/sec.
+2020-12-16 23:06:01 INFO: epoch:0   train step:291  loss:  6.9810 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.51477 images/sec.
+2020-12-16 23:06:01 INFO: epoch:0   train step:292  loss:  6.9979 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.52898 images/sec.
+2020-12-16 23:06:01 INFO: epoch:0   train step:293  loss:  7.0299 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1120.55230 images/sec.
+2020-12-16 23:06:01 INFO: epoch:0   train step:294  loss:  6.9701 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.61257 images/sec.
+2020-12-16 23:06:02 INFO: epoch:0   train step:295  loss:  7.0225 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1120.66075 images/sec.
+2020-12-16 23:06:02 INFO: epoch:0   train step:296  loss:  7.0021 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.71079 images/sec.
+2020-12-16 23:06:02 INFO: epoch:0   train step:297  loss:  6.9642 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1120.73794 images/sec.
+2020-12-16 23:06:02 INFO: epoch:0   train step:298  loss:  7.0229 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.78863 images/sec.
+2020-12-16 23:06:02 INFO: epoch:0   train step:299  loss:  7.0252 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.80497 images/sec.
+2020-12-16 23:06:03 INFO: epoch:0   train step:300  loss:  6.9792 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.81869 images/sec.
+2020-12-16 23:06:03 INFO: epoch:0   train step:301  loss:  6.9603 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.84759 images/sec.
+2020-12-16 23:06:03 INFO: epoch:0   train step:302  loss:  6.9794 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.85625 images/sec.
+2020-12-16 23:06:03 INFO: epoch:0   train step:303  loss:  6.9626 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.91047 images/sec.
+2020-12-16 23:06:04 INFO: epoch:0   train step:304  loss:  6.9678 top1: 0.0078 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1120.93373 images/sec.
+2020-12-16 23:06:04 INFO: epoch:0   train step:305  loss:  6.9922 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.96182 images/sec.
+2020-12-16 23:06:04 INFO: epoch:0   train step:306  loss:  7.0117 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.83470 images/sec.
+2020-12-16 23:06:04 INFO: epoch:0   train step:307  loss:  7.0622 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1120.87872 images/sec.
+2020-12-16 23:06:05 INFO: epoch:0   train step:308  loss:  6.9716 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1120.91055 images/sec.
+2020-12-16 23:06:05 INFO: epoch:0   train step:309  loss:  6.9681 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.95314 images/sec.
+2020-12-16 23:06:05 INFO: epoch:0   train step:310  loss:  6.9819 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1120.97770 images/sec.
+2020-12-16 23:06:05 INFO: epoch:0   train step:311  loss:  6.9910 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.01630 images/sec.
+2020-12-16 23:06:05 INFO: epoch:0   train step:312  loss:  6.9731 top1: 0.0039 top5: 0.0195 lr: 0.100000 elapse: 0.228s ips: 1121.05268 images/sec.
+2020-12-16 23:06:06 INFO: epoch:0   train step:313  loss:  7.0035 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1121.10072 images/sec.
+2020-12-16 23:06:06 INFO: epoch:0   train step:314  loss:  6.9505 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1121.14099 images/sec.
+2020-12-16 23:06:06 INFO: epoch:0   train step:315  loss:  7.0216 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1121.15308 images/sec.
+2020-12-16 23:06:06 INFO: epoch:0   train step:316  loss:  7.0238 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.19559 images/sec.
+2020-12-16 23:06:07 INFO: epoch:0   train step:317  loss:  6.9612 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.22523 images/sec.
+2020-12-16 23:06:07 INFO: epoch:0   train step:318  loss:  6.9389 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1121.25777 images/sec.
+2020-12-16 23:06:07 INFO: epoch:0   train step:319  loss:  7.0204 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.29805 images/sec.
+2020-12-16 23:06:07 INFO: epoch:0   train step:320  loss:  7.0217 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1121.33031 images/sec.
+2020-12-16 23:06:07 INFO: epoch:0   train step:321  loss:  7.0073 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1121.38247 images/sec.
+2020-12-16 23:06:08 INFO: epoch:0   train step:322  loss:  6.9729 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.42708 images/sec.
+2020-12-16 23:06:08 INFO: epoch:0   train step:323  loss:  6.9684 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1121.46863 images/sec.
+2020-12-16 23:06:08 INFO: epoch:0   train step:324  loss:  6.9653 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.49209 images/sec.
+2020-12-16 23:06:08 INFO: epoch:0   train step:325  loss:  7.0251 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1121.54263 images/sec.
+2020-12-16 23:06:09 INFO: epoch:0   train step:326  loss:  6.9948 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.57700 images/sec.
+2020-12-16 23:06:09 INFO: epoch:0   train step:327  loss:  6.9769 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.60059 images/sec.
+2020-12-16 23:06:09 INFO: epoch:0   train step:328  loss:  7.0266 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.63875 images/sec.
+2020-12-16 23:06:09 INFO: epoch:0   train step:329  loss:  7.0255 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1121.67632 images/sec.
+2020-12-16 23:06:09 INFO: epoch:0   train step:330  loss:  6.9897 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.69979 images/sec.
+2020-12-16 23:06:10 INFO: epoch:0   train step:331  loss:  7.0504 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.71686 images/sec.
+2020-12-16 23:06:10 INFO: epoch:0   train step:332  loss:  6.9808 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1121.75643 images/sec.
+2020-12-16 23:06:10 INFO: epoch:0   train step:333  loss:  6.9821 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1121.78369 images/sec.
+2020-12-16 23:06:10 INFO: epoch:0   train step:334  loss:  6.9788 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.81432 images/sec.
+2020-12-16 23:06:11 INFO: epoch:0   train step:335  loss:  6.9582 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1121.86029 images/sec.
+2020-12-16 23:06:11 INFO: epoch:0   train step:336  loss:  6.9830 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1121.90136 images/sec.
+2020-12-16 23:06:11 INFO: epoch:0   train step:337  loss:  6.9597 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1121.91693 images/sec.
+2020-12-16 23:06:11 INFO: epoch:0   train step:338  loss:  6.9593 top1: 0.0000 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1121.92451 images/sec.
+2020-12-16 23:06:12 INFO: epoch:0   train step:339  loss:  6.9899 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1121.94392 images/sec.
+2020-12-16 23:06:12 INFO: epoch:0   train step:340  loss:  7.0293 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1121.94323 images/sec.
+2020-12-16 23:06:12 INFO: epoch:0   train step:341  loss:  6.9881 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1121.97371 images/sec.
+2020-12-16 23:06:12 INFO: epoch:0   train step:342  loss:  7.0036 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1122.01864 images/sec.
+2020-12-16 23:06:12 INFO: epoch:0   train step:343  loss:  6.9621 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.04137 images/sec.
+2020-12-16 23:06:13 INFO: epoch:0   train step:344  loss:  6.9795 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.07228 images/sec.
+2020-12-16 23:06:13 INFO: epoch:0   train step:345  loss:  7.0130 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1122.09736 images/sec.
+2020-12-16 23:06:13 INFO: epoch:0   train step:346  loss:  6.9749 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.13430 images/sec.
+2020-12-16 23:06:13 INFO: epoch:0   train step:347  loss:  7.0092 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.16725 images/sec.
+2020-12-16 23:06:14 INFO: epoch:0   train step:348  loss:  6.9962 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.18380 images/sec.
+2020-12-16 23:06:14 INFO: epoch:0   train step:349  loss:  6.9569 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.21703 images/sec.
+2020-12-16 23:06:14 INFO: epoch:0   train step:350  loss:  6.9834 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1122.22844 images/sec.
+2020-12-16 23:06:14 INFO: epoch:0   train step:351  loss:  6.9680 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.26880 images/sec.
+2020-12-16 23:06:14 INFO: epoch:0   train step:352  loss:  6.9805 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1122.30638 images/sec.
+2020-12-16 23:06:15 INFO: epoch:0   train step:353  loss:  7.0092 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1122.34809 images/sec.
+2020-12-16 23:06:15 INFO: epoch:0   train step:354  loss:  7.0297 top1: 0.0078 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1122.35922 images/sec.
+2020-12-16 23:06:15 INFO: epoch:0   train step:355  loss:  6.9843 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.38942 images/sec.
+2020-12-16 23:06:15 INFO: epoch:0   train step:356  loss:  6.9986 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.39500 images/sec.
+2020-12-16 23:06:16 INFO: epoch:0   train step:357  loss:  7.0373 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1122.43691 images/sec.
+2020-12-16 23:06:16 INFO: epoch:0   train step:358  loss:  7.0317 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1122.47116 images/sec.
+2020-12-16 23:06:16 INFO: epoch:0   train step:359  loss:  7.0172 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1122.49941 images/sec.
+2020-12-16 23:06:16 INFO: epoch:0   train step:360  loss:  7.0342 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.52391 images/sec.
+2020-12-16 23:06:17 INFO: epoch:0   train step:361  loss:  6.9748 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.53716 images/sec.
+2020-12-16 23:06:17 INFO: epoch:0   train step:362  loss:  6.9976 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.55974 images/sec.
+2020-12-16 23:06:17 INFO: epoch:0   train step:363  loss:  6.9649 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.59328 images/sec.
+2020-12-16 23:06:17 INFO: epoch:0   train step:364  loss:  6.9906 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.63629 images/sec.
+2020-12-16 23:06:17 INFO: epoch:0   train step:365  loss:  6.9786 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1122.66949 images/sec.
+2020-12-16 23:06:18 INFO: epoch:0   train step:366  loss:  6.9840 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1122.68568 images/sec.
+2020-12-16 23:06:18 INFO: epoch:0   train step:367  loss:  7.0019 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1122.71410 images/sec.
+2020-12-16 23:06:18 INFO: epoch:0   train step:368  loss:  7.0213 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.74043 images/sec.
+2020-12-16 23:06:18 INFO: epoch:0   train step:369  loss:  6.9607 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1122.75880 images/sec.
+2020-12-16 23:06:19 INFO: epoch:0   train step:370  loss:  6.9707 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1122.78509 images/sec.
+2020-12-16 23:06:19 INFO: epoch:0   train step:371  loss:  6.9826 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1122.81277 images/sec.
+2020-12-16 23:06:19 INFO: epoch:0   train step:372  loss:  6.9626 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.83318 images/sec.
+2020-12-16 23:06:19 INFO: epoch:0   train step:373  loss:  6.9571 top1: 0.0078 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1122.86437 images/sec.
+2020-12-16 23:06:19 INFO: epoch:0   train step:374  loss:  7.0321 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.89249 images/sec.
+2020-12-16 23:06:20 INFO: epoch:0   train step:375  loss:  6.9606 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.90566 images/sec.
+2020-12-16 23:06:20 INFO: epoch:0   train step:376  loss:  6.9524 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1122.93376 images/sec.
+2020-12-16 23:06:20 INFO: epoch:0   train step:377  loss:  6.9406 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1122.95962 images/sec.
+2020-12-16 23:06:20 INFO: epoch:0   train step:378  loss:  6.9625 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1122.99980 images/sec.
+2020-12-16 23:06:21 INFO: epoch:0   train step:379  loss:  6.9582 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.00629 images/sec.
+2020-12-16 23:06:21 INFO: epoch:0   train step:380  loss:  6.9729 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.01262 images/sec.
+2020-12-16 23:06:21 INFO: epoch:0   train step:381  loss:  6.9778 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.01546 images/sec.
+2020-12-16 23:06:21 INFO: epoch:0   train step:382  loss:  6.9601 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.04501 images/sec.
+2020-12-16 23:06:22 INFO: epoch:0   train step:383  loss:  6.9545 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.07374 images/sec.
+2020-12-16 23:06:22 INFO: epoch:0   train step:384  loss:  7.0320 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.09827 images/sec.
+2020-12-16 23:06:22 INFO: epoch:0   train step:385  loss:  6.9714 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.09987 images/sec.
+2020-12-16 23:06:22 INFO: epoch:0   train step:386  loss:  6.9444 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.13092 images/sec.
+2020-12-16 23:06:22 INFO: epoch:0   train step:387  loss:  6.9752 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.15142 images/sec.
+2020-12-16 23:06:23 INFO: epoch:0   train step:388  loss:  6.9692 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.17570 images/sec.
+2020-12-16 23:06:23 INFO: epoch:0   train step:389  loss:  6.9343 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1123.19373 images/sec.
+2020-12-16 23:06:23 INFO: epoch:0   train step:390  loss:  6.9811 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.19819 images/sec.
+2020-12-16 23:06:23 INFO: epoch:0   train step:391  loss:  7.0278 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.22735 images/sec.
+2020-12-16 23:06:24 INFO: epoch:0   train step:392  loss:  7.0058 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.25611 images/sec.
+2020-12-16 23:06:24 INFO: epoch:0   train step:393  loss:  6.9339 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.27821 images/sec.
+2020-12-16 23:06:24 INFO: epoch:0   train step:394  loss:  6.9717 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.31006 images/sec.
+2020-12-16 23:06:24 INFO: epoch:0   train step:395  loss:  6.9557 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.32335 images/sec.
+2020-12-16 23:06:24 INFO: epoch:0   train step:396  loss:  6.9637 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.34007 images/sec.
+2020-12-16 23:06:25 INFO: epoch:0   train step:397  loss:  6.9267 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.37403 images/sec.
+2020-12-16 23:06:25 INFO: epoch:0   train step:398  loss:  7.0369 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.38362 images/sec.
+2020-12-16 23:06:25 INFO: epoch:0   train step:399  loss:  6.9751 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.39618 images/sec.
+2020-12-16 23:06:25 INFO: epoch:0   train step:400  loss:  6.9571 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.40443 images/sec.
+2020-12-16 23:06:26 INFO: epoch:0   train step:401  loss:  6.9464 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.43696 images/sec.
+2020-12-16 23:06:26 INFO: epoch:0   train step:402  loss:  6.9733 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.46567 images/sec.
+2020-12-16 23:06:26 INFO: epoch:0   train step:403  loss:  6.9850 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.49458 images/sec.
+2020-12-16 23:06:26 INFO: epoch:0   train step:404  loss:  7.0058 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.42107 images/sec.
+2020-12-16 23:06:27 INFO: epoch:0   train step:405  loss:  6.9507 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.44173 images/sec.
+2020-12-16 23:06:27 INFO: epoch:0   train step:406  loss:  6.9832 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.46833 images/sec.
+2020-12-16 23:06:27 INFO: epoch:0   train step:407  loss:  6.9596 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.46336 images/sec.
+2020-12-16 23:06:27 INFO: epoch:0   train step:408  loss:  6.9638 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.49367 images/sec.
+2020-12-16 23:06:27 INFO: epoch:0   train step:409  loss:  7.0011 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.50738 images/sec.
+2020-12-16 23:06:28 INFO: epoch:0   train step:410  loss:  7.0360 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.52273 images/sec.
+2020-12-16 23:06:28 INFO: epoch:0   train step:411  loss:  6.9992 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.55304 images/sec.
+2020-12-16 23:06:28 INFO: epoch:0   train step:412  loss:  6.9619 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.58474 images/sec.
+2020-12-16 23:06:28 INFO: epoch:0   train step:413  loss:  7.0060 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.61077 images/sec.
+2020-12-16 23:06:29 INFO: epoch:0   train step:414  loss:  6.9485 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.62957 images/sec.
+2020-12-16 23:06:29 INFO: epoch:0   train step:415  loss:  6.9945 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.65391 images/sec.
+2020-12-16 23:06:29 INFO: epoch:0   train step:416  loss:  6.9199 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.62274 images/sec.
+2020-12-16 23:06:29 INFO: epoch:0   train step:417  loss:  6.9942 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.62655 images/sec.
+2020-12-16 23:06:29 INFO: epoch:0   train step:418  loss:  6.9761 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.65659 images/sec.
+2020-12-16 23:06:30 INFO: epoch:0   train step:419  loss:  6.9430 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.67552 images/sec.
+2020-12-16 23:06:30 INFO: epoch:0   train step:420  loss:  6.9785 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.68518 images/sec.
+2020-12-16 23:06:30 INFO: epoch:0   train step:421  loss:  6.9680 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1123.69417 images/sec.
+2020-12-16 23:06:30 INFO: epoch:0   train step:422  loss:  7.0069 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.71337 images/sec.
+2020-12-16 23:06:31 INFO: epoch:0   train step:423  loss:  6.9450 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.72990 images/sec.
+2020-12-16 23:06:31 INFO: epoch:0   train step:424  loss:  6.9693 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.75427 images/sec.
+2020-12-16 23:06:31 INFO: epoch:0   train step:425  loss:  6.9190 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.76133 images/sec.
+2020-12-16 23:06:31 INFO: epoch:0   train step:426  loss:  6.9621 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.78970 images/sec.
+2020-12-16 23:06:31 INFO: epoch:0   train step:427  loss:  6.9386 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.80014 images/sec.
+2020-12-16 23:06:32 INFO: epoch:0   train step:428  loss:  6.9531 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.78595 images/sec.
+2020-12-16 23:06:32 INFO: epoch:0   train step:429  loss:  6.9676 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.62438 images/sec.
+2020-12-16 23:06:32 INFO: epoch:0   train step:430  loss:  7.0279 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.64135 images/sec.
+2020-12-16 23:06:32 INFO: epoch:0   train step:431  loss:  6.9632 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.66812 images/sec.
+2020-12-16 23:06:33 INFO: epoch:0   train step:432  loss:  6.9559 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.69050 images/sec.
+2020-12-16 23:06:33 INFO: epoch:0   train step:433  loss:  6.9756 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.70197 images/sec.
+2020-12-16 23:06:33 INFO: epoch:0   train step:434  loss:  6.9591 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.72548 images/sec.
+2020-12-16 23:06:33 INFO: epoch:0   train step:435  loss:  6.9241 top1: 0.0000 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1123.74980 images/sec.
+2020-12-16 23:06:34 INFO: epoch:0   train step:436  loss:  6.9848 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.76023 images/sec.
+2020-12-16 23:06:34 INFO: epoch:0   train step:437  loss:  6.9509 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.78108 images/sec.
+2020-12-16 23:06:34 INFO: epoch:0   train step:438  loss:  7.0028 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.79579 images/sec.
+2020-12-16 23:06:34 INFO: epoch:0   train step:439  loss:  6.9354 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.80397 images/sec.
+2020-12-16 23:06:34 INFO: epoch:0   train step:440  loss:  7.0059 top1: 0.0117 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1123.81567 images/sec.
+2020-12-16 23:06:35 INFO: epoch:0   train step:441  loss:  6.9732 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.84112 images/sec.
+2020-12-16 23:06:35 INFO: epoch:0   train step:442  loss:  6.9966 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.86333 images/sec.
+2020-12-16 23:06:35 INFO: epoch:0   train step:443  loss:  7.0203 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.88564 images/sec.
+2020-12-16 23:06:35 INFO: epoch:0   train step:444  loss:  6.9681 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.90738 images/sec.
+2020-12-16 23:06:36 INFO: epoch:0   train step:445  loss:  6.9664 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1123.90800 images/sec.
+2020-12-16 23:06:36 INFO: epoch:0   train step:446  loss:  6.9518 top1: 0.0078 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.91517 images/sec.
+2020-12-16 23:06:36 INFO: epoch:0   train step:447  loss:  6.9522 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1123.92675 images/sec.
+2020-12-16 23:06:36 INFO: epoch:0   train step:448  loss:  6.9634 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.94148 images/sec.
+2020-12-16 23:06:37 INFO: epoch:0   train step:449  loss:  6.9539 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.94864 images/sec.
+2020-12-16 23:06:37 INFO: epoch:0   train step:450  loss:  6.9459 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.93764 images/sec.
+2020-12-16 23:06:37 INFO: epoch:0   train step:451  loss:  6.9382 top1: 0.0078 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1123.95056 images/sec.
+2020-12-16 23:06:37 INFO: epoch:0   train step:452  loss:  6.9777 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.96462 images/sec.
+2020-12-16 23:06:37 INFO: epoch:0   train step:453  loss:  6.9551 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1123.98368 images/sec.
+2020-12-16 23:06:38 INFO: epoch:0   train step:454  loss:  6.9386 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.00935 images/sec.
+2020-12-16 23:06:38 INFO: epoch:0   train step:455  loss:  6.9441 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.04021 images/sec.
+2020-12-16 23:06:38 INFO: epoch:0   train step:456  loss:  6.9795 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.06106 images/sec.
+2020-12-16 23:06:38 INFO: epoch:0   train step:457  loss:  6.9453 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.08322 images/sec.
+2020-12-16 23:06:39 INFO: epoch:0   train step:458  loss:  6.9495 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.10229 images/sec.
+2020-12-16 23:06:39 INFO: epoch:0   train step:459  loss:  7.0172 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.11093 images/sec.
+2020-12-16 23:06:39 INFO: epoch:0   train step:460  loss:  6.9657 top1: 0.0000 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1124.12045 images/sec.
+2020-12-16 23:06:39 INFO: epoch:0   train step:461  loss:  6.9385 top1: 0.0000 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1124.13143 images/sec.
+2020-12-16 23:06:39 INFO: epoch:0   train step:462  loss:  6.9700 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.15551 images/sec.
+2020-12-16 23:06:40 INFO: epoch:0   train step:463  loss:  6.9552 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.16264 images/sec.
+2020-12-16 23:06:40 INFO: epoch:0   train step:464  loss:  6.9682 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.17907 images/sec.
+2020-12-16 23:06:40 INFO: epoch:0   train step:465  loss:  6.9551 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.19297 images/sec.
+2020-12-16 23:06:40 INFO: epoch:0   train step:466  loss:  6.9400 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.20379 images/sec.
+2020-12-16 23:06:41 INFO: epoch:0   train step:467  loss:  6.9474 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.21816 images/sec.
+2020-12-16 23:06:41 INFO: epoch:0   train step:468  loss:  6.9579 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.23965 images/sec.
+2020-12-16 23:06:41 INFO: epoch:0   train step:469  loss:  7.0033 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.25908 images/sec.
+2020-12-16 23:06:41 INFO: epoch:0   train step:470  loss:  6.9462 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.26830 images/sec.
+2020-12-16 23:06:41 INFO: epoch:0   train step:471  loss:  6.9745 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.27007 images/sec.
+2020-12-16 23:06:42 INFO: epoch:0   train step:472  loss:  6.9698 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.28122 images/sec.
+2020-12-16 23:06:42 INFO: epoch:0   train step:473  loss:  6.9602 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.29927 images/sec.
+2020-12-16 23:06:42 INFO: epoch:0   train step:474  loss:  6.9362 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.31949 images/sec.
+2020-12-16 23:06:42 INFO: epoch:0   train step:475  loss:  6.9540 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.33585 images/sec.
+2020-12-16 23:06:43 INFO: epoch:0   train step:476  loss:  6.9722 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.34883 images/sec.
+2020-12-16 23:06:43 INFO: epoch:0   train step:477  loss:  6.9722 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.36228 images/sec.
+2020-12-16 23:06:43 INFO: epoch:0   train step:478  loss:  6.9847 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.38012 images/sec.
+2020-12-16 23:06:43 INFO: epoch:0   train step:479  loss:  6.9482 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.37900 images/sec.
+2020-12-16 23:06:44 INFO: epoch:0   train step:480  loss:  6.9438 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.28848 images/sec.
+2020-12-16 23:06:44 INFO: epoch:0   train step:481  loss:  6.9363 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.29995 images/sec.
+2020-12-16 23:06:44 INFO: epoch:0   train step:482  loss:  6.9822 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.31680 images/sec.
+2020-12-16 23:06:44 INFO: epoch:0   train step:483  loss:  6.9519 top1: 0.0078 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.33069 images/sec.
+2020-12-16 23:06:44 INFO: epoch:0   train step:484  loss:  6.8994 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.35340 images/sec.
+2020-12-16 23:06:45 INFO: epoch:0   train step:485  loss:  7.0016 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.36576 images/sec.
+2020-12-16 23:06:45 INFO: epoch:0   train step:486  loss:  6.9843 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.37593 images/sec.
+2020-12-16 23:06:45 INFO: epoch:0   train step:487  loss:  6.9638 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.39269 images/sec.
+2020-12-16 23:06:45 INFO: epoch:0   train step:488  loss:  6.9442 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.36502 images/sec.
+2020-12-16 23:06:46 INFO: epoch:0   train step:489  loss:  6.9633 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.37422 images/sec.
+2020-12-16 23:06:46 INFO: epoch:0   train step:490  loss:  6.9782 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.35994 images/sec.
+2020-12-16 23:06:46 INFO: epoch:0   train step:491  loss:  6.9577 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.37588 images/sec.
+2020-12-16 23:06:46 INFO: epoch:0   train step:492  loss:  6.9525 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.39463 images/sec.
+2020-12-16 23:06:46 INFO: epoch:0   train step:493  loss:  6.9747 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.41333 images/sec.
+2020-12-16 23:06:47 INFO: epoch:0   train step:494  loss:  6.9158 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.41248 images/sec.
+2020-12-16 23:06:47 INFO: epoch:0   train step:495  loss:  6.9372 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.42504 images/sec.
+2020-12-16 23:06:47 INFO: epoch:0   train step:496  loss:  6.9717 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.44482 images/sec.
+2020-12-16 23:06:47 INFO: epoch:0   train step:497  loss:  6.9726 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.44860 images/sec.
+2020-12-16 23:06:48 INFO: epoch:0   train step:498  loss:  6.9818 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.45758 images/sec.
+2020-12-16 23:06:48 INFO: epoch:0   train step:499  loss:  6.9324 top1: 0.0078 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.46718 images/sec.
+2020-12-16 23:06:48 INFO: epoch:0   train step:500  loss:  7.0361 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.46918 images/sec.
+2020-12-16 23:06:48 INFO: epoch:0   train step:501  loss:  6.9674 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.47951 images/sec.
+2020-12-16 23:06:49 INFO: epoch:0   train step:502  loss:  6.9622 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.49229 images/sec.
+2020-12-16 23:06:49 INFO: epoch:0   train step:503  loss:  6.9500 top1: 0.0078 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.50558 images/sec.
+2020-12-16 23:06:49 INFO: epoch:0   train step:504  loss:  6.9921 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.51399 images/sec.
+2020-12-16 23:06:49 INFO: epoch:0   train step:505  loss:  6.9383 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.52615 images/sec.
+2020-12-16 23:06:49 INFO: epoch:0   train step:506  loss:  6.9666 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.53504 images/sec.
+2020-12-16 23:06:50 INFO: epoch:0   train step:507  loss:  6.9790 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.55453 images/sec.
+2020-12-16 23:06:50 INFO: epoch:0   train step:508  loss:  6.9775 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.56882 images/sec.
+2020-12-16 23:06:50 INFO: epoch:0   train step:509  loss:  7.0062 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.57112 images/sec.
+2020-12-16 23:06:50 INFO: epoch:0   train step:510  loss:  6.9954 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.56579 images/sec.
+2020-12-16 23:06:51 INFO: epoch:0   train step:511  loss:  6.9436 top1: 0.0000 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1124.57336 images/sec.
+2020-12-16 23:06:51 INFO: epoch:0   train step:512  loss:  6.9727 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.58385 images/sec.
+2020-12-16 23:06:51 INFO: epoch:0   train step:513  loss:  6.9331 top1: 0.0039 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1124.60014 images/sec.
+2020-12-16 23:06:51 INFO: epoch:0   train step:514  loss:  6.9539 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.61148 images/sec.
+2020-12-16 23:06:51 INFO: epoch:0   train step:515  loss:  6.9598 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.62146 images/sec.
+2020-12-16 23:06:52 INFO: epoch:0   train step:516  loss:  6.9387 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.61462 images/sec.
+2020-12-16 23:06:52 INFO: epoch:0   train step:517  loss:  6.9646 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.62104 images/sec.
+2020-12-16 23:06:52 INFO: epoch:0   train step:518  loss:  6.9728 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.63007 images/sec.
+2020-12-16 23:06:52 INFO: epoch:0   train step:519  loss:  6.9704 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.62817 images/sec.
+2020-12-16 23:06:53 INFO: epoch:0   train step:520  loss:  6.9239 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.63081 images/sec.
+2020-12-16 23:06:53 INFO: epoch:0   train step:521  loss:  6.9781 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.64134 images/sec.
+2020-12-16 23:06:53 INFO: epoch:0   train step:522  loss:  6.9580 top1: 0.0078 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.66050 images/sec.
+2020-12-16 23:06:53 INFO: epoch:0   train step:523  loss:  6.9833 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.66730 images/sec.
+2020-12-16 23:06:54 INFO: epoch:0   train step:524  loss:  6.9640 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.68766 images/sec.
+2020-12-16 23:06:54 INFO: epoch:0   train step:525  loss:  6.9511 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.71181 images/sec.
+2020-12-16 23:06:54 INFO: epoch:0   train step:526  loss:  6.9325 top1: 0.0078 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.72813 images/sec.
+2020-12-16 23:06:54 INFO: epoch:0   train step:527  loss:  6.9537 top1: 0.0078 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.74692 images/sec.
+2020-12-16 23:06:54 INFO: epoch:0   train step:528  loss:  6.9361 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.73518 images/sec.
+2020-12-16 23:06:55 INFO: epoch:0   train step:529  loss:  6.9242 top1: 0.0039 top5: 0.0195 lr: 0.100000 elapse: 0.228s ips: 1124.74572 images/sec.
+2020-12-16 23:06:55 INFO: epoch:0   train step:530  loss:  6.9767 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.74901 images/sec.
+2020-12-16 23:06:55 INFO: epoch:0   train step:531  loss:  6.9431 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.76108 images/sec.
+2020-12-16 23:06:55 INFO: epoch:0   train step:532  loss:  6.9699 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.69059 images/sec.
+2020-12-16 23:06:56 INFO: epoch:0   train step:533  loss:  6.9527 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.69337 images/sec.
+2020-12-16 23:06:56 INFO: epoch:0   train step:534  loss:  6.9117 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.71285 images/sec.
+2020-12-16 23:06:56 INFO: epoch:0   train step:535  loss:  6.9931 top1: 0.0078 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1124.72276 images/sec.
+2020-12-16 23:06:56 INFO: epoch:0   train step:536  loss:  6.9472 top1: 0.0078 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.73264 images/sec.
+2020-12-16 23:06:57 INFO: epoch:0   train step:537  loss:  6.9231 top1: 0.0078 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.75319 images/sec.
+2020-12-16 23:06:57 INFO: epoch:0   train step:538  loss:  6.9740 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.77205 images/sec.
+2020-12-16 23:06:57 INFO: epoch:0   train step:539  loss:  6.9800 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.77530 images/sec.
+2020-12-16 23:06:57 INFO: epoch:0   train step:540  loss:  6.9668 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.76624 images/sec.
+2020-12-16 23:06:57 INFO: epoch:0   train step:541  loss:  6.9477 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.77272 images/sec.
+2020-12-16 23:06:58 INFO: epoch:0   train step:542  loss:  6.9510 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.78660 images/sec.
+2020-12-16 23:06:58 INFO: epoch:0   train step:543  loss:  6.9605 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.78906 images/sec.
+2020-12-16 23:06:58 INFO: epoch:0   train step:544  loss:  6.9640 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.79712 images/sec.
+2020-12-16 23:06:58 INFO: epoch:0   train step:545  loss:  6.9456 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.80627 images/sec.
+2020-12-16 23:06:59 INFO: epoch:0   train step:546  loss:  6.9847 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.80703 images/sec.
+2020-12-16 23:06:59 INFO: epoch:0   train step:547  loss:  6.9106 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.79669 images/sec.
+2020-12-16 23:06:59 INFO: epoch:0   train step:548  loss:  6.9678 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.80111 images/sec.
+2020-12-16 23:06:59 INFO: epoch:0   train step:549  loss:  6.9269 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.78860 images/sec.
+2020-12-16 23:06:59 INFO: epoch:0   train step:550  loss:  6.9773 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.78487 images/sec.
+2020-12-16 23:07:00 INFO: epoch:0   train step:551  loss:  6.9520 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.78492 images/sec.
+2020-12-16 23:07:00 INFO: epoch:0   train step:552  loss:  6.9718 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.79842 images/sec.
+2020-12-16 23:07:00 INFO: epoch:0   train step:553  loss:  6.9807 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.79516 images/sec.
+2020-12-16 23:07:00 INFO: epoch:0   train step:554  loss:  6.9557 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.80772 images/sec.
+2020-12-16 23:07:01 INFO: epoch:0   train step:555  loss:  6.9414 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.81635 images/sec.
+2020-12-16 23:07:01 INFO: epoch:0   train step:556  loss:  6.9498 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.82317 images/sec.
+2020-12-16 23:07:01 INFO: epoch:0   train step:557  loss:  6.9773 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.82737 images/sec.
+2020-12-16 23:07:01 INFO: epoch:0   train step:558  loss:  6.9486 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.82232 images/sec.
+2020-12-16 23:07:02 INFO: epoch:0   train step:559  loss:  6.9751 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.83124 images/sec.
+2020-12-16 23:07:02 INFO: epoch:0   train step:560  loss:  6.9945 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.83277 images/sec.
+2020-12-16 23:07:02 INFO: epoch:0   train step:561  loss:  6.9608 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.83837 images/sec.
+2020-12-16 23:07:02 INFO: epoch:0   train step:562  loss:  6.9371 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.84915 images/sec.
+2020-12-16 23:07:02 INFO: epoch:0   train step:563  loss:  6.9527 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.86121 images/sec.
+2020-12-16 23:07:03 INFO: epoch:0   train step:564  loss:  6.9637 top1: 0.0117 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1124.86975 images/sec.
+2020-12-16 23:07:03 INFO: epoch:0   train step:565  loss:  6.9217 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1124.87261 images/sec.
+2020-12-16 23:07:03 INFO: epoch:0   train step:566  loss:  6.9388 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.88231 images/sec.
+2020-12-16 23:07:03 INFO: epoch:0   train step:567  loss:  6.9477 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.89851 images/sec.
+2020-12-16 23:07:04 INFO: epoch:0   train step:568  loss:  6.9544 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.90647 images/sec.
+2020-12-16 23:07:04 INFO: epoch:0   train step:569  loss:  6.9823 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.91160 images/sec.
+2020-12-16 23:07:04 INFO: epoch:0   train step:570  loss:  6.9611 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.91553 images/sec.
+2020-12-16 23:07:04 INFO: epoch:0   train step:571  loss:  6.9385 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.92901 images/sec.
+2020-12-16 23:07:04 INFO: epoch:0   train step:572  loss:  6.9811 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1124.93996 images/sec.
+2020-12-16 23:07:05 INFO: epoch:0   train step:573  loss:  6.9450 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.94777 images/sec.
+2020-12-16 23:07:05 INFO: epoch:0   train step:574  loss:  6.9644 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.94471 images/sec.
+2020-12-16 23:07:05 INFO: epoch:0   train step:575  loss:  6.9503 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1124.95555 images/sec.
+2020-12-16 23:07:05 INFO: epoch:0   train step:576  loss:  6.9496 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.96794 images/sec.
+2020-12-16 23:07:06 INFO: epoch:0   train step:577  loss:  6.9277 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1124.97742 images/sec.
+2020-12-16 23:07:06 INFO: epoch:0   train step:578  loss:  6.9843 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1125.01715 images/sec.
+2020-12-16 23:07:06 INFO: epoch:0   train step:579  loss:  6.9624 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1125.02100 images/sec.
+2020-12-16 23:07:06 INFO: epoch:0   train step:580  loss:  6.9418 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.01020 images/sec.
+2020-12-16 23:07:07 INFO: epoch:0   train step:581  loss:  6.9946 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1125.01886 images/sec.
+2020-12-16 23:07:07 INFO: epoch:0   train step:582  loss:  6.9620 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1125.01962 images/sec.
+2020-12-16 23:07:07 INFO: epoch:0   train step:583  loss:  6.9729 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1125.03274 images/sec.
+2020-12-16 23:07:07 INFO: epoch:0   train step:584  loss:  6.9223 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1125.04084 images/sec.
+2020-12-16 23:07:07 INFO: epoch:0   train step:585  loss:  6.9498 top1: 0.0078 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1125.05213 images/sec.
+2020-12-16 23:07:08 INFO: epoch:0   train step:586  loss:  6.9553 top1: 0.0039 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1125.05024 images/sec.
+2020-12-16 23:07:08 INFO: epoch:0   train step:587  loss:  6.9371 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.04308 images/sec.
+2020-12-16 23:07:08 INFO: epoch:0   train step:588  loss:  6.9548 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.05034 images/sec.
+2020-12-16 23:07:08 INFO: epoch:0   train step:589  loss:  6.9627 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1125.05715 images/sec.
+2020-12-16 23:07:09 INFO: epoch:0   train step:590  loss:  6.9320 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.04620 images/sec.
+2020-12-16 23:07:09 INFO: epoch:0   train step:591  loss:  6.9589 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1125.04481 images/sec.
+2020-12-16 23:07:09 INFO: epoch:0   train step:592  loss:  6.9507 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1125.06026 images/sec.
+2020-12-16 23:07:09 INFO: epoch:0   train step:593  loss:  6.9400 top1: 0.0078 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1125.07825 images/sec.
+2020-12-16 23:07:10 INFO: epoch:0   train step:594  loss:  6.9377 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1125.09222 images/sec.
+2020-12-16 23:07:10 INFO: epoch:0   train step:595  loss:  6.9370 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1125.10014 images/sec.
+2020-12-16 23:07:10 INFO: epoch:0   train step:596  loss:  6.9940 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1125.10694 images/sec.
+2020-12-16 23:07:10 INFO: epoch:0   train step:597  loss:  6.9465 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1125.11360 images/sec.
+2020-12-16 23:07:10 INFO: epoch:0   train step:598  loss:  6.9412 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.12278 images/sec.
+2020-12-16 23:07:11 INFO: epoch:0   train step:599  loss:  6.9361 top1: 0.0039 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1125.12038 images/sec.
+2020-12-16 23:07:11 INFO: epoch:0   train step:600  loss:  6.9326 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1125.11483 images/sec.
+2020-12-16 23:07:11 INFO: epoch:0   train step:601  loss:  6.9964 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1125.12521 images/sec.
+2020-12-16 23:07:11 INFO: epoch:0   train step:602  loss:  6.9449 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.13065 images/sec.
+2020-12-16 23:07:12 INFO: epoch:0   train step:603  loss:  6.9456 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1125.14039 images/sec.
+2020-12-16 23:07:12 INFO: epoch:0   train step:604  loss:  6.9387 top1: 0.0078 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1125.14602 images/sec.
+2020-12-16 23:07:12 INFO: epoch:0   train step:605  loss:  6.9189 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.15875 images/sec.
+2020-12-16 23:07:12 INFO: epoch:0   train step:606  loss:  6.9543 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1125.16310 images/sec.
+2020-12-16 23:07:12 INFO: epoch:0   train step:607  loss:  6.9902 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1125.17519 images/sec.
+2020-12-16 23:07:13 INFO: epoch:0   train step:608  loss:  6.9412 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.18619 images/sec.
+2020-12-16 23:07:13 INFO: epoch:0   train step:609  loss:  6.9510 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1125.19700 images/sec.
+2020-12-16 23:07:13 INFO: epoch:0   train step:610  loss:  6.9323 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1125.20250 images/sec.
+2020-12-16 23:07:13 INFO: epoch:0   train step:611  loss:  6.9848 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1125.21015 images/sec.
+2020-12-16 23:07:14 INFO: epoch:0   train step:612  loss:  6.9570 top1: 0.0000 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1125.22045 images/sec.
+2020-12-16 23:07:14 INFO: epoch:0   train step:613  loss:  6.9629 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.22684 images/sec.
+2020-12-16 23:07:14 INFO: epoch:0   train step:614  loss:  6.9384 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.21660 images/sec.
+2020-12-16 23:07:14 INFO: epoch:0   train step:615  loss:  6.9249 top1: 0.0039 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.22830 images/sec.
+2020-12-16 23:07:15 INFO: epoch:0   train step:616  loss:  6.9721 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1125.23740 images/sec.
+2020-12-16 23:07:15 INFO: epoch:0   train step:617  loss:  6.9835 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.228s ips: 1125.24628 images/sec.
+2020-12-16 23:07:15 INFO: epoch:0   train step:618  loss:  6.9620 top1: 0.0078 top5: 0.0117 lr: 0.100000 elapse: 0.228s ips: 1125.24712 images/sec.
+2020-12-16 23:07:15 INFO: epoch:0   train step:619  loss:  6.9494 top1: 0.0039 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1125.25269 images/sec.
+2020-12-16 23:07:15 INFO: epoch:0   train step:620  loss:  6.9332 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.228s ips: 1125.25497 images/sec.
+2020-12-16 23:07:16 INFO: epoch:0   train step:621  loss:  6.9643 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.228s ips: 1125.26182 images/sec.
+2020-12-16 23:07:16 INFO: epoch:0   train step:622  loss:  6.9523 top1: 0.0000 top5: 0.0156 lr: 0.100000 elapse: 0.228s ips: 1125.27201 images/sec.
+2020-12-16 23:07:16 INFO: epoch:0   train step:623  loss:  6.9373 top1: 0.0000 top5: 0.0039 lr: 0.100000 elapse: 0.227s ips: 1125.27974 images/sec.
+2020-12-16 23:07:16 INFO: epoch:0   train step:624  loss:  6.9531 top1: 0.0000 top5: 0.0000 lr: 0.100000 elapse: 0.227s ips: 1125.28457 images/sec.
+2020-12-16 23:07:17 INFO: epoch:0   train step:625  loss:  6.9411 top1: 0.0000 top5: 0.0078 lr: 0.100000 elapse: 0.227s ips: 1125.29885 images/sec.
+2020-12-16 23:07:17 INFO: END epoch:0   train loss:  7.0036 top1: 0.0012 top5: 0.0049  elapse_sum: 141.274s ips: 1125.29885 images/sec.
+2020-12-16 23:07:19 INFO: Already save model in ./output/ResNet50/0
