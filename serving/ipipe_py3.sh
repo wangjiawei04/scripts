@@ -244,8 +244,9 @@ function criteo_ctr_with_cube_rpc(){
 function pipeline_imagenet(){
   run_gpu_env
   setproxy
-  cd ${build_path}/python/examples/pipeline/imagenet/
+  cd ${build_path}/python/examples/pipeline/imagenet
   cp -r /root/.cache/dist_data/serving/imagenet/* ./
+  ls -a
   python3 resnet50_web_service.py > piplelog 2>&1 &
   sleep 5
   python3 pipeline_rpc_client.py
