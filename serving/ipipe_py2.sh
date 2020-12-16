@@ -146,6 +146,7 @@ function build_client() {
      make -j18
      make -j18
      cp ${build_path}/build/python/dist/* ../
+     pip uninstall paddle-serving-client -y
      pip install ${build_path}/build/python/dist/*
 }
 
@@ -165,6 +166,7 @@ function build_cpu_server(){
       make -j18
       make install -j18
       cp ${build_path}/build/python/dist/* ../
+      pip uninstall paddle-serving-server -y
       pip install ${build_path}/build/python/dist/*
       cp -r ${build_path}/build/ ${build_path}/build_cpu
 }
@@ -185,6 +187,7 @@ function build_app() {
         -DCMAKE_INSTALL_PREFIX=./output -DAPP=ON ..
   make
   cp ${build_path}/build/python/dist/* ../
+  pip uninstall paddle-serving-app -y
   pip install ${build_path}/build/python/dist/*
 }
 
