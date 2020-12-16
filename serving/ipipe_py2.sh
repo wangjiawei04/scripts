@@ -354,7 +354,7 @@ function fit_a_line_rpc(){
   cd ${build_path}/python/examples/fit_a_line
   sh get_data.sh >/dev/null 2>&1
   sed -i 's/9393/8869/g' test_client.py
-  python -m paddle_serving_server.serve --model uci_housing_model --port 8869> line_rpc 2>&1 &
+  python -m paddle_serving_server.serve --model uci_housing_model --port 8869 > line_rpc 2>&1 &
   sleep 5
   python test_client.py uci_housing_client/serving_client_conf.prototxt
   cat line_rpc
