@@ -82,7 +82,7 @@ function run_env(){
   pip install --upgrade nltk==3.4
   pip install --upgrade scipy==1.2.1
   pip install --upgrade setuptools==41.0.0
-  pip install paddlehub ujson paddlepaddle
+  pip install paddlehub ujson paddlepaddle==1.8.5
   cp /usr/lib64/python2.7/site-packages/paddle/libs/libiomp5.so /usr/lib64
   cp /usr/lib64/python2.7/site-packages/paddle/libs/libmklml_intel.so /usr/lib64/
   cp /usr/lib64/python2.7/site-packages/paddle/libs/libdnnl.so.1 /usr/lib64
