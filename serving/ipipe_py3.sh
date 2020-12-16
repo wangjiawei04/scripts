@@ -86,7 +86,7 @@ function run_env(){
   pip3 install --upgrade nltk==3.4
   pip3 install --upgrade scipy==1.2.1
   pip3 install --upgrade setuptools==41.0.0
-  pip3 install paddlehub ujson paddlepaddle
+  pip3 install paddlehub ujson paddlepaddle==1.8.5
   echo "env configuration succ.... "
 }
 
