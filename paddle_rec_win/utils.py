@@ -1,17 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# ======================================================================
-#
-# Copyright (c) 2017 Baidu.com, Inc. All Rights Reserved
-#
-# ======================================================================
-
-"""
-@Desc: utils module
-@File: utils.py
-@Author: liangjinhua
-@Date: 2020/06/10 16:16
-"""
 from ruamel import yaml
 import built_in
 import subprocess
