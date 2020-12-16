@@ -173,7 +173,8 @@ function build_cpu_server(){
 
 function build_app() {
   setproxy
-  pip3 install paddlepaddle paddlehub ujson paddle_serving_client Pillow
+  pip3 install paddlehub ujson paddle_serving_client Pillow
+  pip3 install paddlepaddle==1.8.5
   cd ${build_path}
   if [ -d build ];then
       cd build && rm -rf *
