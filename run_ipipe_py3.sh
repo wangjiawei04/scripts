@@ -322,9 +322,8 @@ function fit_a_line_rpc(){
   run_cpu_env
   cd ${build_path}/python/examples/fit_a_line
   sh get_data.sh >/dev/null 2>&1
-  sed -i "35cserver.prepare_server(workdir='work_dir1', port=8869, device='cpu')" test_server.py
   sed -i 's/9393/8869/g' test_client.py
-  python3 test_server.py uci_housing_model/ > line_rpc 2>&1 &
+  python3 -m paddle_serving_server.serve --model uci_housing_model --port 8869> line_rpc 2>&1 &
   sleep 5
   python3 test_client.py uci_housing_client/serving_client_conf.prototxt
   check_result $FUNCNAME
