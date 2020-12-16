@@ -1,4 +1,4 @@
 # scripts
-      run serving、fleetx、 paddlerec scripts 
+      dist_benchmark、dist_cts、 serving、fleetx、 paddlerec scripts 
 
  
