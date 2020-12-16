@@ -594,6 +594,23 @@ function bert_http(){
   kill_server_process
 }
 
+grpc_impl(){
+  run_gpu_env
+  cd ${build_path}/python/examples/grpc_impl_example/fit_a_line
+  sh get_data.sh >/dev/null 2>&1
+  python3 test_server.py uci_housing_model/ > grpclog 2>&1 &
+  sleep 5
+  echo "sync predict"
+  python3 test_sync_client.py
+  echo "async predict"
+  python3 test_asyn_client.py
+  echo "batch predict"
+  python3 test_batch_client.py
+  echo "pb predict"
+  python3 test_general_pb_client.py
+  echo "timeout predict"
+  python3 test_timeout_client.py
+}
 
 function build_all_whl(){
   for whl in ${build_whl_list[@]}
