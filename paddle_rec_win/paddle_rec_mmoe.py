@@ -1,17 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#======================================================================
-#
-# Copyright (c) 2017 Baidu.com, Inc. All Rights Reserved
-#
-#======================================================================
-
-"""
-@Desc: PaddleRecMMOEmodule
-@File: paddle_rec_mmoe.py
-@Author: liangjinhua
-@Date: 2020/06/10 16:16
-"""
 
 from paddle_rec_base import PaddleRecBase
 
