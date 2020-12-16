@@ -353,9 +353,8 @@ function fit_a_line_rpc(){
   run_cpu_env
   cd ${build_path}/python/examples/fit_a_line
   sh get_data.sh >/dev/null 2>&1
-  sed -i "35cserver.prepare_server(workdir='work_dir1', port=8869, device='cpu')" test_server.py
   sed -i 's/9393/8869/g' test_client.py
-  python test_server.py uci_housing_model/ > line_rpc 2>&1 &
+  python -m paddle_serving_server.serve --model uci_housing_model --port 8869> line_rpc 2>&1 &
   sleep 5
   python test_client.py uci_housing_client/serving_client_conf.prototxt
   cat line_rpc
@@ -537,7 +536,8 @@ function fit_a_line_http() {
   unsetproxy
   run_cpu_env
   cd ${build_path}/python/examples/fit_a_line
-  python -m paddle_serving_server.serve --model uci_housing_model --thread 10 --port 8871 --name uci > http_log2 2>&1 &
+  sed -i "s/9292/8871/g" test_server.py
+  python test_server.py > http_log2 2>&1 &
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"x": [0.0137, -0.1136, 0.2553, -0.0692, 0.0582, -0.0727, -0.1583, -0.0584, 0.6283, 0.4919, 0.1856, 0.0795, -0.0332]}], "fetch":["price"]}' http://${host}:8871/uci/prediction
   check_result $FUNCNAME
