@@ -95,7 +95,7 @@ function run_gpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_gpu/ ${build_path}/build
-  yes | cp /workspace/Serving/build_gpu/build/third_party/install/Paddle/lib/libpaddle_fluid.so /usr/lib64
+  yes | cp /workspace/Serving/build_gpu/third_party/install/Paddle/lib/libpaddle_fluid.so /usr/lib64
   export SERVING_BIN=${build_path}/build_gpu/core/general-server/serving
 }
 
@@ -105,7 +105,7 @@ function run_cpu_env(){
     rm -rf build
   fi
   cp -r ${build_path}/build_cpu/ ${build_path}/build
-  yes | cp /workspace/Serving/build_cpu/build/third_party/install/Paddle/lib/libpaddle_fluid.so /usr/lib64
+  yes | cp /workspace/Serving/build_cpu/third_party/install/Paddle/lib/libpaddle_fluid.so /usr/lib64
   export SERVING_BIN=${build_path}/build_cpu/core/general-server/serving
 }
 
