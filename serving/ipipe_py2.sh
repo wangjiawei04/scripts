@@ -126,6 +126,7 @@ function build_gpu_server() {
     make -j18
     make -j18
     make install -j18
+    pip uninstall paddle-serving-server-gpu -y
     pip install ${build_path}/build/python/dist/*
     cp  ${build_path}/build/python/dist/* ../
     cp -r ${build_path}/build/ ${build_path}/build_gpu
