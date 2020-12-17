@@ -48,10 +48,6 @@ server not ready, wait 3 sec to retry...
 not ready endpoints:['job-0bb5fda2f1ce746b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38002', 'job-0bb5fda2f1ce746b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38003', 'job-0bb5fda2f1ce746b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38004', 'job-0bb5fda2f1ce746b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38005', 'job-0bb5fda2f1ce746b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38006', 'job-0bb5fda2f1ce746b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38007', 'job-0bb5fda2f1ce746b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38008']
 W1217 00:40:58.208241  1597 device_context.cc:326] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 11.0, Runtime API Version: 10.1
 W1217 00:40:58.212610  1597 device_context.cc:336] device: 0, cuDNN Version: 7.6.
-yq01-sys-hic-k8s-v100-box-a225-0446:1597:1597 [0] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.23.144<0>
-yq01-sys-hic-k8s-v100-box-a225-0446:1597:1597 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
-yq01-sys-hic-k8s-v100-box-a225-0446:1597:1597 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0446:1597:1597 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE ; OOB xgbe0:10.127.23.144<0>
 global step 20, epoch: 0, batch: 19, loss: 11.197293, speed: 2.27 step/s, ips :218.08 sequences/s
 global step 40, epoch: 0, batch: 39, loss: 11.070883, speed: 6.27 step/s, ips :601.68 sequences/s
 global step 60, epoch: 0, batch: 59, loss: 10.882363, speed: 6.27 step/s, ips :601.65 sequences/s

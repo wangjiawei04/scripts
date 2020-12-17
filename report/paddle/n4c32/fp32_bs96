@@ -97,10 +97,6 @@ server not ready, wait 3 sec to retry...
 not ready endpoints:['job-0bb5fdb144173d22-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38845', 'job-0bb5fdb144173d22-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38848', 'job-0bb5fdb144173d22-trainer-1.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38841', 'job-0bb5fdb144173d22-trainer-1.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38842', 'job-0bb5fdb144173d22-trainer-1.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38843', 'job-0bb5fdb144173d22-trainer-1.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38844', 'job-0bb5fdb144173d22-trainer-1.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38845', 'job-0bb5fdb144173d22-trainer-1.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38846', 'job-0bb5fdb144173d22-trainer-1.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38847', 'job-0bb5fdb144173d22-trainer-1.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38848', 'job-0bb5fdb144173d22-trainer-2.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38842', 'job-0bb5fdb144173d22-trainer-2.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38843', 'job-0bb5fdb144173d22-trainer-2.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38844', 'job-0bb5fdb144173d22-trainer-2.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38845', 'job-0bb5fdb144173d22-trainer-2.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38847', 'job-0bb5fdb144173d22-trainer-2.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38848', 'job-0bb5fdb144173d22-trainer-3.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38841', 'job-0bb5fdb144173d22-trainer-3.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38842', 'job-0bb5fdb144173d22-trainer-3.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38843', 'job-0bb5fdb144173d22-trainer-3.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38844', 'job-0bb5fdb144173d22-trainer-3.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38845', 'job-0bb5fdb144173d22-trainer-3.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38846', 'job-0bb5fdb144173d22-trainer-3.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38847', 'job-0bb5fdb144173d22-trainer-3.a5139f34-68ad-5528-8bb7-a906d3bfbf7b:38848']
 W1217 16:26:28.752738  7685 device_context.cc:326] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 11.0, Runtime API Version: 10.1
 W1217 16:26:28.752784  7685 device_context.cc:336] device: 0, cuDNN Version: 7.6.
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:7685 [0] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.3.154<0>
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:7685 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:7685 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:7685 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE ; OOB xgbe0:10.127.3.154<0>
 /root/paddlejob/workspace/env_run/PaddleClas/tools/static/dali.py:80: DeprecationWarning: Argument 'output_dtype' for operator 'CropMirrorNormalize' is now deprecated. Use 'dtype' instead.
   pad_output=pad_output)
 /root/paddlejob/workspace/env_run/PaddleClas/tools/static/dali.py:80: DeprecationWarning: Argument 'image_type' for operator 'CropMirrorNormalize' is now deprecated. The argument is no longer used and should be removed.
@@ -108,24 +104,6 @@ yq01-sys-hic-k8s-v100-box-a225-0325:7685:7685 [0] NCCL INFO NET/IB : Using [0]ml
 /usr/local/python378-gcc540/lib/python3.7/site-packages/nvidia/dali/plugin/base_iterator.py:124: Warning: Please set `reader_name` and don't set last_batch_padded and size manually  whenever possible. This may lead, in some situations, to miss some  samples or return duplicated ones. Check the Sharding section of the documentation for more details.
   _iterator_deprecation_warning()
 NCCL version 2.4.7+cuda10.1
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO NCCL_P2P_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO CUDA Dev 0[0], IB NIC distance :  NODE
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Channel 00 :    0   1   3   2   6   4   5   7   8   9  11  10  14  12  13  15  16  17  19  18
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Channel 01 :    0   1   3   2   6   4   5   7   8   9  11  10  14  12  13  15  16  17  19  18
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Ring 00 : 31 -> 0 [receive] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Ring 00 : 0[0] -> 1[1] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO NCCL_IB_GID_INDEX set by environment to 3.
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Ring 00 : 16 -> 0 [receive] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Ring 00 : 0 -> 16 [send] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Ring 01 : 31 -> 0 [receive] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Ring 01 : 0[0] -> 1[1] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Ring 01 : 0 -> 24 [send] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Ring 01 : 24 -> 0 [receive] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Trees [0] -1->0->1/16/-1 [1] 24->0->1/-1/-1
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO Using 256 threads, Min Comp Cap 7, Trees enabled up to size 3840000
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:8010 [0] NCCL INFO comm 0x7f0a100066a0 rank 0 nranks 32 cudaDev 0 nvmlDev 0 - Init COMPLETE
-yq01-sys-hic-k8s-v100-box-a225-0325:7685:7685 [0] NCCL INFO Launch mode Parallel
 W1217 16:26:35.897863  7685 fuse_all_reduce_op_pass.cc:75] Find all_reduce operators: 161. To make the speed faster, some all_reduce ops are fused during training, after fusion, the number of all_reduce ops is 5.
 2020-12-17 16:26:38 INFO: epoch:0   train step:0    loss:  7.0573 top1: 0.0000 top5: 0.0000 lr: 0.400000 elapse: 4.193s ips: 22.89599 images/sec.
 2020-12-17 16:26:39 INFO: epoch:0   train step:1    loss:  7.1345 top1: 0.0000 top5: 0.0104 lr: 0.400000 elapse: 2.245s ips: 42.77059 images/sec.
