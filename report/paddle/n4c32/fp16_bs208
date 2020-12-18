@@ -120,10 +120,6 @@ not ready endpoints:['job-0bb5fdc1af94b81a-trainer-0.a5139f34-68ad-5528-8bb7-a90
   "It is recommended to use DistributedStrategy "
 W1218 11:09:28.464607  7762 device_context.cc:326] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 11.0, Runtime API Version: 10.1
 W1218 11:09:28.464653  7762 device_context.cc:336] device: 0, cuDNN Version: 7.6.
-yq01-sys-hic-k8s-v100-box-a225-0521:7762:7762 [0] NCCL INFO NET/Socket : Using [0]xgbe0:<0>
-yq01-sys-hic-k8s-v100-box-a225-0521:7762:7762 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
-yq01-sys-hic-k8s-v100-box-a225-0521:7762:7762 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0521:7762:7762 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE ; OOB xgbe0:10.127.24.153<0>
 /root/paddlejob/workspace/env_run/PaddleClas/tools/static/dali.py:80: DeprecationWarning: Argument 'output_dtype' for operator 'CropMirrorNormalize' is now deprecated. Use 'dtype' instead.
   pad_output=pad_output)
 /root/paddlejob/workspace/env_run/PaddleClas/tools/static/dali.py:80: DeprecationWarning: Argument 'image_type' for operator 'CropMirrorNormalize' is now deprecated. The argument is no longer used and should be removed.
