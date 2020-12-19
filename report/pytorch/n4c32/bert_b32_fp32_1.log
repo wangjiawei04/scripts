@@ -1,535 +1,895 @@
-device: cuda:3 n_gpu: 1, distributed training: True, 16-bits training: False
-device: cuda:7 n_gpu: 1, distributed training: True, 16-bits training: False
-device: cuda:4 n_gpu: 1, distributed training: True, 16-bits training: False
-device: cuda:2 n_gpu: 1, distributed training: True, 16-bits training: False
-device: cuda:1 n_gpu: 1, distributed training: True, 16-bits training: False
-device: cuda:6 n_gpu: 1, distributed training: True, 16-bits training: False
-device: cuda:5 n_gpu: 1, distributed training: True, 16-bits training: False
-device: cuda:0 n_gpu: 1, distributed training: True, 16-bits training: False
-DLL 2020-12-15 10:02:32.568618 - PARAMETER Config : ["Namespace(allreduce_post_accumulation=False, allreduce_post_accumulation_fp16=False, amp=False, bert_model='bert-base-uncased', checkpoint_activations=False, config_file='./bert_config.json', disable_progress_bar=False, do_train=True, fp16=False, gradient_accumulation_steps=1, init_checkpoint='', init_loss_scale=1048576, input_dir='/root/paddlejob/workspace/env_run/DeepLearningExamples/PyTorch/LanguageModeling/BERT/wikicorpus_en', json_summary='/dllogger.json', learning_rate=0.006, local_rank=0, log_freq=1.0, loss_scale=0.0, max_predictions_per_seq=20, max_seq_length=128, max_steps=120.0, n_gpu=1, num_steps_per_checkpoint=1000, num_train_epochs=3.0, output_dir='./results/checkpoints', phase1_end_step=7038, phase2=False, resume_from_checkpoint=False, resume_step=-1, seed=42, skip_checkpoint=False, steps_this_run=120.0, train_batch_size=32, use_env=False, warmup_proportion=1.0)"] 
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10301 [0] NCCL INFO Bootstrap : Using [0]xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10301 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10301 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10301 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE ; OOB xgbe0:ip152<0>
-NCCL version 2.4.8+cuda10.1
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10307 [6] NCCL INFO Bootstrap : Using [0]xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10303 [2] NCCL INFO Bootstrap : Using [0]xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10303 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10307 [6] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10305 [4] NCCL INFO Bootstrap : Using [0]xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10305 [4] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10308 [7] NCCL INFO Bootstrap : Using [0]xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10304 [3] NCCL INFO Bootstrap : Using [0]xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10308 [7] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10304 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10307 [6] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10303 [2] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10305 [4] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10308 [7] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10304 [3] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10303 [2] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE ; OOB xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10307 [6] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE ; OOB xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10304 [3] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE ; OOB xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10305 [4] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE ; OOB xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10308 [7] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE ; OOB xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10306 [5] NCCL INFO Bootstrap : Using [0]xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10306 [5] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10306 [5] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10306 [5] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE ; OOB xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Setting affinity for GPU 0 to ffffff
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10361 [2] NCCL INFO Setting affinity for GPU 2 to ffffff
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10359 [7] NCCL INFO Setting affinity for GPU 7 to ffffff
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10363 [4] NCCL INFO Setting affinity for GPU 4 to ffffff
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10362 [6] NCCL INFO Setting affinity for GPU 6 to ffffff
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10360 [3] NCCL INFO Setting affinity for GPU 3 to ffffff
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10365 [5] NCCL INFO Setting affinity for GPU 5 to ffffff
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10302 [1] NCCL INFO Bootstrap : Using [0]xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10302 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so).
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10302 [1] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10302 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE ; OOB xgbe0:ip152<0>
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10367 [1] NCCL INFO Setting affinity for GPU 1 to ffffff
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10361 [2] NCCL INFO NCCL_P2P_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10360 [3] NCCL INFO NCCL_P2P_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10367 [1] NCCL INFO NCCL_P2P_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO NCCL_P2P_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10363 [4] NCCL INFO NCCL_P2P_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10365 [5] NCCL INFO NCCL_P2P_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10362 [6] NCCL INFO NCCL_P2P_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10359 [7] NCCL INFO NCCL_P2P_DISABLE set by environment to 0.
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10360 [3] NCCL INFO CUDA Dev 3[3], IB NIC distance :  NODE
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10361 [2] NCCL INFO CUDA Dev 2[2], IB NIC distance :  NODE
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10365 [5] NCCL INFO CUDA Dev 5[5], IB NIC distance :  NODE
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10367 [1] NCCL INFO CUDA Dev 1[1], IB NIC distance :  NODE
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO CUDA Dev 0[0], IB NIC distance :  NODE
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10363 [4] NCCL INFO CUDA Dev 4[4], IB NIC distance :  NODE
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10362 [6] NCCL INFO CUDA Dev 6[6], IB NIC distance :  NODE
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10359 [7] NCCL INFO CUDA Dev 7[7], IB NIC distance :  NODE
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Channel 00 :    0   1   3   2   6   4   5   7   8   9  11  10  14  12  13  15  16  17  19  18
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Channel 01 :    0   1   3   2   6   4   5   7   8   9  11  10  14  12  13  15  16  17  19  18
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Ring 00 : 31 -> 0 [receive] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Ring 00 : 0[0] -> 1[1] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10367 [1] NCCL INFO Ring 00 : 1[1] -> 3[3] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10360 [3] NCCL INFO Ring 00 : 3[3] -> 2[2] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10363 [4] NCCL INFO Ring 00 : 4[4] -> 5[5] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10365 [5] NCCL INFO Ring 00 : 5[5] -> 7[7] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10361 [2] NCCL INFO Ring 00 : 2[2] -> 6[6] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10362 [6] NCCL INFO Ring 00 : 6[6] -> 4[4] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10359 [7] NCCL INFO Ring 00 : 7 -> 8 [send] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10359 [7] NCCL INFO NCCL_IB_GID_INDEX set by environment to 3.
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO NCCL_IB_GID_INDEX set by environment to 3.
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10359 [7] NCCL INFO Ring 00 : 7[7] -> 5[5] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Ring 00 : 16 -> 0 [receive] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10367 [1] NCCL INFO Ring 00 : 1[1] -> 0[0] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10360 [3] NCCL INFO Ring 00 : 3[3] -> 1[1] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10363 [4] NCCL INFO Ring 00 : 4[4] -> 6[6] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10365 [5] NCCL INFO Ring 00 : 5[5] -> 4[4] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10362 [6] NCCL INFO Ring 00 : 6[6] -> 2[2] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10361 [2] NCCL INFO Ring 00 : 2[2] -> 3[3] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10359 [7] NCCL INFO Ring 01 : 7 -> 8 [send] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10367 [1] NCCL INFO Ring 01 : 1[1] -> 3[3] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10360 [3] NCCL INFO Ring 01 : 3[3] -> 2[2] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10363 [4] NCCL INFO Ring 01 : 4[4] -> 5[5] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10365 [5] NCCL INFO Ring 01 : 5[5] -> 7[7] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10362 [6] NCCL INFO Ring 01 : 6[6] -> 4[4] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10361 [2] NCCL INFO Ring 01 : 2[2] -> 6[6] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Ring 00 : 0 -> 16 [send] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Ring 01 : 31 -> 0 [receive] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Ring 01 : 0[0] -> 1[1] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10360 [3] NCCL INFO Ring 01 : 3[3] -> 1[1] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10363 [4] NCCL INFO Ring 01 : 4[4] -> 6[6] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10362 [6] NCCL INFO Ring 01 : 6[6] -> 2[2] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10365 [5] NCCL INFO Ring 01 : 5[5] -> 4[4] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10361 [2] NCCL INFO Ring 01 : 2[2] -> 3[3] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10363 [4] NCCL INFO Trees [0] 6->4->5/-1/-1 [1] 6->4->5/-1/-1
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10362 [6] NCCL INFO Trees [0] 2->6->4/-1/-1 [1] 2->6->4/-1/-1
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10361 [2] NCCL INFO Trees [0] 3->2->6/-1/-1 [1] 3->2->6/-1/-1
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10360 [3] NCCL INFO Trees [0] 1->3->2/-1/-1 [1] 1->3->2/-1/-1
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10359 [7] NCCL INFO Ring 01 : 7[7] -> 5[5] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10365 [5] NCCL INFO Trees [0] 4->5->7/-1/-1 [1] 4->5->7/-1/-1
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10367 [1] NCCL INFO Ring 01 : 1[1] -> 0[0] via P2P/IPC
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10359 [7] NCCL INFO Trees [0] 5->7->-1/-1/-1 [1] 5->7->-1/-1/-1
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10367 [1] NCCL INFO Trees [0] 0->1->3/-1/-1 [1] 0->1->3/-1/-1
-yq01-sys-hic-k8s-v100-box-a225-0712:10305:10363 [4] NCCL INFO comm 0x7f6994001fe0 rank 4 nranks 32 cudaDev 4 nvmlDev 4 - Init COMPLETE
-yq01-sys-hic-k8s-v100-box-a225-0712:10307:10362 [6] NCCL INFO comm 0x7f1d08001fe0 rank 6 nranks 32 cudaDev 6 nvmlDev 6 - Init COMPLETE
-yq01-sys-hic-k8s-v100-box-a225-0712:10303:10361 [2] NCCL INFO comm 0x7ff52c001fe0 rank 2 nranks 32 cudaDev 2 nvmlDev 2 - Init COMPLETE
-yq01-sys-hic-k8s-v100-box-a225-0712:10304:10360 [3] NCCL INFO comm 0x7f2adc001fe0 rank 3 nranks 32 cudaDev 3 nvmlDev 3 - Init COMPLETE
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Ring 01 : 0 -> 24 [send] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0712:10306:10365 [5] NCCL INFO comm 0x7f5508001fe0 rank 5 nranks 32 cudaDev 5 nvmlDev 5 - Init COMPLETE
-yq01-sys-hic-k8s-v100-box-a225-0712:10308:10359 [7] NCCL INFO comm 0x7f6d3c001fe0 rank 7 nranks 32 cudaDev 7 nvmlDev 7 - Init COMPLETE
-yq01-sys-hic-k8s-v100-box-a225-0712:10302:10367 [1] NCCL INFO comm 0x7f7ab8001fe0 rank 1 nranks 32 cudaDev 1 nvmlDev 1 - Init COMPLETE
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Ring 01 : 24 -> 0 [receive] via NET/IB/0
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Trees [0] -1->0->1/16/-1 [1] 24->0->1/-1/-1
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO Using 256 threads, Min Comp Cap 7, Trees enabled up to size 3840000
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10353 [0] NCCL INFO comm 0x7f0d0c001fe0 rank 0 nranks 32 cudaDev 0 nvmlDev 0 - Init COMPLETE
-yq01-sys-hic-k8s-v100-box-a225-0712:10301:10301 [0] NCCL INFO Launch mode Parallel
-DLL 2020-12-15 10:02:41.455016 - PARAMETER SEED : 42 
-DLL 2020-12-15 10:02:41.455243 - PARAMETER train_start : True 
-DLL 2020-12-15 10:02:41.455305 - PARAMETER batch_size_per_gpu : 32 
-DLL 2020-12-15 10:02:41.455345 - PARAMETER learning_rate : 0.006 
-
-Iteration:   0%|          | 0/19738 [00:00<?, ?it/s]run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-run_pretraining.py:115: UserWarning: This overload of nonzero is deprecated:
-	nonzero()
-Consider using one of the following signatures instead:
-	nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:766.)
-  padded_mask_indices = (masked_lm_positions == 0).nonzero()
-DLL 2020-12-15 10:02:46.841593 - Training Epoch: 0 Training Iteration: 1  average_loss : 11.225713729858398  step_loss : 11.225713729858398  learning_rate : 5e-05 
-
-Iteration:   0%|          | 1/19738 [00:01<6:27:30,  1.18s/it]DLL 2020-12-15 10:02:47.185748 - Training Epoch: 0 Training Iteration: 2  average_loss : 11.146856307983398  step_loss : 11.146856307983398  learning_rate : 0.0001 
-
-Iteration:   0%|          | 2/19738 [00:01<5:05:11,  1.08it/s]DLL 2020-12-15 10:02:47.533177 - Training Epoch: 0 Training Iteration: 3  average_loss : 11.162388801574707  step_loss : 11.162388801574707  learning_rate : 0.00015000000000000001 
-
-Iteration:   0%|          | 3/19738 [00:01<4:07:54,  1.33it/s]DLL 2020-12-15 10:02:47.879466 - Training Epoch: 0 Training Iteration: 4  average_loss : 10.991633415222168  step_loss : 10.991633415222168  learning_rate : 0.0002 
-
-Iteration:   0%|          | 4/19738 [00:02<3:27:41,  1.58it/s]DLL 2020-12-15 10:02:48.225823 - Training Epoch: 0 Training Iteration: 5  average_loss : 10.929107666015625  step_loss : 10.929107666015625  learning_rate : 0.00025 
-
-Iteration:   0%|          | 5/19738 [00:02<2:59:32,  1.83it/s]DLL 2020-12-15 10:02:48.574394 - Training Epoch: 0 Training Iteration: 6  average_loss : 10.812549591064453  step_loss : 10.812549591064453  learning_rate : 0.00030000000000000003 
-
-Iteration:   0%|          | 6/19738 [00:02<2:40:04,  2.05it/s]DLL 2020-12-15 10:02:48.927410 - Training Epoch: 0 Training Iteration: 7  average_loss : 10.732125282287598  step_loss : 10.732125282287598  learning_rate : 0.00035 
-
-Iteration:   0%|          | 7/19738 [00:03<2:26:52,  2.24it/s]DLL 2020-12-15 10:02:49.273580 - Training Epoch: 0 Training Iteration: 8  average_loss : 10.562438011169434  step_loss : 10.562438011169434  learning_rate : 0.0004 
-
-Iteration:   0%|          | 8/19738 [00:03<2:16:57,  2.40it/s]DLL 2020-12-15 10:02:49.621999 - Training Epoch: 0 Training Iteration: 9  average_loss : 10.509602546691895  step_loss : 10.509602546691895  learning_rate : 0.00045 
-
-Iteration:   0%|          | 9/19738 [00:03<2:10:14,  2.52it/s]DLL 2020-12-15 10:02:49.969532 - Training Epoch: 0 Training Iteration: 10  average_loss : 10.356390953063965  step_loss : 10.356390953063965  learning_rate : 0.0005 
-
-Iteration:   0%|          | 10/19738 [00:04<2:05:26,  2.62it/s]DLL 2020-12-15 10:02:50.322871 - Training Epoch: 0 Training Iteration: 11  average_loss : 10.357586860656738  step_loss : 10.357586860656738  learning_rate : 0.0005499999999999999 
-
-Iteration:   0%|          | 11/19738 [00:04<2:02:39,  2.68it/s]DLL 2020-12-15 10:02:50.674230 - Training Epoch: 0 Training Iteration: 12  average_loss : 10.259847640991211  step_loss : 10.259847640991211  learning_rate : 0.0006000000000000001 
-
-Iteration:   0%|          | 12/19738 [00:05<2:00:30,  2.73it/s]DLL 2020-12-15 10:02:51.024240 - Training Epoch: 0 Training Iteration: 13  average_loss : 10.208529472351074  step_loss : 10.208529472351074  learning_rate : 0.0006500000000000001 
-
-Iteration:   0%|          | 13/19738 [00:05<1:58:52,  2.77it/s]DLL 2020-12-15 10:02:51.373069 - Training Epoch: 0 Training Iteration: 14  average_loss : 10.262103080749512  step_loss : 10.262103080749512  learning_rate : 0.0007 
-
-Iteration:   0%|          | 14/19738 [00:05<1:57:36,  2.80it/s]DLL 2020-12-15 10:02:54.194578 - Training Epoch: 0 Training Iteration: 15  average_loss : 10.101456642150879  step_loss : 10.101456642150879  learning_rate : 0.00075 
-
-Iteration:   0%|          | 15/19738 [00:08<6:10:14,  1.13s/it]DLL 2020-12-15 10:02:54.681377 - Training Epoch: 0 Training Iteration: 16  average_loss : 10.222501754760742  step_loss : 10.222501754760742  learning_rate : 0.0008 
-
-Iteration:   0%|          | 16/19738 [00:09<4:57:29,  1.10it/s]DLL 2020-12-15 10:02:55.025722 - Training Epoch: 0 Training Iteration: 17  average_loss : 10.11393928527832  step_loss : 10.11393928527832  learning_rate : 0.00085 
-
-Iteration:   0%|          | 17/19738 [00:09<4:02:10,  1.36it/s]DLL 2020-12-15 10:02:55.372102 - Training Epoch: 0 Training Iteration: 18  average_loss : 10.060925483703613  step_loss : 10.060925483703613  learning_rate : 0.0009 
-
-Iteration:   0%|          | 18/19738 [00:09<3:23:40,  1.61it/s]DLL 2020-12-15 10:02:55.719881 - Training Epoch: 0 Training Iteration: 19  average_loss : 10.011575698852539  step_loss : 10.011575698852539  learning_rate : 0.00095 
-
-Iteration:   0%|          | 19/19738 [00:10<2:56:50,  1.86it/s]DLL 2020-12-15 10:02:56.065544 - Training Epoch: 0 Training Iteration: 20  average_loss : 9.988896369934082  step_loss : 9.988896369934082  learning_rate : 0.001 
-
-Iteration:   0%|          | 20/19738 [00:10<2:37:51,  2.08it/s]DLL 2020-12-15 10:02:56.411457 - Training Epoch: 0 Training Iteration: 21  average_loss : 9.959800720214844  step_loss : 9.959800720214844  learning_rate : 0.00105 
-
-Iteration:   0%|          | 21/19738 [00:10<2:24:36,  2.27it/s]DLL 2020-12-15 10:02:56.757126 - Training Epoch: 0 Training Iteration: 22  average_loss : 9.954630851745605  step_loss : 9.954630851745605  learning_rate : 0.0010999999999999998 
-
-Iteration:   0%|          | 22/19738 [00:11<2:15:17,  2.43it/s]DLL 2020-12-15 10:02:57.102556 - Training Epoch: 0 Training Iteration: 23  average_loss : 9.86830997467041  step_loss : 9.86830997467041  learning_rate : 0.0011500000000000002 
-
-Iteration:   0%|          | 23/19738 [00:11<2:08:45,  2.55it/s]DLL 2020-12-15 10:02:57.449480 - Training Epoch: 0 Training Iteration: 24  average_loss : 9.669319152832031  step_loss : 9.669319152832031  learning_rate : 0.0012000000000000001 
-
-Iteration:   0%|          | 24/19738 [00:11<2:04:19,  2.64it/s]DLL 2020-12-15 10:02:57.798677 - Training Epoch: 0 Training Iteration: 25  average_loss : 9.816944122314453  step_loss : 9.816944122314453  learning_rate : 0.00125 
-
-Iteration:   0%|          | 25/19738 [00:12<2:01:26,  2.71it/s]DLL 2020-12-15 10:02:58.146873 - Training Epoch: 0 Training Iteration: 26  average_loss : 9.556528091430664  step_loss : 9.556528091430664  learning_rate : 0.0013000000000000002 
-
-Iteration:   0%|          | 26/19738 [00:12<1:59:19,  2.75it/s]DLL 2020-12-15 10:02:58.497221 - Training Epoch: 0 Training Iteration: 27  average_loss : 9.643932342529297  step_loss : 9.643932342529297  learning_rate : 0.00135 
-
-Iteration:   0%|          | 27/19738 [00:12<1:58:02,  2.78it/s]DLL 2020-12-15 10:02:58.838642 - Training Epoch: 0 Training Iteration: 28  average_loss : 9.650469779968262  step_loss : 9.650469779968262  learning_rate : 0.0014 
-
-Iteration:   0%|          | 28/19738 [00:13<1:56:16,  2.83it/s]DLL 2020-12-15 10:02:59.184280 - Training Epoch: 0 Training Iteration: 29  average_loss : 9.700386047363281  step_loss : 9.700386047363281  learning_rate : 0.0014500000000000001 
-
-Iteration:   0%|          | 29/19738 [00:13<1:55:26,  2.85it/s]DLL 2020-12-15 10:02:59.550651 - Training Epoch: 0 Training Iteration: 30  average_loss : 9.400014877319336  step_loss : 9.400014877319336  learning_rate : 0.0015 
-
-Iteration:   0%|          | 30/19738 [00:13<1:56:54,  2.81it/s]DLL 2020-12-15 10:02:59.900355 - Training Epoch: 0 Training Iteration: 31  average_loss : 9.459059715270996  step_loss : 9.459059715270996  learning_rate : 0.0015500000000000002 
-
-Iteration:   0%|          | 31/19738 [00:14<1:56:17,  2.82it/s]DLL 2020-12-15 10:03:00.249183 - Training Epoch: 0 Training Iteration: 32  average_loss : 9.501265525817871  step_loss : 9.501265525817871  learning_rate : 0.0016 
-
-Iteration:   0%|          | 32/19738 [00:14<1:55:46,  2.84it/s]DLL 2020-12-15 10:03:00.597394 - Training Epoch: 0 Training Iteration: 33  average_loss : 9.41939926147461  step_loss : 9.41939926147461  learning_rate : 0.0016500000000000002 
-
-Iteration:   0%|          | 33/19738 [00:14<1:55:20,  2.85it/s]DLL 2020-12-15 10:03:00.944440 - Training Epoch: 0 Training Iteration: 34  average_loss : 9.494454383850098  step_loss : 9.494454383850098  learning_rate : 0.0017 
-
-Iteration:   0%|          | 34/19738 [00:15<1:54:55,  2.86it/s]DLL 2020-12-15 10:03:01.292551 - Training Epoch: 0 Training Iteration: 35  average_loss : 9.285394668579102  step_loss : 9.285394668579102  learning_rate : 0.0017500000000000003 
-
-Iteration:   0%|          | 35/19738 [00:15<1:54:44,  2.86it/s]DLL 2020-12-15 10:03:01.639671 - Training Epoch: 0 Training Iteration: 36  average_loss : 9.418856620788574  step_loss : 9.418856620788574  learning_rate : 0.0018 
-
-Iteration:   0%|          | 36/19738 [00:15<1:54:30,  2.87it/s]DLL 2020-12-15 10:03:01.987300 - Training Epoch: 0 Training Iteration: 37  average_loss : 9.34623908996582  step_loss : 9.34623908996582  learning_rate : 0.00185 
-
-Iteration:   0%|          | 37/19738 [00:16<1:54:23,  2.87it/s]DLL 2020-12-15 10:03:02.334557 - Training Epoch: 0 Training Iteration: 38  average_loss : 9.149760246276855  step_loss : 9.149760246276855  learning_rate : 0.0019 
-
-Iteration:   0%|          | 38/19738 [00:16<1:54:16,  2.87it/s]DLL 2020-12-15 10:03:02.681180 - Training Epoch: 0 Training Iteration: 39  average_loss : 9.336721420288086  step_loss : 9.336721420288086  learning_rate : 0.0019500000000000001 
-
-Iteration:   0%|          | 39/19738 [00:17<1:54:07,  2.88it/s]DLL 2020-12-15 10:03:03.028407 - Training Epoch: 0 Training Iteration: 40  average_loss : 9.19935417175293  step_loss : 9.19935417175293  learning_rate : 0.002 
-
-Iteration:   0%|          | 40/19738 [00:17<1:54:05,  2.88it/s]DLL 2020-12-15 10:03:03.374815 - Training Epoch: 0 Training Iteration: 41  average_loss : 9.152186393737793  step_loss : 9.152186393737793  learning_rate : 0.00205 
-
-Iteration:   0%|          | 41/19738 [00:17<1:53:58,  2.88it/s]DLL 2020-12-15 10:03:03.720047 - Training Epoch: 0 Training Iteration: 42  average_loss : 8.914116859436035  step_loss : 8.914116859436035  learning_rate : 0.0021 
-
-Iteration:   0%|          | 42/19738 [00:18<1:53:46,  2.89it/s]DLL 2020-12-15 10:03:04.064748 - Training Epoch: 0 Training Iteration: 43  average_loss : 9.174516677856445  step_loss : 9.174516677856445  learning_rate : 0.00215 
-
-Iteration:   0%|          | 43/19738 [00:18<1:53:34,  2.89it/s]DLL 2020-12-15 10:03:04.410440 - Training Epoch: 0 Training Iteration: 44  average_loss : 8.933788299560547  step_loss : 8.933788299560547  learning_rate : 0.0021999999999999997 
-
-Iteration:   0%|          | 44/19738 [00:18<1:53:32,  2.89it/s]DLL 2020-12-15 10:03:04.755437 - Training Epoch: 0 Training Iteration: 45  average_loss : 9.21579360961914  step_loss : 9.21579360961914  learning_rate : 0.0022500000000000003 
-
-Iteration:   0%|          | 45/19738 [00:19<1:53:26,  2.89it/s]DLL 2020-12-15 10:03:05.101340 - Training Epoch: 0 Training Iteration: 46  average_loss : 8.707937240600586  step_loss : 8.707937240600586  learning_rate : 0.0023000000000000004 
-
-Iteration:   0%|          | 46/19738 [00:19<1:53:27,  2.89it/s]DLL 2020-12-15 10:03:05.447028 - Training Epoch: 0 Training Iteration: 47  average_loss : 8.668196678161621  step_loss : 8.668196678161621  learning_rate : 0.00235 
-
-Iteration:   0%|          | 47/19738 [00:19<1:53:27,  2.89it/s]DLL 2020-12-15 10:03:05.794243 - Training Epoch: 0 Training Iteration: 48  average_loss : 8.713351249694824  step_loss : 8.713351249694824  learning_rate : 0.0024000000000000002 
-
-Iteration:   0%|          | 48/19738 [00:20<1:53:36,  2.89it/s]DLL 2020-12-15 10:03:06.143572 - Training Epoch: 0 Training Iteration: 49  average_loss : 8.71645736694336  step_loss : 8.71645736694336  learning_rate : 0.00245 
-
-Iteration:   0%|          | 49/19738 [00:20<1:53:54,  2.88it/s]DLL 2020-12-15 10:03:06.493411 - Training Epoch: 0 Training Iteration: 50  average_loss : 8.904254913330078  step_loss : 8.904254913330078  learning_rate : 0.0025 
-
-Iteration:   0%|          | 50/19738 [00:20<1:54:10,  2.87it/s]DLL 2020-12-15 10:03:06.840957 - Training Epoch: 0 Training Iteration: 51  average_loss : 8.515843391418457  step_loss : 8.515843391418457  learning_rate : 0.00255 
-
-Iteration:   0%|          | 51/19738 [00:21<1:54:07,  2.88it/s]DLL 2020-12-15 10:03:07.187750 - Training Epoch: 0 Training Iteration: 52  average_loss : 8.608550071716309  step_loss : 8.608550071716309  learning_rate : 0.0026000000000000003 
-
-Iteration:   0%|          | 52/19738 [00:21<1:54:01,  2.88it/s]DLL 2020-12-15 10:03:07.536706 - Training Epoch: 0 Training Iteration: 53  average_loss : 8.636666297912598  step_loss : 8.636666297912598  learning_rate : 0.00265 
-
-Iteration:   0%|          | 53/19738 [00:21<1:54:09,  2.87it/s]DLL 2020-12-15 10:03:07.885629 - Training Epoch: 0 Training Iteration: 54  average_loss : 8.658012390136719  step_loss : 8.658012390136719  learning_rate : 0.0027 
-
-Iteration:   0%|          | 54/19738 [00:22<1:54:14,  2.87it/s]DLL 2020-12-15 10:03:08.233462 - Training Epoch: 0 Training Iteration: 55  average_loss : 8.374731063842773  step_loss : 8.374731063842773  learning_rate : 0.00275 
-
-Iteration:   0%|          | 55/19738 [00:22<1:54:11,  2.87it/s]DLL 2020-12-15 10:03:08.582377 - Training Epoch: 0 Training Iteration: 56  average_loss : 8.435322761535645  step_loss : 8.435322761535645  learning_rate : 0.0028 
-
-Iteration:   0%|          | 56/19738 [00:22<1:54:16,  2.87it/s]DLL 2020-12-15 10:03:08.928406 - Training Epoch: 0 Training Iteration: 57  average_loss : 8.51191520690918  step_loss : 8.51191520690918  learning_rate : 0.00285 
-
-Iteration:   0%|          | 57/19738 [00:23<1:54:02,  2.88it/s]DLL 2020-12-15 10:03:09.273516 - Training Epoch: 0 Training Iteration: 58  average_loss : 8.188840866088867  step_loss : 8.188840866088867  learning_rate : 0.0029000000000000002 
-
-Iteration:   0%|          | 58/19738 [00:23<1:53:46,  2.88it/s]DLL 2020-12-15 10:03:09.619329 - Training Epoch: 0 Training Iteration: 59  average_loss : 8.355216979980469  step_loss : 8.355216979980469  learning_rate : 0.00295 
-
-Iteration:   0%|          | 59/19738 [00:23<1:53:40,  2.89it/s]DLL 2020-12-15 10:03:09.965662 - Training Epoch: 0 Training Iteration: 60  average_loss : 8.21358585357666  step_loss : 8.21358585357666  learning_rate : 0.003 
-
-Iteration:   0%|          | 60/19738 [00:24<1:53:38,  2.89it/s]DLL 2020-12-15 10:03:10.312762 - Training Epoch: 0 Training Iteration: 61  average_loss : 8.259134292602539  step_loss : 8.259134292602539  learning_rate : 0.0030499999999999998 
-
-Iteration:   0%|          | 61/19738 [00:24<1:53:41,  2.88it/s]DLL 2020-12-15 10:03:10.658942 - Training Epoch: 0 Training Iteration: 62  average_loss : 8.272168159484863  step_loss : 8.272168159484863  learning_rate : 0.0031000000000000003 
-
-Iteration:   0%|          | 62/19738 [00:24<1:53:38,  2.89it/s]DLL 2020-12-15 10:03:11.004628 - Training Epoch: 0 Training Iteration: 63  average_loss : 8.279367446899414  step_loss : 8.279367446899414  learning_rate : 0.00315 
-
-Iteration:   0%|          | 63/19738 [00:25<1:53:32,  2.89it/s]DLL 2020-12-15 10:03:11.349989 - Training Epoch: 0 Training Iteration: 64  average_loss : 8.128861427307129  step_loss : 8.128861427307129  learning_rate : 0.0032 
-
-Iteration:   0%|          | 64/19738 [00:25<1:53:27,  2.89it/s]DLL 2020-12-15 10:03:11.699593 - Training Epoch: 0 Training Iteration: 65  average_loss : 8.28962230682373  step_loss : 8.28962230682373  learning_rate : 0.00325 
-
-Iteration:   0%|          | 65/19738 [00:26<1:53:48,  2.88it/s]DLL 2020-12-15 10:03:12.048912 - Training Epoch: 0 Training Iteration: 66  average_loss : 8.145526885986328  step_loss : 8.145526885986328  learning_rate : 0.0033000000000000004 
-
-Iteration:   0%|          | 66/19738 [00:26<1:54:01,  2.88it/s]DLL 2020-12-15 10:03:12.396075 - Training Epoch: 0 Training Iteration: 67  average_loss : 8.099366188049316  step_loss : 8.099366188049316  learning_rate : 0.00335 
-
-Iteration:   0%|          | 67/19738 [00:26<1:53:57,  2.88it/s]DLL 2020-12-15 10:03:12.742995 - Training Epoch: 0 Training Iteration: 68  average_loss : 8.33069133758545  step_loss : 8.33069133758545  learning_rate : 0.0034 
-
-Iteration:   0%|          | 68/19738 [00:27<1:53:52,  2.88it/s]DLL 2020-12-15 10:03:13.089427 - Training Epoch: 0 Training Iteration: 69  average_loss : 8.118577003479004  step_loss : 8.118577003479004  learning_rate : 0.00345 
-
-Iteration:   0%|          | 69/19738 [00:27<1:53:47,  2.88it/s]DLL 2020-12-15 10:03:13.436266 - Training Epoch: 0 Training Iteration: 70  average_loss : 8.176660537719727  step_loss : 8.176660537719727  learning_rate : 0.0035000000000000005 
-
-Iteration:   0%|          | 70/19738 [00:27<1:53:45,  2.88it/s]DLL 2020-12-15 10:03:13.781913 - Training Epoch: 0 Training Iteration: 71  average_loss : 8.00241470336914  step_loss : 8.00241470336914  learning_rate : 0.00355 
-
-Iteration:   0%|          | 71/19738 [00:28<1:53:36,  2.89it/s]DLL 2020-12-15 10:03:14.128103 - Training Epoch: 0 Training Iteration: 72  average_loss : 7.92534875869751  step_loss : 7.92534875869751  learning_rate : 0.0036 
-
-Iteration:   0%|          | 72/19738 [00:28<1:53:33,  2.89it/s]DLL 2020-12-15 10:03:14.474352 - Training Epoch: 0 Training Iteration: 73  average_loss : 7.966794967651367  step_loss : 7.966794967651367  learning_rate : 0.0036499999999999996 
-
-Iteration:   0%|          | 73/19738 [00:28<1:53:32,  2.89it/s]DLL 2020-12-15 10:03:14.821582 - Training Epoch: 0 Training Iteration: 74  average_loss : 8.285357475280762  step_loss : 8.285357475280762  learning_rate : 0.0037 
-
-Iteration:   0%|          | 74/19738 [00:29<1:53:36,  2.88it/s]DLL 2020-12-15 10:03:15.167722 - Training Epoch: 0 Training Iteration: 75  average_loss : 8.120149612426758  step_loss : 8.120149612426758  learning_rate : 0.00375 
-
-Iteration:   0%|          | 75/19738 [00:29<1:53:33,  2.89it/s]DLL 2020-12-15 10:03:15.515210 - Training Epoch: 0 Training Iteration: 76  average_loss : 8.092012405395508  step_loss : 8.092012405395508  learning_rate : 0.0038 
-
-Iteration:   0%|          | 76/19738 [00:29<1:53:38,  2.88it/s]DLL 2020-12-15 10:03:15.861610 - Training Epoch: 0 Training Iteration: 77  average_loss : 8.447786331176758  step_loss : 8.447786331176758  learning_rate : 0.0038500000000000006 
-
-Iteration:   0%|          | 77/19738 [00:30<1:53:35,  2.88it/s]DLL 2020-12-15 10:03:16.209833 - Training Epoch: 0 Training Iteration: 78  average_loss : 8.24811840057373  step_loss : 8.24811840057373  learning_rate : 0.0039000000000000003 
-
-Iteration:   0%|          | 78/19738 [00:30<1:53:44,  2.88it/s]DLL 2020-12-15 10:03:16.558964 - Training Epoch: 0 Training Iteration: 79  average_loss : 8.051335334777832  step_loss : 8.051335334777832  learning_rate : 0.00395 
-
-Iteration:   0%|          | 79/19738 [00:30<1:53:56,  2.88it/s]DLL 2020-12-15 10:03:16.908573 - Training Epoch: 0 Training Iteration: 80  average_loss : 8.209734916687012  step_loss : 8.209734916687012  learning_rate : 0.004 
-
-Iteration:   0%|          | 80/19738 [00:31<1:54:06,  2.87it/s]DLL 2020-12-15 10:03:17.256547 - Training Epoch: 0 Training Iteration: 81  average_loss : 8.105042457580566  step_loss : 8.105042457580566  learning_rate : 0.004050000000000001 
-
-Iteration:   0%|          | 81/19738 [00:31<1:54:04,  2.87it/s]DLL 2020-12-15 10:03:17.605142 - Training Epoch: 0 Training Iteration: 82  average_loss : 8.058246612548828  step_loss : 8.058246612548828  learning_rate : 0.0041 
-
-Iteration:   0%|          | 82/19738 [00:31<1:54:06,  2.87it/s]DLL 2020-12-15 10:03:17.951975 - Training Epoch: 0 Training Iteration: 83  average_loss : 7.983404159545898  step_loss : 7.983404159545898  learning_rate : 0.00415 
-
-Iteration:   0%|          | 83/19738 [00:32<1:53:57,  2.87it/s]DLL 2020-12-15 10:03:18.299703 - Training Epoch: 0 Training Iteration: 84  average_loss : 8.169026374816895  step_loss : 8.169026374816895  learning_rate : 0.0042 
-
-Iteration:   0%|          | 84/19738 [00:32<1:53:56,  2.87it/s]DLL 2020-12-15 10:03:18.646788 - Training Epoch: 0 Training Iteration: 85  average_loss : 7.897940635681152  step_loss : 7.897940635681152  learning_rate : 0.00425 
-
-Iteration:   0%|          | 85/19738 [00:32<1:53:51,  2.88it/s]DLL 2020-12-15 10:03:18.992681 - Training Epoch: 0 Training Iteration: 86  average_loss : 8.033474922180176  step_loss : 8.033474922180176  learning_rate : 0.0043 
-
-Iteration:   0%|          | 86/19738 [00:33<1:53:41,  2.88it/s]DLL 2020-12-15 10:03:19.340109 - Training Epoch: 0 Training Iteration: 87  average_loss : 8.063313484191895  step_loss : 8.063313484191895  learning_rate : 0.00435 
-
-Iteration:   0%|          | 87/19738 [00:33<1:53:42,  2.88it/s]DLL 2020-12-15 10:03:19.687366 - Training Epoch: 0 Training Iteration: 88  average_loss : 8.390966415405273  step_loss : 8.390966415405273  learning_rate : 0.004399999999999999 
-
-Iteration:   0%|          | 88/19738 [00:34<1:53:42,  2.88it/s]DLL 2020-12-15 10:03:20.035487 - Training Epoch: 0 Training Iteration: 89  average_loss : 8.321084022521973  step_loss : 8.321084022521973  learning_rate : 0.00445 
-
-Iteration:   0%|          | 89/19738 [00:34<1:53:47,  2.88it/s]DLL 2020-12-15 10:03:20.382603 - Training Epoch: 0 Training Iteration: 90  average_loss : 8.382461547851562  step_loss : 8.382461547851562  learning_rate : 0.0045000000000000005 
-
-Iteration:   0%|          | 90/19738 [00:34<1:53:45,  2.88it/s]DLL 2020-12-15 10:03:20.730313 - Training Epoch: 0 Training Iteration: 91  average_loss : 8.401360511779785  step_loss : 8.401360511779785  learning_rate : 0.00455 
-
-Iteration:   0%|          | 91/19738 [00:35<1:53:46,  2.88it/s]DLL 2020-12-15 10:03:21.078581 - Training Epoch: 0 Training Iteration: 92  average_loss : 8.045799255371094  step_loss : 8.045799255371094  learning_rate : 0.004600000000000001 
-
-Iteration:   0%|          | 92/19738 [00:35<1:53:51,  2.88it/s]DLL 2020-12-15 10:03:21.423980 - Training Epoch: 0 Training Iteration: 93  average_loss : 7.924046039581299  step_loss : 7.924046039581299  learning_rate : 0.0046500000000000005 
-
-Iteration:   0%|          | 93/19738 [00:35<1:53:37,  2.88it/s]DLL 2020-12-15 10:03:21.775141 - Training Epoch: 0 Training Iteration: 94  average_loss : 8.109353065490723  step_loss : 8.109353065490723  learning_rate : 0.0047 
-
-Iteration:   0%|          | 94/19738 [00:36<1:54:01,  2.87it/s]DLL 2020-12-15 10:03:22.125033 - Training Epoch: 0 Training Iteration: 95  average_loss : 8.019786834716797  step_loss : 8.019786834716797  learning_rate : 0.00475 
-
-Iteration:   0%|          | 95/19738 [00:36<1:54:10,  2.87it/s]DLL 2020-12-15 10:03:22.475729 - Training Epoch: 0 Training Iteration: 96  average_loss : 8.400040626525879  step_loss : 8.400040626525879  learning_rate : 0.0048000000000000004 
-
-Iteration:   0%|          | 96/19738 [00:36<1:54:21,  2.86it/s]DLL 2020-12-15 10:03:22.822881 - Training Epoch: 0 Training Iteration: 97  average_loss : 8.01404094696045  step_loss : 8.01404094696045  learning_rate : 0.00485 
-
-Iteration:   0%|          | 97/19738 [00:37<1:54:08,  2.87it/s]DLL 2020-12-15 10:03:23.169158 - Training Epoch: 0 Training Iteration: 98  average_loss : 8.164874076843262  step_loss : 8.164874076843262  learning_rate : 0.0049 
-
-Iteration:   0%|          | 98/19738 [00:37<1:53:53,  2.87it/s]DLL 2020-12-15 10:03:23.517556 - Training Epoch: 0 Training Iteration: 99  average_loss : 8.154271125793457  step_loss : 8.154271125793457  learning_rate : 0.0049499999999999995 
-
-Iteration:   1%|          | 99/19738 [00:37<1:53:56,  2.87it/s]DLL 2020-12-15 10:03:23.866200 - Training Epoch: 0 Training Iteration: 100  average_loss : 8.160107612609863  step_loss : 8.160107612609863  learning_rate : 0.005 
-
-Iteration:   1%|          | 100/19738 [00:38<1:53:59,  2.87it/s]DLL 2020-12-15 10:03:24.214973 - Training Epoch: 0 Training Iteration: 101  average_loss : 7.931722164154053  step_loss : 7.931722164154053  learning_rate : 0.00505 
-
-Iteration:   1%|          | 101/19738 [00:38<1:54:01,  2.87it/s]DLL 2020-12-15 10:03:24.565310 - Training Epoch: 0 Training Iteration: 102  average_loss : 8.088132858276367  step_loss : 8.088132858276367  learning_rate : 0.0051 
-
-Iteration:   1%|          | 102/19738 [00:38<1:54:12,  2.87it/s]DLL 2020-12-15 10:03:24.913712 - Training Epoch: 0 Training Iteration: 103  average_loss : 8.153461456298828  step_loss : 8.153461456298828  learning_rate : 0.00515 
-
-Iteration:   1%|          | 103/19738 [00:39<1:54:08,  2.87it/s]DLL 2020-12-15 10:03:25.261165 - Training Epoch: 0 Training Iteration: 104  average_loss : 8.097426414489746  step_loss : 8.097426414489746  learning_rate : 0.005200000000000001 
-
-Iteration:   1%|          | 104/19738 [00:39<1:54:01,  2.87it/s]DLL 2020-12-15 10:03:25.607706 - Training Epoch: 0 Training Iteration: 105  average_loss : 8.063547134399414  step_loss : 8.063547134399414  learning_rate : 0.00525 
-
-Iteration:   1%|          | 105/19738 [00:39<1:53:49,  2.87it/s]DLL 2020-12-15 10:03:25.955716 - Training Epoch: 0 Training Iteration: 106  average_loss : 8.298752784729004  step_loss : 8.298752784729004  learning_rate : 0.0053 
-
-Iteration:   1%|          | 106/19738 [00:40<1:53:49,  2.87it/s]DLL 2020-12-15 10:03:26.303559 - Training Epoch: 0 Training Iteration: 107  average_loss : 8.100189208984375  step_loss : 8.100189208984375  learning_rate : 0.005350000000000001 
-
-Iteration:   1%|          | 107/19738 [00:40<1:53:49,  2.87it/s]DLL 2020-12-15 10:03:26.652086 - Training Epoch: 0 Training Iteration: 108  average_loss : 8.30411148071289  step_loss : 8.30411148071289  learning_rate : 0.0054 
-
-Iteration:   1%|          | 108/19738 [00:40<1:53:52,  2.87it/s]DLL 2020-12-15 10:03:27.000882 - Training Epoch: 0 Training Iteration: 109  average_loss : 8.200706481933594  step_loss : 8.200706481933594  learning_rate : 0.00545 
-
-Iteration:   1%|          | 109/19738 [00:41<1:53:56,  2.87it/s]DLL 2020-12-15 10:03:27.348490 - Training Epoch: 0 Training Iteration: 110  average_loss : 8.116151809692383  step_loss : 8.116151809692383  learning_rate : 0.0055 
-
-Iteration:   1%|          | 110/19738 [00:41<1:53:52,  2.87it/s]DLL 2020-12-15 10:03:27.694837 - Training Epoch: 0 Training Iteration: 111  average_loss : 8.21536922454834  step_loss : 8.21536922454834  learning_rate : 0.00555 
-
-Iteration:   1%|          | 111/19738 [00:42<1:53:41,  2.88it/s]DLL 2020-12-15 10:03:28.044849 - Training Epoch: 0 Training Iteration: 112  average_loss : 8.201416969299316  step_loss : 8.201416969299316  learning_rate : 0.0056 
-
-Iteration:   1%|          | 112/19738 [00:42<1:53:55,  2.87it/s]DLL 2020-12-15 10:03:28.394315 - Training Epoch: 0 Training Iteration: 113  average_loss : 8.060259819030762  step_loss : 8.060259819030762  learning_rate : 0.00565 
-
-Iteration:   1%|          | 113/19738 [00:42<1:54:02,  2.87it/s]DLL 2020-12-15 10:03:28.743564 - Training Epoch: 0 Training Iteration: 114  average_loss : 8.133991241455078  step_loss : 8.133991241455078  learning_rate : 0.0057 
-
-Iteration:   1%|          | 114/19738 [00:43<1:54:05,  2.87it/s]DLL 2020-12-15 10:03:29.092502 - Training Epoch: 0 Training Iteration: 115  average_loss : 8.312196731567383  step_loss : 8.312196731567383  learning_rate : 0.005750000000000001 
-
-Iteration:   1%|          | 115/19738 [00:43<1:54:05,  2.87it/s]DLL 2020-12-15 10:03:29.439916 - Training Epoch: 0 Training Iteration: 116  average_loss : 8.184901237487793  step_loss : 8.184901237487793  learning_rate : 0.0058000000000000005 
-
-Iteration:   1%|          | 116/19738 [00:43<1:53:56,  2.87it/s]DLL 2020-12-15 10:03:29.788357 - Training Epoch: 0 Training Iteration: 117  average_loss : 8.078893661499023  step_loss : 8.078893661499023  learning_rate : 0.00585 
-
-Iteration:   1%|          | 117/19738 [00:44<1:53:56,  2.87it/s]DLL 2020-12-15 10:03:30.137119 - Training Epoch: 0 Training Iteration: 118  average_loss : 8.338558197021484  step_loss : 8.338558197021484  learning_rate : 0.0059 
-
-Iteration:   1%|          | 118/19738 [00:44<1:53:58,  2.87it/s]DLL 2020-12-15 10:03:30.483735 - Training Epoch: 0 Training Iteration: 119  average_loss : 8.031576156616211  step_loss : 8.031576156616211  learning_rate : 0.00595 
-
-Iteration:   1%|          | 119/19738 [00:44<1:53:46,  2.87it/s]DLL 2020-12-15 10:03:30.833730 - Training Epoch: 0 Training Iteration: 120  final_loss : 8.15562629699707 
-DLL 2020-12-15 10:03:30.833875 - PARAMETER checkpoint_step : 120 
-
-Iteration:   1%|          | 119/19738 [00:48<2:14:02,  2.44it/s]
-DLL 2020-12-15 10:03:34.532006 -  e2e_train_time : 64.12141799926758  training_sequences_per_second : 2720.8743911601255  final_loss : 8.15562629699707  raw_train_time : 45.16195249557495 
-*****************************************
-Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-*****************************************
+Sat Dec 19 10:03:22 2020[1,2]<stdout>:Container nvidia build = 
+Sat Dec 19 10:03:22 2020[1,1]<stdout>:Container nvidia build = 
+Sat Dec 19 10:03:22 2020[1,3]<stdout>:Container nvidia build = 
+Sat Dec 19 10:03:22 2020[1,2]<stdout>:.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training//
+Sat Dec 19 10:03:22 2020[1,2]<stdout>:pytorch cmd: python -m torch.distributed.launch --nproc_per_node=8 --nnodes 4 --node_rank=2 --master_addr=job-0bb5fdd5d478273b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b --master_port=39731 .//run_pretraining.py --input_dir=.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training// --output_dir=.//results/checkpoints --config_file=bert_config_base.json --bert_model=bert-base-uncased --train_batch_size=8448 --max_seq_length=128 --max_predictions_per_seq=20 --max_steps=50 --warmup_proportion=0.2843 --num_steps_per_checkpoint=200 --learning_rate=6e-3 --seed=12439 --gradient_accumulation_steps=264 --allreduce_post_accumulation --allreduce_post_accumulation_fp16 --do_train --json-summary .//results/dllogger.json
+Sat Dec 19 10:03:22 2020[1,3]<stdout>:.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training//
+Sat Dec 19 10:03:22 2020[1,3]<stdout>:pytorch cmd: python -m torch.distributed.launch --nproc_per_node=8 --nnodes 4 --node_rank=3 --master_addr=job-0bb5fdd5d478273b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b --master_port=39731 .//run_pretraining.py --input_dir=.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training// --output_dir=.//results/checkpoints --config_file=bert_config_base.json --bert_model=bert-base-uncased --train_batch_size=8448 --max_seq_length=128 --max_predictions_per_seq=20 --max_steps=50 --warmup_proportion=0.2843 --num_steps_per_checkpoint=200 --learning_rate=6e-3 --seed=12439 --gradient_accumulation_steps=264 --allreduce_post_accumulation --allreduce_post_accumulation_fp16 --do_train --json-summary .//results/dllogger.json
+Sat Dec 19 10:03:22 2020[1,1]<stdout>:.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training//
+Sat Dec 19 10:03:22 2020[1,1]<stdout>:pytorch cmd: python -m torch.distributed.launch --nproc_per_node=8 --nnodes 4 --node_rank=1 --master_addr=job-0bb5fdd5d478273b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b --master_port=39731 .//run_pretraining.py --input_dir=.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training// --output_dir=.//results/checkpoints --config_file=bert_config_base.json --bert_model=bert-base-uncased --train_batch_size=8448 --max_seq_length=128 --max_predictions_per_seq=20 --max_steps=50 --warmup_proportion=0.2843 --num_steps_per_checkpoint=200 --learning_rate=6e-3 --seed=12439 --gradient_accumulation_steps=264 --allreduce_post_accumulation --allreduce_post_accumulation_fp16 --do_train --json-summary .//results/dllogger.json
+Sat Dec 19 10:03:22 2020[1,0]<stdout>:Container nvidia build =  13419386
+Sat Dec 19 10:03:22 2020[1,2]<stdout>:Logs written to .//results/bert_lamb_pretraining.pyt_bert_pretraining_phase1_fp32_gbs67584.201219100322.log
+Sat Dec 19 10:03:22 2020[1,1]<stdout>:Logs written to .//results/bert_lamb_pretraining.pyt_bert_pretraining_phase1_fp32_gbs67584.201219100322.log
+Sat Dec 19 10:03:22 2020[1,3]<stdout>:Logs written to .//results/bert_lamb_pretraining.pyt_bert_pretraining_phase1_fp32_gbs67584.201219100322.log
+Sat Dec 19 10:03:22 2020[1,2]<stdout>:+ python -m torch.distributed.launch --nproc_per_node=8 --nnodes 4 --node_rank=2 --master_addr=job-0bb5fdd5d478273b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b --master_port=39731 .//run_pretraining.py --input_dir=.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training// --output_dir=.//results/checkpoints --config_file=bert_config_base.json --bert_model=bert-base-uncased --train_batch_size=8448 --max_seq_length=128 --max_predictions_per_seq=20 --max_steps=50 --warmup_proportion=0.2843 --num_steps_per_checkpoint=200 --learning_rate=6e-3 --seed=12439 --gradient_accumulation_steps=264 --allreduce_post_accumulation --allreduce_post_accumulation_fp16 --do_train --json-summary .//results/dllogger.json
+Sat Dec 19 10:03:22 2020[1,1]<stdout>:+ python -m torch.distributed.launch --nproc_per_node=8 --nnodes 4 --node_rank=1 --master_addr=job-0bb5fdd5d478273b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b --master_port=39731 .//run_pretraining.py --input_dir=.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training// --output_dir=.//results/checkpoints --config_file=bert_config_base.json --bert_model=bert-base-uncased --train_batch_size=8448 --max_seq_length=128 --max_predictions_per_seq=20 --max_steps=50 --warmup_proportion=0.2843 --num_steps_per_checkpoint=200 --learning_rate=6e-3 --seed=12439 --gradient_accumulation_steps=264 --allreduce_post_accumulation --allreduce_post_accumulation_fp16 --do_train --json-summary .//results/dllogger.json
+Sat Dec 19 10:03:22 2020[1,3]<stdout>:+ python -m torch.distributed.launch --nproc_per_node=8 --nnodes 4 --node_rank=3 --master_addr=job-0bb5fdd5d478273b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b --master_port=39731 .//run_pretraining.py --input_dir=.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training// --output_dir=.//results/checkpoints --config_file=bert_config_base.json --bert_model=bert-base-uncased --train_batch_size=8448 --max_seq_length=128 --max_predictions_per_seq=20 --max_steps=50 --warmup_proportion=0.2843 --num_steps_per_checkpoint=200 --learning_rate=6e-3 --seed=12439 --gradient_accumulation_steps=264 --allreduce_post_accumulation --allreduce_post_accumulation_fp16 --do_train --json-summary .//results/dllogger.json
+Sat Dec 19 10:03:22 2020[1,0]<stdout>:.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training//
+Sat Dec 19 10:03:22 2020[1,0]<stdout>:pytorch cmd: python -m torch.distributed.launch --nproc_per_node=8 --nnodes 4 --node_rank=0 --master_addr=job-0bb5fdd5d478273b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b --master_port=39731 .//run_pretraining.py --input_dir=.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training// --output_dir=.//results/checkpoints --config_file=bert_config_base.json --bert_model=bert-base-uncased --train_batch_size=8448 --max_seq_length=128 --max_predictions_per_seq=20 --max_steps=50 --warmup_proportion=0.2843 --num_steps_per_checkpoint=200 --learning_rate=6e-3 --seed=12439 --gradient_accumulation_steps=264 --allreduce_post_accumulation --allreduce_post_accumulation_fp16 --do_train --json-summary .//results/dllogger.json
+Sat Dec 19 10:03:22 2020[1,0]<stdout>:Logs written to .//results/bert_lamb_pretraining.pyt_bert_pretraining_phase1_fp32_gbs67584.201219100322.log
+Sat Dec 19 10:03:22 2020[1,0]<stdout>:+ python -m torch.distributed.launch --nproc_per_node=8 --nnodes 4 --node_rank=0 --master_addr=job-0bb5fdd5d478273b-trainer-0.a5139f34-68ad-5528-8bb7-a906d3bfbf7b --master_port=39731 .//run_pretraining.py --input_dir=.//./data/hdf5_lower_case_1_seq_len_128_max_pred_20_masked_lm_prob_0.15_random_seed_12345_dupe_factor_5/wikicorpus_en/training// --output_dir=.//results/checkpoints --config_file=bert_config_base.json --bert_model=bert-base-uncased --train_batch_size=8448 --max_seq_length=128 --max_predictions_per_seq=20 --max_steps=50 --warmup_proportion=0.2843 --num_steps_per_checkpoint=200 --learning_rate=6e-3 --seed=12439 --gradient_accumulation_steps=264 --allreduce_post_accumulation --allreduce_post_accumulation_fp16 --do_train --json-summary .//results/dllogger.json
+Sat Dec 19 10:03:25 2020[1,1]<stdout>:device: cuda:6 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,0]<stdout>:device: cuda:3 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,2]<stdout>:device: cuda:7 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,2]<stdout>:device: cuda:6 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,2]<stdout>:device: cuda:0 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,2]<stdout>:device: cuda:3 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,0]<stdout>:device: cuda:6 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,2]<stdout>:device: cuda:5 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,3]<stdout>:device: cuda:3 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,3]<stdout>:device: cuda:2 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,0]<stdout>:device: cuda:7 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,0]<stdout>:device: cuda:5 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,1]<stdout>:device: cuda:0 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,1]<stdout>:device: cuda:1 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,3]<stdout>:device: cuda:7 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,1]<stdout>:device: cuda:5 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,1]<stdout>:device: cuda:7 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,1]<stdout>:device: cuda:4 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,3]<stdout>:device: cuda:1 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,3]<stdout>:device: cuda:0 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,3]<stdout>:device: cuda:6 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,3]<stdout>:device: cuda:5 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,0]<stdout>:device: cuda:1 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,0]<stdout>:device: cuda:2 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,0]<stdout>:device: cuda:4 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:25 2020[1,1]<stdout>:device: cuda:3 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:26 2020[1,3]<stdout>:device: cuda:4 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:26 2020[1,2]<stdout>:device: cuda:4 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:26 2020[1,2]<stdout>:device: cuda:1 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:26 2020[1,1]<stdout>:device: cuda:2 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:26 2020[1,2]<stdout>:device: cuda:2 n_gpu: 1, distributed training: True, 16-bits training: False
+Sat Dec 19 10:03:26 2020[1,0]<stdout>:device: cuda:0 n_gpu: 1, distributed training: True, 16-bits training: False
+Iteration:   0%|          | 0/3452 [00:00<?, ?it/s]Sat Dec 19 10:47:44 2020[1,0]<stdout>:
+Iteration:   0%|          | 1/3452 [00:00<22:44,  2.53it/s]Sat Dec 19 10:47:44 2020[1,0]<stdout>:
+Iteration:   0%|          | 2/3452 [00:00<20:05,  2.86it/s]Sat Dec 19 10:47:45 2020[1,0]<stdout>:
+Iteration:   0%|          | 3/3452 [00:00<18:14,  3.15it/s]Sat Dec 19 10:47:45 2020[1,0]<stdout>:
+Iteration:   0%|          | 4/3452 [00:01<18:21,  3.13it/s]Sat Dec 19 10:47:45 2020[1,0]<stdout>:
+Iteration:   0%|          | 5/3452 [00:01<17:00,  3.38it/s]Sat Dec 19 10:47:45 2020[1,0]<stdout>:
+Iteration:   0%|          | 6/3452 [00:01<16:04,  3.57it/s]Sat Dec 19 10:47:46 2020[1,0]<stdout>:
+Iteration:   0%|          | 7/3452 [00:01<15:26,  3.72it/s]Sat Dec 19 10:47:46 2020[1,0]<stdout>:
+Iteration:   0%|          | 8/3452 [00:02<14:58,  3.83it/s]Sat Dec 19 10:47:46 2020[1,0]<stdout>:
+Iteration:   0%|          | 9/3452 [00:02<14:39,  3.92it/s]Sat Dec 19 10:47:46 2020[1,0]<stdout>:
+Iteration:   0%|          | 10/3452 [00:02<14:26,  3.97it/s]Sat Dec 19 10:47:47 2020[1,0]<stdout>:
+Iteration:   0%|          | 11/3452 [00:02<14:16,  4.02it/s]Sat Dec 19 10:47:47 2020[1,0]<stdout>:
+Iteration:   0%|          | 12/3452 [00:03<14:09,  4.05it/s]Sat Dec 19 10:47:47 2020[1,0]<stdout>:
+Iteration:   0%|          | 13/3452 [00:03<14:04,  4.07it/s]Sat Dec 19 10:47:47 2020[1,0]<stdout>:
+Iteration:   0%|          | 14/3452 [00:03<14:01,  4.09it/s]Sat Dec 19 10:47:48 2020[1,0]<stdout>:
+Iteration:   0%|          | 15/3452 [00:03<13:58,  4.10it/s]Sat Dec 19 10:47:48 2020[1,0]<stdout>:
+Iteration:   0%|          | 16/3452 [00:04<13:56,  4.11it/s]Sat Dec 19 10:47:48 2020[1,0]<stdout>:
+Iteration:   0%|          | 17/3452 [00:04<13:55,  4.11it/s]Sat Dec 19 10:47:48 2020[1,0]<stdout>:
+Iteration:   1%|          | 18/3452 [00:04<13:55,  4.11it/s]Sat Dec 19 10:47:49 2020[1,0]<stdout>:
+Iteration:   1%|          | 19/3452 [00:04<13:55,  4.11it/s]Sat Dec 19 10:47:49 2020[1,0]<stdout>:
+Iteration:   1%|          | 20/3452 [00:05<13:55,  4.11it/s]Sat Dec 19 10:47:49 2020[1,0]<stdout>:
+Iteration:   1%|          | 21/3452 [00:05<13:54,  4.11it/s]Sat Dec 19 10:47:49 2020[1,0]<stdout>:
+Iteration:   1%|          | 22/3452 [00:05<13:53,  4.12it/s]Sat Dec 19 10:47:50 2020[1,0]<stdout>:
+Iteration:   1%|          | 23/3452 [00:05<13:52,  4.12it/s]Sat Dec 19 10:47:50 2020[1,0]<stdout>:
+Iteration:   1%|          | 24/3452 [00:06<13:52,  4.12it/s]Sat Dec 19 10:47:50 2020[1,0]<stdout>:
+Iteration:   1%|          | 25/3452 [00:06<13:52,  4.12it/s]Sat Dec 19 10:47:50 2020[1,0]<stdout>:
+Iteration:   1%|          | 26/3452 [00:06<13:52,  4.12it/s]Sat Dec 19 10:47:51 2020[1,0]<stdout>:
+Iteration:   1%|          | 27/3452 [00:06<13:51,  4.12it/s]Sat Dec 19 10:47:51 2020[1,0]<stdout>:
+Iteration:   1%|          | 28/3452 [00:07<13:51,  4.12it/s]Sat Dec 19 10:47:51 2020[1,0]<stdout>:
+Iteration:   1%|          | 29/3452 [00:07<13:51,  4.11it/s]Sat Dec 19 10:47:51 2020[1,0]<stdout>:
+Iteration:   1%|          | 30/3452 [00:07<13:51,  4.12it/s]Sat Dec 19 10:47:52 2020[1,0]<stdout>:
+Iteration:   1%|          | 31/3452 [00:07<13:50,  4.12it/s]Sat Dec 19 10:47:52 2020[1,0]<stdout>:
+Iteration:   1%|          | 32/3452 [00:07<13:49,  4.12it/s]Sat Dec 19 10:47:52 2020[1,0]<stdout>:
+Iteration:   1%|          | 33/3452 [00:08<13:49,  4.12it/s]Sat Dec 19 10:47:52 2020[1,0]<stdout>:
+Iteration:   1%|          | 34/3452 [00:08<13:48,  4.13it/s]Sat Dec 19 10:47:52 2020[1,0]<stdout>:
+Iteration:   1%|          | 35/3452 [00:08<13:48,  4.12it/s]Sat Dec 19 10:47:53 2020[1,0]<stdout>:
+Iteration:   1%|          | 36/3452 [00:08<13:48,  4.12it/s]Sat Dec 19 10:47:53 2020[1,0]<stdout>:
+Iteration:   1%|          | 37/3452 [00:09<13:47,  4.13it/s]Sat Dec 19 10:47:53 2020[1,0]<stdout>:
+Iteration:   1%|          | 38/3452 [00:09<13:49,  4.12it/s]Sat Dec 19 10:47:53 2020[1,0]<stdout>:
+Iteration:   1%|          | 39/3452 [00:09<13:49,  4.11it/s]Sat Dec 19 10:47:54 2020[1,0]<stdout>:
+Iteration:   1%|          | 40/3452 [00:09<13:50,  4.11it/s]Sat Dec 19 10:47:54 2020[1,0]<stdout>:
+Iteration:   1%|          | 41/3452 [00:10<13:49,  4.11it/s]Sat Dec 19 10:47:54 2020[1,0]<stdout>:
+Iteration:   1%|          | 42/3452 [00:10<13:47,  4.12it/s]Sat Dec 19 10:47:54 2020[1,0]<stdout>:
+Iteration:   1%|          | 43/3452 [00:10<13:47,  4.12it/s]Sat Dec 19 10:47:55 2020[1,0]<stdout>:
+Iteration:   1%|▏         | 44/3452 [00:10<13:46,  4.12it/s]Sat Dec 19 10:47:55 2020[1,0]<stdout>:
+Iteration:   1%|▏         | 45/3452 [00:11<13:46,  4.12it/s]Sat Dec 19 10:47:55 2020[1,0]<stdout>:
+Iteration:   1%|▏         | 46/3452 [00:11<13:45,  4.13it/s]Sat Dec 19 10:47:55 2020[1,0]<stdout>:
+Iteration:   1%|▏         | 47/3452 [00:11<13:45,  4.13it/s]Sat Dec 19 10:47:56 2020[1,0]<stdout>:
+Iteration:   1%|▏         | 48/3452 [00:11<13:46,  4.12it/s]Sat Dec 19 10:47:56 2020[1,0]<stdout>:
+Iteration:   1%|▏         | 49/3452 [00:12<13:47,  4.11it/s]Sat Dec 19 10:47:56 2020[1,0]<stdout>:
+Iteration:   1%|▏         | 50/3452 [00:12<13:46,  4.12it/s]Sat Dec 19 10:47:56 2020[1,0]<stdout>:
+Iteration:   1%|▏         | 51/3452 [00:12<13:45,  4.12it/s]Sat Dec 19 10:47:57 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 52/3452 [00:12<13:45,  4.12it/s]Sat Dec 19 10:47:57 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 53/3452 [00:13<13:45,  4.12it/s]Sat Dec 19 10:47:57 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 54/3452 [00:13<13:45,  4.11it/s]Sat Dec 19 10:47:57 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 55/3452 [00:13<13:46,  4.11it/s]Sat Dec 19 10:47:58 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 56/3452 [00:13<13:46,  4.11it/s]Sat Dec 19 10:47:58 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 57/3452 [00:14<13:45,  4.11it/s]Sat Dec 19 10:47:58 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 58/3452 [00:14<13:45,  4.11it/s]Sat Dec 19 10:47:58 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 59/3452 [00:14<13:44,  4.12it/s]Sat Dec 19 10:47:59 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 60/3452 [00:14<13:43,  4.12it/s]Sat Dec 19 10:47:59 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 61/3452 [00:15<13:42,  4.12it/s]Sat Dec 19 10:47:59 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 62/3452 [00:15<13:42,  4.12it/s]Sat Dec 19 10:47:59 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 63/3452 [00:15<13:42,  4.12it/s]Sat Dec 19 10:48:00 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 64/3452 [00:15<13:42,  4.12it/s]Sat Dec 19 10:48:00 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 65/3452 [00:16<13:42,  4.12it/s]Sat Dec 19 10:48:00 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 66/3452 [00:16<13:42,  4.12it/s]Sat Dec 19 10:48:00 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 67/3452 [00:16<13:43,  4.11it/s]Sat Dec 19 10:48:01 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 68/3452 [00:16<13:42,  4.11it/s]Sat Dec 19 10:48:01 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 69/3452 [00:16<13:41,  4.12it/s]Sat Dec 19 10:48:01 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 70/3452 [00:17<13:41,  4.12it/s]Sat Dec 19 10:48:01 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 71/3452 [00:17<13:40,  4.12it/s]Sat Dec 19 10:48:01 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 72/3452 [00:17<13:39,  4.12it/s]Sat Dec 19 10:48:02 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 73/3452 [00:17<13:38,  4.13it/s]Sat Dec 19 10:48:02 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 74/3452 [00:18<13:38,  4.13it/s]Sat Dec 19 10:48:02 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 75/3452 [00:18<13:38,  4.13it/s]Sat Dec 19 10:48:02 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 76/3452 [00:18<13:38,  4.13it/s]Sat Dec 19 10:48:03 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 77/3452 [00:18<13:37,  4.13it/s]Sat Dec 19 10:48:03 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 78/3452 [00:19<13:38,  4.12it/s]Sat Dec 19 10:48:03 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 79/3452 [00:19<13:39,  4.12it/s]Sat Dec 19 10:48:03 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 80/3452 [00:19<13:39,  4.11it/s]Sat Dec 19 10:48:04 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 81/3452 [00:19<13:38,  4.12it/s]Sat Dec 19 10:48:04 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 82/3452 [00:20<13:37,  4.12it/s]Sat Dec 19 10:48:04 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 83/3452 [00:20<13:38,  4.12it/s]Sat Dec 19 10:48:04 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 84/3452 [00:20<13:37,  4.12it/s]Sat Dec 19 10:48:05 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 85/3452 [00:20<13:35,  4.13it/s]Sat Dec 19 10:48:05 2020[1,0]<stdout>:
+Iteration:   2%|▏         | 86/3452 [00:21<13:36,  4.12it/s]Sat Dec 19 10:48:05 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 87/3452 [00:21<13:35,  4.12it/s]Sat Dec 19 10:48:05 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 88/3452 [00:21<13:35,  4.13it/s]Sat Dec 19 10:48:06 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 89/3452 [00:21<13:34,  4.13it/s]Sat Dec 19 10:48:06 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 90/3452 [00:22<13:35,  4.12it/s]Sat Dec 19 10:48:06 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 91/3452 [00:22<13:35,  4.12it/s]Sat Dec 19 10:48:06 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 92/3452 [00:22<13:36,  4.12it/s]Sat Dec 19 10:48:07 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 93/3452 [00:22<13:36,  4.11it/s]Sat Dec 19 10:48:07 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 94/3452 [00:23<13:36,  4.11it/s]Sat Dec 19 10:48:07 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 95/3452 [00:23<13:36,  4.11it/s]Sat Dec 19 10:48:07 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 96/3452 [00:23<13:35,  4.11it/s]Sat Dec 19 10:48:08 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 97/3452 [00:23<13:34,  4.12it/s]Sat Dec 19 10:48:08 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 98/3452 [00:24<13:34,  4.12it/s]Sat Dec 19 10:48:08 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 99/3452 [00:24<13:33,  4.12it/s]Sat Dec 19 10:48:08 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 100/3452 [00:24<13:32,  4.13it/s]Sat Dec 19 10:48:09 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 101/3452 [00:24<13:31,  4.13it/s]Sat Dec 19 10:48:09 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 102/3452 [00:24<13:31,  4.13it/s]Sat Dec 19 10:48:09 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 103/3452 [00:25<13:32,  4.12it/s]Sat Dec 19 10:48:09 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 104/3452 [00:25<13:32,  4.12it/s]Sat Dec 19 10:48:09 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 105/3452 [00:25<13:31,  4.12it/s]Sat Dec 19 10:48:10 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 106/3452 [00:25<13:32,  4.12it/s]Sat Dec 19 10:48:10 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 107/3452 [00:26<13:32,  4.12it/s]Sat Dec 19 10:48:10 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 108/3452 [00:26<13:31,  4.12it/s]Sat Dec 19 10:48:10 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 109/3452 [00:26<13:31,  4.12it/s]Sat Dec 19 10:48:11 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 110/3452 [00:26<13:31,  4.12it/s]Sat Dec 19 10:48:11 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 111/3452 [00:27<13:31,  4.12it/s]Sat Dec 19 10:48:11 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 112/3452 [00:27<13:31,  4.12it/s]Sat Dec 19 10:48:11 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 113/3452 [00:27<13:31,  4.12it/s]Sat Dec 19 10:48:12 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 114/3452 [00:27<13:29,  4.12it/s]Sat Dec 19 10:48:12 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 115/3452 [00:28<13:29,  4.12it/s]Sat Dec 19 10:48:12 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 116/3452 [00:28<13:28,  4.12it/s]Sat Dec 19 10:48:12 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 117/3452 [00:28<13:28,  4.13it/s]Sat Dec 19 10:48:13 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 118/3452 [00:28<13:28,  4.12it/s]Sat Dec 19 10:48:13 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 119/3452 [00:29<13:28,  4.12it/s]Sat Dec 19 10:48:13 2020[1,0]<stdout>:
+Iteration:   3%|▎         | 120/3452 [00:29<13:28,  4.12it/s]Sat Dec 19 10:48:13 2020[1,0]<stdout>:
+Iteration:   4%|▎         | 121/3452 [00:29<13:28,  4.12it/s]Sat Dec 19 10:48:14 2020[1,0]<stdout>:
+Iteration:   4%|▎         | 122/3452 [00:29<13:27,  4.12it/s]Sat Dec 19 10:48:14 2020[1,0]<stdout>:
+Iteration:   4%|▎         | 123/3452 [00:30<13:27,  4.12it/s]Sat Dec 19 10:48:14 2020[1,0]<stdout>:
+Iteration:   4%|▎         | 124/3452 [00:30<13:27,  4.12it/s]Sat Dec 19 10:48:14 2020[1,0]<stdout>:
+Iteration:   4%|▎         | 125/3452 [00:30<13:26,  4.12it/s]Sat Dec 19 10:48:15 2020[1,0]<stdout>:
+Iteration:   4%|▎         | 126/3452 [00:30<13:27,  4.12it/s]Sat Dec 19 10:48:15 2020[1,0]<stdout>:
+Iteration:   4%|▎         | 127/3452 [00:31<13:28,  4.11it/s]Sat Dec 19 10:48:15 2020[1,0]<stdout>:
+Iteration:   4%|▎         | 128/3452 [00:31<13:28,  4.11it/s]Sat Dec 19 10:48:15 2020[1,0]<stdout>:
+Iteration:   4%|▎         | 129/3452 [00:31<13:28,  4.11it/s]Sat Dec 19 10:48:16 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 130/3452 [00:31<13:27,  4.11it/s]Sat Dec 19 10:48:16 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 131/3452 [00:32<13:26,  4.12it/s]Sat Dec 19 10:48:16 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 132/3452 [00:32<13:25,  4.12it/s]Sat Dec 19 10:48:16 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 133/3452 [00:32<13:24,  4.13it/s]Sat Dec 19 10:48:17 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 134/3452 [00:32<13:22,  4.13it/s]Sat Dec 19 10:48:17 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 135/3452 [00:32<13:23,  4.13it/s]Sat Dec 19 10:48:17 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 136/3452 [00:33<13:23,  4.12it/s]Sat Dec 19 10:48:17 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 137/3452 [00:33<13:24,  4.12it/s]Sat Dec 19 10:48:17 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 138/3452 [00:33<13:25,  4.11it/s]Sat Dec 19 10:48:18 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 139/3452 [00:33<13:25,  4.11it/s]Sat Dec 19 10:48:18 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 140/3452 [00:34<13:25,  4.11it/s]Sat Dec 19 10:48:18 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 141/3452 [00:34<13:25,  4.11it/s]Sat Dec 19 10:48:18 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 142/3452 [00:34<13:24,  4.11it/s]Sat Dec 19 10:48:19 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 143/3452 [00:34<13:23,  4.12it/s]Sat Dec 19 10:48:19 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 144/3452 [00:35<13:23,  4.12it/s]Sat Dec 19 10:48:19 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 145/3452 [00:35<13:23,  4.12it/s]Sat Dec 19 10:48:19 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 146/3452 [00:35<13:23,  4.12it/s]Sat Dec 19 10:48:20 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 147/3452 [00:35<13:23,  4.12it/s]Sat Dec 19 10:48:20 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 148/3452 [00:36<13:22,  4.12it/s]Sat Dec 19 10:48:20 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 149/3452 [00:36<13:22,  4.12it/s]Sat Dec 19 10:48:20 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 150/3452 [00:36<13:21,  4.12it/s]Sat Dec 19 10:48:21 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 151/3452 [00:36<13:20,  4.13it/s]Sat Dec 19 10:48:21 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 152/3452 [00:37<13:19,  4.13it/s]Sat Dec 19 10:48:21 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 153/3452 [00:37<13:17,  4.13it/s]Sat Dec 19 10:48:21 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 154/3452 [00:37<13:18,  4.13it/s]Sat Dec 19 10:48:22 2020[1,0]<stdout>:
+Iteration:   4%|▍         | 155/3452 [00:37<13:18,  4.13it/s]Sat Dec 19 10:48:22 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 156/3452 [00:38<13:21,  4.11it/s]Sat Dec 19 10:48:22 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 157/3452 [00:38<13:20,  4.12it/s]Sat Dec 19 10:48:22 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 158/3452 [00:38<13:21,  4.11it/s]Sat Dec 19 10:48:23 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 159/3452 [00:38<13:20,  4.11it/s]Sat Dec 19 10:48:23 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 160/3452 [00:39<13:20,  4.11it/s]Sat Dec 19 10:48:23 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 161/3452 [00:39<13:20,  4.11it/s]Sat Dec 19 10:48:23 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 162/3452 [00:39<13:19,  4.11it/s]Sat Dec 19 10:48:24 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 163/3452 [00:39<13:19,  4.11it/s]Sat Dec 19 10:48:24 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 164/3452 [00:40<13:19,  4.11it/s]Sat Dec 19 10:48:24 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 165/3452 [00:40<13:18,  4.12it/s]Sat Dec 19 10:48:24 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 166/3452 [00:40<13:18,  4.12it/s]Sat Dec 19 10:48:25 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 167/3452 [00:40<13:16,  4.12it/s]Sat Dec 19 10:48:25 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 168/3452 [00:41<13:16,  4.12it/s]Sat Dec 19 10:48:25 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 169/3452 [00:41<13:16,  4.12it/s]Sat Dec 19 10:48:25 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 170/3452 [00:41<13:15,  4.12it/s]Sat Dec 19 10:48:26 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 171/3452 [00:41<13:15,  4.12it/s]Sat Dec 19 10:48:26 2020[1,0]<stdout>:
+Iteration:   5%|▍         | 172/3452 [00:41<13:15,  4.12it/s]Sat Dec 19 10:48:26 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 173/3452 [00:42<13:15,  4.12it/s]Sat Dec 19 10:48:26 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 174/3452 [00:42<13:16,  4.12it/s]Sat Dec 19 10:48:26 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 175/3452 [00:42<13:15,  4.12it/s]Sat Dec 19 10:48:27 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 176/3452 [00:42<13:15,  4.12it/s]Sat Dec 19 10:48:27 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 177/3452 [00:43<13:14,  4.12it/s]Sat Dec 19 10:48:27 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 178/3452 [00:43<13:14,  4.12it/s]Sat Dec 19 10:48:27 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 179/3452 [00:43<13:14,  4.12it/s]Sat Dec 19 10:48:28 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 180/3452 [00:43<13:13,  4.12it/s]Sat Dec 19 10:48:28 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 181/3452 [00:44<13:13,  4.12it/s]Sat Dec 19 10:48:28 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 182/3452 [00:44<13:13,  4.12it/s]Sat Dec 19 10:48:28 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 183/3452 [00:44<13:13,  4.12it/s]Sat Dec 19 10:48:29 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 184/3452 [00:44<13:11,  4.13it/s]Sat Dec 19 10:48:29 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 185/3452 [00:45<13:12,  4.12it/s]Sat Dec 19 10:48:29 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 186/3452 [00:45<13:12,  4.12it/s]Sat Dec 19 10:48:29 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 187/3452 [00:45<13:12,  4.12it/s]Sat Dec 19 10:48:30 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 188/3452 [00:45<13:11,  4.12it/s]Sat Dec 19 10:48:30 2020[1,0]<stdout>:
+Iteration:   5%|▌         | 189/3452 [00:46<13:11,  4.12it/s]Sat Dec 19 10:48:30 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 190/3452 [00:46<13:11,  4.12it/s]Sat Dec 19 10:48:30 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 191/3452 [00:46<13:10,  4.12it/s]Sat Dec 19 10:48:31 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 192/3452 [00:46<13:10,  4.12it/s]Sat Dec 19 10:48:31 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 193/3452 [00:47<13:09,  4.13it/s]Sat Dec 19 10:48:31 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 194/3452 [00:47<13:10,  4.12it/s]Sat Dec 19 10:48:31 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 195/3452 [00:47<13:11,  4.12it/s]Sat Dec 19 10:48:32 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 196/3452 [00:47<13:10,  4.12it/s]Sat Dec 19 10:48:32 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 197/3452 [00:48<13:08,  4.13it/s]Sat Dec 19 10:48:32 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 198/3452 [00:48<13:08,  4.13it/s]Sat Dec 19 10:48:32 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 199/3452 [00:48<13:08,  4.13it/s]Sat Dec 19 10:48:33 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 200/3452 [00:48<13:08,  4.13it/s]Sat Dec 19 10:48:33 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 201/3452 [00:49<13:08,  4.12it/s]Sat Dec 19 10:48:33 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 202/3452 [00:49<13:08,  4.12it/s]Sat Dec 19 10:48:33 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 203/3452 [00:49<13:08,  4.12it/s]Sat Dec 19 10:48:34 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 204/3452 [00:49<13:08,  4.12it/s]Sat Dec 19 10:48:34 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 205/3452 [00:49<13:08,  4.12it/s]Sat Dec 19 10:48:34 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 206/3452 [00:50<13:07,  4.12it/s]Sat Dec 19 10:48:34 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 207/3452 [00:50<13:06,  4.12it/s]Sat Dec 19 10:48:34 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 208/3452 [00:50<13:06,  4.12it/s]Sat Dec 19 10:48:35 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 209/3452 [00:50<13:07,  4.12it/s]Sat Dec 19 10:48:35 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 210/3452 [00:51<13:07,  4.11it/s]Sat Dec 19 10:48:35 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 211/3452 [00:51<13:06,  4.12it/s]Sat Dec 19 10:48:35 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 212/3452 [00:51<13:06,  4.12it/s]Sat Dec 19 10:48:36 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 213/3452 [00:51<13:06,  4.12it/s]Sat Dec 19 10:48:36 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 214/3452 [00:52<13:06,  4.12it/s]Sat Dec 19 10:48:36 2020[1,0]<stdout>:
+Iteration:   6%|▌         | 215/3452 [00:52<13:05,  4.12it/s]Sat Dec 19 10:48:36 2020[1,0]<stdout>:
+Iteration:   6%|▋         | 216/3452 [00:52<13:04,  4.13it/s]Sat Dec 19 10:48:37 2020[1,0]<stdout>:
+Iteration:   6%|▋         | 217/3452 [00:52<13:03,  4.13it/s]Sat Dec 19 10:48:37 2020[1,0]<stdout>:
+Iteration:   6%|▋         | 218/3452 [00:53<13:02,  4.14it/s]Sat Dec 19 10:48:37 2020[1,0]<stdout>:
+Iteration:   6%|▋         | 219/3452 [00:53<13:02,  4.13it/s]Sat Dec 19 10:48:37 2020[1,0]<stdout>:
+Iteration:   6%|▋         | 220/3452 [00:53<13:03,  4.13it/s]Sat Dec 19 10:48:38 2020[1,0]<stdout>:
+Iteration:   6%|▋         | 221/3452 [00:53<13:03,  4.12it/s]Sat Dec 19 10:48:38 2020[1,0]<stdout>:
+Iteration:   6%|▋         | 222/3452 [00:54<13:03,  4.12it/s]Sat Dec 19 10:48:38 2020[1,0]<stdout>:
+Iteration:   6%|▋         | 223/3452 [00:54<13:04,  4.12it/s]Sat Dec 19 10:48:38 2020[1,0]<stdout>:
+Iteration:   6%|▋         | 224/3452 [00:54<13:04,  4.12it/s]Sat Dec 19 10:48:39 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 225/3452 [00:54<13:03,  4.12it/s]Sat Dec 19 10:48:39 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 226/3452 [00:55<13:03,  4.12it/s]Sat Dec 19 10:48:39 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 227/3452 [00:55<13:03,  4.12it/s]Sat Dec 19 10:48:39 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 228/3452 [00:55<13:02,  4.12it/s]Sat Dec 19 10:48:40 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 229/3452 [00:55<13:01,  4.12it/s]Sat Dec 19 10:48:40 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 230/3452 [00:56<13:01,  4.12it/s]Sat Dec 19 10:48:40 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 231/3452 [00:56<13:00,  4.13it/s]Sat Dec 19 10:48:44 2020[1,0]<stdout>:DLL 2020-12-19 10:48:44.278400 - Training Epoch: 0 Training Iteration: 40  average_loss : 8.010501106580099  step_loss : 7.904763698577881  learning_rate : 0.002683281572999747 
+Sat Dec 19 10:48:44 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 232/3452 [01:00<1:08:54,  1.28s/it]Sat Dec 19 10:48:44 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 233/3452 [01:00<52:03,  1.03it/s]  Sat Dec 19 10:48:44 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 234/3452 [01:00<40:18,  1.33it/s]Sat Dec 19 10:48:44 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 235/3452 [01:00<32:05,  1.67it/s]Sat Dec 19 10:48:45 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 236/3452 [01:00<26:20,  2.03it/s]Sat Dec 19 10:48:45 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 237/3452 [01:01<22:18,  2.40it/s]Sat Dec 19 10:48:45 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 238/3452 [01:01<19:29,  2.75it/s]Sat Dec 19 10:48:45 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 239/3452 [01:01<17:31,  3.06it/s]Sat Dec 19 10:48:46 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 240/3452 [01:01<16:08,  3.32it/s]Sat Dec 19 10:48:46 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 241/3452 [01:02<15:10,  3.53it/s]Sat Dec 19 10:48:46 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 242/3452 [01:02<14:29,  3.69it/s]Sat Dec 19 10:48:46 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 243/3452 [01:02<14:00,  3.82it/s]Sat Dec 19 10:48:47 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 244/3452 [01:02<13:40,  3.91it/s]Sat Dec 19 10:48:47 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 245/3452 [01:03<13:27,  3.97it/s]Sat Dec 19 10:48:47 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 246/3452 [01:03<13:17,  4.02it/s]Sat Dec 19 10:48:47 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 247/3452 [01:03<13:11,  4.05it/s]Sat Dec 19 10:48:48 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 248/3452 [01:03<13:06,  4.07it/s]Sat Dec 19 10:48:48 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 249/3452 [01:04<13:03,  4.09it/s]Sat Dec 19 10:48:48 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 250/3452 [01:04<13:01,  4.10it/s]Sat Dec 19 10:48:48 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 251/3452 [01:04<12:58,  4.11it/s]Sat Dec 19 10:48:49 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 252/3452 [01:04<12:58,  4.11it/s]Sat Dec 19 10:48:49 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 253/3452 [01:05<12:57,  4.11it/s]Sat Dec 19 10:48:49 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 254/3452 [01:05<12:56,  4.12it/s]Sat Dec 19 10:48:49 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 255/3452 [01:05<12:56,  4.12it/s]Sat Dec 19 10:48:50 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 256/3452 [01:05<12:56,  4.12it/s]Sat Dec 19 10:48:50 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 257/3452 [01:06<12:56,  4.11it/s]Sat Dec 19 10:48:50 2020[1,0]<stdout>:
+Iteration:   7%|▋         | 258/3452 [01:06<12:55,  4.12it/s]Sat Dec 19 10:48:50 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 259/3452 [01:06<12:54,  4.12it/s]Sat Dec 19 10:48:51 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 260/3452 [01:06<12:53,  4.12it/s]Sat Dec 19 10:48:51 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 261/3452 [01:07<12:53,  4.13it/s]Sat Dec 19 10:48:51 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 262/3452 [01:07<12:53,  4.13it/s]Sat Dec 19 10:48:51 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 263/3452 [01:07<12:53,  4.12it/s]Sat Dec 19 10:48:52 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 264/3452 [01:07<12:52,  4.13it/s]Sat Dec 19 10:48:52 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 265/3452 [01:07<12:52,  4.13it/s]Sat Dec 19 10:48:52 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 266/3452 [01:08<12:52,  4.12it/s]Sat Dec 19 10:48:52 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 267/3452 [01:08<12:51,  4.13it/s]Sat Dec 19 10:48:52 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 268/3452 [01:08<12:53,  4.12it/s]Sat Dec 19 10:48:53 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 269/3452 [01:08<12:52,  4.12it/s]Sat Dec 19 10:48:53 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 270/3452 [01:09<12:52,  4.12it/s]Sat Dec 19 10:48:53 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 271/3452 [01:09<12:52,  4.12it/s]Sat Dec 19 10:48:53 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 272/3452 [01:09<12:52,  4.12it/s]Sat Dec 19 10:48:54 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 273/3452 [01:09<12:52,  4.12it/s]Sat Dec 19 10:48:54 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 274/3452 [01:10<12:51,  4.12it/s]Sat Dec 19 10:48:54 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 275/3452 [01:10<12:50,  4.12it/s]Sat Dec 19 10:48:54 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 276/3452 [01:10<12:50,  4.12it/s]Sat Dec 19 10:48:55 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 277/3452 [01:10<12:49,  4.13it/s]Sat Dec 19 10:48:55 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 278/3452 [01:11<12:48,  4.13it/s]Sat Dec 19 10:48:55 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 279/3452 [01:11<12:48,  4.13it/s]Sat Dec 19 10:48:55 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 280/3452 [01:11<12:47,  4.13it/s]Sat Dec 19 10:48:56 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 281/3452 [01:11<12:46,  4.13it/s]Sat Dec 19 10:48:56 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 282/3452 [01:12<12:46,  4.13it/s]Sat Dec 19 10:48:56 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 283/3452 [01:12<12:47,  4.13it/s]Sat Dec 19 10:48:56 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 284/3452 [01:12<12:48,  4.12it/s]Sat Dec 19 10:48:57 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 285/3452 [01:12<12:47,  4.13it/s]Sat Dec 19 10:48:57 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 286/3452 [01:13<12:47,  4.13it/s]Sat Dec 19 10:48:57 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 287/3452 [01:13<12:47,  4.13it/s]Sat Dec 19 10:48:57 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 288/3452 [01:13<12:46,  4.13it/s]Sat Dec 19 10:48:58 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 289/3452 [01:13<12:46,  4.13it/s]Sat Dec 19 10:48:58 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 290/3452 [01:14<12:45,  4.13it/s]Sat Dec 19 10:48:58 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 291/3452 [01:14<12:44,  4.14it/s]Sat Dec 19 10:48:58 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 292/3452 [01:14<12:44,  4.14it/s]Sat Dec 19 10:48:59 2020[1,0]<stdout>:
+Iteration:   8%|▊         | 293/3452 [01:14<12:44,  4.13it/s]Sat Dec 19 10:48:59 2020[1,0]<stdout>:
+Iteration:   9%|▊         | 294/3452 [01:15<12:43,  4.13it/s]Sat Dec 19 10:48:59 2020[1,0]<stdout>:
+Iteration:   9%|▊         | 295/3452 [01:15<12:43,  4.13it/s]Sat Dec 19 10:48:59 2020[1,0]<stdout>:
+Iteration:   9%|▊         | 296/3452 [01:15<12:42,  4.14it/s]Sat Dec 19 10:49:00 2020[1,0]<stdout>:
+Iteration:   9%|▊         | 297/3452 [01:15<12:43,  4.13it/s]Sat Dec 19 10:49:00 2020[1,0]<stdout>:
+Iteration:   9%|▊         | 298/3452 [01:15<12:42,  4.13it/s]Sat Dec 19 10:49:00 2020[1,0]<stdout>:
+Iteration:   9%|▊         | 299/3452 [01:16<12:43,  4.13it/s]Sat Dec 19 10:49:00 2020[1,0]<stdout>:
+Iteration:   9%|▊         | 300/3452 [01:16<12:43,  4.13it/s]Sat Dec 19 10:49:00 2020[1,0]<stdout>:
+Iteration:   9%|▊         | 301/3452 [01:16<12:43,  4.12it/s]Sat Dec 19 10:49:01 2020[1,0]<stdout>:
+Iteration:   9%|▊         | 302/3452 [01:16<12:44,  4.12it/s]Sat Dec 19 10:49:01 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 303/3452 [01:17<12:43,  4.13it/s]Sat Dec 19 10:49:01 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 304/3452 [01:17<12:43,  4.12it/s]Sat Dec 19 10:49:01 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 305/3452 [01:17<12:43,  4.12it/s]Sat Dec 19 10:49:02 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 306/3452 [01:17<12:43,  4.12it/s]Sat Dec 19 10:49:02 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 307/3452 [01:18<12:43,  4.12it/s]Sat Dec 19 10:49:02 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 308/3452 [01:18<12:43,  4.12it/s]Sat Dec 19 10:49:02 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 309/3452 [01:18<12:43,  4.12it/s]Sat Dec 19 10:49:03 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 310/3452 [01:18<12:42,  4.12it/s]Sat Dec 19 10:49:03 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 311/3452 [01:19<12:41,  4.12it/s]Sat Dec 19 10:49:03 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 312/3452 [01:19<12:41,  4.12it/s]Sat Dec 19 10:49:03 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 313/3452 [01:19<12:41,  4.12it/s]Sat Dec 19 10:49:04 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 314/3452 [01:19<12:42,  4.12it/s]Sat Dec 19 10:49:04 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 315/3452 [01:20<12:41,  4.12it/s]Sat Dec 19 10:49:04 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 316/3452 [01:20<12:40,  4.12it/s]Sat Dec 19 10:49:04 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 317/3452 [01:20<12:40,  4.12it/s]Sat Dec 19 10:49:05 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 318/3452 [01:20<12:40,  4.12it/s]Sat Dec 19 10:49:05 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 319/3452 [01:21<12:40,  4.12it/s]Sat Dec 19 10:49:05 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 320/3452 [01:21<12:40,  4.12it/s]Sat Dec 19 10:49:05 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 321/3452 [01:21<12:39,  4.12it/s]Sat Dec 19 10:49:06 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 322/3452 [01:21<12:39,  4.12it/s]Sat Dec 19 10:49:06 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 323/3452 [01:22<12:39,  4.12it/s]Sat Dec 19 10:49:06 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 324/3452 [01:22<12:39,  4.12it/s]Sat Dec 19 10:49:06 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 325/3452 [01:22<12:38,  4.12it/s]Sat Dec 19 10:49:07 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 326/3452 [01:22<12:38,  4.12it/s]Sat Dec 19 10:49:07 2020[1,0]<stdout>:
+Iteration:   9%|▉         | 327/3452 [01:23<12:38,  4.12it/s]Sat Dec 19 10:49:07 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 328/3452 [01:23<12:37,  4.12it/s]Sat Dec 19 10:49:07 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 329/3452 [01:23<12:36,  4.13it/s]Sat Dec 19 10:49:08 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 330/3452 [01:23<12:35,  4.13it/s]Sat Dec 19 10:49:08 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 331/3452 [01:23<12:34,  4.13it/s]Sat Dec 19 10:49:08 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 332/3452 [01:24<12:34,  4.13it/s]Sat Dec 19 10:49:08 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 333/3452 [01:24<12:35,  4.13it/s]Sat Dec 19 10:49:08 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 334/3452 [01:24<12:35,  4.13it/s]Sat Dec 19 10:49:09 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 335/3452 [01:24<12:34,  4.13it/s]Sat Dec 19 10:49:09 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 336/3452 [01:25<12:34,  4.13it/s]Sat Dec 19 10:49:09 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 337/3452 [01:25<12:35,  4.12it/s]Sat Dec 19 10:49:09 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 338/3452 [01:25<12:35,  4.12it/s]Sat Dec 19 10:49:10 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 339/3452 [01:25<12:35,  4.12it/s]Sat Dec 19 10:49:10 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 340/3452 [01:26<12:35,  4.12it/s]Sat Dec 19 10:49:10 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 341/3452 [01:26<12:34,  4.12it/s]Sat Dec 19 10:49:10 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 342/3452 [01:26<12:34,  4.12it/s]Sat Dec 19 10:49:11 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 343/3452 [01:26<12:34,  4.12it/s]Sat Dec 19 10:49:11 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 344/3452 [01:27<12:34,  4.12it/s]Sat Dec 19 10:49:11 2020[1,0]<stdout>:
+Iteration:  10%|▉         | 345/3452 [01:27<12:34,  4.12it/s]Sat Dec 19 10:49:11 2020[1,0]<stdout>:
+Iteration:  10%|█         | 346/3452 [01:27<12:33,  4.12it/s]Sat Dec 19 10:49:12 2020[1,0]<stdout>:
+Iteration:  10%|█         | 347/3452 [01:27<12:32,  4.13it/s]Sat Dec 19 10:49:12 2020[1,0]<stdout>:
+Iteration:  10%|█         | 348/3452 [01:28<12:31,  4.13it/s]Sat Dec 19 10:49:12 2020[1,0]<stdout>:
+Iteration:  10%|█         | 349/3452 [01:28<12:31,  4.13it/s]Sat Dec 19 10:49:12 2020[1,0]<stdout>:
+Iteration:  10%|█         | 350/3452 [01:28<12:30,  4.13it/s]Sat Dec 19 10:49:13 2020[1,0]<stdout>:
+Iteration:  10%|█         | 351/3452 [01:28<12:31,  4.12it/s]Sat Dec 19 10:49:13 2020[1,0]<stdout>:
+Iteration:  10%|█         | 352/3452 [01:29<12:32,  4.12it/s]Sat Dec 19 10:49:13 2020[1,0]<stdout>:
+Iteration:  10%|█         | 353/3452 [01:29<12:32,  4.12it/s]Sat Dec 19 10:49:13 2020[1,0]<stdout>:
+Iteration:  10%|█         | 354/3452 [01:29<12:32,  4.12it/s]Sat Dec 19 10:49:14 2020[1,0]<stdout>:
+Iteration:  10%|█         | 355/3452 [01:29<12:31,  4.12it/s]Sat Dec 19 10:49:14 2020[1,0]<stdout>:
+Iteration:  10%|█         | 356/3452 [01:30<12:31,  4.12it/s]Sat Dec 19 10:49:14 2020[1,0]<stdout>:
+Iteration:  10%|█         | 357/3452 [01:30<12:30,  4.12it/s]Sat Dec 19 10:49:14 2020[1,0]<stdout>:
+Iteration:  10%|█         | 358/3452 [01:30<12:30,  4.12it/s]Sat Dec 19 10:49:15 2020[1,0]<stdout>:
+Iteration:  10%|█         | 359/3452 [01:30<12:31,  4.12it/s]Sat Dec 19 10:49:15 2020[1,0]<stdout>:
+Iteration:  10%|█         | 360/3452 [01:31<12:31,  4.12it/s]Sat Dec 19 10:49:15 2020[1,0]<stdout>:
+Iteration:  10%|█         | 361/3452 [01:31<12:31,  4.11it/s]Sat Dec 19 10:49:15 2020[1,0]<stdout>:
+Iteration:  10%|█         | 362/3452 [01:31<12:30,  4.12it/s]Sat Dec 19 10:49:16 2020[1,0]<stdout>:
+Iteration:  11%|█         | 363/3452 [01:31<12:28,  4.13it/s]Sat Dec 19 10:49:16 2020[1,0]<stdout>:
+Iteration:  11%|█         | 364/3452 [01:31<12:28,  4.13it/s]Sat Dec 19 10:49:16 2020[1,0]<stdout>:
+Iteration:  11%|█         | 365/3452 [01:32<12:28,  4.12it/s]Sat Dec 19 10:49:16 2020[1,0]<stdout>:
+Iteration:  11%|█         | 366/3452 [01:32<12:28,  4.12it/s]Sat Dec 19 10:49:16 2020[1,0]<stdout>:
+Iteration:  11%|█         | 367/3452 [01:32<12:27,  4.13it/s]Sat Dec 19 10:49:17 2020[1,0]<stdout>:
+Iteration:  11%|█         | 368/3452 [01:32<12:27,  4.13it/s]Sat Dec 19 10:49:17 2020[1,0]<stdout>:
+Iteration:  11%|█         | 369/3452 [01:33<12:27,  4.12it/s]Sat Dec 19 10:49:17 2020[1,0]<stdout>:
+Iteration:  11%|█         | 370/3452 [01:33<12:27,  4.12it/s]Sat Dec 19 10:49:17 2020[1,0]<stdout>:
+Iteration:  11%|█         | 371/3452 [01:33<12:28,  4.12it/s]Sat Dec 19 10:49:18 2020[1,0]<stdout>:
+Iteration:  11%|█         | 372/3452 [01:33<12:26,  4.12it/s]Sat Dec 19 10:49:18 2020[1,0]<stdout>:
+Iteration:  11%|█         | 373/3452 [01:34<12:26,  4.13it/s]Sat Dec 19 10:49:18 2020[1,0]<stdout>:
+Iteration:  11%|█         | 374/3452 [01:34<12:25,  4.13it/s]Sat Dec 19 10:49:18 2020[1,0]<stdout>:
+Iteration:  11%|█         | 375/3452 [01:34<12:24,  4.13it/s]Sat Dec 19 10:49:19 2020[1,0]<stdout>:
+Iteration:  11%|█         | 376/3452 [01:34<12:24,  4.13it/s]Sat Dec 19 10:49:19 2020[1,0]<stdout>:
+Iteration:  11%|█         | 377/3452 [01:35<12:24,  4.13it/s]Sat Dec 19 10:49:19 2020[1,0]<stdout>:
+Iteration:  11%|█         | 378/3452 [01:35<12:25,  4.12it/s]Sat Dec 19 10:49:19 2020[1,0]<stdout>:
+Iteration:  11%|█         | 379/3452 [01:35<12:25,  4.12it/s]Sat Dec 19 10:49:20 2020[1,0]<stdout>:
+Iteration:  11%|█         | 380/3452 [01:35<12:24,  4.13it/s]Sat Dec 19 10:49:20 2020[1,0]<stdout>:
+Iteration:  11%|█         | 381/3452 [01:36<12:24,  4.12it/s]Sat Dec 19 10:49:20 2020[1,0]<stdout>:
+Iteration:  11%|█         | 382/3452 [01:36<12:24,  4.13it/s]Sat Dec 19 10:49:20 2020[1,0]<stdout>:
+Iteration:  11%|█         | 383/3452 [01:36<12:22,  4.13it/s]Sat Dec 19 10:49:21 2020[1,0]<stdout>:
+Iteration:  11%|█         | 384/3452 [01:36<12:22,  4.13it/s]Sat Dec 19 10:49:21 2020[1,0]<stdout>:
+Iteration:  11%|█         | 385/3452 [01:37<12:22,  4.13it/s]Sat Dec 19 10:49:21 2020[1,0]<stdout>:
+Iteration:  11%|█         | 386/3452 [01:37<12:22,  4.13it/s]Sat Dec 19 10:49:21 2020[1,0]<stdout>:
+Iteration:  11%|█         | 387/3452 [01:37<12:22,  4.13it/s]Sat Dec 19 10:49:22 2020[1,0]<stdout>:
+Iteration:  11%|█         | 388/3452 [01:37<12:22,  4.13it/s]Sat Dec 19 10:49:22 2020[1,0]<stdout>:
+Iteration:  11%|█▏        | 389/3452 [01:38<12:23,  4.12it/s]Sat Dec 19 10:49:22 2020[1,0]<stdout>:
+Iteration:  11%|█▏        | 390/3452 [01:38<12:23,  4.12it/s]Sat Dec 19 10:49:22 2020[1,0]<stdout>:
+Iteration:  11%|█▏        | 391/3452 [01:38<12:23,  4.12it/s]Sat Dec 19 10:49:23 2020[1,0]<stdout>:
+Iteration:  11%|█▏        | 392/3452 [01:38<12:22,  4.12it/s]Sat Dec 19 10:49:23 2020[1,0]<stdout>:
+Iteration:  11%|█▏        | 393/3452 [01:39<12:22,  4.12it/s]Sat Dec 19 10:49:23 2020[1,0]<stdout>:
+Iteration:  11%|█▏        | 394/3452 [01:39<12:22,  4.12it/s]Sat Dec 19 10:49:23 2020[1,0]<stdout>:
+Iteration:  11%|█▏        | 395/3452 [01:39<12:21,  4.12it/s]Sat Dec 19 10:49:24 2020[1,0]<stdout>:
+Iteration:  11%|█▏        | 396/3452 [01:39<12:21,  4.12it/s]Sat Dec 19 10:49:24 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 397/3452 [01:39<12:21,  4.12it/s]Sat Dec 19 10:49:24 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 398/3452 [01:40<12:20,  4.12it/s]Sat Dec 19 10:49:24 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 399/3452 [01:40<12:20,  4.12it/s]Sat Dec 19 10:49:24 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 400/3452 [01:40<12:19,  4.13it/s]Sat Dec 19 10:49:25 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 401/3452 [01:40<12:18,  4.13it/s]Sat Dec 19 10:49:25 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 402/3452 [01:41<12:18,  4.13it/s]Sat Dec 19 10:49:25 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 403/3452 [01:41<12:18,  4.13it/s]Sat Dec 19 10:49:25 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 404/3452 [01:41<12:18,  4.13it/s]Sat Dec 19 10:49:26 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 405/3452 [01:41<12:18,  4.13it/s]Sat Dec 19 10:49:26 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 406/3452 [01:42<12:19,  4.12it/s]Sat Dec 19 10:49:26 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 407/3452 [01:42<12:19,  4.12it/s]Sat Dec 19 10:49:26 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 408/3452 [01:42<12:18,  4.12it/s]Sat Dec 19 10:49:27 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 409/3452 [01:42<12:18,  4.12it/s]Sat Dec 19 10:49:27 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 410/3452 [01:43<12:17,  4.12it/s]Sat Dec 19 10:49:27 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 411/3452 [01:43<12:17,  4.12it/s]Sat Dec 19 10:49:27 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 412/3452 [01:43<12:17,  4.12it/s]Sat Dec 19 10:49:28 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 413/3452 [01:43<12:16,  4.12it/s]Sat Dec 19 10:49:28 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 414/3452 [01:44<12:17,  4.12it/s]Sat Dec 19 10:49:28 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 415/3452 [01:44<12:16,  4.12it/s]Sat Dec 19 10:49:28 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 416/3452 [01:44<12:16,  4.12it/s]Sat Dec 19 10:49:29 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 417/3452 [01:44<12:15,  4.13it/s]Sat Dec 19 10:49:29 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 418/3452 [01:45<12:14,  4.13it/s]Sat Dec 19 10:49:29 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 419/3452 [01:45<12:14,  4.13it/s]Sat Dec 19 10:49:29 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 420/3452 [01:45<12:13,  4.13it/s]Sat Dec 19 10:49:30 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 421/3452 [01:45<12:13,  4.13it/s]Sat Dec 19 10:49:30 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 422/3452 [01:46<12:13,  4.13it/s]Sat Dec 19 10:49:30 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 423/3452 [01:46<12:13,  4.13it/s]Sat Dec 19 10:49:30 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 424/3452 [01:46<12:13,  4.13it/s]Sat Dec 19 10:49:31 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 425/3452 [01:46<12:14,  4.12it/s]Sat Dec 19 10:49:31 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 426/3452 [01:47<12:15,  4.12it/s]Sat Dec 19 10:49:31 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 427/3452 [01:47<12:15,  4.11it/s]Sat Dec 19 10:49:31 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 428/3452 [01:47<12:14,  4.12it/s]Sat Dec 19 10:49:32 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 429/3452 [01:47<12:13,  4.12it/s]Sat Dec 19 10:49:32 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 430/3452 [01:48<12:12,  4.12it/s]Sat Dec 19 10:49:32 2020[1,0]<stdout>:
+Iteration:  12%|█▏        | 431/3452 [01:48<12:12,  4.12it/s]Sat Dec 19 10:49:32 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 432/3452 [01:48<12:12,  4.12it/s]Sat Dec 19 10:49:32 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 433/3452 [01:48<12:11,  4.13it/s]Sat Dec 19 10:49:33 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 434/3452 [01:48<12:11,  4.13it/s]Sat Dec 19 10:49:33 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 435/3452 [01:49<12:11,  4.12it/s]Sat Dec 19 10:49:33 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 436/3452 [01:49<12:11,  4.12it/s]Sat Dec 19 10:49:33 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 437/3452 [01:49<12:10,  4.13it/s]Sat Dec 19 10:49:34 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 438/3452 [01:49<12:09,  4.13it/s]Sat Dec 19 10:49:34 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 439/3452 [01:50<12:10,  4.13it/s]Sat Dec 19 10:49:34 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 440/3452 [01:50<12:10,  4.12it/s]Sat Dec 19 10:49:34 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 441/3452 [01:50<12:10,  4.12it/s]Sat Dec 19 10:49:35 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 442/3452 [01:50<12:10,  4.12it/s]Sat Dec 19 10:49:35 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 443/3452 [01:51<12:10,  4.12it/s]Sat Dec 19 10:49:35 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 444/3452 [01:51<12:09,  4.12it/s]Sat Dec 19 10:49:35 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 445/3452 [01:51<12:09,  4.12it/s]Sat Dec 19 10:49:36 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 446/3452 [01:51<12:08,  4.13it/s]Sat Dec 19 10:49:36 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 447/3452 [01:52<12:07,  4.13it/s]Sat Dec 19 10:49:36 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 448/3452 [01:52<12:07,  4.13it/s]Sat Dec 19 10:49:36 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 449/3452 [01:52<12:06,  4.13it/s]Sat Dec 19 10:49:37 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 450/3452 [01:52<12:07,  4.13it/s]Sat Dec 19 10:49:37 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 451/3452 [01:53<12:07,  4.13it/s]Sat Dec 19 10:49:37 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 452/3452 [01:53<12:07,  4.13it/s]Sat Dec 19 10:49:37 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 453/3452 [01:53<12:06,  4.13it/s]Sat Dec 19 10:49:38 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 454/3452 [01:53<12:05,  4.13it/s]Sat Dec 19 10:49:38 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 455/3452 [01:54<12:05,  4.13it/s]Sat Dec 19 10:49:38 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 456/3452 [01:54<12:06,  4.12it/s]Sat Dec 19 10:49:38 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 457/3452 [01:54<12:06,  4.12it/s]Sat Dec 19 10:49:39 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 458/3452 [01:54<12:06,  4.12it/s]Sat Dec 19 10:49:39 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 459/3452 [01:55<12:06,  4.12it/s]Sat Dec 19 10:49:39 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 460/3452 [01:55<12:06,  4.12it/s]Sat Dec 19 10:49:39 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 461/3452 [01:55<12:05,  4.12it/s]Sat Dec 19 10:49:40 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 462/3452 [01:55<12:04,  4.12it/s]Sat Dec 19 10:49:40 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 463/3452 [01:55<12:04,  4.13it/s]Sat Dec 19 10:49:40 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 464/3452 [01:56<12:03,  4.13it/s]Sat Dec 19 10:49:40 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 465/3452 [01:56<12:03,  4.13it/s]Sat Dec 19 10:49:40 2020[1,0]<stdout>:
+Iteration:  13%|█▎        | 466/3452 [01:56<12:02,  4.14it/s]Sat Dec 19 10:49:41 2020[1,0]<stdout>:
+Iteration:  14%|█▎        | 467/3452 [01:56<12:02,  4.13it/s]Sat Dec 19 10:49:41 2020[1,0]<stdout>:
+Iteration:  14%|█▎        | 468/3452 [01:57<12:02,  4.13it/s]Sat Dec 19 10:49:41 2020[1,0]<stdout>:
+Iteration:  14%|█▎        | 469/3452 [01:57<12:02,  4.13it/s]Sat Dec 19 10:49:41 2020[1,0]<stdout>:
+Iteration:  14%|█▎        | 470/3452 [01:57<12:02,  4.13it/s]Sat Dec 19 10:49:42 2020[1,0]<stdout>:
+Iteration:  14%|█▎        | 471/3452 [01:57<12:01,  4.13it/s]Sat Dec 19 10:49:42 2020[1,0]<stdout>:
+Iteration:  14%|█▎        | 472/3452 [01:58<12:02,  4.13it/s]Sat Dec 19 10:49:42 2020[1,0]<stdout>:
+Iteration:  14%|█▎        | 473/3452 [01:58<12:02,  4.12it/s]Sat Dec 19 10:49:42 2020[1,0]<stdout>:
+Iteration:  14%|█▎        | 474/3452 [01:58<12:02,  4.12it/s]Sat Dec 19 10:49:43 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 475/3452 [01:58<12:02,  4.12it/s]Sat Dec 19 10:49:43 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 476/3452 [01:59<12:01,  4.12it/s]Sat Dec 19 10:49:43 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 477/3452 [01:59<12:01,  4.12it/s]Sat Dec 19 10:49:43 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 478/3452 [01:59<12:00,  4.13it/s]Sat Dec 19 10:49:44 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 479/3452 [01:59<11:59,  4.13it/s]Sat Dec 19 10:49:44 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 480/3452 [02:00<11:58,  4.14it/s]Sat Dec 19 10:49:44 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 481/3452 [02:00<11:58,  4.13it/s]Sat Dec 19 10:49:44 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 482/3452 [02:00<11:59,  4.13it/s]Sat Dec 19 10:49:45 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 483/3452 [02:00<11:58,  4.13it/s]Sat Dec 19 10:49:45 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 484/3452 [02:01<11:59,  4.13it/s]Sat Dec 19 10:49:45 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 485/3452 [02:01<11:58,  4.13it/s]Sat Dec 19 10:49:45 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 486/3452 [02:01<11:57,  4.13it/s]Sat Dec 19 10:49:46 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 487/3452 [02:01<11:57,  4.13it/s]Sat Dec 19 10:49:46 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 488/3452 [02:02<11:57,  4.13it/s]Sat Dec 19 10:49:46 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 489/3452 [02:02<11:58,  4.12it/s]Sat Dec 19 10:49:46 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 490/3452 [02:02<12:00,  4.11it/s]Sat Dec 19 10:49:47 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 491/3452 [02:02<12:00,  4.11it/s]Sat Dec 19 10:49:47 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 492/3452 [02:03<11:59,  4.11it/s]Sat Dec 19 10:49:47 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 493/3452 [02:03<11:58,  4.12it/s]Sat Dec 19 10:49:47 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 494/3452 [02:03<11:58,  4.12it/s]Sat Dec 19 10:49:48 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 495/3452 [02:03<11:57,  4.12it/s]Sat Dec 19 10:49:51 2020[1,0]<stdout>:DLL 2020-12-19 10:49:51.995990 - Training Epoch: 0 Training Iteration: 41  average_loss : 7.993661134532004  step_loss : 8.019515991210938  learning_rate : 0.0025455844122715715 
+Sat Dec 19 10:49:51 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 496/3452 [02:07<1:07:03,  1.36s/it]Sat Dec 19 10:49:52 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 497/3452 [02:07<50:26,  1.02s/it]  Sat Dec 19 10:49:52 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 498/3452 [02:08<38:52,  1.27it/s]Sat Dec 19 10:49:52 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 499/3452 [02:08<30:45,  1.60it/s]Sat Dec 19 10:49:52 2020[1,0]<stdout>:
+Iteration:  14%|█▍        | 500/3452 [02:08<25:05,  1.96it/s]Sat Dec 19 10:49:53 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 501/3452 [02:08<21:08,  2.33it/s]Sat Dec 19 10:49:53 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 502/3452 [02:09<18:21,  2.68it/s]Sat Dec 19 10:49:53 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 503/3452 [02:09<16:25,  2.99it/s]Sat Dec 19 10:49:53 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 504/3452 [02:09<15:03,  3.26it/s]Sat Dec 19 10:49:54 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 505/3452 [02:09<14:06,  3.48it/s]Sat Dec 19 10:49:54 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 506/3452 [02:10<13:27,  3.65it/s]Sat Dec 19 10:49:54 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 507/3452 [02:10<12:59,  3.78it/s]Sat Dec 19 10:49:54 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 508/3452 [02:10<12:39,  3.88it/s]Sat Dec 19 10:49:55 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 509/3452 [02:10<12:25,  3.95it/s]Sat Dec 19 10:49:55 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 510/3452 [02:11<12:16,  4.00it/s]Sat Dec 19 10:49:55 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 511/3452 [02:11<12:09,  4.03it/s]Sat Dec 19 10:49:55 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 512/3452 [02:11<12:04,  4.06it/s]Sat Dec 19 10:49:56 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 513/3452 [02:11<12:01,  4.08it/s]Sat Dec 19 10:49:56 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 514/3452 [02:12<11:58,  4.09it/s]Sat Dec 19 10:49:56 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 515/3452 [02:12<11:56,  4.10it/s]Sat Dec 19 10:49:56 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 516/3452 [02:12<11:55,  4.10it/s]Sat Dec 19 10:49:57 2020[1,0]<stdout>:
+Iteration:  15%|█▍        | 517/3452 [02:12<11:54,  4.11it/s]Sat Dec 19 10:49:57 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 518/3452 [02:13<11:54,  4.11it/s]Sat Dec 19 10:49:57 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 519/3452 [02:13<11:53,  4.11it/s]Sat Dec 19 10:49:57 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 520/3452 [02:13<11:52,  4.11it/s]Sat Dec 19 10:49:58 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 521/3452 [02:13<11:51,  4.12it/s]Sat Dec 19 10:49:58 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 522/3452 [02:14<11:50,  4.12it/s]Sat Dec 19 10:49:58 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 523/3452 [02:14<11:50,  4.12it/s]Sat Dec 19 10:49:58 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 524/3452 [02:14<11:49,  4.12it/s]Sat Dec 19 10:49:59 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 525/3452 [02:14<11:49,  4.13it/s]Sat Dec 19 10:49:59 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 526/3452 [02:14<11:49,  4.12it/s]Sat Dec 19 10:49:59 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 527/3452 [02:15<11:49,  4.12it/s]Sat Dec 19 10:49:59 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 528/3452 [02:15<11:48,  4.13it/s]Sat Dec 19 10:49:59 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 529/3452 [02:15<11:47,  4.13it/s]Sat Dec 19 10:50:00 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 530/3452 [02:15<11:47,  4.13it/s]Sat Dec 19 10:50:00 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 531/3452 [02:16<11:47,  4.13it/s]Sat Dec 19 10:50:00 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 532/3452 [02:16<11:46,  4.13it/s]Sat Dec 19 10:50:00 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 533/3452 [02:16<11:46,  4.13it/s]Sat Dec 19 10:50:01 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 534/3452 [02:16<11:46,  4.13it/s]Sat Dec 19 10:50:01 2020[1,0]<stdout>:
+Iteration:  15%|█▌        | 535/3452 [02:17<11:46,  4.13it/s]Sat Dec 19 10:50:01 2020[1,0]<stdout>:
+....
+Iteration:  75%|███████▍  | 2572/3452 [10:57<03:34,  4.11it/s]Sat Dec 19 10:58:42 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2573/3452 [10:57<03:33,  4.11it/s]Sat Dec 19 10:58:42 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2574/3452 [10:58<03:33,  4.12it/s]Sat Dec 19 10:58:42 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2575/3452 [10:58<03:32,  4.12it/s]Sat Dec 19 10:58:42 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2576/3452 [10:58<03:32,  4.12it/s]Sat Dec 19 10:58:43 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2577/3452 [10:58<03:32,  4.12it/s]Sat Dec 19 10:58:43 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2578/3452 [10:59<03:32,  4.12it/s]Sat Dec 19 10:58:43 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2579/3452 [10:59<03:31,  4.12it/s]Sat Dec 19 10:58:43 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2580/3452 [10:59<03:31,  4.12it/s]Sat Dec 19 10:58:44 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2581/3452 [10:59<03:31,  4.11it/s]Sat Dec 19 10:58:44 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2582/3452 [11:00<03:31,  4.11it/s]Sat Dec 19 10:58:44 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2583/3452 [11:00<03:30,  4.12it/s]Sat Dec 19 10:58:44 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2584/3452 [11:00<03:30,  4.12it/s]Sat Dec 19 10:58:45 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2585/3452 [11:00<03:30,  4.11it/s]Sat Dec 19 10:58:45 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2586/3452 [11:01<03:30,  4.11it/s]Sat Dec 19 10:58:45 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2587/3452 [11:01<03:30,  4.11it/s]Sat Dec 19 10:58:45 2020[1,0]<stdout>:
+Iteration:  75%|███████▍  | 2588/3452 [11:01<03:30,  4.11it/s]Sat Dec 19 10:58:46 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2589/3452 [11:01<03:29,  4.11it/s]Sat Dec 19 10:58:46 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2590/3452 [11:02<03:29,  4.11it/s]Sat Dec 19 10:58:46 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2591/3452 [11:02<03:29,  4.12it/s]Sat Dec 19 10:58:46 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2592/3452 [11:02<03:28,  4.12it/s]Sat Dec 19 10:58:47 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2593/3452 [11:02<03:28,  4.11it/s]Sat Dec 19 10:58:47 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2594/3452 [11:03<03:28,  4.11it/s]Sat Dec 19 10:58:47 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2595/3452 [11:03<03:28,  4.11it/s]Sat Dec 19 10:58:47 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2596/3452 [11:03<03:28,  4.11it/s]Sat Dec 19 10:58:48 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2597/3452 [11:03<03:27,  4.11it/s]Sat Dec 19 10:58:48 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2598/3452 [11:04<03:27,  4.12it/s]Sat Dec 19 10:58:48 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2599/3452 [11:04<03:27,  4.12it/s]Sat Dec 19 10:58:48 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2600/3452 [11:04<03:26,  4.12it/s]Sat Dec 19 10:58:49 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2601/3452 [11:04<03:26,  4.11it/s]Sat Dec 19 10:58:49 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2602/3452 [11:05<03:26,  4.11it/s]Sat Dec 19 10:58:49 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2603/3452 [11:05<03:26,  4.11it/s]Sat Dec 19 10:58:49 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2604/3452 [11:05<03:26,  4.11it/s]Sat Dec 19 10:58:50 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2605/3452 [11:05<03:26,  4.10it/s]Sat Dec 19 10:58:50 2020[1,0]<stdout>:
+Iteration:  75%|███████▌  | 2606/3452 [11:05<03:25,  4.11it/s]Sat Dec 19 10:58:50 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2607/3452 [11:06<03:25,  4.11it/s]Sat Dec 19 10:58:54 2020[1,0]<stdout>:DLL 2020-12-19 10:58:54.452310 - Training Epoch: 0 Training Iteration: 49  average_loss : 7.978047894709038  step_loss : 8.106517791748047  learning_rate : 0.0008485281374238573 
+Sat Dec 19 10:58:54 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2608/3452 [11:10<19:04,  1.36s/it]Sat Dec 19 10:58:54 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2609/3452 [11:10<14:20,  1.02s/it]Sat Dec 19 10:58:54 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2610/3452 [11:10<11:02,  1.27it/s]Sat Dec 19 10:58:55 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2611/3452 [11:10<08:44,  1.60it/s]Sat Dec 19 10:58:55 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2612/3452 [11:11<07:07,  1.96it/s]Sat Dec 19 10:58:55 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2613/3452 [11:11<05:59,  2.33it/s]Sat Dec 19 10:58:55 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2614/3452 [11:11<05:12,  2.68it/s]Sat Dec 19 10:58:56 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2615/3452 [11:11<04:39,  3.00it/s]Sat Dec 19 10:58:56 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2616/3452 [11:12<04:15,  3.27it/s]Sat Dec 19 10:58:56 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2617/3452 [11:12<03:59,  3.49it/s]Sat Dec 19 10:58:56 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2618/3452 [11:12<03:47,  3.66it/s]Sat Dec 19 10:58:57 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2619/3452 [11:12<03:39,  3.79it/s]Sat Dec 19 10:58:57 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2620/3452 [11:13<03:34,  3.88it/s]Sat Dec 19 10:58:57 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2621/3452 [11:13<03:30,  3.95it/s]Sat Dec 19 10:58:57 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2622/3452 [11:13<03:27,  4.00it/s]Sat Dec 19 10:58:58 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2623/3452 [11:13<03:25,  4.04it/s]Sat Dec 19 10:58:58 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2624/3452 [11:14<03:23,  4.06it/s]Sat Dec 19 10:58:58 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2625/3452 [11:14<03:22,  4.08it/s]Sat Dec 19 10:58:58 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2626/3452 [11:14<03:21,  4.09it/s]Sat Dec 19 10:58:59 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2627/3452 [11:14<03:21,  4.10it/s]Sat Dec 19 10:58:59 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2628/3452 [11:15<03:20,  4.11it/s]Sat Dec 19 10:58:59 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2629/3452 [11:15<03:20,  4.11it/s]Sat Dec 19 10:58:59 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2630/3452 [11:15<03:19,  4.12it/s]Sat Dec 19 10:59:00 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2631/3452 [11:15<03:19,  4.12it/s]Sat Dec 19 10:59:00 2020[1,0]<stdout>:
+Iteration:  76%|███████▌  | 2632/3452 [11:15<03:18,  4.12it/s]Sat Dec 19 10:59:00 2020[1,0]<stdout>:
+Iteration:  76%|███████▋  | 2633/3452 [11:16<03:18,  4.12it/s]Sat Dec 19 10:59:00 2020[1,0]<stdout>:
+Iteration:  76%|███████▋  | 2634/3452 [11:16<03:18,  4.12it/s]Sat Dec 19 10:59:00 2020[1,0]<stdout>:
+Iteration:  76%|███████▋  | 2635/3452 [11:16<03:18,  4.12it/s]Sat Dec 19 10:59:01 2020[1,0]<stdout>:
+Iteration:  76%|███████▋  | 2636/3452 [11:16<03:17,  4.13it/s]Sat Dec 19 10:59:01 2020[1,0]<stdout>:
+Iteration:  76%|███████▋  | 2637/3452 [11:17<03:17,  4.13it/s]Sat Dec 19 10:59:01 2020[1,0]<stdout>:
+Iteration:  76%|███████▋  | 2638/3452 [11:17<03:17,  4.13it/s]Sat Dec 19 10:59:01 2020[1,0]<stdout>:
+Iteration:  76%|███████▋  | 2639/3452 [11:17<03:16,  4.13it/s]Sat Dec 19 10:59:02 2020[1,0]<stdout>:
+Iteration:  76%|███████▋  | 2640/3452 [11:17<03:16,  4.13it/s]Sat Dec 19 10:59:02 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2641/3452 [11:18<03:16,  4.13it/s]Sat Dec 19 10:59:02 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2642/3452 [11:18<03:16,  4.12it/s]Sat Dec 19 10:59:02 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2643/3452 [11:18<03:16,  4.12it/s]Sat Dec 19 10:59:03 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2644/3452 [11:18<03:16,  4.12it/s]Sat Dec 19 10:59:03 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2645/3452 [11:19<03:15,  4.12it/s]Sat Dec 19 10:59:03 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2646/3452 [11:19<03:15,  4.12it/s]Sat Dec 19 10:59:03 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2647/3452 [11:19<03:15,  4.12it/s]Sat Dec 19 10:59:04 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2648/3452 [11:19<03:14,  4.13it/s]Sat Dec 19 10:59:04 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2649/3452 [11:20<03:14,  4.13it/s]Sat Dec 19 10:59:04 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2650/3452 [11:20<03:13,  4.13it/s]Sat Dec 19 10:59:04 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2651/3452 [11:20<03:13,  4.13it/s]Sat Dec 19 10:59:05 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2652/3452 [11:20<03:13,  4.13it/s]Sat Dec 19 10:59:05 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2653/3452 [11:21<03:13,  4.13it/s]Sat Dec 19 10:59:05 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2654/3452 [11:21<03:13,  4.12it/s]Sat Dec 19 10:59:05 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2655/3452 [11:21<03:13,  4.12it/s]Sat Dec 19 10:59:06 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2656/3452 [11:21<03:13,  4.12it/s]Sat Dec 19 10:59:06 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2657/3452 [11:22<03:12,  4.12it/s]Sat Dec 19 10:59:06 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2658/3452 [11:22<03:12,  4.12it/s]Sat Dec 19 10:59:06 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2659/3452 [11:22<03:12,  4.12it/s]Sat Dec 19 10:59:07 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2660/3452 [11:22<03:12,  4.12it/s]Sat Dec 19 10:59:07 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2661/3452 [11:23<03:11,  4.12it/s]Sat Dec 19 10:59:07 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2662/3452 [11:23<03:12,  4.11it/s]Sat Dec 19 10:59:07 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2663/3452 [11:23<03:11,  4.11it/s]Sat Dec 19 10:59:08 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2664/3452 [11:23<03:11,  4.11it/s]Sat Dec 19 10:59:08 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2665/3452 [11:23<03:11,  4.12it/s]Sat Dec 19 10:59:08 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2666/3452 [11:24<03:10,  4.12it/s]Sat Dec 19 10:59:08 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2667/3452 [11:24<03:10,  4.12it/s]Sat Dec 19 10:59:08 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2668/3452 [11:24<03:10,  4.12it/s]Sat Dec 19 10:59:09 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2669/3452 [11:24<03:09,  4.12it/s]Sat Dec 19 10:59:09 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2670/3452 [11:25<03:09,  4.13it/s]Sat Dec 19 10:59:09 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2671/3452 [11:25<03:09,  4.12it/s]Sat Dec 19 10:59:09 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2672/3452 [11:25<03:09,  4.12it/s]Sat Dec 19 10:59:10 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2673/3452 [11:25<03:08,  4.13it/s]Sat Dec 19 10:59:10 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2674/3452 [11:26<03:08,  4.12it/s]Sat Dec 19 10:59:10 2020[1,0]<stdout>:
+Iteration:  77%|███████▋  | 2675/3452 [11:26<03:08,  4.12it/s]Sat Dec 19 10:59:10 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2676/3452 [11:26<03:08,  4.11it/s]Sat Dec 19 10:59:11 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2677/3452 [11:26<03:08,  4.11it/s]Sat Dec 19 10:59:11 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2678/3452 [11:27<03:08,  4.11it/s]Sat Dec 19 10:59:11 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2679/3452 [11:27<03:07,  4.12it/s]Sat Dec 19 10:59:11 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2680/3452 [11:27<03:07,  4.12it/s]Sat Dec 19 10:59:12 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2681/3452 [11:27<03:07,  4.12it/s]Sat Dec 19 10:59:12 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2682/3452 [11:28<03:06,  4.12it/s]Sat Dec 19 10:59:12 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2683/3452 [11:28<03:06,  4.12it/s]Sat Dec 19 10:59:12 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2684/3452 [11:28<03:06,  4.12it/s]Sat Dec 19 10:59:13 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2685/3452 [11:28<03:06,  4.12it/s]Sat Dec 19 10:59:13 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2686/3452 [11:29<03:06,  4.12it/s]Sat Dec 19 10:59:13 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2687/3452 [11:29<03:05,  4.12it/s]Sat Dec 19 10:59:13 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2688/3452 [11:29<03:05,  4.12it/s]Sat Dec 19 10:59:14 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2689/3452 [11:29<03:05,  4.11it/s]Sat Dec 19 10:59:14 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2690/3452 [11:30<03:05,  4.11it/s]Sat Dec 19 10:59:14 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2691/3452 [11:30<03:04,  4.12it/s]Sat Dec 19 10:59:14 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2692/3452 [11:30<03:04,  4.12it/s]Sat Dec 19 10:59:15 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2693/3452 [11:30<03:04,  4.12it/s]Sat Dec 19 10:59:15 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2694/3452 [11:31<03:03,  4.12it/s]Sat Dec 19 10:59:15 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2695/3452 [11:31<03:03,  4.12it/s]Sat Dec 19 10:59:15 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2696/3452 [11:31<03:03,  4.12it/s]Sat Dec 19 10:59:16 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2697/3452 [11:31<03:03,  4.12it/s]Sat Dec 19 10:59:16 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2698/3452 [11:32<03:02,  4.12it/s]Sat Dec 19 10:59:16 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2699/3452 [11:32<03:02,  4.13it/s]Sat Dec 19 10:59:16 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2700/3452 [11:32<03:02,  4.13it/s]Sat Dec 19 10:59:17 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2701/3452 [11:32<03:01,  4.13it/s]Sat Dec 19 10:59:17 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2702/3452 [11:32<03:01,  4.13it/s]Sat Dec 19 10:59:17 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2703/3452 [11:33<03:01,  4.12it/s]Sat Dec 19 10:59:17 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2704/3452 [11:33<03:01,  4.12it/s]Sat Dec 19 10:59:17 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2705/3452 [11:33<03:01,  4.12it/s]Sat Dec 19 10:59:18 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2706/3452 [11:33<03:01,  4.12it/s]Sat Dec 19 10:59:18 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2707/3452 [11:34<03:01,  4.11it/s]Sat Dec 19 10:59:18 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2708/3452 [11:34<03:00,  4.12it/s]Sat Dec 19 10:59:18 2020[1,0]<stdout>:
+Iteration:  78%|███████▊  | 2709/3452 [11:34<03:00,  4.12it/s]Sat Dec 19 10:59:19 2020[1,0]<stdout>:
+Iteration:  79%|███████▊  | 2710/3452 [11:34<03:00,  4.12it/s]Sat Dec 19 10:59:19 2020[1,0]<stdout>:
+Iteration:  79%|███████▊  | 2711/3452 [11:35<02:59,  4.12it/s]Sat Dec 19 10:59:19 2020[1,0]<stdout>:
+Iteration:  79%|███████▊  | 2712/3452 [11:35<02:59,  4.12it/s]Sat Dec 19 10:59:19 2020[1,0]<stdout>:
+Iteration:  79%|███████▊  | 2713/3452 [11:35<02:59,  4.11it/s]Sat Dec 19 10:59:20 2020[1,0]<stdout>:
+Iteration:  79%|███████▊  | 2714/3452 [11:35<02:59,  4.11it/s]Sat Dec 19 10:59:20 2020[1,0]<stdout>:
+Iteration:  79%|███████▊  | 2715/3452 [11:36<02:59,  4.11it/s]Sat Dec 19 10:59:20 2020[1,0]<stdout>:
+Iteration:  79%|███████▊  | 2716/3452 [11:36<02:58,  4.11it/s]Sat Dec 19 10:59:20 2020[1,0]<stdout>:
+Iteration:  79%|███████▊  | 2717/3452 [11:36<02:58,  4.12it/s]Sat Dec 19 10:59:21 2020[1,0]<stdout>:
+Iteration:  79%|███████▊  | 2718/3452 [11:36<02:58,  4.12it/s]Sat Dec 19 10:59:21 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2719/3452 [11:37<02:57,  4.12it/s]Sat Dec 19 10:59:21 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2720/3452 [11:37<02:57,  4.12it/s]Sat Dec 19 10:59:21 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2721/3452 [11:37<02:57,  4.12it/s]Sat Dec 19 10:59:22 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2722/3452 [11:37<02:57,  4.12it/s]Sat Dec 19 10:59:22 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2723/3452 [11:38<02:56,  4.12it/s]Sat Dec 19 10:59:22 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2724/3452 [11:38<02:56,  4.12it/s]Sat Dec 19 10:59:22 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2725/3452 [11:38<02:56,  4.12it/s]Sat Dec 19 10:59:23 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2726/3452 [11:38<02:56,  4.12it/s]Sat Dec 19 10:59:23 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2727/3452 [11:39<02:55,  4.12it/s]Sat Dec 19 10:59:23 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2728/3452 [11:39<02:55,  4.12it/s]Sat Dec 19 10:59:23 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2729/3452 [11:39<02:55,  4.12it/s]Sat Dec 19 10:59:24 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2730/3452 [11:39<02:55,  4.11it/s]Sat Dec 19 10:59:24 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2731/3452 [11:40<02:55,  4.11it/s]Sat Dec 19 10:59:24 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2732/3452 [11:40<02:54,  4.12it/s]Sat Dec 19 10:59:24 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2733/3452 [11:40<02:54,  4.11it/s]Sat Dec 19 10:59:25 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2734/3452 [11:40<02:54,  4.12it/s]Sat Dec 19 10:59:25 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2735/3452 [11:40<02:53,  4.12it/s]Sat Dec 19 10:59:25 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2736/3452 [11:41<02:53,  4.12it/s]Sat Dec 19 10:59:25 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2737/3452 [11:41<02:53,  4.12it/s]Sat Dec 19 10:59:25 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2738/3452 [11:41<02:53,  4.12it/s]Sat Dec 19 10:59:26 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2739/3452 [11:41<02:53,  4.12it/s]Sat Dec 19 10:59:26 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2740/3452 [11:42<02:52,  4.12it/s]Sat Dec 19 10:59:26 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2741/3452 [11:42<02:52,  4.12it/s]Sat Dec 19 10:59:26 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2742/3452 [11:42<02:52,  4.12it/s]Sat Dec 19 10:59:27 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2743/3452 [11:42<02:52,  4.12it/s]Sat Dec 19 10:59:27 2020[1,0]<stdout>:
+Iteration:  79%|███████▉  | 2744/3452 [11:43<02:51,  4.12it/s]Sat Dec 19 10:59:27 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2745/3452 [11:43<02:51,  4.11it/s]Sat Dec 19 10:59:27 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2746/3452 [11:43<02:51,  4.12it/s]Sat Dec 19 10:59:28 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2747/3452 [11:43<02:51,  4.11it/s]Sat Dec 19 10:59:28 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2748/3452 [11:44<02:50,  4.12it/s]Sat Dec 19 10:59:28 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2749/3452 [11:44<02:50,  4.12it/s]Sat Dec 19 10:59:28 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2750/3452 [11:44<02:50,  4.12it/s]Sat Dec 19 10:59:29 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2751/3452 [11:44<02:50,  4.12it/s]Sat Dec 19 10:59:29 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2752/3452 [11:45<02:49,  4.12it/s]Sat Dec 19 10:59:29 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2753/3452 [11:45<02:49,  4.12it/s]Sat Dec 19 10:59:29 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2754/3452 [11:45<02:49,  4.12it/s]Sat Dec 19 10:59:30 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2755/3452 [11:45<02:49,  4.12it/s]Sat Dec 19 10:59:30 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2756/3452 [11:46<02:49,  4.12it/s]Sat Dec 19 10:59:30 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2757/3452 [11:46<02:48,  4.12it/s]Sat Dec 19 10:59:30 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2758/3452 [11:46<02:48,  4.11it/s]Sat Dec 19 10:59:31 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2759/3452 [11:46<02:48,  4.11it/s]Sat Dec 19 10:59:31 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2760/3452 [11:47<02:48,  4.11it/s]Sat Dec 19 10:59:31 2020[1,0]<stdout>:
+Iteration:  80%|███████▉  | 2761/3452 [11:47<02:47,  4.11it/s]Sat Dec 19 10:59:31 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2762/3452 [11:47<02:47,  4.11it/s]Sat Dec 19 10:59:32 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2763/3452 [11:47<02:47,  4.12it/s]Sat Dec 19 10:59:32 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2764/3452 [11:48<02:47,  4.12it/s]Sat Dec 19 10:59:32 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2765/3452 [11:48<02:46,  4.12it/s]Sat Dec 19 10:59:32 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2766/3452 [11:48<02:46,  4.12it/s]Sat Dec 19 10:59:33 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2767/3452 [11:48<02:46,  4.12it/s]Sat Dec 19 10:59:33 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2768/3452 [11:49<02:45,  4.12it/s]Sat Dec 19 10:59:33 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2769/3452 [11:49<02:45,  4.12it/s]Sat Dec 19 10:59:33 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2770/3452 [11:49<02:45,  4.12it/s]Sat Dec 19 10:59:34 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2771/3452 [11:49<02:45,  4.12it/s]Sat Dec 19 10:59:34 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2772/3452 [11:49<02:44,  4.12it/s]Sat Dec 19 10:59:34 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2773/3452 [11:50<02:44,  4.13it/s]Sat Dec 19 10:59:34 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2774/3452 [11:50<02:44,  4.12it/s]Sat Dec 19 10:59:34 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2775/3452 [11:50<02:44,  4.12it/s]Sat Dec 19 10:59:35 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2776/3452 [11:50<02:44,  4.12it/s]Sat Dec 19 10:59:35 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2777/3452 [11:51<02:43,  4.12it/s]Sat Dec 19 10:59:35 2020[1,0]<stdout>:
+Iteration:  80%|████████  | 2778/3452 [11:51<02:43,  4.12it/s]Sat Dec 19 10:59:35 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2779/3452 [11:51<02:43,  4.12it/s]Sat Dec 19 10:59:36 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2780/3452 [11:51<02:43,  4.12it/s]Sat Dec 19 10:59:36 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2781/3452 [11:52<02:42,  4.12it/s]Sat Dec 19 10:59:36 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2782/3452 [11:52<02:42,  4.11it/s]Sat Dec 19 10:59:36 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2783/3452 [11:52<02:42,  4.11it/s]Sat Dec 19 10:59:37 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2784/3452 [11:52<02:42,  4.11it/s]Sat Dec 19 10:59:37 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2785/3452 [11:53<02:42,  4.12it/s]Sat Dec 19 10:59:37 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2786/3452 [11:53<02:41,  4.12it/s]Sat Dec 19 10:59:37 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2787/3452 [11:53<02:41,  4.12it/s]Sat Dec 19 10:59:38 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2788/3452 [11:53<02:41,  4.12it/s]Sat Dec 19 10:59:38 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2789/3452 [11:54<02:40,  4.12it/s]Sat Dec 19 10:59:38 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2790/3452 [11:54<02:40,  4.12it/s]Sat Dec 19 10:59:38 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2791/3452 [11:54<02:40,  4.11it/s]Sat Dec 19 10:59:39 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2792/3452 [11:54<02:40,  4.11it/s]Sat Dec 19 10:59:39 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2793/3452 [11:55<02:40,  4.12it/s]Sat Dec 19 10:59:39 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2794/3452 [11:55<02:40,  4.11it/s]Sat Dec 19 10:59:39 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2795/3452 [11:55<02:39,  4.11it/s]Sat Dec 19 10:59:40 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2796/3452 [11:55<02:39,  4.11it/s]Sat Dec 19 10:59:40 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2797/3452 [11:56<02:39,  4.12it/s]Sat Dec 19 10:59:40 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2798/3452 [11:56<02:39,  4.11it/s]Sat Dec 19 10:59:40 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2799/3452 [11:56<02:38,  4.12it/s]Sat Dec 19 10:59:41 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2800/3452 [11:56<02:38,  4.12it/s]Sat Dec 19 10:59:41 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2801/3452 [11:57<02:38,  4.12it/s]Sat Dec 19 10:59:41 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2802/3452 [11:57<02:38,  4.11it/s]Sat Dec 19 10:59:41 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2803/3452 [11:57<02:37,  4.12it/s]Sat Dec 19 10:59:42 2020[1,0]<stdout>:
+Iteration:  81%|████████  | 2804/3452 [11:57<02:37,  4.12it/s]Sat Dec 19 10:59:42 2020[1,0]<stdout>:
+Iteration:  81%|████████▏ | 2805/3452 [11:57<02:36,  4.12it/s]Sat Dec 19 10:59:42 2020[1,0]<stdout>:
+Iteration:  81%|████████▏ | 2806/3452 [11:58<02:36,  4.12it/s]Sat Dec 19 10:59:42 2020[1,0]<stdout>:
+Iteration:  81%|████████▏ | 2807/3452 [11:58<02:36,  4.12it/s]Sat Dec 19 10:59:42 2020[1,0]<stdout>:
+Iteration:  81%|████████▏ | 2808/3452 [11:58<02:36,  4.12it/s]Sat Dec 19 10:59:43 2020[1,0]<stdout>:
+Iteration:  81%|████████▏ | 2809/3452 [11:58<02:36,  4.12it/s]Sat Dec 19 10:59:43 2020[1,0]<stdout>:
+Iteration:  81%|████████▏ | 2810/3452 [11:59<02:35,  4.12it/s]Sat Dec 19 10:59:43 2020[1,0]<stdout>:
+Iteration:  81%|████████▏ | 2811/3452 [11:59<02:35,  4.11it/s]Sat Dec 19 10:59:43 2020[1,0]<stdout>:
+Iteration:  81%|████████▏ | 2812/3452 [11:59<02:35,  4.11it/s]Sat Dec 19 10:59:44 2020[1,0]<stdout>:
+Iteration:  81%|████████▏ | 2813/3452 [11:59<02:35,  4.12it/s]Sat Dec 19 10:59:44 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2814/3452 [12:00<02:34,  4.12it/s]Sat Dec 19 10:59:44 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2815/3452 [12:00<02:34,  4.12it/s]Sat Dec 19 10:59:44 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2816/3452 [12:00<02:34,  4.12it/s]Sat Dec 19 10:59:45 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2817/3452 [12:00<02:33,  4.13it/s]Sat Dec 19 10:59:45 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2818/3452 [12:01<02:33,  4.13it/s]Sat Dec 19 10:59:45 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2819/3452 [12:01<02:33,  4.13it/s]Sat Dec 19 10:59:45 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2820/3452 [12:01<02:33,  4.12it/s]Sat Dec 19 10:59:46 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2821/3452 [12:01<02:33,  4.12it/s]Sat Dec 19 10:59:46 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2822/3452 [12:02<02:32,  4.12it/s]Sat Dec 19 10:59:46 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2823/3452 [12:02<02:32,  4.12it/s]Sat Dec 19 10:59:46 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2824/3452 [12:02<02:32,  4.12it/s]Sat Dec 19 10:59:47 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2825/3452 [12:02<02:32,  4.12it/s]Sat Dec 19 10:59:47 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2826/3452 [12:03<02:31,  4.12it/s]Sat Dec 19 10:59:47 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2827/3452 [12:03<02:31,  4.12it/s]Sat Dec 19 10:59:47 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2828/3452 [12:03<02:31,  4.12it/s]Sat Dec 19 10:59:48 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2829/3452 [12:03<02:31,  4.12it/s]Sat Dec 19 10:59:48 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2830/3452 [12:04<02:30,  4.12it/s]Sat Dec 19 10:59:48 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2831/3452 [12:04<02:30,  4.12it/s]Sat Dec 19 10:59:48 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2832/3452 [12:04<02:30,  4.12it/s]Sat Dec 19 10:59:49 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2833/3452 [12:04<02:30,  4.12it/s]Sat Dec 19 10:59:49 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2834/3452 [12:05<02:30,  4.12it/s]Sat Dec 19 10:59:49 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2835/3452 [12:05<02:29,  4.12it/s]Sat Dec 19 10:59:49 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2836/3452 [12:05<02:29,  4.12it/s]Sat Dec 19 10:59:50 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2837/3452 [12:05<02:29,  4.12it/s]Sat Dec 19 10:59:50 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2838/3452 [12:06<02:29,  4.12it/s]Sat Dec 19 10:59:50 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2839/3452 [12:06<02:28,  4.12it/s]Sat Dec 19 10:59:50 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2840/3452 [12:06<02:28,  4.12it/s]Sat Dec 19 10:59:50 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2841/3452 [12:06<02:28,  4.12it/s]Sat Dec 19 10:59:51 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2842/3452 [12:06<02:28,  4.12it/s]Sat Dec 19 10:59:51 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2843/3452 [12:07<02:27,  4.12it/s]Sat Dec 19 10:59:51 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2844/3452 [12:07<02:27,  4.11it/s]Sat Dec 19 10:59:51 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2845/3452 [12:07<02:27,  4.11it/s]Sat Dec 19 10:59:52 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2846/3452 [12:07<02:27,  4.11it/s]Sat Dec 19 10:59:52 2020[1,0]<stdout>:
+Iteration:  82%|████████▏ | 2847/3452 [12:08<02:27,  4.11it/s]Sat Dec 19 10:59:52 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2848/3452 [12:08<02:27,  4.11it/s]Sat Dec 19 10:59:52 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2849/3452 [12:08<02:26,  4.11it/s]Sat Dec 19 10:59:53 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2850/3452 [12:08<02:26,  4.11it/s]Sat Dec 19 10:59:53 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2851/3452 [12:09<02:26,  4.12it/s]Sat Dec 19 10:59:53 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2852/3452 [12:09<02:25,  4.12it/s]Sat Dec 19 10:59:53 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2853/3452 [12:09<02:25,  4.12it/s]Sat Dec 19 10:59:54 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2854/3452 [12:09<02:25,  4.12it/s]Sat Dec 19 10:59:54 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2855/3452 [12:10<02:24,  4.13it/s]Sat Dec 19 10:59:54 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2856/3452 [12:10<02:24,  4.13it/s]Sat Dec 19 10:59:54 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2857/3452 [12:10<02:24,  4.12it/s]Sat Dec 19 10:59:55 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2858/3452 [12:10<02:24,  4.12it/s]Sat Dec 19 10:59:55 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2859/3452 [12:11<02:24,  4.12it/s]Sat Dec 19 10:59:55 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2860/3452 [12:11<02:23,  4.12it/s]Sat Dec 19 10:59:55 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2861/3452 [12:11<02:23,  4.12it/s]Sat Dec 19 10:59:56 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2862/3452 [12:11<02:23,  4.12it/s]Sat Dec 19 10:59:56 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2863/3452 [12:12<02:23,  4.11it/s]Sat Dec 19 10:59:56 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2864/3452 [12:12<02:22,  4.12it/s]Sat Dec 19 10:59:56 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2865/3452 [12:12<02:22,  4.11it/s]Sat Dec 19 10:59:57 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2866/3452 [12:12<02:22,  4.11it/s]Sat Dec 19 10:59:57 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2867/3452 [12:13<02:22,  4.11it/s]Sat Dec 19 10:59:57 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2868/3452 [12:13<02:21,  4.12it/s]Sat Dec 19 10:59:57 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2869/3452 [12:13<02:21,  4.12it/s]Sat Dec 19 10:59:58 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2870/3452 [12:13<02:21,  4.11it/s]Sat Dec 19 10:59:58 2020[1,0]<stdout>:
+Iteration:  83%|████████▎ | 2871/3452 [12:14<02:21,  4.11it/s]Sat Dec 19 11:00:02 2020[1,0]<stdout>:DLL 2020-12-19 11:00:02.310498 - Training Epoch: 0 Training Iteration: 50  final_loss : 7.991006374359131 
+Sat Dec 19 11:00:02 2020[1,0]<stdout>:DLL 2020-12-19 11:00:02.310720 - PARAMETER checkpoint_step : 50 
+Sat Dec 19 11:00:04 2020[1,0]<stdout>:DLL 2020-12-19 11:00:04.018085 -  e2e_train_time : 3399.7362282276154  training_sequences_per_second : 3994.0576020793474  final_loss : 7.991006374359131  raw_train_time : 3384.2276067733765 
+Sat Dec 19 11:00:04 2020[1,0]<stdout>:
