@@ -164,28 +164,28 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
         built_in.regex_match_len(self.out, self.epoch_re, 4, self.err_msg)
 
     """test ps cases."""
-    def test_mode_list_ps_local_cluster_c2(self):
-        """test mode list has one element and the runner is local cluster.
-        """
-        utils.cmd_shell("rm -rf logs")
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["runner"][0]["class"] = "local_cluster_train"
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
-
-    def test_mode_list_ps_local_cluster_and_increment_c2(self):
-        """test mode list has two elements and both runner are local cluster.
-           one is train, the other is increment training.
-        """
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["runner"][0]["class"] = "local_cluster_train"
-        self.yaml_content["runner"][1]["class"] = "local_cluster_train"
-        self.yaml_content["mode"] = ["runner0", "runner1"]
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
-        built_in.regex_match_len('logs/worker.0', self.epoch_re, 2, self.err_msg)
+    # def test_mode_list_ps_local_cluster_c2(self):
+    #     """test mode list has one element and the runner is local cluster.
+    #     """
+    #     utils.cmd_shell("rm -rf logs")
+    #     self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+    #     self.yaml_content["runner"][0]["class"] = "local_cluster_train"
+    #     self.run_yaml()
+    #     built_in.equals(self.pro.returncode, 0, self.err_msg)
+    #     built_in.not_contains(self.err, 'Traceback', self.err_msg)
+    #
+    # def test_mode_list_ps_local_cluster_and_increment_c2(self):
+    #     """test mode list has two elements and both runner are local cluster.
+    #        one is train, the other is increment training.
+    #     """
+    #     self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+    #     self.yaml_content["runner"][0]["class"] = "local_cluster_train"
+    #     self.yaml_content["runner"][1]["class"] = "local_cluster_train"
+    #     self.yaml_content["mode"] = ["runner0", "runner1"]
+    #     self.run_yaml()
+    #     built_in.equals(self.pro.returncode, 0, self.err_msg)
+    #     built_in.not_contains(self.err, 'Traceback', self.err_msg)
+    #     built_in.regex_match_len('logs/worker.0', self.epoch_re, 2, self.err_msg)
 
 #     def test_mode_list_ps_local_cluster_and_infer_c2(self):
 #         """test mode list has two elements .
@@ -199,26 +199,26 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
 #         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 #         built_in.regex_match_len(self.out, self.auc_re_bug, 0, self.err_msg)
 
-    def test_mode_str_ps_local_cluster_1p_1t_async_c2(self):
-        """test_mode_str_ps_local_cluster_1p_1t_c2."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["mode"] = "runner0"
-        self.yaml_content["runner"][0]["class"] = "local_cluster_train"
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
-        built_in.contains('logs/worker.0', 'AsyncCommunicator Initialized', self.err_msg)
-
-    def test_mode_str_ps_local_cluster_1p_1t_sync_c2(self):
-        """test_mode_str_ps_local_cluster_1p_1t_sync_c2."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["mode"] = "runner0"
-        self.yaml_content["runner"][0]["class"] = "local_cluster_train"
-        self.yaml_content["runner"][0]["distribute_strategy"] = "sync"
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
-        built_in.contains('logs/worker.0', 'SyncCommunicator Initialized', self.err_msg)
+    # def test_mode_str_ps_local_cluster_1p_1t_async_c2(self):
+    #     """test_mode_str_ps_local_cluster_1p_1t_c2."""
+    #     self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+    #     self.yaml_content["mode"] = "runner0"
+    #     self.yaml_content["runner"][0]["class"] = "local_cluster_train"
+    #     self.run_yaml()
+    #     built_in.equals(self.pro.returncode, 0, self.err_msg)
+    #     built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
+    #     built_in.contains('logs/worker.0', 'AsyncCommunicator Initialized', self.err_msg)
+    #
+    # def test_mode_str_ps_local_cluster_1p_1t_sync_c2(self):
+    #     """test_mode_str_ps_local_cluster_1p_1t_sync_c2."""
+    #     self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+    #     self.yaml_content["mode"] = "runner0"
+    #     self.yaml_content["runner"][0]["class"] = "local_cluster_train"
+    #     self.yaml_content["runner"][0]["distribute_strategy"] = "sync"
+    #     self.run_yaml()
+    #     built_in.equals(self.pro.returncode, 0, self.err_msg)
+    #     built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
+    #     built_in.contains('logs/worker.0', 'SyncCommunicator Initialized', self.err_msg)
 
     # def test_mode_str_ps_local_cluster_1p_1t_half_async_c2(self):
     #     """test_mode_str_ps_local_cluster_1p_1t_half_async_c2."""
@@ -242,46 +242,46 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
     #     built_in.regex_match_len('logs/worker.0', self.epoch_re, 2, self.err_msg)
     #     built_in.contains('logs/worker.0', 'GeoSgdCommunicator Initialized', self.err_msg)
 
-    def test_mode_str_ps_local_cluster_1p_2t_1f_async_c2(self):
-        """test_mode_str_ps_local_cluster_1p_2t_c2."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["mode"] = "runner0"
-        self.yaml_content["runner"][0]["class"] = "local_cluster_train"
-        self.yaml_content["runner"][0]["worker_num"] = 2
-        self.yaml_content["runner"][0]["server_num"] = 1
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
-        built_in.not_contains('logs/worker.0', 'Traceback', self.err_msg)
-        built_in.path_not_exist('logs/worker.1', self.err_msg)
-
-    def test_mode_str_ps_local_cluster_1p_2t_2f_async_c2(self):
-        """test_mode_str_ps_local_cluster_1p_2t_c2.
-           worker_num会被data_path下得文件数量来覆盖掉；
-        """
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["mode"] = "runner0"
-        self.yaml_content["runner"][0]["class"] = "local_cluster_train"
-        self.yaml_content["runner"][0]["worker_num"] = 10
-        self.yaml_content["runner"][0]["server_num"] = 1
-        self.yaml_content["dataset"][0]["data_path"] = "criteo_data"
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
-        built_in.not_contains('logs/worker.0', 'Traceback', self.err_msg)
-        built_in.regex_match_len('logs/worker.1', self.epoch_re, 2, self.err_msg)
-
-    def test_mode_str_ps_local_cluster_1p_2t_sync_c2(self):
-        """test_mode_str_ps_local_cluster_1p_2t_sync_c2."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["mode"] = "runner0"
-        self.yaml_content["runner"][0]["class"] = "local_cluster_train"
-        self.yaml_content["runner"][0]["distribute_strategy"] = "sync"
-        self.yaml_content["runner"][0]["worker_num"] = 2
-        self.yaml_content["runner"][0]["server_num"] = 1
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
+    # def test_mode_str_ps_local_cluster_1p_2t_1f_async_c2(self):
+    #     """test_mode_str_ps_local_cluster_1p_2t_c2."""
+    #     self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+    #     self.yaml_content["mode"] = "runner0"
+    #     self.yaml_content["runner"][0]["class"] = "local_cluster_train"
+    #     self.yaml_content["runner"][0]["worker_num"] = 2
+    #     self.yaml_content["runner"][0]["server_num"] = 1
+    #     self.run_yaml()
+    #     built_in.equals(self.pro.returncode, 0, self.err_msg)
+    #     built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
+    #     built_in.not_contains('logs/worker.0', 'Traceback', self.err_msg)
+    #     built_in.path_not_exist('logs/worker.1', self.err_msg)
+    #
+    # def test_mode_str_ps_local_cluster_1p_2t_2f_async_c2(self):
+    #     """test_mode_str_ps_local_cluster_1p_2t_c2.
+    #        worker_num会被data_path下得文件数量来覆盖掉；
+    #     """
+    #     self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+    #     self.yaml_content["mode"] = "runner0"
+    #     self.yaml_content["runner"][0]["class"] = "local_cluster_train"
+    #     self.yaml_content["runner"][0]["worker_num"] = 10
+    #     self.yaml_content["runner"][0]["server_num"] = 1
+    #     self.yaml_content["dataset"][0]["data_path"] = "criteo_data"
+    #     self.run_yaml()
+    #     built_in.equals(self.pro.returncode, 0, self.err_msg)
+    #     built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
+    #     built_in.not_contains('logs/worker.0', 'Traceback', self.err_msg)
+    #     built_in.regex_match_len('logs/worker.1', self.epoch_re, 2, self.err_msg)
+    #
+    # def test_mode_str_ps_local_cluster_1p_2t_sync_c2(self):
+    #     """test_mode_str_ps_local_cluster_1p_2t_sync_c2."""
+    #     self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+    #     self.yaml_content["mode"] = "runner0"
+    #     self.yaml_content["runner"][0]["class"] = "local_cluster_train"
+    #     self.yaml_content["runner"][0]["distribute_strategy"] = "sync"
+    #     self.yaml_content["runner"][0]["worker_num"] = 2
+    #     self.yaml_content["runner"][0]["server_num"] = 1
+    #     self.run_yaml()
+    #     built_in.equals(self.pro.returncode, 0, self.err_msg)
+    #     built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
 
     # half async在2.0被废弃掉
     # def test_mode_str_ps_local_cluster_1p_2t_half_async_c2(self):
@@ -312,36 +312,36 @@ class TestRankDNNNewConfig(RankDNNBaseNewConfig):
     #     built_in.regex_match_len('logs/worker.0', self.epoch_re, 2, self.err_msg)
     #     built_in.regex_match_len('logs/worker.1', self.epoch_re, 2, self.err_msg)
 
-    def test_mode_str_ps_local_cluster_2p_2t_async_c2(self):
-        """test_mode_str_ps_local_cluster_2p_2t_async_c2."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["mode"] = "runner0"
-        self.yaml_content["runner"][0]["class"] = "local_cluster_train"
-        self.yaml_content["runner"][0]["worker_num"] = 2
-        self.yaml_content["runner"][0]["server_num"] = 2
-        self.yaml_content["dataset"][0]["data_path"] = "criteo_data"
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
-        built_in.not_contains('logs/server.1', 'Traceback', self.err_msg)
-        built_in.regex_match_len('logs/worker.0', self.epoch_re, 2, self.err_msg)
-        built_in.regex_match_len('logs/worker.1', self.epoch_re, 2, self.err_msg)
-
-    def test_mode_str_ps_local_cluster_2p_2t_sync_c2(self):
-        """test_mode_str_ps_local_cluster_2p_2t_sync_c2."""
-        self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
-        self.yaml_content["mode"] = "runner0"
-        self.yaml_content["runner"][0]["class"] = "local_cluster_train"
-        self.yaml_content["runner"][0]["distribute_strategy"] = "sync"
-        self.yaml_content["runner"][0]["worker_num"] = 2
-        self.yaml_content["runner"][0]["server_num"] = 2
-        self.yaml_content["dataset"][0]["data_path"] = "criteo_data"
-        self.run_yaml()
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
-        built_in.not_contains('logs/server.1', 'Traceback', self.err_msg)
-        built_in.regex_match_len('logs/worker.0', self.epoch_re, 2, self.err_msg)
-        built_in.regex_match_len('logs/worker.1', self.epoch_re, 2, self.err_msg)
+    # def test_mode_str_ps_local_cluster_2p_2t_async_c2(self):
+    #     """test_mode_str_ps_local_cluster_2p_2t_async_c2."""
+    #     self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+    #     self.yaml_content["mode"] = "runner0"
+    #     self.yaml_content["runner"][0]["class"] = "local_cluster_train"
+    #     self.yaml_content["runner"][0]["worker_num"] = 2
+    #     self.yaml_content["runner"][0]["server_num"] = 2
+    #     self.yaml_content["dataset"][0]["data_path"] = "criteo_data"
+    #     self.run_yaml()
+    #     built_in.equals(self.pro.returncode, 0, self.err_msg)
+    #     built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
+    #     built_in.not_contains('logs/server.1', 'Traceback', self.err_msg)
+    #     built_in.regex_match_len('logs/worker.0', self.epoch_re, 2, self.err_msg)
+    #     built_in.regex_match_len('logs/worker.1', self.epoch_re, 2, self.err_msg)
+    #
+    # def test_mode_str_ps_local_cluster_2p_2t_sync_c2(self):
+    #     """test_mode_str_ps_local_cluster_2p_2t_sync_c2."""
+    #     self.yaml_config_name = sys._getframe().f_code.co_name + '.yaml'
+    #     self.yaml_content["mode"] = "runner0"
+    #     self.yaml_content["runner"][0]["class"] = "local_cluster_train"
+    #     self.yaml_content["runner"][0]["distribute_strategy"] = "sync"
+    #     self.yaml_content["runner"][0]["worker_num"] = 2
+    #     self.yaml_content["runner"][0]["server_num"] = 2
+    #     self.yaml_content["dataset"][0]["data_path"] = "criteo_data"
+    #     self.run_yaml()
+    #     built_in.equals(self.pro.returncode, 0, self.err_msg)
+    #     built_in.not_contains('logs/server.0', 'Traceback', self.err_msg)
+    #     built_in.not_contains('logs/server.1', 'Traceback', self.err_msg)
+    #     built_in.regex_match_len('logs/worker.0', self.epoch_re, 2, self.err_msg)
+    #     built_in.regex_match_len('logs/worker.1', self.epoch_re, 2, self.err_msg)
 
     # def test_mode_str_ps_local_cluster_2p_2t_half_async_c2(self):
     #     """test_mode_str_ps_local_cluster_2p_2t_half_async_c2."""
