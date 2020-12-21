@@ -243,6 +243,8 @@ class RankDNNBaseNewConfig(PaddleRecBase):
         self.yaml_content['hyper_parameters'] = {
             'sparse_feature_number': 1000001,
             'sparse_feature_dim': 9,
+            'sparse_inputs_slots': 27,
+            'dense_input_dim': 13,
             'fc_sizes': [512, 256, 128, 64, 32],
             'optimizer': {
                 'class': 'Adagrad',
