@@ -625,8 +625,6 @@ grpc_impl(){
   python test_asyn_client.py
   echo "batch predict"
   python test_batch_client.py
-  echo "pb predict"
-  python test_general_pb_client.py
   echo "timeout predict"
   python test_timeout_client.py
   # check_result $FUNCNAME
