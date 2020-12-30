@@ -492,21 +492,21 @@ class TestPaddleRecModels(PaddleRecBase):
         built_in.equals(self.pro.returncode, 0, self.err_msg)
         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
-    def test_word2vec(self):
-        """test recall.word2vec."""
-        self.yaml_config_name = 'models/recall/word2vec/config.yaml'
-        self.run_yaml(generate=False)
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#     def test_word2vec(self):
+#         """test recall.word2vec."""
+#         self.yaml_config_name = 'models/recall/word2vec/config.yaml'
+#         self.run_yaml(generate=False)
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
-    def test_word2vec_gpu(self):
-        """test recall.word2vec with gpu."""
-        self.yaml_config_name = "models/recall/word2vec/config.yaml"
-        sed_gpu_cmd = "sed -i 's/device:.*cpu/device: gpu/g' {}".format(self.yaml_config_name)
-        utils.cmd_shell(sed_gpu_cmd)
-        self.run_yaml(generate=False, cuda_devices="0")
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#     def test_word2vec_gpu(self):
+#         """test recall.word2vec with gpu."""
+#         self.yaml_config_name = "models/recall/word2vec/config.yaml"
+#         sed_gpu_cmd = "sed -i 's/device:.*cpu/device: gpu/g' {}".format(self.yaml_config_name)
+#         utils.cmd_shell(sed_gpu_cmd)
+#         self.run_yaml(generate=False, cuda_devices="0")
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
     def test_youtube_dnn(self):
         """test recall.youtube_dnn."""
