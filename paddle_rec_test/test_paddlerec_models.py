@@ -340,21 +340,21 @@ class TestPaddleRecModels(PaddleRecBase):
     #     built_in.equals(self.pro.returncode, 0, self.err_msg)
     #     built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
-    def test_wide_deep(self):
-        """test ran.wide_deep."""
-        self.yaml_config_name = 'models/rank/wide_deep/config.yaml'
-        self.run_yaml(generate=False)
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#     def test_wide_deep(self):
+#         """test ran.wide_deep."""
+#         self.yaml_config_name = 'models/rank/wide_deep/config.yaml'
+#         self.run_yaml(generate=False)
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
-    def test_wide_deep_gpu(self):
-        """test rank.wide_deep with gpu."""
-        self.yaml_config_name = "models/rank/wide_deep/config.yaml"
-        sed_gpu_cmd = "sed -i 's/device:.*cpu/device: gpu/g' {}".format(self.yaml_config_name)
-        utils.cmd_shell(sed_gpu_cmd)
-        self.run_yaml(generate=False, cuda_devices="0")
-        built_in.equals(self.pro.returncode, 0, self.err_msg)
-        built_in.not_contains(self.err, 'Traceback', self.err_msg)
+#     def test_wide_deep_gpu(self):
+#         """test rank.wide_deep with gpu."""
+#         self.yaml_config_name = "models/rank/wide_deep/config.yaml"
+#         sed_gpu_cmd = "sed -i 's/device:.*cpu/device: gpu/g' {}".format(self.yaml_config_name)
+#         utils.cmd_shell(sed_gpu_cmd)
+#         self.run_yaml(generate=False, cuda_devices="0")
+#         built_in.equals(self.pro.returncode, 0, self.err_msg)
+#         built_in.not_contains(self.err, 'Traceback', self.err_msg)
 
     def test_xdeepfm(self):
         """test ran.xdeepfm."""
