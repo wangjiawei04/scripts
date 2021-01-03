@@ -24,7 +24,8 @@ function run(){
            test_dist_fleet_static_launch.py \
            test_dist_fleet_static_fleetrun.py \
            test_dist_fleet_dygraph_gloo_init.py \
-           test_dist_fleet_static_ctr.py "
+           test_dist_fleet_static_ctr.py \
+           test_dist_fleet_communicator_api.py"
     for file in ${cases}
     do
         echo ${file}
