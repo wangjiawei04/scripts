@@ -92,19 +92,15 @@ function run_env(){
 
 function run_gpu_env(){
   cd ${build_path}
-  if [ -d build ];then
-    rm -rf build
-  fi
-  cp -r ${build_path}/build_gpu/ ${build_path}/build
+  export LD_LIBRARY_PATH=/usr/local/lib64/python3.6/site-packages/paddle/libs/:$LD_LIBRARY_PATH
+  export LD_LIBRARY_PATH=/workspace/Serving/build_gpu/third_party/install/Paddle/lib/:$LD_LIBRARY_PATH
   export SERVING_BIN=${build_path}/build_gpu/core/general-server/serving
 }
 
 function run_cpu_env(){
   cd ${build_path}
-  if [ -d build ];then
-    rm -rf build
-  fi
-  cp -r ${build_path}/build_cpu/ ${build_path}/build
+  export LD_LIBRARY_PATH=/usr/local/lib64/python3.6/site-packages/paddle/libs/:$LD_LIBRARY_PATH
+  export LD_LIBRARY_PATH=/workspace/Serving/build_cpu/third_party/install/Paddle/lib/:$LD_LIBRARY_PATH
   export SERVING_BIN=${build_path}/build_cpu/core/general-server/serving
 }
 
@@ -112,11 +108,13 @@ function build_gpu_server() {
     setproxy
     cd ${build_path}
     git submodule update --init --recursive
-    if [ -d build ];then
-        cd build && rm -rf *
-    else
-      mkdir build && cd build
+    if [ -d build_gpu ];then
+        rm -rf build_gpu
     fi
+    if [ -d build ];then
+        rm -rf build
+    fi
+    mkdir build && cd build
     cmake -DPYTHON_INCLUDE_DIR=$PYTHONROOT/include/python3.6m/ \
           -DPYTHON_LIBRARIES=$PYTHONROOT/lib64/libpython3.6.so \
           -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python3 \
@@ -135,10 +133,9 @@ function build_client() {
      setproxy
      cd  ${build_path}
      if [ -d build ];then
-          cd build && rm -rf *
-      else
-        mkdir build && cd build
-      fi
+          rm -rf build
+     fi
+     mkdir build && cd build
      cmake -DPYTHON_INCLUDE_DIR=$PYTHONROOT/include/python3.6m/ \
            -DPYTHON_LIBRARIES=$PYTHONROOT/lib64/libpython3.6.so \
            -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python3 \
@@ -153,11 +150,13 @@ function build_client() {
 function build_cpu_server(){
       setproxy
       cd ${build_path}
-      if [ -d build ];then
-          cd build && rm -rf *
-      else
-        mkdir build && cd build
+      if [ -d build_cpu ];then
+          rm -rf build_cpu
       fi
+      if [ -d build ];then
+          rm -rf build
+      fi
+      mkdir build && cd build
       cmake -DPYTHON_INCLUDE_DIR=$PYTHONROOT/include/python3.6m/ \
             -DPYTHON_LIBRARIES=$PYTHONROOT/lib64/libpython3.6.so \
             -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python3 \
@@ -177,10 +176,9 @@ function build_app() {
   pip3 install paddlepaddle==1.8.5
   cd ${build_path}
   if [ -d build ];then
-      cd build && rm -rf *
-  else
-    mkdir build && cd build
+      rm -rf build
   fi
+  mkdir build && cd build
   cmake -DPYTHON_INCLUDE_DIR=$PYTHONROOT/include/python3.6m/ \
         -DPYTHON_LIBRARIES=$PYTHONROOT/lib/libpython3.6.so \
         -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python3 \
@@ -193,7 +191,7 @@ function build_app() {
 
 function bert_rpc_gpu(){
   run_gpu_env
-  setproxy
+  unsetproxy
   cd ${build_path}/python/examples/bert
   sh get_data.sh >/dev/null 2>&1
   sed -i 's/9292/8860/g' bert_client.py
@@ -210,7 +208,7 @@ function bert_rpc_gpu(){
 
 function bert_rpc_cpu(){
   run_cpu_env
-  setproxy
+  unsetproxy
   cd ${build_path}/python/examples/bert
   sed -i 's/8860/8861/g' bert_client.py
   python3 -m paddle_serving_server.serve --model bert_seq128_model/ --port 8861 > bert_rpc_cpu 2>&1 &
@@ -222,7 +220,7 @@ function bert_rpc_cpu(){
 }
 
 function criteo_ctr_with_cube_rpc(){
-  setproxy
+  unsetproxy
   run_cpu_env
   cd ${build_path}/python/examples/criteo_ctr_with_cube
   ln -s /root/.cache/dist_data/serving/criteo_ctr_with_cube/raw_data ./
@@ -248,7 +246,7 @@ function criteo_ctr_with_cube_rpc(){
 
 function pipeline_imagenet(){
   run_gpu_env
-  setproxy
+  unsetproxy
   cd ${build_path}/python/examples/pipeline/imagenet
   cp -r /root/.cache/dist_data/serving/imagenet/* ./
   ls -a
@@ -261,7 +259,7 @@ function pipeline_imagenet(){
 
 function ResNet50_rpc(){
   run_gpu_env
-  setproxy
+  unsetproxy
   cd ${build_path}/python/examples/imagenet
   cp -r /root/.cache/dist_data/serving/imagenet/* ./
   sed -i 's/9696/8863/g' resnet50_rpc_client.py
@@ -274,7 +272,7 @@ function ResNet50_rpc(){
 
 function ResNet101_rpc(){
   run_gpu_env
-  setproxy
+  unsetproxy
   cd ${build_path}/python/examples/imagenet
   sed -i "22cclient.connect(['${host}:8864'])" image_rpc_client.py
   python3 -m paddle_serving_server_gpu.serve --model ResNet101_vd_model --port 8864 --gpu_ids 0 > ResNet101_rpc 2>&1 &
@@ -286,7 +284,7 @@ function ResNet101_rpc(){
 }
 
 function cnn_rpc(){
-  setproxy
+  unsetproxy
   run_cpu_env
   cd ${build_path}/python/examples/imdb
   cp -r /root/.cache/dist_data/serving/imdb/* ./
@@ -300,7 +298,7 @@ function cnn_rpc(){
 }
 
 function bow_rpc(){
-  setproxy
+  unsetproxy
   run_cpu_env
   cd ${build_path}/python/examples/imdb
   sed -i 's/8865/8866/g' test_client.py
@@ -312,7 +310,7 @@ function bow_rpc(){
 }
 
 function lstm_rpc(){
-  setproxy
+  unsetproxy
   run_cpu_env
   cd ${build_path}/python/examples/imdb
   sed -i 's/8866/8867/g' test_client.py
@@ -324,7 +322,7 @@ function lstm_rpc(){
 }
 
 function lac_rpc(){
-  setproxy
+  unsetproxy
   run_cpu_env
   cd ${build_path}/python/examples/lac
   python3 -m paddle_serving_app.package --get_model lac >/dev/null 2>&1
@@ -338,7 +336,7 @@ function lac_rpc(){
 }
 
 function fit_a_line_rpc(){
-  setproxy
+  unsetproxy
   run_cpu_env
   cd ${build_path}/python/examples/fit_a_line
   sh get_data.sh >/dev/null 2>&1
@@ -351,7 +349,7 @@ function fit_a_line_rpc(){
 }
 
 function faster_rcnn_model_rpc(){
-  setproxy
+  unsetproxy
   run_gpu_env
   cd ${build_path}/python/examples/faster_rcnn
   cp -r /root/.cache/dist_data/serving/faster_rcnn/faster_rcnn_model.tar.gz ./
@@ -368,7 +366,7 @@ function faster_rcnn_model_rpc(){
 }
 
 function cascade_rcnn_rpc(){
-  setproxy
+  unsetproxy
   run_gpu_env
   cd ${build_path}/python/examples/cascade_rcnn
   cp -r /root/.cache/dist_data/serving/cascade_rcnn/cascade_rcnn_r50_fpx_1x_serving.tar.gz ./
@@ -382,7 +380,7 @@ function cascade_rcnn_rpc(){
 }
 
 function deeplabv3_rpc() {
-  setproxy
+  unsetproxy
   run_gpu_env
   cd ${build_path}/python/examples/deeplabv3
   cp -r /root/.cache/dist_data/serving/deeplabv3/deeplabv3.tar.gz ./
@@ -396,7 +394,7 @@ function deeplabv3_rpc() {
 }
 
 function mobilenet_rpc() {
-  setproxy
+  unsetproxy
   run_gpu_env
   cd ${build_path}/python/examples/mobilenet
   python3 -m paddle_serving_app.package --get_model mobilenet_v2_imagenet >/dev/null 2>&1
@@ -410,7 +408,7 @@ function mobilenet_rpc() {
 }
 
 function unet_rpc() {
- setproxy
+ unsetproxy
  run_gpu_env
  cd ${build_path}/python/examples/unet_for_image_seg
  python3 -m paddle_serving_app.package --get_model unet >/dev/null 2>&1
@@ -424,7 +422,7 @@ function unet_rpc() {
 }
 
 function resnetv2_rpc() {
-  setproxy
+  unsetproxy
   run_gpu_env
   cd ${build_path}/python/examples/resnet_v2_50
   cp /root/.cache/dist_data/serving/resnet_v2_50/resnet_v2_50_imagenet.tar.gz ./
@@ -438,7 +436,7 @@ function resnetv2_rpc() {
 }
 
 function ocr_rpc() {
-  setproxy
+  unsetproxy
   run_cpu_env
   cd ${build_path}/python/examples/ocr
   cp -r /root/.cache/dist_data/serving/ocr/test_imgs ./
@@ -453,7 +451,7 @@ function ocr_rpc() {
 }
 
 function criteo_ctr_rpc_cpu() {
-  setproxy
+  unsetproxy
   run_cpu_env
   cd ${build_path}/python/examples/criteo_ctr
   sed -i "s/9292/8885/g" test_client.py
@@ -470,7 +468,7 @@ function criteo_ctr_rpc_cpu() {
 }
 
 function criteo_ctr_rpc_gpu() {
-  setproxy
+  unsetproxy
   run_gpu_env
   cd ${build_path}/python/examples/criteo_ctr
   sed -i "s/8885/8886/g" test_client.py
@@ -484,7 +482,7 @@ function criteo_ctr_rpc_gpu() {
 }
 
 function yolov4_rpc_gpu() {
-  setproxy
+  unsetproxy
   run_gpu_env
   cd ${build_path}/python/examples/yolov4
   sed -i "s/9393/8887/g" test_client.py
@@ -498,7 +496,7 @@ function yolov4_rpc_gpu() {
 }
 
 function senta_rpc_cpu() {
-  setproxy
+  unsetproxy
   run_gpu_env
   cd ${build_path}/python/examples/senta
   sed -i "s/9393/8887/g" test_client.py
@@ -595,6 +593,7 @@ function bert_http(){
 }
 
 grpc_impl(){
+  unsetproxy
   run_gpu_env
   cd ${build_path}/python/examples/grpc_impl_example/fit_a_line
   sh get_data.sh >/dev/null 2>&1
