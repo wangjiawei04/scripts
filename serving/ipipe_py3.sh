@@ -17,7 +17,7 @@ export PYTHONROOT=/usr
 build_path=/workspace/Serving/
 build_whl_list=(build_gpu_server build_client build_cpu_server build_app)
 rpc_model_list=(grpc_impl pipeline_imagenet bert_rpc_gpu bert_rpc_cpu faster_rcnn_model_rpc ResNet50_rpc lac_rpc \
-cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc cascade_rcnn_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2_rpc \
+cnn_rpc bow_rpc lstm_rpc fit_a_line_rpc deeplabv3_rpc mobilenet_rpc unet_rpc resnetv2_rpc \
 criteo_ctr_rpc_cpu criteo_ctr_rpc_gpu ocr_rpc yolov4_rpc_gpu)
 http_model_list=(fit_a_line_http lac_http cnn_http bow_http lstm_http ResNet50_http bert_http)
 
@@ -373,7 +373,7 @@ function cascade_rcnn_rpc(){
   cp -r /root/.cache/dist_data/serving/cascade_rcnn/cascade_rcnn_r50_fpx_1x_serving.tar.gz ./
   tar xf cascade_rcnn_r50_fpx_1x_serving.tar.gz
   sed -i "s/9292/8879/g" test_client.py
-  python3 -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 > rcnn_rpc 2>&1 &
+  python3 -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 --thread 2 > rcnn_rpc 2>&1 &
   sleep 5
   python3 test_client.py
   check_result $FUNCNAME
