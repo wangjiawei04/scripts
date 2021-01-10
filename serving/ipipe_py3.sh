@@ -40,7 +40,8 @@ function unsetproxy(){
 }
 
 function kill_server_process(){
-  kill `ps -ef|grep serving|awk '{print $2}'`
+  kill `ps -ef|grep $1 |awk '{print $2}'`
+  kill `ps -ef|grep serving |awk '{print $2}'`
 }
 
 function check() {
@@ -203,7 +204,7 @@ function bert_rpc_gpu(){
   tail bert_rpc_gpu
   head data-c.txt | python3 bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving
 }
 
 function bert_rpc_cpu(){
@@ -216,7 +217,7 @@ function bert_rpc_cpu(){
   cp data-c.txt.1 data-c.txt
   head data-c.txt | python3 bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving
 }
 
 function criteo_ctr_with_cube_rpc(){
@@ -241,7 +242,7 @@ function criteo_ctr_with_cube_rpc(){
   python3 test_client.py ctr_client_conf/serving_client_conf.prototxt ./raw_data
   check_result $FUNCNAME
   kill `ps -ef|grep cube|awk '{print $2}'`
-  kill_server_process
+  kill_server_process test_server
 }
 
 function pipeline_imagenet(){
@@ -254,7 +255,7 @@ function pipeline_imagenet(){
   sleep 5
   python3 pipeline_rpc_client.py
   # check_result $FUNCNAME
-  kill_server_process
+  kill_server_process resnet50_web_service
 }
 
 function ResNet50_rpc(){
@@ -267,7 +268,7 @@ function ResNet50_rpc(){
   sleep 5
   python3 resnet50_rpc_client.py ResNet50_vd_client_config/serving_client_conf.prototxt
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving
 }
 
 function ResNet101_rpc(){
@@ -279,7 +280,7 @@ function ResNet101_rpc(){
   sleep 5
   python3 image_rpc_client.py ResNet101_vd_client_config/serving_client_conf.prototxt
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving
   sleep 5
 }
 
@@ -294,7 +295,7 @@ function cnn_rpc(){
   sleep 5
   head test_data/part-0 | python3 test_client.py imdb_cnn_client_conf/serving_client_conf.prototxt imdb.vocab
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving 
 }
 
 function bow_rpc(){
@@ -306,7 +307,7 @@ function bow_rpc(){
   sleep 5
   head test_data/part-0 | python3 test_client.py imdb_bow_client_conf/serving_client_conf.prototxt imdb.vocab
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving 
 }
 
 function lstm_rpc(){
@@ -318,7 +319,7 @@ function lstm_rpc(){
   sleep 5
   head test_data/part-0 | python3 test_client.py imdb_lstm_client_conf/serving_client_conf.prototxt imdb.vocab
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving 
 }
 
 function lac_rpc(){
@@ -332,7 +333,7 @@ function lac_rpc(){
   sleep 5
   echo "我爱北京天安门" | python3 lac_client.py lac_client/serving_client_conf.prototxt lac_dict/
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving
 }
 
 function fit_a_line_rpc(){
@@ -345,7 +346,7 @@ function fit_a_line_rpc(){
   sleep 5
   python3 test_client.py uci_housing_client/serving_client_conf.prototxt
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving
 }
 
 function faster_rcnn_model_rpc(){
@@ -362,7 +363,7 @@ function faster_rcnn_model_rpc(){
   sleep 5
   python3 test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving 
 }
 
 function cascade_rcnn_rpc(){
@@ -376,7 +377,7 @@ function cascade_rcnn_rpc(){
   sleep 5
   python3 test_client.py
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving 
 }
 
 function deeplabv3_rpc() {
@@ -390,7 +391,7 @@ function deeplabv3_rpc() {
   sleep 5
   python3 deeplabv3_client.py
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving
 }
 
 function mobilenet_rpc() {
@@ -404,7 +405,7 @@ function mobilenet_rpc() {
   sleep 5
   python3 mobilenet_tutorial.py
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving 
 }
 
 function unet_rpc() {
@@ -418,7 +419,7 @@ function unet_rpc() {
  sleep 5
  python3 seg_client.py
  check_result $FUNCNAME
- kill_server_process
+ kill_server_process serving
 }
 
 function resnetv2_rpc() {
@@ -432,7 +433,7 @@ function resnetv2_rpc() {
   sleep 10
   python3 resnet50_v2_tutorial.py
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving
 }
 
 function ocr_rpc() {
@@ -447,7 +448,7 @@ function ocr_rpc() {
   sleep 5
   python3 test_ocr_rec_client.py
  # check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving
 }
 
 function criteo_ctr_rpc_cpu() {
@@ -464,7 +465,7 @@ function criteo_ctr_rpc_cpu() {
   sleep 5
   python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving 
 }
 
 function criteo_ctr_rpc_gpu() {
@@ -478,7 +479,7 @@ function criteo_ctr_rpc_gpu() {
   python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
   check_result $FUNCNAME
   kill `ps -ef|grep ctr|awk '{print $2}'`
-  kill_server_process
+  kill_server_process serving
 }
 
 function yolov4_rpc_gpu() {
@@ -492,7 +493,7 @@ function yolov4_rpc_gpu() {
   sleep 5
   python3 test_client.py 000000570688.jpg
  # check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving
 }
 
 function senta_rpc_cpu() {
@@ -506,7 +507,7 @@ function senta_rpc_cpu() {
   sleep 5
   python3 test_client.py 000000570688.jpg
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process serving
 }
 
 
@@ -519,7 +520,7 @@ function fit_a_line_http() {
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"x": [0.0137, -0.1136, 0.2553, -0.0692, 0.0582, -0.0727, -0.1583, -0.0584, 0.6283, 0.4919, 0.1856, 0.0795, -0.0332]}], "fetch":["price"]}' http://${host}:8871/uci/prediction
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process test_server
 }
 
 function lac_http() {
@@ -530,7 +531,7 @@ function lac_http() {
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "我爱北京天安门"}], "fetch":["word_seg"]}' http://${host}:8872/lac/prediction
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process lac_web_service
 }
 
 function cnn_http() {
@@ -541,7 +542,7 @@ function cnn_http() {
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8873/imdb/prediction
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process text_classify_service
 }
 
 function bow_http() {
@@ -552,7 +553,7 @@ function bow_http() {
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8874/imdb/prediction
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process text_classify_service
 }
 
 function lstm_http() {
@@ -564,7 +565,7 @@ function lstm_http() {
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "i am very sad | 0"}], "fetch":["prediction"]}' http://${host}:8875/imdb/prediction
   check_result $FUNCNAME
   kill `ps -ef|grep imdb|awk '{print $2}'`
-  kill_server_process
+  kill_server_process text_classify_service
 }
 
 function ResNet50_http() {
@@ -575,7 +576,7 @@ function ResNet50_http() {
   sleep 10
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"image": "https://paddle-serving.bj.bcebos.com/imagenet-example/daisy.jpg"}], "fetch": ["score"]}' http://${host}:8876/image/prediction
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process resnet50_web_service
 }
 
 function bert_http(){
@@ -589,7 +590,7 @@ function bert_http(){
   sleep 5
   curl -H "Content-Type:application/json" -X POST -d '{"feed":[{"words": "hello"}], "fetch":["pooled_output"]}' http://127.0.0.1:8878/bert/prediction
   check_result $FUNCNAME
-  kill_server_process
+  kill_server_process bert_web_service
 }
 
 grpc_impl(){
@@ -608,7 +609,7 @@ grpc_impl(){
   echo "timeout predict"
   python3 test_timeout_client.py
 #  check_result $FUNCNAME
-  kill_server_process
+  kill_server_process test_server
 }
 
 function build_all_whl(){
