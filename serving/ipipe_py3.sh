@@ -201,8 +201,9 @@ function bert_rpc_gpu(){
   ls -hlst
   python3 -m paddle_serving_server_gpu.serve --model bert_seq128_model/ --port 8860 --gpu_ids 0 &
   sleep 15
-  tail bert_rpc_gpu
+  nvidia-smi
   head data-c.txt | python3 bert_client.py --model bert_seq128_client/serving_client_conf.prototxt
+  nvidia-smi
   check_result $FUNCNAME
   kill_server_process serving
 }
@@ -253,7 +254,9 @@ function pipeline_imagenet(){
   ls -a
   python3 resnet50_web_service.py &
   sleep 5
+  nvidia-smi
   python3 pipeline_rpc_client.py
+  nvidia-smi
   # check_result $FUNCNAME
   kill_server_process resnet50_web_service
 }
@@ -266,7 +269,9 @@ function ResNet50_rpc(){
   sed -i 's/9696/8863/g' resnet50_rpc_client.py
   python3 -m paddle_serving_server_gpu.serve --model ResNet50_vd_model --port 8863 --gpu_ids 0 &
   sleep 5
+  nvidia-smi
   python3 resnet50_rpc_client.py ResNet50_vd_client_config/serving_client_conf.prototxt
+  nvidia-smi
   check_result $FUNCNAME
   kill_server_process serving
 }
@@ -278,7 +283,9 @@ function ResNet101_rpc(){
   sed -i "22cclient.connect(['${host}:8864'])" image_rpc_client.py
   python3 -m paddle_serving_server_gpu.serve --model ResNet101_vd_model --port 8864 --gpu_ids 0 &
   sleep 5
+  nvidia-smi
   python3 image_rpc_client.py ResNet101_vd_client_config/serving_client_conf.prototxt
+  nvidia-smi
   check_result $FUNCNAME
   kill_server_process serving
   sleep 5
@@ -360,8 +367,10 @@ function faster_rcnn_model_rpc(){
   sed -i 's/9494/8870/g' test_client.py
   python3 -m paddle_serving_server_gpu.serve --model pddet_serving_model --port 8870 --gpu_id 0 --thread 2 &
   echo "faster rcnn running ..."
+  nvidia-smi
   sleep 5
   python3 test_client.py pddet_client_conf/serving_client_conf.prototxt infer_cfg.yml 000000570688.jpg
+  nvidia-smi
   check_result $FUNCNAME
   kill_server_process serving 
 }
@@ -375,7 +384,9 @@ function cascade_rcnn_rpc(){
   sed -i "s/9292/8879/g" test_client.py
   python3 -m paddle_serving_server_gpu.serve --model serving_server --port 8879 --gpu_id 0 --thread 2 &
   sleep 5
+  nvidia-smi
   python3 test_client.py
+  nvidia-smi
   check_result $FUNCNAME
   kill_server_process serving 
 }
@@ -389,7 +400,9 @@ function deeplabv3_rpc() {
   sed -i "s/9494/8880/g" deeplabv3_client.py
   python3 -m paddle_serving_server_gpu.serve --model deeplabv3_server --gpu_ids 0 --port 8880 --thread 2 &
   sleep 5
+  nvidia-smi
   python3 deeplabv3_client.py
+  nvidia-smi
   check_result $FUNCNAME
   kill_server_process serving
 }
@@ -403,7 +416,9 @@ function mobilenet_rpc() {
   sed -i "s/9393/8881/g" mobilenet_tutorial.py
   python3 -m paddle_serving_server_gpu.serve --model mobilenet_v2_imagenet_model --gpu_ids 0 --port 8881 &
   sleep 5
+  nvidia-smi
   python3 mobilenet_tutorial.py
+  nvidia-smi
   check_result $FUNCNAME
   kill_server_process serving 
 }
@@ -417,7 +432,9 @@ function unet_rpc() {
  sed -i "s/9494/8882/g" seg_client.py
  python3 -m paddle_serving_server_gpu.serve --model unet_model --gpu_ids 0 --port 8882 &
  sleep 5
+ nvidia-smi
  python3 seg_client.py
+ nvidia-smi
  check_result $FUNCNAME
  kill_server_process serving
 }
@@ -431,7 +448,9 @@ function resnetv2_rpc() {
   sed -i 's/9393/8883/g' resnet50_v2_tutorial.py
   python3 -m paddle_serving_server_gpu.serve --model resnet_v2_50_imagenet_model --gpu_ids 0 --port 8883 &
   sleep 10
+  nvidia-smi
   python3 resnet50_v2_tutorial.py
+  nvidia-smi
   check_result $FUNCNAME
   kill_server_process serving
 }
@@ -476,7 +495,9 @@ function criteo_ctr_rpc_gpu() {
   wget https://paddle-serving.bj.bcebos.com/criteo_ctr_example/criteo_ctr_demo_model.tar.gz >/dev/null 2>&1
   python3 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8886 --gpu_ids 0 &
   sleep 5
+  nvidia-smi
   python3 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
+  nvidia-smi
   check_result $FUNCNAME
   kill `ps -ef|grep ctr|awk '{print $2}'`
   kill_server_process serving
@@ -490,8 +511,10 @@ function yolov4_rpc_gpu() {
   cp -r /root/.cache/dist_data/serving/yolov4/yolov4.tar.gz ./
   tar xf yolov4.tar.gz
   python3 -m paddle_serving_server_gpu.serve --model yolov4_model --port 8887 --gpu_ids 0 &
+  nvidia-smi
   sleep 5
   python3 test_client.py 000000570688.jpg
+  nvidia-smi
  # check_result $FUNCNAME
   kill_server_process serving
 }
@@ -504,8 +527,10 @@ function senta_rpc_cpu() {
   cp -r /data/.cache/dist_data/serving/yolov4/yolov4.tar.gz ./
   tar xf yolov4.tar.gz
   python3 -m paddle_serving_server_gpu.serve --model yolov4_model --port 8887 --gpu_ids 0 &
+  nvidia-smi
   sleep 5
   python3 test_client.py 000000570688.jpg
+  nvidia-smi
   check_result $FUNCNAME
   kill_server_process serving
 }
