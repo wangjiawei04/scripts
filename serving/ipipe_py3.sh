@@ -87,7 +87,7 @@ function run_env(){
   pip3 install --upgrade nltk==3.4
   pip3 install --upgrade scipy==1.2.1
   pip3 install --upgrade setuptools==41.0.0
-  pip3 install paddlehub ujson paddlepaddle==1.8.5
+  pip3 install paddlehub ujson paddlepaddle==2.0.0-rc1
   echo "env configuration succ.... "
 }
 
@@ -174,7 +174,7 @@ function build_cpu_server(){
 function build_app() {
   setproxy
   pip3 install paddlehub ujson paddle_serving_client Pillow
-  pip3 install paddlepaddle==1.8.5
+  pip3 install paddlepaddle==2.0.0-rc1
   cd ${build_path}
   if [ -d build ];then
       rm -rf build
