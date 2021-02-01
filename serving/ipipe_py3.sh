@@ -681,7 +681,7 @@ function end_hook(){
 
 function main() {
   before_hook
-  #build_all_whl
+  build_all_whl
   check
   run_env
   run_rpc_models
