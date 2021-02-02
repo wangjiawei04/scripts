@@ -10,7 +10,7 @@ echo "#                                                              #"
 echo "#                                                              #"
 echo "################################################################"
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export CUDA_INCLUDE_DIRS=/usr/local/cuda-10.2/include
 export PYTHONROOT=/usr/local
 build_path=/workspace/Serving/

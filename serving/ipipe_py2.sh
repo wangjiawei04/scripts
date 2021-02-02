@@ -72,6 +72,7 @@ function before_hook(){
   setproxy
   cd ${build_path}/python
   pip2.7 install --upgrade pip
+  pip2.7 install opencv-python==4.2.0.32 requests
   pip2.7 install -r requirements.txt
   echo "env configuration succ.... "
 }
@@ -81,7 +82,6 @@ function run_env(){
   pip2.7 install --upgrade nltk==3.4
   pip2.7 install --upgrade scipy==1.2.1
   pip2.7 install --upgrade setuptools
-  pip2.7 install opencv-python==4.2.0.32
   pip2.7 install paddlehub ujson paddlepaddle==2.0.0
   echo "env configuration succ.... "
 }
@@ -130,10 +130,9 @@ function build_client() {
      setproxy
      cd  ${build_path}
      if [ -d build ];then
-          cd build && rm -rf *
-      else
-        mkdir build && cd build
-      fi
+          rm -rf build
+     fi    
+     mkdir build && cd build 
      cmake -DPYTHON_INCLUDE_DIR=$PYTHONROOT/include/python2.7/ \
            -DPYTHON_LIBRARIES=$PYTHONROOT/lib64/libpython2.7.so \
            -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python \
@@ -148,15 +147,18 @@ function build_client() {
 function build_cpu_server(){
       setproxy
       cd ${build_path}
-      if [ -d build ];then
-          cd build && rm -rf *
-      else
-        mkdir build && cd build
+      if [ -d build_cpu ];then
+         rm -rf build_cpu
       fi
+      if [ -d build ];then
+          rm -rf build
+      fi      
+      mkdir build && cd build
+      pwd
       cmake -DPYTHON_INCLUDE_DIR=$PYTHONROOT/include/python2.7/ \
             -DPYTHON_LIBRARIES=$PYTHONROOT/lib64/libpython2.7.so \
             -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python \
-            -DWITH_GPU=OFF \ 
+            -DWITH_GPU=OFF \
             -DSERVER=ON ..
       make -j18
       make -j18
@@ -173,10 +175,9 @@ function build_app() {
  # pip2.7 install opencv-python==4.2.0.32
   cd ${build_path}
   if [ -d build ];then
-      cd build && rm -rf *
-  else
-    mkdir build && cd build
+      rm -rf build
   fi
+  mkdir build && cd build
   cmake -DPYTHON_INCLUDE_DIR=$PYTHONROOT/include/python2.7/ \
         -DPYTHON_LIBRARIES=$PYTHONROOT/lib/libpython2.7.so \
         -DPYTHON_EXECUTABLE=$PYTHONROOT/bin/python \
