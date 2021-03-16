@@ -238,7 +238,7 @@ function criteo_ctr_with_cube_rpc(){
   sleep 5
   python2.7 test_server.py ctr_serving_model_kv > criteo_ctr_rpc 2>&1 &
   sleep 5
-  python2.7 test_client.py ctr_client_conf/serving_client_conf.prototxt ./raw_data
+  python2.7 test_client.py ctr_client_conf/serving_client_conf.prototxt ./raw_data/part-0
   cat criteo_ctr_rpc 
   check_result $FUNCNAME
   kill `ps -ef|grep cube|awk '{print $2}'`
@@ -479,7 +479,7 @@ function criteo_ctr_rpc_cpu() {
   mv models/ctr_serving_model .
   python2.7 -m paddle_serving_server.serve --model ctr_serving_model/ --port 8885 > criteo_ctr_cpu_rpc 2>&1 &
   sleep 5
-  python2.7 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
+  python2.7 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/part-0
   cat criteo_ctr_cpu_rpc
   check_result $FUNCNAME
   kill_server_process
@@ -492,7 +492,7 @@ function criteo_ctr_rpc_gpu() {
   sed -i "s/8885/8886/g" test_client.py
   python2.7 -m paddle_serving_server_gpu.serve --model ctr_serving_model/ --port 8886 --gpu_ids 0 > criteo_ctr_gpu_rpc 2>&1 &
   sleep 5
-  python2.7 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/
+  python2.7 test_client.py ctr_client_conf/serving_client_conf.prototxt raw_data/part-0
   cat criteo_ctr_gpu_rpc
   check_result $FUNCNAME
   kill_server_process
